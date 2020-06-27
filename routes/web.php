@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('user.trangchu.index');
 });
+Route::get('/admin', function () {
+    return view('mater-admin');
+});
+Route::get('/ds-product', function () {
+    return view('admin.ds-product.product');
+});
