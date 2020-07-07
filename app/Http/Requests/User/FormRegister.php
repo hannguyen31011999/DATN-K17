@@ -24,19 +24,18 @@ class FormRegister extends FormRequest
     public function rules()
     {
         return [
-            'full_name'=>'required|regex:[^[a-zA-Z]]',
+            'fullname'=>'required|regex:[^[a-zA-Z]]',
             'email'=>'required|email|unique:user,email',
             'password'=>'required|min:6',
             'phone'=>'required|numeric|regex:/(0)[0-9]{9}/',
-            'address'=>'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'full_name.required'=>'Vui lòng nhập tên đầy đủ',
-            'full_name.regex'=>'Fullname có kí tự đặc biệt',
+            'fullname.required'=>'Vui lòng nhập tên đầy đủ',
+            'fullname.regex'=>'Fullname có kí tự đặc biệt',
             'email.required'=>'Vui lòng nhập email',
             'email.email'=>'Không đúng định dạng email',
             'email.unique'=>'Email tồn tại',
@@ -45,7 +44,6 @@ class FormRegister extends FormRequest
             'phone.required'=>'Vui lòng nhập số điện thoại',
             'phone.regex'=>'Mobile phải bắt đầu bằng số 0 và mobile có có 10 số',
             'phone.numeric'=>'Mobile phải là số',
-            'address.required'=> "Vui lòng nhập địa chỉ!",
         ];
     }
 }

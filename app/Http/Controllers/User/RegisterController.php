@@ -24,14 +24,13 @@ class RegisterController extends Controller
             User::create([
                 'email'=>$validated['email'],
                 'password'=>Hash::make($validated['password']),
-                'name'=>$validated['full_name'],
+                'name'=>$validated['fullname'],
                 'phone'=>$validated['phone'],
-                'address'=>$validated['address'],
                 'role'=>1,
                 'status'=>1
             ]);
             if(Auth::attempt(['email'=>$validated['email'],'password'=>$validated['password']])){
-                $request->session()->put('name',Auth::User()->email);
+                $request->session()->put('email',Auth::User()->email);
                 $request->session()->put('id',Auth::User()->id);
                 return redirect()->route('home');
             }

@@ -26,6 +26,8 @@ class User extends Authenticatable
         'email',
         'password',
         'name',
+        'sex',
+        'birthdate',
         'phone',
         'address',
         'role',
@@ -42,11 +44,13 @@ class User extends Authenticatable
 
 
     protected $casts = [
+        'birthdate'=>'datetime:d/m/Y - H:i',
         'created_at'=>'datetime:d/m/Y - H:i',
         'updated_at'=>'datetime:d/m/Y - H:i',
     ];
 
     protected $dates = [
+        'birthdate',
         'created_at',
         'updated_at',
         'deleted_at'

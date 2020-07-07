@@ -30,7 +30,7 @@
 				<div class="pull-right auto-width-right">
 					<ul class="top-details menu-beta l-inline">
 						@if(Auth::check()&&Session::has('email')&&Session::has('id'))
-							<li><a href="" style="text-decoration: none;"><i class="fa fa-user"></i>{{Session::get('email')}}</a></li>
+							<li><a href="{{url('/account/profile')}}" style="text-decoration: none;"><i class="fa fa-user"></i>{{Session::get('email')}}</a></li>
 							<li><a href="{{url('/account/logout')}}" style="text-decoration: none;">Đăng xuất</a>
 						@else
 							<li><a href="{{url('/account/register')}}" style="text-decoration: none;">Đăng kí</a></li>
@@ -44,7 +44,7 @@
 		<div class="header-body">
 			<div class="container beta-relative">
 				<div class="pull-left">
-					<a href="index.html" id="logo"><img src="{{asset('user/assets/dest/images/logo-cake.png')}}" width="200px" alt=""></a>
+					<a href="{{route('home')}}" id="logo"><img src="{{asset('user/assets/dest/images/logo-cake.png')}}" width="200px" alt=""></a>
 				</div>
 				<div class="pull-right beta-components space-left ov">
 					<div class="space10">&nbsp;</div>
@@ -114,7 +114,7 @@
 				<div class="visible-xs clearfix"></div>
 				<nav class="main-menu">
 					<ul class="l-inline ov">
-						<li><a href="index.html">Trang chủ</a></li>
+						<li><a href="{{route('home')}}" style="text-decoration: none;">Trang chủ</a></li>
 						<li><a href="#">Sản phẩm</a>
 							<ul class="sub-menu">
 								<li><a href="product_type.html">Sản phẩm 1</a></li>

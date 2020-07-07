@@ -30,4 +30,7 @@ Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 
 	// Xử lí đăng xuất
 	Route::get('/logout','LoginController@logout');
+
+	// Profile
+	Route::get('/profile','ProfileController@index');
 });

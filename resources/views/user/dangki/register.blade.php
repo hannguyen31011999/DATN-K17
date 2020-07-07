@@ -1,89 +1,118 @@
 @extends('user.master')
 
-@section('js')
-
+@section('css')
+<style>
+    #login {
+        width: 100%;
+        border: 0.3px solid white;
+        border-radius: 12px;
+        padding: 50px;
+        margin: 20px;
+        background: white;
+    }
+    #form-login{
+        background-color: rgb(212, 218, 222);
+    }
+</style>
 @endsection
-
 @section('title')
 	Đăng kí
 @endsection
 @section('content')
-	<div class="container">
-		<div id="content">
-			<form action="{{url('/account/register')}}" method="post">
-				<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6">
-                        @if(Session::has('error'))
-                            <div class="alert alert-danger">
-                                {{Session::get('error')}}
+<div id="form-login">
+<div class="container">
+    <form action="{{url('/account/register')}}" method="post">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <div id="login">
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{Session::get('error')}}
+                        </div>
+                    @endif
+                    <h4 style="text-align:center;">Đăng kí</h4>
+                    <div class="space20">&nbsp;</div>
+                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                        <div class="form-group">
+                            <label for="fullname">Họ tên*</label>
+                            <div class="space10">&nbsp;</div>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-male"></i>
+                                </div>
+                                <input class="form-control" id="fullname" name="fullname" type="text" placeholder="Họ tên người dùng" />
                             </div>
-                        @endif
-                    </div>
-                    <div class="col-sm-3"></div>
-                </div>
-				<div class="row">
-					<div class="col-sm-3"></div>
-					<div class="col-sm-6">
-						<h4>Đăng kí</h4>
-						<div class="space20">&nbsp;</div>
-						<div class="form-block">
-                            <label for="email">Email*</label>
-                            <input type="text" id="email" name="email" class="form-control">
-                            @if($errors->has('email'))
-                            	<div class="alert alert-danger">
-                            		{{ $errors->first('email') }}
-                            	</div>
-                            @endif
-						</div>
-
-						<div class="form-block">
-                            <label for="f_name">Fullname*</label>
-                            <input type="text" id="f_name" name="full_name" class="form-control">
-                            @if($errors->has('full_name'))
-                            	<div class="alert alert-danger">
-                            		{{ $errors->first('full_name') }}
-                            	</div>
-                            @endif
-						</div>
-
-                        <div class="form-block">
-                            <label for="password">Password*</label>
-                            <input type="password" id="password" name="password" class="form-control">
-                            @if($errors->has('password'))
-                            	<div class="alert alert-danger">
-                            		{{ $errors->first('password') }}
-                            	</div>
+                            <div class="space10">&nbsp;</div>
+                            @if($errors->has('fullname'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('fullname') }}
+                                </div>
                             @endif
                         </div>
 
-						<div class="form-block">
-                            <label for="address">Address*</label>
-                            <input type="text" id="address" name="address" class="form-control">
-                            @if($errors->has('address'))
-                            	<div class="alert alert-danger">
-                            		{{ $errors->first('address') }}
-                            	</div>
+                        <div class="form-group">
+                            <label for="email">Tài khoản*</label>
+                            <div class="space10">&nbsp;</div>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <input class="form-control" id="email" name="email" type="text" placeholder="Tài khoản email" />
+                            </div>
+                            <div class="space10">&nbsp;</div>
+                            @if($errors->has('email'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('email') }}
+                                </div>
                             @endif
-						</div>
+                        </div>
 
-						<div class="form-block">
-                            <label for="phone">Phone*</label>
-                            <input type="text" id="phone" name="phone" class="form-control">
-                            @if($errors->has('phone'))
-                            	<div class="alert alert-danger">
-                            		{{ $errors->first('phone') }}
-                            	</div>
+                        <div class="form-group">
+                            <label for="password">Mật khẩu*</label>
+                            <div class="space10">&nbsp;</div>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                                <input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu"/>
+                            </div>
+                            <div class="space10">&nbsp;</div>
+                            @if($errors->has('password'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('password') }}
+                                </div>
                             @endif
-						</div>
-						<div class="form-block">
-							<button type="submit" class="btn btn-primary">Register</button>
-						</div>
-					</div>
-					<div class="col-sm-3"></div>
-				</div>
-			</form>
-		</div> <!-- #content -->
-</div> <!-- .container -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại*</label>
+                            <div class="space10">&nbsp;</div>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </div>
+                                <input class="form-control" id="phone" name="phone" type="text" placeholder="Số điện thoại người dùng"/>
+                            </div>
+                            <div class="space10">&nbsp;</div>
+                            @if($errors->has('phone'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('phone') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <div class="space10">&nbsp;</div>
+                            <button type="submit" class="btn btn-danger" style="width:100%; ">Đăng kí</button>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </form>
+</div>
+</div>
+@endsection
+@section('js')
+
 @endsection
