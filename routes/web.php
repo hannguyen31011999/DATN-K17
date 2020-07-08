@@ -31,6 +31,13 @@ Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 	// Xử lí đăng xuất
 	Route::get('/logout','LoginController@logout');
 
-	// Profile
+	// Thông tin khách hàng
 	Route::get('/profile','ProfileController@index');
+
+	// Thay đổi thông tin khách hàng
+	Route::post('/profile','ProfileController@change_profile');
 });
+
+// Route::get('/demo',function(){
+// 	return view('demo');
+// });

@@ -1,115 +1,8 @@
 @extends('user.master')
 
 @section('css')
-<style>
-.profile {
-background: #F1F3FA ;
-  margin: 20px 0;
-}
-
-/* Profile sidebar */
-.profile-sidebar {
-  padding: 20px 0 10px 0;
-  background: #fff ;
-}
-
-.profile-userpic img {
-  float: none;
-  margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
-}
-
-.profile-usertitle {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.profile-usertitle-name {
-  color: #5a7391;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 7px;
-}
-
-.profile-usertitle-job {
-  text-transform: uppercase;
-  color: #5b9bd1;
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.profile-userbuttons {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.profile-userbuttons .btn {
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 6px 15px;
-  margin-right: 5px;
-}
-
-.profile-userbuttons .btn:last-child {
-  margin-right: 0px;
-}
-    
-.profile-usermenu {
-  margin-top: 30px;
-}
-
-.profile-usermenu ul li {
-  border-bottom: 1px solid #f0f4f7;
-}
-
-.profile-usermenu ul li:last-child {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li a {
-  color: #93a3b5;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.profile-usermenu ul li a i {
-  margin-right: 8px;
-  font-size: 14px;
-}
-
-.profile-usermenu ul li a:hover {
-  background-color: #fafcfd;
-  color: #5b9bd1;
-}
-
-.profile-usermenu ul li.active {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li.active a {
-  color: #5b9bd1;
-  background-color: #f6f9fb;
-  border-left: 2px solid #5b9bd1;
-  margin-left: -2px;
-}
-
-.c-line-left{
-	width: 30px;
-	height: 3px;
-	background-color: #32c5d2;
-	margin: 0 0 30px 0; 
-}
-
-.table-us{
-	border: 
-}
-</style>
+<link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/thongtin.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.css" />
 @endsection
 
 @section('title')
@@ -172,14 +65,17 @@ background: #F1F3FA ;
 							</div>
 						</div>
 					</div>
-      <form>
+      <form action="" data-url="{{url('account/profile')}}" method="post" id="change-profile">
+      <input type="hidden" id="_token" value="{{ csrf_token() }}">
 			@if(isset($user))
 			          <div class="row">
                     <div class="col-md-4">
                         <label>Tên</label>
                     </div>
                     <div class="col-md-4">
-                        <p>{{$user->name}}</p>
+                        <div class="form__group field">
+                          <input type="input" class="form__field" value="{{$user->name}}" name="name" id='name' required />
+                        </div>
                     </div>
                 </div>
                 <hr class="table-us" width="65%">
@@ -206,7 +102,7 @@ background: #F1F3FA ;
                         <label>Số điện thoại</label>
                     </div>
                     <div class="col-md-4">
-                        <p>{{$user->phone}}<a href="" style="font-size: 15px;color: red;font-style: italic; text-decoration: none;">(Thay đổi)</a></p>
+                        <p>{{$user->phone}}<a href="" style="font-size: 15px;color: red;font-style: italic; text-decoration: none;" >(Thay đổi)</a></p>
                     </div>
                 </div>
                 <hr class="table-us" width="65%">
@@ -216,17 +112,17 @@ background: #F1F3FA ;
                     </div>
                     <div class="col-md-4">
                       @if($user->sex==0)
-                        <label class="radio-inline"><input type="radio" name="gender" checked>Nam</label>
-                        <label class="radio-inline"><input type="radio" name="gender" >Nữ</label>
-                        <label class="radio-inline"><input type="radio" name="gender" >Khác</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="0" checked>Nam</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="1">Nữ</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="2">Khác</label>
                   		@elseif($user->sex==1)
-                        <label class="radio-inline"><input type="radio" name="gender" >Nam</label>
-                        <label class="radio-inline"><input type="radio" name="gender" checked>Nữ</label>
-                        <label class="radio-inline"><input type="radio" name="gender" >Khác</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="0">Nam</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="1" checked>Nữ</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="2">Khác</label>
                       @else
-                        <label class="radio-inline"><input type="radio" name="gender" >Nam</label>
-                        <label class="radio-inline"><input type="radio" name="gender" >Nữ</label>
-                        <label class="radio-inline"><input type="radio" name="gender" checked>Khác</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="0">Nam</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="1">Nữ</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="2" checked>Khác</label>
                       @endif
                     </div>
                 </div>
@@ -236,7 +132,7 @@ background: #F1F3FA ;
                         <label>Ngày sinh</label>
                     </div>
                     <div class="col-md-4">
-                    	<input type="date" id="birthday" class="form-control" name="birthdate" style="width: 50%;">
+                    	<input type="date" id="birthday" class="form-control" value="{{$user->birthdate->format('Y-m-d')}}"  name="birthdate" style="width: 50%;">
                     </div>
                 </div>
                 <hr class="table-us" width="65%">
@@ -245,13 +141,15 @@ background: #F1F3FA ;
                         <label>Địa chỉ</label>
                     </div>
                     <div class="col-md-4">
-                    	<a href="" style="font-size: 15px;color: red;font-style: italic; text-decoration: none;">Thêm địa chỉ</a>
+                    	<div class="form__group field">
+                          <input type="input" class="form__field" value="{{$user->address}}" name="address" id='address'/>
+                        </div>
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-md-4">
-                    	<input type="submit" class="btn btn-danger" value="Lưu" style="width: 30%;">
+                    	<input type="submit" class="btn btn-danger" value="Lưu" id="click-change" style="width: 30%;">
                     </div>
                 </div>
             @endif
@@ -264,4 +162,38 @@ background: #F1F3FA ;
 </div>
 @endsection
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+        $('#change-profile').submit(function(e){
+          var name = $('#name').val();
+          var gender = $("input[name='gender']:checked").val();
+          var birthdate = $('#birthday').val()
+          var address =$('#address').val();
+          var url = $(this).attr('data-url');
+          e.preventDefault();
+          $.ajax({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: url,
+            data: {
+              "name":name,
+              "gender":gender,
+              "birthdate":birthdate,
+              "address":address,
+            },
+            success: function(response) {
+              console.log(response.data)
+              $.notify(response.data,"success")
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              //xử lý lỗi tại đây
+            }
+          });
+        });
+      });
+</script>
 @endsection
