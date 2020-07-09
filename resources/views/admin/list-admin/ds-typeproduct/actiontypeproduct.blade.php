@@ -93,7 +93,8 @@
 <!-- Datatables init -->
 <script src="{{asset('admin\assets\js\pages\datatables.init.js') }}"></script>
 <script src="{{asset('ckeditor\ckeditor.js') }}"></script>
-<script src="{{asset('ckeditor\ckeditor.js') }}"></script>
+<script src="{{asset('ckfinder\ckfinder.js') }}"></script>
+
 
 <!-- <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script> -->
 <script>

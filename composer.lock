@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.145.0",
+            "version": "3.145.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "df5406b49f4f5774045e51e8fecc75717c4d6454"
+                "reference": "69b7e99246c64d75b16dd3e926da0ea9f73088ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/df5406b49f4f5774045e51e8fecc75717c4d6454",
-                "reference": "df5406b49f4f5774045e51e8fecc75717c4d6454",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/69b7e99246c64d75b16dd3e926da0ea9f73088ad",
+                "reference": "69b7e99246c64d75b16dd3e926da0ea9f73088ad",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-07-02T18:12:35+00:00"
+            "time": "2020-07-08T18:13:01+00:00"
         },
         {
             "name": "ckfinder/ckfinder-laravel-package",
