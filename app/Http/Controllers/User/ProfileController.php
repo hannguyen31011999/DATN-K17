@@ -5,7 +5,9 @@ namespace App\Http\Controllers\user;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\User\FormPassword;
 use App\Model\User;
+use Illuminate\Support\Facades\Hash;
 class ProfileController extends Controller
 {
 	private $id;
@@ -23,7 +25,7 @@ class ProfileController extends Controller
 	{
 		$user = User::find($this->id);
 		$user->phone = convert_phone($user->phone);
-		return view('user.thongtin.account',compact('user'));
+		return view('user.thongtin.profile',compact('user'));
 	}
 
 	public function change_profile(Request $request)
@@ -42,6 +44,22 @@ class ProfileController extends Controller
 				return response()->json(['data'=>'Cập nhật thông tin thất bại'],500);
 			}
 		}
-		
+	}
+
+	public function change_password(FormPassword $request)
+	{
+		// ajax response errors status 422
+		if($request->ajax()){
+			$validated = $request->validated();
+			try{
+				$user = User::find($this->id);
+				$user->update([
+					'password'=>Hash::make($validated["new_password"]),
+				]);
+				return response()->json(['data'=>'Thay đổi mật khẩu thành công'],200);
+			}catch(Exception $e){
+				return response()->json(['data'=>'Thay đổi mật khẩu thất bại'],500);
+			}
+		}
 	}
 }

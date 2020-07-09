@@ -36,6 +36,13 @@ Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 
 	// Thay đổi thông tin khách hàng
 	Route::post('/profile','ProfileController@change_profile');
+
+	// Thay đổi mật khẩu
+	Route::get('/password/change',function(){
+		return view('user.thongtin.change_password');
+	});
+
+	Route::post('/password/change','ProfileController@change_password');
 });
 
 // Route::get('/demo',function(){
