@@ -1,9 +1,5 @@
 @extends('admin.mater-admin')
 @section('header')
-<link href="{{asset('admin\assets\libs\datatables\dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{asset('admin\assets\libs\datatables\buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{asset('admin\assets\libs\datatables\responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{asset('admin\assets\libs\datatables\select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
 @section('main-conten')
 <div class="row">
@@ -11,16 +7,19 @@
         <div class="card">
             <div class="card-body table-responsive">
                 <h4 class="m-t-0 header-title mb-4"><b>Danh sách loại sản phẩm</b></h4>
-                <a href="{{route('list-admin.ds-typeproduct.add')}}" class="btn btn-outline-primary waves-effect width-md waves-light"><i class=" fas fa-plus"></i> Thêm mới</a>
-                <br>
-                <br>
                 <table id="datatable" class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Tên Loại SP</th>
+                            <th>Tên SP</th>
+                            <th>Loại</th>
                             <th>Mô tả</th>
+                            <th>Giá</th>
+                            <th>Giá khuyến mãi</th>
                             <th>Hình</th>
+                            <th>Đơn vị</th>
+                            <th>Nguyên liệu thô</th>
+                            <th>Nguồn</th>
                             <th>Edit</th>
                         </tr>
                     </thead>
@@ -28,11 +27,22 @@
                         @foreach( $listproduct as $pr )
                         <tr>
                             <td>{{ $pr->id }}</td>
-                            <td>{{ $pr->type_name }}</td>
+                            <td>{{ $pr->product_name }}</td>
+                             @foreach( $listtypeproduct as $tpr )
+                                    @if( $pr->type_product_id ==  $tpr->id)
+                                    <td>{{ $tpr->type_name}}</td>
+                                    @endif
+                            @endforeach
                             <td>{{ $pr->description }}</td>
-                            <td><img height="100px" width="100px" src="{{asset('img/typeproduct/'.$pr->image)}}" /></td>
+                            <td>{{ $pr->unit_price }}</td>
+                            <td>{{ $pr->promotion_price }}</td>
+                            <td><img height="100px" width="100px" src="{{asset('img/product/'.$pr->image)}}" /></td>
+                            <td>{{ $pr->unit }}</td>
+                            <td>{{ $pr->raw_material }}</td>
+                            <td>{{ $pr->origin }}</td>
+                            
                             <td>
-                                <a href="{{route('list-admin.ds-typeproduct.update', ['id'=>$pr->id])}}" class="btn btn-icon waves-effect waves-light btn-warning"><i class="fa fa-wrench"></i> </a>
+                                <a href="{{route('list-admin.ds-product.update', ['id'=>$pr->id])}}" class="btn btn-icon waves-effect waves-light btn-warning"><i class="fa fa-wrench"></i> </a>
                                 <hr>
                                 <a onclick="del()" href="#" class="btn btn-icon waves-effect waves-light btn-danger"><i class="far fa-trash-alt"></i></a>
                                 <script>
@@ -47,7 +57,7 @@
                                             cancelButtonText: 'không'
                                         }).then((result) => {
                                             if (result.value) {
-                                                open("{{route('list-admin.ds-typeproduct.delete', ['id'=>$pr->id])}}", "_self")
+                                                open("{{route('list-admin.ds-product.delete', ['id'=>$pr->id])}}", "_self")
                                             }
                                         })
                                     };
@@ -57,32 +67,11 @@
                         @endforeach
                     </tbody>
                 </table>
-
+                <a href="{{route('list-admin.ds-product.add')}}" class="btn btn-success waves-effect width-md waves-light"><i class=" fas fa-plus"></i> Thêm mới</a>
             </div>
         </div>
     </div>
 </div>
 @endsection
 @section('script')
-<!-- Required datatable js -->
-<script src="{{asset('admin\assets\libs\datatables\jquery.dataTables.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\dataTables.bootstrap4.min.js') }}"></script>
-<!-- Buttons examples -->
-<script src="{{asset('admin\assets\libs\datatables\dataTables.buttons.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\buttons.bootstrap4.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\jszip\jszip.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\pdfmake\pdfmake.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\pdfmake\vfs_fonts.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\buttons.html5.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\buttons.print.min.js') }}"></script>
-
-<!-- Responsive examples -->
-<script src="{{asset('admin\assets\libs\datatables\dataTables.responsive.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\responsive.bootstrap4.min.js') }}"></script>
-
-<script src="{{asset('admin\assets\libs\datatables\dataTables.keyTable.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\dataTables.select.min.js') }}"></script>
-
-<!-- Datatables init -->
-<script src="{{asset('admin\assets\js\pages\datatables.init.js') }}"></script>
 @endsection

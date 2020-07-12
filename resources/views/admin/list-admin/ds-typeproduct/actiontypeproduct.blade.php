@@ -1,9 +1,5 @@
 @extends('admin.mater-admin')
 @section('header')
-<link href="{{asset('admin\assets\libs\datatables\dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{asset('admin\assets\libs\datatables\buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{asset('admin\assets\libs\datatables\responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{asset('admin\assets\libs\datatables\select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
 @section('main-conten')
 
@@ -71,27 +67,6 @@
 </div>
 @endsection
 @section('script')
-<!-- Required datatable js -->
-<script src="{{asset('admin\assets\libs\datatables\jquery.dataTables.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\dataTables.bootstrap4.min.js') }}"></script>
-<!-- Buttons examples -->
-<script src="{{asset('admin\assets\libs\datatables\dataTables.buttons.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\buttons.bootstrap4.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\jszip\jszip.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\pdfmake\pdfmake.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\pdfmake\vfs_fonts.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\buttons.html5.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\buttons.print.min.js') }}"></script>
-
-<!-- Responsive examples -->
-<script src="{{asset('admin\assets\libs\datatables\dataTables.responsive.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\responsive.bootstrap4.min.js') }}"></script>
-
-<script src="{{asset('admin\assets\libs\datatables\dataTables.keyTable.min.js') }}"></script>
-<script src="{{asset('admin\assets\libs\datatables\dataTables.select.min.js') }}"></script>
-
-<!-- Datatables init -->
-<script src="{{asset('admin\assets\js\pages\datatables.init.js') }}"></script>
 <script src="{{asset('ckeditor\ckeditor.js') }}"></script>
 <script src="{{asset('ckfinder\ckfinder.js') }}"></script>
 
@@ -111,19 +86,4 @@
     CKEDITOR.replace('ckeditor', options);
 </script>
 @include('ckfinder::setup') 
-<!-- <script type="text/javascript">
-    $(document).ready(function() {
-        $("#datatable").DataTable({
-            language: {
-                paginate: {
-                    previous: "<i class='mdi mdi-chevron-left'>",
-                    next: "<i class='mdi mdi-chevron-right'>"
-                }
-            },
-            drawCallback: function() {
-                $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
-            }
-        })
-    });
-</script> -->
 @endsection
