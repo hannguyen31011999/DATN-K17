@@ -72,7 +72,7 @@
 							<div class="space10">&nbsp;</div>
 							<button type="submit" class="btn btn-danger" style="width:100%;">Đăng nhập</button>
 							<hr width="100%">
-							<a href="" style="text-decoration:none;font-size:15px; padding: 0px 73px;">Quên mật khẩu?</a>
+							<a href="{{url('account/recovery')}}" style="text-decoration:none;font-size:15px; padding: 0px 73px;">Quên mật khẩu?</a>
 						</div>
 					</form>
 				</div>

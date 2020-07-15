@@ -17,18 +17,23 @@ class RegisterController extends Controller
         return view('user.dangki.register');
     }
 
+    // Xử lí đăng kí
     public function register(FormRegister $request)
     {
+        // tạo một form request
         $validated = $request->validated();
         try{
+            // create tài khoản
             User::create([
                 'email'=>$validated['email'],
                 'password'=>Hash::make($validated['password']),
                 'name'=>$validated['fullname'],
+                'sex'=>2,
                 'phone'=>$validated['phone'],
                 'role'=>1,
                 'status'=>1
             ]);
+            // Nếu tạo thành công thì login
             if(Auth::attempt(['email'=>$validated['email'],'password'=>$validated['password']])){
                 $request->session()->put('email',Auth::User()->email);
                 $request->session()->put('id',Auth::User()->id);

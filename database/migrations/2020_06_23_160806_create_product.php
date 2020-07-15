@@ -22,8 +22,8 @@ class CreateProduct extends Migration
             $table->integer('promotion_price');
             $table->char('image');
             $table->string('unit',10);
-            $table->text('raw_material');
-            $table->text('origin');
+            $table->text('raw_material')->nullable();
+            $table->text('origin')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -12,8 +12,16 @@ if (! function_exists('convert_phone')) {
 	}
 }
 
-if (! function_exists('convert_date')) {
-	function convert_date($date)
+if (! function_exists('randomCode')) {
+	function randomCode($length)
 	{
+		$characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		$charactersLength = strlen($characters);
+		$random = '';
+		for ($i = 0; $i < $length; $i++) {
+        	$random .= $characters[rand(0, $charactersLength - 1)];
+	    }
+	    return $random;
 	}
 }
+
