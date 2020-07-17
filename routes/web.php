@@ -11,10 +11,11 @@ use App\Http\Middleware\CheckLogin;
 |
 */
 
-Route::get('/', function () {
-    return view('user.trangchu.index');
-})->name('home');
+Route::get('/','User\HomeController@index')->name('home');
 
+Route::post('/','User\CartController@addCart');
+
+Route::delete('/','User\CartController@delete');
 
 Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 	// Đăng kí
@@ -70,3 +71,5 @@ Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 	// Xử lí mật khẩu mới
 	Route::post('/password/reset','LoginController@newPassword');
 });
+
+

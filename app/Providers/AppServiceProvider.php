@@ -4,6 +4,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Model\TypeProduct;
+use Cart;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,7 +26,8 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer(['user.master'], function ($view) {
             $data = TypeProduct::all();
-            $view->with('menu', $data);
+            $item = Cart::content();
+            $view->with(['menu'=>$data,'item'=>$item]);
         });
     }
 }
