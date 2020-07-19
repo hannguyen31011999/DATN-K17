@@ -13,6 +13,7 @@ class ProfileController extends Controller
 {
 	private $id;
 
+	// Khởi tạo id khi đăng nhập thành công
 	public function __construct()
 	{
 		$this->middleware('CheckLogin');
@@ -23,6 +24,7 @@ class ProfileController extends Controller
 
 	}
 
+	// View profile
 	public function index()
 	{
 		$user = User::find($this->id);
@@ -30,6 +32,7 @@ class ProfileController extends Controller
 		return view('user.thongtin.profile',compact('user'));
 	}
 
+	// Xử lí thay đổi thông tin
 	public function change_profile(Request $request)
 	{
 		if($request->ajax()){
@@ -48,6 +51,7 @@ class ProfileController extends Controller
 		}
 	}
 
+	// Xử lí thay đổi password
 	public function change_password(FormPassword $request)
 	{
 		// ajax response errors status 422
@@ -65,12 +69,14 @@ class ProfileController extends Controller
 		}
 	}
 
+	// View địa chỉ
 	public function view_address()
 	{
 		$user = User::find($this->id);
 		return view('user.thongtin.address',compact('user'));
 	}
 
+	// Update địa chỉ và sdt
 	public function UpdateAddress(FormAddress $request)
 	{
 		if($request->ajax()){

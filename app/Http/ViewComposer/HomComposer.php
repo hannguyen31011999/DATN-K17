@@ -15,8 +15,8 @@ class HomComposer
     public function compose(View $view)
     {
         // truyền dữ liệu ở đây nè
-        $item = Cart::content();
+        // $item = Cart::content();
     	$data = TypeProduct::all();
-        $view->with(['menu'=>$data,'item'=>$item]);
+        $view->with(['menu'=>$data]);
     }
 }

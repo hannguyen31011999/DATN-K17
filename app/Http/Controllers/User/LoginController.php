@@ -45,11 +45,13 @@ class LoginController extends Controller
     // Xử lí đăng xuất,xóa session
     public function logout(Request $request)
     {
-    	$request->session()->flush();
+    	$request->session()->forget('email');
+        $request->session()->forget('id');
         Auth::logout();
         return redirect('/');
     }
 
+    // Xử lí gửi mail lấy lại mật khẩu
     public function sendMail_resetPassword(Request $request)
     {
         $this->validate($request,
@@ -77,6 +79,7 @@ class LoginController extends Controller
         return back()->with('success','Gửi xác nhận thành công');
     }
 
+    // Xử lí cookie và đặt lại mật khẩu
     public function newPassword(FormResetPassword $request)
     {
         $code = Cookie::get('code');

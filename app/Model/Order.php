@@ -20,6 +20,7 @@ class Order extends Model
     	'status',
     	'phone',
     	'address',
+        'array',
     	'created_at',
         'updated_at',
         'deleted_at'
@@ -41,5 +42,10 @@ class Order extends Model
     public function Users()
     {
         return $this->belongsTo('App\Model\User','id','customer_id');
+    }
+
+    public function OrderDetails()
+    {
+        return $this->hasMany('App\Model\OrderDetail','bill_id','id');
     }
 }

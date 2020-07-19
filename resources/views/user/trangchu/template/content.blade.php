@@ -11,7 +11,7 @@
 								<div class="clearfix"></div>
 							</div>
 							@foreach($newProduct as $newProducts)
-								@if(empty($products->promotion_price))
+								@if(empty($newProducts->promotion_price))
 								<div class="col-sm-3">
 									<div class="single-item">
 										<div class="single-item-header">
@@ -24,7 +24,7 @@
 											</p>
 										</div>
 										<div class="single-item-caption">
-											<a class="add-to-cart pull-left" href=""><i class="fa fa-shopping-cart"></i></a>
+											<a class="add-to-cart pull-left" href="" id="{{$newProducts->id}}"><i class="fa fa-shopping-cart"></i></a>
 											<a class="beta-btn primary" href="">Chi tiết <i class="fa fa-chevron-right"></i></a>
 											<div class="clearfix"></div>
 										</div>
@@ -47,7 +47,7 @@
 											</p>
 										</div>
 										<div class="single-item-caption">
-											<a class="add-to-cart pull-left" href=""><i class="fa fa-shopping-cart"></i></a>
+											<a class="add-to-cart pull-left" href="" id="{{$newProducts->id}}"><i class="fa fa-shopping-cart"></i></a>
 											<a class="beta-btn primary" href="">Chi tiết <i class="fa fa-chevron-right"></i></a>
 											<div class="clearfix"></div>
 										</div>

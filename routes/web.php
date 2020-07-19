@@ -10,12 +10,29 @@ use App\Http\Middleware\CheckLogin;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Trang chủ
 Route::get('/','User\HomeController@index')->name('home');
 
+// Thêm sản phẩm vào giỏ hàng
 Route::post('/','User\CartController@addCart');
 
+// Xóa sản phẩm ở giỏ hàng
 Route::delete('/','User\CartController@delete');
+
+// Trang shopping-cart
+Route::get('/shopping-cart','User\CheckoutController@index');
+
+// Cập nhật số lượng shopping-cart
+Route::post('/shopping-cart','User\CheckoutController@update');
+
+// Xóa sản phẩm ở shopping-cart
+Route::delete('/shopping-cart','User\CheckoutController@delete');
+
+// Trang checkout
+Route::get('/checkout','User\CheckoutController@viewCheckout');
+
+// Xử lí đơn hàng
+Route::post('/checkout','User\CheckoutController@createCheckout');
 
 Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 	// Đăng kí

@@ -15,12 +15,13 @@ class CreateOrder extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('customer_id')->unsigned();
+            $table->integer('customer_id')->nullable()->unsigned();
             $table->tinyInteger('payment');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->tinyInteger('status');
             $table->char('phone',10);
-            $table->string('address');
+            $table->string('address')->nullable();
+            $table->text('array');
             $table->softDeletes();
             $table->timestamps();
         });

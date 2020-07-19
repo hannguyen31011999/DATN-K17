@@ -25,3 +25,24 @@ if (! function_exists('randomCode')) {
 	}
 }
 
+if (! function_exists('thousandSeperator')) {
+	function thousandSeperator($number)
+	{
+		$thounsand = $number/1000;
+		if(($thounsand/1000)==1)
+		{
+			$milion = $thounsand/1000;
+			return strval($milion)."."."000"."."."000";
+		}
+		else if(($thounsand/1000)>1)
+		{
+			$milion = $thounsand/1000;
+			return strval($milion)."00"."."."000";
+		}
+		else
+		{
+			return strval($thounsand)."."."000";
+		}
+	}
+}
+

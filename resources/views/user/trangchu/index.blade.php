@@ -16,6 +16,16 @@
 
 @endsection
 
+@section('shopping-cart')
+<div class="beta-comp" >
+    <div class="cart">
+        <div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng <span id="count_span"></span><i class="fa fa-chevron-down"></i></div>
+        <div class="beta-dropdown cart-body">
+            @include('user.template.cart')
+        </div>
+    </div>
+</div>
+@endsection
 @section('slider')
 	@include('user.trangchu.template.slider')
 @endsection
@@ -92,7 +102,6 @@
                 success: function(response) {
                     $('.cart-body').empty().html(response);
                     var count = $('#count').val();
-                    console.log(count);
                     $('#count_span').text("("+count+")");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
