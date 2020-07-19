@@ -1,5 +1,6 @@
 @extends('admin.mater-admin')
 @section('header')
+<title>Admin|product</title>
 @endsection
 @section('main-conten')
 <div class="row">
@@ -34,9 +35,13 @@
                                     @endif
                             @endforeach
                             <td>{{ $pr->description }}</td>
-                            <td>{{ $pr->unit_price }}</td>
-                            <td>{{ $pr->promotion_price }}</td>
-                            <td><img height="100px" width="100px" src="{{asset('img/product/'.$pr->image)}}" /></td>
+                            <td><span class="badge badge-purple">{{ $pr->unit_price }} VNĐ</span></td>
+                            <td><span class="badge badge-primary">{{ $pr->promotion_price }} VNĐ</span></td>
+                            <td>
+                               <div class="thumbnail">
+                                  <img src="{{asset('img/product/'.$pr->image)}}" alt=""  />
+                               </div>
+                            </td>
                             <td>{{ $pr->unit }}</td>
                             <td>{{ $pr->raw_material }}</td>
                             <td>{{ $pr->origin }}</td>
@@ -67,7 +72,8 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a href="{{route('list-admin.ds-product.add')}}" class="btn btn-success waves-effect width-md waves-light"><i class=" fas fa-plus"></i> Thêm mới</a>
+                <hr>
+                <a href="{{route('list-admin.ds-product.add')}}" class="btn btn-success waves-effect width-md waves-light"><i class=" ion ion-ios-add-circle-outline font-20"> Thêm mới</i></a>
             </div>
         </div>
     </div>

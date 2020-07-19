@@ -26,7 +26,7 @@ class RegisterController extends Controller
                 'password'=>Hash::make($validated['password']),
                 'name'=>$validated['fullname'],
                 'phone'=>$validated['phone'],
-                'role'=>1,
+                'role'=>0,
                 'status'=>1
             ]);
             if(Auth::attempt(['email'=>$validated['email'],'password'=>$validated['password']])){

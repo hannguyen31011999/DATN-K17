@@ -3,10 +3,15 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TypeProduct extends Model
+
 {
     //
+    use Notifiable,
+    SoftDeletes;
     protected $table = "type_product";
     
     protected $primaryKey = "id";

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\admin;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\TypeProduct;
-use typeproduct as GlobalProduct;
+use App\Model\News;
+use App\Model\User;
+use Illuminate\Support\Facades\Auth;
+use News as GlobalProduct;
 
-class typeproductcontroller extends Controller
+class newscontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,9 @@ class typeproductcontroller extends Controller
      */
     public function index()
     {
-        $listtypeproduct = TypeProduct::all();
-        return view('admin.list-admin.ds-typeproduct.typeproduct',compact('listtypeproduct'));       
+        $listNews = News::all();
+        $listUser = User::all();
+        return view('admin.list-admin.ds-news.news',compact('listNews','listUser'));       
     }
 
     /**
@@ -27,8 +30,8 @@ class typeproductcontroller extends Controller
      */
     public function create(Request $request)
     {
-
-             return view('admin.list-admin.ds-typeproduct.actiontypeproduct');
+             $listUser = User::all();
+             return view('admin.list-admin.ds-news.actionnews',compact('listUser'));
     }
 
     /**
@@ -41,13 +44,13 @@ class typeproductcontroller extends Controller
     {
         
         $request->validate([
-            'type_name' => 'required|unique:type_product',
-            'description' => 'required',
+            'title' => 'required|unique:news',
+            'content' => 'required',
             'image'=>'image'
         ],[
-            'type_name.required' => 'chưa nhập loại sản phẩm',
-            'description.required' => 'chưa nhập mô tả',
-            'type_name.unique'=>'Loại này đã tồn tại',
+            'title.required' => 'Chưa nhập tiêu đề',
+            'content.required' => 'Chưa nhập nội dung',
+            'title.unique'=>'Tiêu đề này đã tồn tại',
             'image.image'=>'không đúng định dạng'
         ]);
 
@@ -55,13 +58,14 @@ class typeproductcontroller extends Controller
             $file = $request->file('image');
             if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
                $fileName = $file->getClientOriginalName('image');
-               $file->move('img/typeproduct',$fileName);
-               $typeproduct = new TypeProduct();
-               $typeproduct->type_name = $request->type_name;
-               $typeproduct->description = $request->description;
-               $typeproduct->image = $fileName;
-               $typeproduct->save();
-               return redirect()->route('list-admin.ds-typeproduct.list');
+               $file->move('img/news',$fileName);
+               $News = new News();
+               $News->title = $request->title;
+               $News->content = $request->content;
+               $News->image = $fileName;
+               $News->user_id_create = Auth::User()->id;
+               $News->save();
+               return redirect()->route('list-admin.ds-news.list');
             }else{
                 echo"eo phai jpg";
             }
@@ -89,8 +93,8 @@ class typeproductcontroller extends Controller
      */
     public function edit($id)
     {
-          $typeproduct = TypeProduct::find($id);
-         return view('admin.list-admin.ds-typeproduct.actiontypeproduct',compact('typeproduct')); 
+          $news = News::find($id);
+         return view('admin.list-admin.ds-news.actionnews',compact('news')); 
     }
 
     /**
@@ -103,38 +107,40 @@ class typeproductcontroller extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'type_name' => 'required',
-            'description' => 'required',
+            'title' => 'required',
+            'content' => 'required',
             'image'=>'image'
         ],[
-            'type_name.required' => 'Chưa nhập loại sản phẩm',
-            'description.required' => 'Chưa nhập mô tả',
-            // 'type_name.unique'=>'Loại này đã tồn tại',
+            'title.required' => 'Chưa nhập tiêu đề',
+            'content.required' => 'Chưa nhập nội dung',
             'image.image'=>'không đúng định dạng'
         ]);
-        $updatatypeproduct = TypeProduct::find($id);
+
+        $updataNews = News::find($id);
         if($request->hasFile('image')){    
-            $destinationPath = 'img/typeproduct/'.$updatatypeproduct->image;
+            $destinationPath = 'img/news/'.$updataNews->image;
             if(file_exists($destinationPath)){
                 unlink($destinationPath);
             } 
             $file = $request->file('image');
             if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
                $fileName = $file->getClientOriginalName('image');
-               $file->move('img/typeproduct',$fileName);
-               $updatatypeproduct->type_name = $request->type_name;
-               $updatatypeproduct->description = $request->description;
-               $updatatypeproduct->image = $fileName;
-               $updatatypeproduct->save();
-               return redirect()->route('list-admin.ds-typeproduct.list');
+               $file->move('img/news',$fileName);
+               $updataNews->title = $request->title;
+               $updataNews->content = $request->content;
+               $updataNews->image = $fileName;
+               $updataNews->user_id_create = Auth::User()->id;
+               $updataNews->save();
+               return redirect()->route('list-admin.ds-news.list');
             }else{
                 echo"eo phai jpg";
             }
          }else{
-            $updatatypeproduct->type_name = $request->type_name;
-            $updatatypeproduct->description = $request->description;
-            $updatatypeproduct->save();
-              return redirect()->route('list-admin.ds-typeproduct.list');
+               $updataNews->title = $request->title;
+               $updataNews->content = $request->content;
+               $updataNews->user_id_create = Auth::User()->id;
+               $updataNews->save();
+               return redirect()->route('list-admin.ds-news.list');
          }
     }
 
@@ -146,12 +152,12 @@ class typeproductcontroller extends Controller
      */
     public function destroy($id)
     {
-         $deletetypeproduct = TypeProduct::find($id);
-         $destinationPath = 'img/typeproduct/'.$deletetypeproduct->image;
+         $deleteNews = News::find($id);
+         $destinationPath = 'img/news/'.$deleteNews->image;
          if(file_exists($destinationPath)){
              unlink($destinationPath);
          }
-         $deletetypeproduct->delete();
-        return redirect()->route('list-admin.ds-typeproduct.list');
+         $deleteNews->delete();
+        return redirect()->route('list-admin.ds-news.list');
     }
 }

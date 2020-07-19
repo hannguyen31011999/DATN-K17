@@ -17,6 +17,11 @@
 	<link rel="stylesheet" href="{{asset('user/assets/dest/css/animate')}}">
 	<link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/huong-style.css')}}">
 	@yield('css')
+	<style>
+		.header-body{
+			background-image: url('img/background/backgrounduser.png');
+		}
+	</style>
 </head>
 <body>
 	<div id="header">
@@ -42,7 +47,7 @@
 				<div class="clearfix"></div>
 			</div> <!-- .container -->
 		</div> <!-- .header-top -->
-		<div class="header-body">
+		<div class="header-body" >
 			<div class="container beta-relative">
 				<div class="pull-left">
 					<a href="{{route('home')}}" id="logo"><img src="{{asset('img/logo/logo.jpg')}}" width="200px" alt=""></a>

@@ -42,4 +42,8 @@ class Order extends Model
     {
         return $this->belongsTo('App\Model\User','id','customer_id');
     }
+    public function OrderDetail()
+    {
+        return $this->hasMany('App\Model\OrderDetail','bill_id','id');
+    }
 }

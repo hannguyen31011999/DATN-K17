@@ -58,6 +58,11 @@
                                         <strong>{{$errors->first('promotion_price')}}</strong>
                                     </div>
                                     @endif
+                                    @if(isset($errorss))
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>{{$errorss}}</strong>
+                                    </div>
+                                    @endif
                                     <label class="control-label">Đơn vị</label>
                                     <input id="unit" type="text" class="input-large form-control" name="unit" @if(isset($product)) value="{{$product->unit}}" @endif>
                                     @if($errors->has('unit'))
@@ -99,11 +104,11 @@
                         </div>
                     </div>
                     <!-- end row -->
-
+                    <hr>
                     <div class="row mt-2">
                         <div class="col-12">
                             <div>
-                                <button type="submit" class="btn btn-outline-info btn-rounded waves-effect width-md waves-light">@if(isset($product))Cập nhật @else Thêm @endif</button>
+                                <button type="submit" class="btn btn-success waves-effect width-md waves-light">@if(isset($product))Cập nhật @else Thêm @endif</button>
                             </div>
                         </div>
                     </div>

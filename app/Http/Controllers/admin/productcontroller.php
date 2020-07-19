@@ -19,7 +19,7 @@ class productcontroller extends Controller
     {
         $listproduct = Product::all();
         $listtypeproduct = TypeProduct::all();
-        return view('admin.list-admin.ds-product.product',compact('listproduct','listtypeproduct'));       
+        return view('admin.list-admin.ds-product.product', compact('listproduct', 'listtypeproduct'));
     }
 
     /**
@@ -28,10 +28,9 @@ class productcontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
-             $listtypeproduct = TypeProduct::all();
-           
-             return view('admin.list-admin.ds-product.actionproduct',compact('listtypeproduct'));
+    {
+        $listtypeproduct = TypeProduct::all();
+        return view('admin.list-admin.ds-product.actionproduct', compact('listtypeproduct'));
     }
 
     /**
@@ -43,49 +42,57 @@ class productcontroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_name' => 'required',
+            'product_name' => 'required|unique:product',
             'description' => 'required',
-            'unit_price' => 'required',
-            'promotion_price' => 'required',
+            'unit_price' => 'required|numeric',
+            'promotion_price' => 'required|numeric',
             'unit' => 'required',
             'origin' => 'required',
-            'raw_material'=>'required'
-        ],[
-            'product_name.required' => 'chưa nhập dữ liệu ',
-            'description.required' => 'chưa nhập dữ liệu ',
-            'unit_price.required' => 'chưa nhập dữ liệu',
-            'unit.required' => 'chưa nhập dữ liệu ',
-            'origin.required' => 'chưa nhập dữ liệu ',
-            'promotion_price.required' => 'chưa nhập dữ liệu ',
-            'raw_material.required'=>'chưa nhập dữ liệu '
+            'raw_material' => 'required'
+        ], [
+            'product_name.unique' => 'Tên sản phẩm tồn tại',
+            'product_name.required' => 'Chưa nhập tên',
+            'description.required' => 'Chưa nhập mô tả',
+            'unit_price.required' => 'Chưa nhập giá',
+            'unit_price.numeric' => 'Nhập sai giá',
+            'unit.required' => 'Chưa nhập đơn vị',
+            'origin.required' => 'Chưa nhập nguồn gốc',
+            'promotion_price.required' => 'Chưa nhập giá khuyến mãi',
+            'promotion_price.numeric' => 'Nhập sai giá khuyến mãi',
+            'raw_material.required' => 'Chưa nhập nguyên liệu',
+
         ]);
-    
-        if($request->hasFile('image')){     
-            $file = $request->file('image');
-            if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
-               $fileName = $file->getClientOriginalName('image');
-               $file->move('img/product',$fileName);
-               $product = new Product();
-               $product->type_product_id  = $request->type_product_id;
-               $product->product_name = $request->product_name;
-               $product->description = $request->description;
-               $product->unit_price = $request->unit_price;
-               $product->promotion_price = $request->promotion_price;
-               $product->unit = $request->unit;
-               $product->image = $request->$fileName;
-               $product->origin = $request->origin; 
-               $product->raw_material = $request->raw_material; 
-               $product->save();
-               return redirect()->route('admin.ds-product.list');
-            }else{
-                echo"eo phai jpg";
+        if ($request->promotion_price < $request->unit_price) {
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                if ($file->getClientOriginalExtension('image') == "png" || "jpg" || "PNG" || "JPG") {
+                    $fileName = $file->getClientOriginalName('image');
+                    $file->move('img/product', $fileName);
+                    $product = new Product();
+                    $product->type_product_id  = $request->type_product_id;
+                    $product->product_name = $request->product_name;
+                    $product->description = $request->description;
+                    $product->unit_price = $request->unit_price;
+                    $product->promotion_price = $request->promotion_price;
+                    $product->unit = $request->unit;
+                    $product->image = $fileName;
+                    $product->origin = $request->origin;
+                    $product->raw_material = $request->raw_material;
+                    $product->save();
+                    return redirect()->route('list-admin.ds-product.list');
+                } else {
+                    echo "errors";
+                }
+            } else {
+                return "errors";
             }
-         }else{
-            return '@@@@@@@';
-         }
-      
+        } else {
+            $errorss = "Giá khuyến mãi không được lớn hơn giá";
+            $listtypeproduct = TypeProduct::all();
+            return view('admin.list-admin.ds-product.actionproduct', compact('listtypeproduct', 'errorss'));
+        }
     }
-   
+
     /**
      * Display the specified resource.
      *
@@ -105,9 +112,9 @@ class productcontroller extends Controller
      */
     public function edit($id)
     {
-          $product = Product::find($id);
-          $listtypeproduct = TypeProduct::all();
-         return view('admin.list-admin.ds-product.actionproduct',compact('product','listtypeproduct')); 
+        $product = Product::find($id);
+        $listtypeproduct = TypeProduct::all();
+        return view('admin.list-admin.ds-product.actionproduct', compact('product', 'listtypeproduct'));
     }
 
     /**
@@ -119,42 +126,73 @@ class productcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-          $updataproduct = Product::find($id);
-          if($request->hasFile('image')){    
-              $destinationPath = 'img/product/'.$updataproduct->image;
-              if(file_exists($destinationPath)){
-                  unlink($destinationPath);
-              } 
-              $file = $request->file('image');
-              if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
-                 $fileName = $file->getClientOriginalName('image');
-                 $file->move('img/product',$fileName);
-                 $updataproduct->type_product_id  = $request->type_product_id;
-                 $updataproduct->product_name = $request->product_name;
-                 $updataproduct->description = $request->description;
-                 $updataproduct->unit_price = $request->unit_price;
-                 $updataproduct->promotion_price = $request->promotion_price;
-                 $updataproduct->unit = $request->unit;
-                 $updataproduct->image = $fileName;
-                 $updataproduct->origin = $request->origin; 
-                 $updataproduct->raw_material = $request->raw_material; 
-                 $updataproduct->save();
-                 return redirect()->route('admin.list-admin.ds-product.list');
-              }else{
-                  echo"eo phai jpg";
-              }
-           }else{
-                $updataproduct->type_product_id  = $request->type_product_id;
+        $request->validate([
+            'product_name' => 'required',
+            'description' => 'required',
+            'unit_price' => 'required|numeric',
+            'promotion_price' => 'required|numeric',
+            'unit' => 'required',
+            'origin' => 'required',
+            'raw_material' => 'required'
+        ], [
+            'product_name.required' => 'Chưa nhập tên',
+            'description.required' => 'Chưa nhập mô tả',
+            'unit_price.required' => 'Chưa nhập giá',
+            'unit_price.numeric' => 'Nhập sai giá',
+            'unit.required' => 'Chưa nhập đơn vị',
+            'origin.required' => 'Chưa nhập nguồn gốc',
+            'promotion_price.required' => 'Chưa nhập giá khuyến mãi',
+            'promotion_price.numeric' => 'Nhập sai giá khuyến mãi',
+            'raw_material.required' => 'Chưa nhập nguyên liệu',
+        ]);
+
+        $updataproduct = Product::find($id);
+        if ($request->promotion_price < $request->unit_price) {
+            if ($request->hasFile('image')) {
+                $destinationPath = 'img/product/' . $updataproduct->image;
+                if (file_exists($destinationPath)) {
+                    unlink($destinationPath);
+                }
+                $file = $request->file('image');
+                if ($file->getClientOriginalExtension('image') == "png" || "jpg" || "PNG" || "JPG") {
+                    $fileName = $file->getClientOriginalName('image');
+                    $file->move('img/product', $fileName);
+                    if ($request->type_product_id) {
+                        $updataproduct->type_product_id  = $request->type_product_id;
+                    }
+                    $updataproduct->product_name = $request->product_name;
+                    $updataproduct->description = $request->description;
+                    $updataproduct->unit_price = $request->unit_price;
+                    $updataproduct->promotion_price = $request->promotion_price;
+                    $updataproduct->unit = $request->unit;
+                    $updataproduct->image = $fileName;
+                    $updataproduct->origin = $request->origin;
+                    $updataproduct->raw_material = $request->raw_material;
+                    $updataproduct->save();
+                    return redirect()->route('list-admin.ds-product.list');
+                } else {
+                    echo "eo phai jpg";
+                }
+            } else {
+                if ($request->type_product_id) {
+                    $updataproduct->type_product_id  = $request->type_product_id;
+                }
                 $updataproduct->product_name = $request->product_name;
                 $updataproduct->description = $request->description;
                 $updataproduct->unit_price = $request->unit_price;
                 $updataproduct->promotion_price = $request->promotion_price;
                 $updataproduct->unit = $request->unit;
-                $updataproduct->origin = $request->origin; 
+                $updataproduct->origin = $request->origin;
                 $updataproduct->raw_material = $request->raw_material;
                 $updataproduct->save();
                 return redirect()->route('list-admin.ds-product.list');
-           }
+            }
+        } else {
+            $errorss = "Giá khuyến mãi không được lớn hơn giá";
+            $product = Product::find($id);
+            $listtypeproduct = TypeProduct::all();
+            return view('admin.list-admin.ds-product.actionproduct', compact('product', 'listtypeproduct', 'errorss'));
+        }
     }
 
     /**
@@ -166,11 +204,11 @@ class productcontroller extends Controller
     public function destroy($id)
     {
         $deleteproduct = Product::find($id);
-        $destinationPath = 'img/typeproduct/'.$deleteproduct->image;
-        if(file_exists($destinationPath)){
+        $destinationPath = 'img/typeproduct/' . $deleteproduct->image;
+        if (file_exists($destinationPath)) {
             unlink($destinationPath);
         }
         $deleteproduct->delete();
-       return redirect()->route('list-admin.ds-product.list');
+        return redirect()->route('list-admin.ds-product.list');
     }
 }

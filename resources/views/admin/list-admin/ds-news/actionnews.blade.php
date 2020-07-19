@@ -1,34 +1,35 @@
 @extends('admin.mater-admin')
 @section('header')
+<title>Admin | Bài viết</title>
 @endsection
 @section('main-conten')
 
 <div class="row">
     <div class="col-md-12">
-        @if(isset($typeproduct))
-        <form action="{{ route('list-admin.ds-typeproduct.edit-update', ['id'=> $typeproduct->id]) }}" method="POST" enctype="multipart/form-data">
+        @if(isset($news))
+        <form action="{{ route('list-admin.ds-news.edit-update', ['id'=> $news->id]) }}" method="POST" enctype="multipart/form-data">
             @else
-            <form action="{{  route('list-admin.ds-typeproduct.edit-add') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{  route('list-admin.ds-news.edit-add') }}" method="POST" enctype="multipart/form-data">
                 @endif
                 @csrf
                 <div class="card-box">
                     <div class="row">
                         <div class="col-xl-6 col-lg-8">
-                            <h1 class="m-t-0 header-title mb-4"><b> @if(isset($typeproduct)) Cập nhật @else Thêm @endif loại sản phẩm</b></h1>
+                            <h1 class="m-t-0 header-title mb-4"><b> @if(isset($news)) Cập nhật @else Thêm @endif bài viết</b></h1>
                             <div class="control-group">
                                 <div class="controls">
-                                    <label class="control-label">Tên Loại Sản phẩm</label>
-                                    <input id="title" type="text" class="input-large form-control" name="type_name" @if(isset($typeproduct)) value="{{$typeproduct->type_name}}" @endif>
-                                @if($errors->has('type_name'))
+                                    <label class="control-label">Tiêu đề</label>
+                                    <input id="title" type="text" class="input-large form-control" name="title" @if(isset($news)) value="{{$news->title}}" @endif>
+                                @if($errors->has('title'))
                                     <div class="alert alert-danger" role="alert">
-                                       <strong>{{$errors->first('type_name')}}</strong>
+                                       <strong>{{$errors->first('title')}}</strong>
                                     </div>
                                 @endif
-                                    <label class="control-label mt-1">Mô tả</label>
-                                   <textarea name="description" id="ckeditor" cols="30" rows="10">@if(isset($typeproduct)) {{$typeproduct->description}} @endif</textarea>
-                                @if($errors->has('description'))
+                                   <label class="control-label mt-1">Nội dung</label>
+                                   <textarea name="content" id="ckeditor" cols="30" rows="10">@if(isset($news)) {{$news->content}} @endif</textarea>
+                                @if($errors->has('content'))
                                     <div class="alert alert-danger" role="alert">
-                                       <strong>{{$errors->first('description')}}</strong>
+                                       <strong>{{$errors->first('content')}}</strong>
                                     </div>
                                  @endif
                                 </div>
@@ -50,15 +51,15 @@
                             </div>
                         </div>
                         <div class="col-xl-6 col-md-8">
-                                  @if(isset($typeproduct))  <img class="imgpage" height="300px" width="300px"  src="{{asset('img/typeproduct/'.$typeproduct->image)}}" /></td> @endif
+                                  @if(isset($news))  <img class="imgpage" height="300px" width="300px"  src="{{asset('img/news/'.$news->image)}}" /></td> @endif
                         </div>
                     </div>
                     <!-- end row -->
-                        <hr>
+                    <hr>
                     <div class="row mt-2">
                         <div class="col-12">
                             <div>
-                                <button type="submit" class="btn btn-success waves-effect width-md waves-light">@if(isset($typeproduct))Cập nhật @else Thêm @endif</button>
+                                <button type="submit" class="btn btn-success waves-effect width-md waves-light">@if(isset($news))Cập nhật @else Thêm @endif</button>
                             </div>
                         </div>
                     </div>

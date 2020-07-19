@@ -20,7 +20,7 @@ class LoginController extends Controller
     	$validated = $request->validated();
     	try{
     		if(Auth::attempt(['email'=>$validated['email'],'password'=>$validated['password']])){
-    			if(Auth::User()->role==1){
+    			if(Auth::User()->role==0){
     				$request->session()->put('email',Auth::User()->email);
                 	$request->session()->put('id',Auth::User()->id);
                 	return view('admin.trangchu.dashboard');

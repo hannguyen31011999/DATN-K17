@@ -25,7 +25,7 @@ class ProfileController extends Controller
 	{
 		$user = User::find($this->id);
 		$user->phone = convert_phone($user->phone);
-		return view('user.thongtin.profile',compact('user'));
+		return view('admin.thongtin.profile',compact('user'));
 	}
 
 	public function change_profile(Request $request)

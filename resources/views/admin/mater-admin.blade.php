@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Admin | web</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Responsive bootstrap 4 admin template" name="description">
     <meta content="Coderthemes" name="author">
@@ -19,12 +18,17 @@
     <link href="{{asset('admin\assets\css\icons.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{asset('admin\assets\css\imgpage.css') }}" rel="stylesheet" type="text/css">
     <link href="{{asset('admin\assets\css\app.min.css') }}" rel="stylesheet" type="text/css" id="app-stylesheet">
-   
+
     <link href="{{asset('admin\assets\libs\datatables\dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{asset('admin\assets\libs\datatables\buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{asset('admin\assets\libs\datatables\responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{asset('admin\assets\libs\datatables\select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     @yield('header')
+    <style>
+        .navbar-custom {
+            background-image: url('img/background/backgrounduser.png');
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +37,7 @@
         <div class="navbar-custom">
             <ul class="list-unstyled topnav-menu float-right mb-0">
                 <li class="dropdown notification-list">
-                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" href="#" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
                         <span class="pro-user-name ml-1">
                             Admin :
                         </span>
@@ -43,7 +47,7 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <a href="{{url('/admin/profile')}}" class="dropdown-item notify-item">
                             <i class="mdi mdi-account-outline"></i>
                             <span>Thông tin</span>
                         </a>
@@ -104,73 +108,73 @@
                     <!--- Sidemenu -->
                     <div id="sidebar-menu" class="mm-active">
                         <ul class="metismenu mm-show" id="side-menu">
-
                             <li class="menu-title" id="clockDiv"></li>
-
-                            <li class="mm-active">
-                                <a href="#" class="waves-effect ">
-                                    <i class="ion-md-speedometer"></i>
-                                    <span> Trang chủ </span>
-                                </a>
-                            </li>
-                            <li class="menu-title">BÀI VIẾT</li>
-                            <li class="mm-active">
-                                <a href="#" class="waves-effect ">
-                                    <i class="ion ion-md-list-box"></i>
-                                    <span>Danh mục bài viết</span>
-                                </a>
-                            </li>
                             <li>
-                                <a href="#" class="waves-effect">
-                                    <i class="ion ion-ios-create"></i>
-                                    <span> Bài viết </span>
-                                    <span class="menu-arrow"></span>
+                                <a href="{{url('/admin/dashboard')}}" class="waves-effect ">
+                                    <i class="ion-md-speedometer font-20"></i>
+                                    <span> Trang chủ </span>     
+                                </a>  
+                            </li>
+                            <li class="menu-title">Bài viết</li>
+                            <li>
+                                <a  href="{{url('/list-news')}}" class="waves-effect ">
+                                    <i class="ion ion-ios-create font-20"></i>
+                                    <span>Quản lí bài viết </span>
                                 </a>
-                                <ul class="nav-second-level mm-collapse" aria-expanded="false">
-                                    <li><a href="components-grid.html">Thêm bài viết</a></li>
-                                    <li><a href="components-portlets.html">Thông tin</a></li>
-                                </ul>
+                                <!-- <a href="{{url('/list-news/add')}}" class="waves-effect ">
+                                    <i class="ion ion-ios-create"></i>
+                                    <span>Thêm bài viết </span>
+                                </a> -->
                             </li>
                             <li class="menu-title">SẢN PHẨM</li>
-                            <li class="mm-active">
-                                <a href="#" class="waves-effect ">
-                                    <i class="ion-ios-apps"></i>
-                                    <span>Danh mục sản phẩm</span>
-                                </a>
-                            </li>
                             <li>
-                                <a href="#" class="waves-effect active">
-                                    <i class=" ion ion-ios-list"></i>
-                                    <span>Sản phẩm</span>
+                               
+                                <a href="javascript: void(0);" class="waves-effect">
+                                 <i class=" ion ion-ios-list font-20"></i>
+                                    <span>Quản lí sản phẩm</span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level mm-collapse" aria-expanded="false">
-                                    <li><a href="components-grid.html">Thêm sản phẩm</a></li>
-                                    <li><a href="components-portlets.html">Thông tin</a></li>
+                                    <li><a href="{{url('/list-product')}}">Sản phẩm</a></li>
+                                    <li><a href="{{url('/list-typeproduct')}}">Loại sản phẩm</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-title">THÀNH VIÊN & ADMIN</li>
+                            <li class="menu-title">Đơn hàng</li>
+                            <li>
+                                <a href="{{url('/list-order')}}" class="waves-effect ">
+                                    <i class="ion-md-cart font-20"></i>
+                                    <span>Quản lý đơn hàng</span>
+                                </a>
+                            </li>
+                            <li class="menu-title">QUẢN LÍ USER</li>
                             <li class="mm-active">
-                                <a href="#" class="waves-effect ">
-                                    <i class="ion ion-md-people"></i>
+                                <a href="{{url('/list-user')}}" class="waves-effect ">
+                                   <i class="ion-md-contacts font-20 "></i>
+                                   <span>Người dùng</span>
+                                </a>
+                            </li>
+                            <li class="mm-active">
+                                <a href="{{url('/list-member')}}" class="waves-effect ">
+                                    <i class="ion ion-md-people font-20"></i>
                                     <span>Thành viên</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" class="waves-effect">
-                                    <i class=" ion ion-ios-finger-print"></i>
+                            <li class="menu-title">Admin</li>
+                            <li>       
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class=" ion ion-ios-finger-print font-20"></i>
                                     <span>Admin</span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level mm-collapse" aria-expanded="false">
-                                    <li><a href="components-grid.html">Thêm admin</a></li>
-                                    <li><a href="components-portlets.html">Thông tin</a></li>
+                                    <li><a href="{{url('/admin/profile')}}">Thông tin</a></li>
+                                    <li><a href="components-portlets.html">admin</a></li>
                                 </ul>
-                            </li>
+                             </li>
                             <li class="menu-title">CẤU HÌNH</li>
                             <li class="mm-active">
-                                <a href="#" class="waves-effect ">
-                                    <i class="fa fa-cogs"></i>
+                                <a href="javascript: void(0);" class="waves-effect ">
+                                    <i class="fa fa-cogs font-20"></i>
                                     <span>Cài dặt</span>
                                 </a>
                             </li>
@@ -219,6 +223,7 @@
         <!-- /Right-bar -->
         <!-- Right bar overlay-->
         <!-- Vendor js -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="{{asset('admin\assets\js\vendor.min.js') }}"></script>
 
         <script src="{{asset('admin\assets\libs\moment\moment.min.js') }}"></script>
@@ -267,7 +272,7 @@
 
         <!-- Datatables init -->
         <script src="{{asset('admin\assets\js\pages\datatables.init.js') }}"></script>
-       
+
 </body>
 
 </html>
