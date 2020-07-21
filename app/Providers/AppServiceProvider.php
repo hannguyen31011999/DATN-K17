@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Providers;
-
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-
+use App\Model\TypeProduct;
+use Cart;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer(['user.master'], function ($view) {
+            $data = TypeProduct::all();
+            $item = Cart::content();
+            $view->with(['menu'=>$data,'item'=>$item]);
+        });
     }
 }

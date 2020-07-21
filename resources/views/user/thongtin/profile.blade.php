@@ -12,47 +12,7 @@
 @section('content')
 <div class="container">
     <div class="row profile">
-		<div class="col-md-3">
-			<div class="profile-sidebar">
-				<!-- SIDEBAR USERPIC -->
-				<div class="profile-userpic">
-					<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
-				</div>
-				<!-- END SIDEBAR USERPIC -->
-				<!-- SIDEBAR USER TITLE -->
-				<div class="profile-usertitle">
-					<img src="{{asset('user/avatar.png')}}" style="width:100px;" class="avatar img-circle img-thumbnail" alt="avatar">
-				</div>
-				<!-- END SIDEBAR USER TITLE -->
-				<!-- SIDEBAR BUTTONS -->
-				<div class="profile-userbuttons">
-					<button type="button" class="btn btn-success btn-sm">Upload</button>
-					<button type="button" class="btn btn-danger btn-sm">Edit</button>
-				</div>
-				<!-- END SIDEBAR BUTTONS -->
-				<!-- SIDEBAR MENU -->
-				<div class="profile-usermenu">
-					<ul class="nav">
-						<li class="active">
-							<a href="#">
-							<i class="fa fa-user"></i>
-							Tài khoản của tôi </a>
-						</li>
-						<li>
-							<a href="#">
-							<i class="fa fa-bars"></i>
-							Đơn mua </a>
-						</li>
-						<li>
-							<a href="#" target="_blank">
-							<i class="fa fa-bell"></i>
-							Thông báo </a>
-						</li>
-					</ul>
-				</div>
-				<!-- END MENU -->
-			</div>
-		</div>
+		@include('user.thongtin.template.menu')
 		<div class="col-md-9">
             <div class="profile-content">
             	<div class="container">
@@ -68,7 +28,7 @@
       <form action="" data-url="{{url('account/profile')}}" method="post" id="change-profile">
       <input type="hidden" id="_token" value="{{ csrf_token() }}">
 			@if(isset($user))
-			          <div class="row">
+			         <div class="row">
                     <div class="col-md-4">
                         <label>Tên</label>
                     </div>
@@ -132,7 +92,7 @@
                         <label>Ngày sinh</label>
                     </div>
                     <div class="col-md-4">
-                    @if(empty($user->birthdate))
+                      @if(empty($user->birthdate))
                           <input type="date" id="birthday" class="form-control" value=""  name="birthdate" style="width: 50%;">
                       @else
                           <input type="date" id="birthday" class="form-control" value="{{$user->birthdate->format('Y-m-d')}}"  name="birthdate" style="width: 50%;">
@@ -145,8 +105,8 @@
                         <label>Địa chỉ</label>
                     </div>
                     <div class="col-md-4">
-                    	<div class="form__group field">
-                          <input type="input" class="form__field" value="{{$user->address}}" name="address" id='address'/>
+                        <div class="form__group field">
+                          <input type="input" class="form__field" value="{{$user->address}}" name="address" id='address' required />
                         </div>
                     </div>
                 </div>
@@ -166,15 +126,16 @@
 </div>
 @endsection
 @section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
+    //Ajax submit form change-profile
         $('#change-profile').submit(function(e){
           var name = $('#name').val();
           var gender = $("input[name='gender']:checked").val();
-          var birthdate = $('#birthday').val()
-          var address =$('#address').val();
+          var birthdate = $('#birthday').val();
+          var address = $('#address').val();
           var url = $(this).attr('data-url');
           e.preventDefault();
           $.ajax({

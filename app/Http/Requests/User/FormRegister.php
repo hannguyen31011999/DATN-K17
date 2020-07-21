@@ -35,7 +35,7 @@ class FormRegister extends FormRequest
     {
         return [
             'fullname.required'=>'Vui lòng nhập tên đầy đủ',
-            'fullname.regex'=>'Fullname có kí tự đặc biệt',
+            'fullname.regex'=>'Họ tên có kí tự đặc biệt',
             'email.required'=>'Vui lòng nhập email',
             'email.email'=>'Không đúng định dạng email',
             'email.unique'=>'Email tồn tại',
