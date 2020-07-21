@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\FormPassword;
 use App\Http\Requests\User\FormAddress;
 use App\Model\User;
+use App\Model\Order;
 use Illuminate\Support\Facades\Hash;
 class ProfileController extends Controller
 {
@@ -95,5 +96,18 @@ class ProfileController extends Controller
 				return response()->json(['data'=>'Thay địa chỉ thành công'],500);
 			}
 		}
+	}
+
+	public function viewPurchase()
+	{
+		$order = User::find(Auth::User()->id)
+				->Orders()
+				->get();
+		$orderDetail = array();
+		foreach ($order as $value) {
+			array_push($orderDetail,Order::find($value->id)->OrderDetails()->get());
+		}
+		$length = count($orderDetail);
+		return view('user.thongtin.purchase',compact('orderDetail'));
 	}
 }

@@ -42,7 +42,7 @@ class OrderDetail extends Model
     }
 
     //Relationship inverse giữa bảng product và order_detail
-    public function Product()
+    public function Products()
     {
         return $this->belongsTo('App\Model\Product','id','product_id');
     }

@@ -31,7 +31,7 @@
 							Địa chỉ</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="{{url('account/purchase')}}">
 							<i class="fa fa-bars"></i>
 							Đơn mua </a>
 						</li>

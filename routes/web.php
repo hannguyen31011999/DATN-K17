@@ -87,6 +87,9 @@ Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 
 	// Xử lí mật khẩu mới
 	Route::post('/password/reset','LoginController@newPassword');
+
+	// Đơn mua
+	Route::get('/purchase','ProfileController@viewPurchase');
 });
 
 

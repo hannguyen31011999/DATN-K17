@@ -19,8 +19,9 @@ class Order extends Model
     	'note',
     	'status',
     	'phone',
+        'name',
+        'email',
     	'address',
-        'array',
     	'created_at',
         'updated_at',
         'deleted_at'

@@ -12,8 +12,6 @@ use App\Model\OrderDetail;
 use Cart;
 class CheckoutController extends Controller
 {
-    //
-
 	// View shopping-cart
     public function index()
 	{
@@ -63,31 +61,61 @@ class CheckoutController extends Controller
     }
 
     // Xử lí checkout
-    public function createCheckout(FormCheckout $request)
+    public function createCheckout(Request $request)
     {
+    	$array = null;
     	if(Auth::check())
     	{
-
+    		$array = Order::create([
+    			'customer_id'=>Auth::User()->id,
+    			'payment'=>$request->payment,
+    			'note'=>$request->notes,
+    			'status'=>0,
+    			'phone'=>Auth::User()->phone,
+    			'address'=> Auth::User()->address,
+    			'name'=>Auth::User()->name,
+    			'email'=>Auth::User()->email
+    		]);
+    		$order = Order::find($array->id);
     	}
     	else
     	{
-    		$validated = $request->validated();
-    		$array = $request->name.",".$request->gender.",".$request->email;
+    		$this->validate($request,
+    			[
+    				'name'=>'required|regex:[^[a-zA-Z]]',
+		            'email'=>'required|email',
+		            'address'=>'required|regex:[^[a-zA-Z0-9]]',
+		            'phone'=>'required|numeric|regex:/(0)[0-9]{9}/'
+    			],
+
+    			[
+    				'name.required'=>'Vui lòng nhập tên đầy đủ',
+		            'name.regex'=>'Họ tên không được có kí tự đặc biệt',
+		            'email.required'=>'Vui lòng nhập email',
+		            'email.email'=>'Không đúng định dạng email',
+		            'phone.required'=>'Vui lòng nhập số điện thoại',
+		            'phone.regex'=>'Mobile phải bắt đầu bằng số 0 và mobile có có 10 số',
+		            'phone.numeric'=>'Mobile phải là số',
+		            'address.required'=>'Vui lòng nhập địa chỉ',
+		            'address.regex'=>'Địa chỉ không được có kí tự đặc biệt'
+    			]
+    		);
     		$array = Order::create([
     			'customer_id'=>null,
     			'payment'=>$request->payment,
     			'note'=>$request->notes,
     			'status'=>0,
-    			'phone'=>$validated['phone'],
-    			'address'=> $validated['address'],
-    			'array'=>$array
+    			'phone'=>$request->phone,
+    			'address'=> $request->address,
+    			'name'=>$request->name,
+    			'email'=>$request->email
     		]);
     		$order = Order::find($array->id);
-    		foreach (Cart::content() as $cart) {
-    			$order->OrderDetails()->create(['product_id'=>$cart->id,'qty'=>$cart->qty,'product_price'=>$cart->price]);
-    		}
-    		Cart::destroy();
-    		return redirect()->route('home');
     	}
+    	foreach (Cart::content() as $cart) {
+			$order->OrderDetails()->create(['product_id'=>$cart->id,'qty'=>$cart->qty,'product_price'=>$cart->price]);
+		}
+    	Cart::destroy();
+    	return redirect()->route('home');
     }
 }

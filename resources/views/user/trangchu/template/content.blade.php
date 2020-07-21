@@ -20,7 +20,7 @@
 										<div class="single-item-body">
 											<p class="single-item-title">{{$newProducts->product_name}}</p>
 											<p class="single-item-price">
-												<span>{{$newProducts->unit_price}}đ</span>
+												<span>{{thousandSeperator($newProducts->unit_price)}}đ</span>
 											</p>
 										</div>
 										<div class="single-item-caption">
@@ -42,8 +42,8 @@
 										<div class="single-item-body">
 											<p class="single-item-title">{{$newProducts->product_name}}</p>
 											<p class="single-item-price">
-												<span class="flash-del">{{$newProducts->unit_price}}đ</span>
-												<span class="flash-sale">{{$newProducts->promotion_price}}đ</span>
+												<span class="flash-del">{{thousandSeperator($newProducts->unit_price)}}đ</span>
+												<span class="flash-sale">{{thousandSeperator($newProducts->promotion_price)}}đ</span>
 											</p>
 										</div>
 										<div class="single-item-caption">
@@ -78,7 +78,7 @@
 										<div class="single-item-body">
 											<p class="single-item-title">{{$products->product_name}}</p>
 											<p class="single-item-price">
-												<span>{{$products->unit_price}}đ</span>
+												<span>{{thousandSeperator($products->unit_price)}}đ</span>
 											</p>
 										</div>
 										<div class="single-item-caption">
@@ -99,8 +99,8 @@
 										<div class="single-item-body">
 											<p class="single-item-title">{{$products->product_name}}</p>
 											<p class="single-item-price">
-												<span class="flash-del">{{$products->unit_price}}đ</span>
-												<span class="flash-sale">{{$products->promotion_price}}đ</span>
+												<span class="flash-del">{{thousandSeperator($products->unit_price)}}đ</span>
+												<span class="flash-sale">{{thousandSeperator($products->promotion_price)}}đ</span>
 											</p>
 										</div>
 										<div class="single-item-caption">

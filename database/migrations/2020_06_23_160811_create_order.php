@@ -20,8 +20,9 @@ class CreateOrder extends Migration
             $table->text('note')->nullable();
             $table->tinyInteger('status');
             $table->char('phone',10);
-            $table->string('address')->nullable();
-            $table->text('array');
+            $table->string('name');
+            $table->string('email');
+            $table->string('address');
             $table->softDeletes();
             $table->timestamps();
         });

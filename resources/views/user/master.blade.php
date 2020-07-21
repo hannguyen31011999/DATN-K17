@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="{{asset('user/assets/dest/rs-plugin/css/settings.css')}}">
 	<link rel="stylesheet" href="{{asset('user/assets/dest/rs-plugin/css/responsive.css')}}">
 	<link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/style.css')}}">
-	<link rel="stylesheet" href="{{asset('user/assets/dest/css/animate')}}">
+	<!-- <link rel="stylesheet" href="{{asset('user/assets/dest/css/animate')}}"> -->
 	<link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/huong-style.css')}}">
 	@yield('css')
 </head>
@@ -169,6 +169,5 @@
 	<script src="{{asset('user/assets/dest/js/wow.min.js')}}"></script>
 	<!--customjs-->
 	<script src="{{asset('user/assets/dest/js/custom2.js')}}"></script>
-	
 </body>
 </html>
