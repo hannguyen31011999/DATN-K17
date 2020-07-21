@@ -25,16 +25,18 @@
     21 => 'Illuminate\\View\\ViewServiceProvider',
     22 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     23 => 'Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider',
-    24 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    25 => 'Laravel\\Socialite\\SocialiteServiceProvider',
+    24 => 'CKSource\\CKFinderBridge\\CKFinderServiceProvider',
+    25 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     26 => 'Laravel\\Tinker\\TinkerServiceProvider',
     27 => 'Carbon\\Laravel\\ServiceProvider',
     28 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    29 => 'App\\Providers\\AppServiceProvider',
-    30 => 'App\\Providers\\AuthServiceProvider',
-    31 => 'App\\Providers\\EventServiceProvider',
-    32 => 'App\\Providers\\RouteServiceProvider',
-    33 => 'App\\Providers\\HelperServiceProvider',
+    29 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
+    30 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
+    31 => 'App\\Providers\\AppServiceProvider',
+    32 => 'App\\Providers\\AuthServiceProvider',
+    33 => 'App\\Providers\\EventServiceProvider',
+    34 => 'App\\Providers\\RouteServiceProvider',
+    35 => 'App\\Providers\\HelperServiceProvider',
   ),
   'eager' => 
   array (
@@ -50,13 +52,16 @@
     9 => 'Illuminate\\View\\ViewServiceProvider',
     10 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     11 => 'Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider',
-    12 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    13 => 'Carbon\\Laravel\\ServiceProvider',
-    14 => 'App\\Providers\\AppServiceProvider',
-    15 => 'App\\Providers\\AuthServiceProvider',
-    16 => 'App\\Providers\\EventServiceProvider',
-    17 => 'App\\Providers\\RouteServiceProvider',
-    18 => 'App\\Providers\\HelperServiceProvider',
+    12 => 'CKSource\\CKFinderBridge\\CKFinderServiceProvider',
+    13 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+    14 => 'Carbon\\Laravel\\ServiceProvider',
+    15 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
+    16 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
+    17 => 'App\\Providers\\AppServiceProvider',
+    18 => 'App\\Providers\\AuthServiceProvider',
+    19 => 'App\\Providers\\EventServiceProvider',
+    20 => 'App\\Providers\\RouteServiceProvider',
+    21 => 'App\\Providers\\HelperServiceProvider',
   ),
   'deferred' => 
   array (
@@ -164,7 +169,6 @@
     'translation.loader' => 'Illuminate\\Translation\\TranslationServiceProvider',
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
-    'Laravel\\Socialite\\Contracts\\Factory' => 'Laravel\\Socialite\\SocialiteServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
     'NunoMaduro\\Collision\\Contracts\\Provider' => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
   ),
@@ -204,9 +208,6 @@
     array (
     ),
     'Illuminate\\Validation\\ValidationServiceProvider' => 
-    array (
-    ),
-    'Laravel\\Socialite\\SocialiteServiceProvider' => 
     array (
     ),
     'Laravel\\Tinker\\TinkerServiceProvider' => 

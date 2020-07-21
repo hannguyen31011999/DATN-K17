@@ -17,22 +17,18 @@
       'Cart' => 'Gloudemans\\Shoppingcart\\Facades\\Cart',
     ),
   ),
+  'ckfinder/ckfinder-laravel-package' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'CKSource\\CKFinderBridge\\CKFinderServiceProvider',
+    ),
+  ),
   'fideloper/proxy' => 
   array (
     'providers' => 
     array (
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    ),
-  ),
-  'laravel/socialite' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Socialite\\SocialiteServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Socialite' => 'Laravel\\Socialite\\Facades\\Socialite',
     ),
   ),
   'laravel/tinker' => 
@@ -54,6 +50,17 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'realrashid/sweet-alert' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Alert' => 'RealRashid\\SweetAlert\\Facades\\Alert',
     ),
   ),
 );

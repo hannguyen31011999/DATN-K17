@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<link rel="shortcut icon" href="{{asset('img\logo\logo2.jpg') }}">
 	<title>@yield('title')</title>
 	<link href="http://fonts.googleapis.com/css?family=Dosis:300,400" rel='stylesheet' type='text/css'>
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel='stylesheet' type='text/css'>
@@ -41,10 +42,10 @@
 				<div class="clearfix"></div>
 			</div> <!-- .container -->
 		</div> <!-- .header-top -->
-		<div class="header-body">
+		<div class="header-body" >
 			<div class="container beta-relative">
 				<div class="pull-left">
-					<a href="{{route('home')}}" id="logo"><img src="{{asset('user/assets/dest/images/logo-cake.png')}}" width="200px" alt=""></a>
+					<a href="{{route('home')}}" id="logo"><img src="{{asset('img/logo/logo.jpg')}}" width="200px" alt=""></a>
 				</div>
 				<div class="pull-right beta-components space-left ov">
 					<div class="space10">&nbsp;</div>

@@ -26,13 +26,10 @@ class CheckCode implements Rule
     public function passes($attribute, $value)
     {
         //
-        $user = User::all();
-        foreach ($user as $data) {
-            if($value==$data["remember_token"])
-                return true;
-
-        }
-        return false;
+        $user = User::where('remember_token',$value)->get();
+        if($user->isEmpty())
+            return false;
+        return true;
     }
 
     /**
