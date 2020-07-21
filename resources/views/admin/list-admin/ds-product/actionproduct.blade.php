@@ -2,7 +2,7 @@
 @section('header')
 @endsection
 @section('main-conten')
-
+@include('sweetalert::alert')
 <div class="row">
     <div class="col-md-12">
         @if(isset($product))

@@ -1,8 +1,8 @@
 @extends('admin.mater-admin')
+@include('sweetalert::alert')
 @section('header')
 @endsection
 @section('main-conten')
-
 <div class="row">
     <div class="col-md-12">
         @if(isset($typeproduct))
@@ -71,8 +71,8 @@
 </div>
 @endsection
 @section('script')
-<script src="{{asset('ckeditor\ckeditor.js') }}"></script>
-<script src="{{asset('ckfinder\ckfinder.js') }}"></script>
+<script src="{{asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{asset('ckfinder/ckfinder.js') }}"></script>
 
 
 <!-- <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script> -->

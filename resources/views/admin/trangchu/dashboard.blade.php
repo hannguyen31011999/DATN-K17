@@ -4,6 +4,7 @@
 @endsection
 @section('main-conten')
 <div class="row">
+@include('sweetalert::alert')
                             <div class="col-xl-3 col-sm-6">
                                 <div class="card bg-pink">
                                     <div class="card-body widget-style-2">

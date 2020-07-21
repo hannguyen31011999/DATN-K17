@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\TypeProduct;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class productcontroller extends Controller
@@ -17,9 +17,12 @@ class productcontroller extends Controller
      */
     public function index()
     {
+        alert()->success('Title','Lorem Lorem Lorem');
+        toast('Your Post as been submited!','success','top-right');
         $listproduct = Product::all();
         $listtypeproduct = TypeProduct::all();
         return view('admin.list-admin.ds-product.product', compact('listproduct', 'listtypeproduct'));
+         
     }
 
     /**
@@ -79,7 +82,7 @@ class productcontroller extends Controller
                     $product->origin = $request->origin;
                     $product->raw_material = $request->raw_material;
                     $product->save();
-                    return redirect()->route('list-admin.ds-product.list');
+                    return redirect()->route('list-admin.ds-product.list')->with(['flash_message'=>'Thêm thành công !']);
                 } else {
                     echo "errors";
                 }
@@ -126,6 +129,7 @@ class productcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        alert()->success('Title','Lorem Lorem Lorem');
         $request->validate([
             'product_name' => 'required',
             'description' => 'required',

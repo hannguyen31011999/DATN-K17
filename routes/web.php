@@ -1,5 +1,5 @@
 <?php
-
+use RealRashid\SweetAlert\Facades\Alert;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,6 +78,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 });
 
 Route::get('/admin/dashboard', function () {
+	alert()->success('Title','Lorem Lorem Lorem');
     return view('admin.trangchu.dashboard');
 })->name('dashboard');
 

@@ -27,8 +27,7 @@ class typeproductcontroller extends Controller
      */
     public function create(Request $request)
     {
-
-             return view('admin.list-admin.ds-typeproduct.actiontypeproduct');
+             return view('admin.list-admin.ds-typeproduct.actiontypeproduct')->with(['flash_message'=>'Thêm thành công !']);;
     }
 
     /**

@@ -29,6 +29,7 @@ class ComposerStaticInite6fbc066f7ce9771de67b666799dbf72
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        '6b34c85f7b1ad6faa15aa12109e030f2' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/functions.php',
         '8fde5feda9697fe0ee53a3938c839fb0' => __DIR__ . '/../..' . '/app/Helpers/Helper.php',
     );
 
@@ -81,6 +82,7 @@ class ComposerStaticInite6fbc066f7ce9771de67b666799dbf72
         ),
         'R' => 
         array (
+            'RealRashid\\SweetAlert\\' => 22,
             'Ramsey\\Uuid\\' => 12,
         ),
         'P' => 
@@ -295,6 +297,10 @@ class ComposerStaticInite6fbc066f7ce9771de67b666799dbf72
         array (
             0 => __DIR__ . '/..' . '/spatie/dropbox-api/src',
         ),
+        'RealRashid\\SweetAlert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/realrashid/sweet-alert/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -495,8 +501,16 @@ class ComposerStaticInite6fbc066f7ce9771de67b666799dbf72
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\admin\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/LoginController.php',
+        'App\\Http\\Controllers\\admin\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/ProfileController.php',
+        'App\\Http\\Controllers\\admin\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/RegisterController.php',
+        'App\\Http\\Controllers\\admin\\commentcontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/commentcontroller.php',
+        'App\\Http\\Controllers\\admin\\membercontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/membercontroller.php',
+        'App\\Http\\Controllers\\admin\\newscontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/newscontroller.php',
+        'App\\Http\\Controllers\\admin\\ordercontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/ordercontroller.php',
         'App\\Http\\Controllers\\admin\\productcontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/productcontroller.php',
         'App\\Http\\Controllers\\admin\\typeproductcontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/typeproductcontroller.php',
+        'App\\Http\\Controllers\\admin\\usercontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/usercontroller.php',
         'App\\Http\\Controllers\\user\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/LoginController.php',
         'App\\Http\\Controllers\\user\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/ProfileController.php',
         'App\\Http\\Controllers\\user\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/RegisterController.php',
@@ -508,6 +522,10 @@ class ComposerStaticInite6fbc066f7ce9771de67b666799dbf72
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\Admin\\FormLogin' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/FormLogin.php',
+        'App\\Http\\Requests\\Admin\\FormPassword' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/FormPassword.php',
+        'App\\Http\\Requests\\Admin\\FormRegister' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/FormRegister.php',
+        'App\\Http\\Requests\\Admin\\Formtypeproduct' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Fromtypeproduct.php',
         'App\\Http\\Requests\\user\\FormLogin' => __DIR__ . '/../..' . '/app/Http/Requests/User/FormLogin.php',
         'App\\Http\\Requests\\user\\FormPassword' => __DIR__ . '/../..' . '/app/Http/Requests/User/FormPassword.php',
         'App\\Http\\Requests\\user\\FormRegister' => __DIR__ . '/../..' . '/app/Http/Requests/User/FormRegister.php',
@@ -4282,6 +4300,13 @@ class ComposerStaticInite6fbc066f7ce9771de67b666799dbf72
         'Ramsey\\Uuid\\UuidFactory' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactory.php',
         'Ramsey\\Uuid\\UuidFactoryInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactoryInterface.php',
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
+        'RealRashid\\SweetAlert\\Console\\PublishCommand' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/Console/PublishCommand.php',
+        'RealRashid\\SweetAlert\\Facades\\Alert' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/Facades/Alert.php',
+        'RealRashid\\SweetAlert\\Storage\\AlertSessionStore' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/Storage/AlertSessionStore.php',
+        'RealRashid\\SweetAlert\\Storage\\SessionStore' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/Storage/SessionStore.php',
+        'RealRashid\\SweetAlert\\SweetAlertServiceProvider' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/SweetAlertServiceProvider.php',
+        'RealRashid\\SweetAlert\\ToSweetAlert' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/ToSweetAlert.php',
+        'RealRashid\\SweetAlert\\Toaster' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/Toaster.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',
@@ -5229,8 +5254,6 @@ class ComposerStaticInite6fbc066f7ce9771de67b666799dbf72
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\True_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/True_.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
-        'product' => __DIR__ . '/../..' . '/database/seeds/product.php',
-        'user' => __DIR__ . '/../..' . '/database/seeds/user.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -8,21 +8,18 @@
     <meta content="Coderthemes" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('img\logo\logo2.jpg') }}">
-
+    <link rel="shortcut icon" href="{{asset('img/logo/logo2.jpg') }}">
     <!-- Plugins css-->
-    <link href="{{asset('admin\assets\libs\sweetalert2\sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
-
+    <link href="{{asset('admin/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
     <!-- App css -->
-    <link href="{{asset('admin\assets\css\bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet">
-    <link href="{{asset('admin\assets\css\icons.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin\assets\css\imgpage.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin\assets\css\app.min.css') }}" rel="stylesheet" type="text/css" id="app-stylesheet">
-
-    <link href="{{asset('admin\assets\libs\datatables\dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin\assets\libs\datatables\buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin\assets\libs\datatables\responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin\assets\libs\datatables\select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet">
+    <link href="{{asset('admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin/assets/css/imgpage.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-stylesheet">
+    <link href="{{asset('admin/assets/libs/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin/assets/libs/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin/assets/libs/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin/assets/libs/datatables/select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     @yield('header')
     <style>
         .navbar-custom {
@@ -41,7 +38,7 @@
                         <span class="pro-user-name ml-1">
                             Admin :
                         </span>
-                        <img src="{{asset('img\logo\logo2.jpg')}}" alt="user-image" class="rounded-circle">
+                        <img src="{{asset('img/logo/logo2.jpg')}}" alt="user-image" class="rounded-circle">
                         <span class="pro-user-name ml-1">
                             {{Session::get('email')}} <i class="mdi mdi-chevron-down"></i>
                         </span>
@@ -57,39 +54,33 @@
                             <i class="mdi mdi-logout-variant"></i>
                             <span>Đăng xuất</span>
                         </a>
-
                     </div>
                 </li>
             </ul>
-
             <!-- LOGO -->
             <div class="logo-box">
                 <a href="index.html" class="logo text-center logo-dark">
                     <span class="logo-lg">
-                        <img src="{{asset('img\logo\logo.jpg')}}" alt="" height="18">
+                        <img src="{{asset('img/logo/logo.jpg')}}" alt="" height="18">
                         <!-- <span class="logo-lg-text-dark">Velonic</span> -->
                     </span>
                     <span class="logo-sm">
                         <!-- <span class="logo-lg-text-dark">V</span> -->
-                        <img src="assets\images\logo-sm.png" alt="" height="22">
+                        <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                 </a>
-
                 <a href="#" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="{{asset('img\logo\logo.jpg')}}" alt="" height="90">
+                        <img src="{{asset('img/logo/logo.jpg')}}" alt="" height="90">
                         <!-- <span class="logo-lg-text-dark">Velonic</span> -->
                     </span>
                     <span class="logo-sm">
                         <!-- <span class="logo-lg-text-dark">V</span> -->
-                        <img src="{{asset('img\logo\logo.jpg')}}" alt="" height="30">
+                        <img src="{{asset('img/logo/logo.jpg')}}" alt="" height="30">
                     </span>
                 </a>
             </div>
-
             <!-- LOGO -->
-
-
             <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
                 <li>
                     <button class="button-menu-mobile waves-effect">
@@ -101,10 +92,8 @@
         <!-- end Topbar -->
         <!-- ========== Left Sidebar Start ========== -->
         <div class="left-side-menu">
-
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 309px;">
                 <div class="slimscroll-menu" style="overflow: hidden; width: auto; height: 309px;">
-
                     <!--- Sidemenu -->
                     <div id="sidebar-menu" class="mm-active">
                         <ul class="metismenu mm-show" id="side-menu">
@@ -112,12 +101,12 @@
                             <li>
                                 <a href="{{url('/admin/dashboard')}}" class="waves-effect ">
                                     <i class="ion-md-speedometer font-20"></i>
-                                    <span> Trang chủ </span>     
-                                </a>  
+                                    <span> Trang chủ </span>
+                                </a>
                             </li>
                             <li class="menu-title">Bài viết</li>
                             <li>
-                                <a  href="{{url('/list-news')}}" class="waves-effect ">
+                                <a href="{{url('/list-news')}}" class="waves-effect ">
                                     <i class="ion ion-ios-create font-20"></i>
                                     <span>Quản lí bài viết </span>
                                 </a>
@@ -128,9 +117,8 @@
                             </li>
                             <li class="menu-title">SẢN PHẨM</li>
                             <li>
-                               
                                 <a href="javascript: void(0);" class="waves-effect">
-                                 <i class=" ion ion-ios-list font-20"></i>
+                                    <i class=" ion ion-ios-list font-20"></i>
                                     <span>Quản lí sản phẩm</span>
                                     <span class="menu-arrow"></span>
                                 </a>
@@ -149,8 +137,8 @@
                             <li class="menu-title">QUẢN LÍ USER</li>
                             <li class="mm-active">
                                 <a href="{{url('/list-user')}}" class="waves-effect ">
-                                   <i class="ion-md-contacts font-20 "></i>
-                                   <span>Người dùng</span>
+                                    <i class="ion-md-contacts font-20 "></i>
+                                    <span>Người dùng</span>
                                 </a>
                             </li>
                             <li class="mm-active">
@@ -160,7 +148,7 @@
                                 </a>
                             </li>
                             <li class="menu-title">Admin</li>
-                            <li>       
+                            <li>
                                 <a href="javascript: void(0);" class="waves-effect">
                                     <i class=" ion ion-ios-finger-print font-20"></i>
                                     <span>Admin</span>
@@ -170,7 +158,7 @@
                                     <li><a href="{{url('/admin/profile')}}">Thông tin</a></li>
                                     <li><a href="components-portlets.html">admin</a></li>
                                 </ul>
-                             </li>
+                            </li>
                             <li class="menu-title">CẤU HÌNH</li>
                             <li class="mm-active">
                                 <a href="javascript: void(0);" class="waves-effect ">
@@ -224,54 +212,57 @@
         <!-- Right bar overlay-->
         <!-- Vendor js -->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="{{asset('admin\assets\js\vendor.min.js') }}"></script>
+        <script src="{{asset('admin/assets/js/vendor.min.js') }}"></script>
 
-        <script src="{{asset('admin\assets\libs\moment\moment.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\jquery-scrollto\jquery.scrollTo.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\sweetalert2\sweetalert2.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/moment/moment.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/jquery-scrollto/jquery.scrollTo.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
+        <script src="{{ asset('admin/assets/js/pages/sweet-alerts.init.js') }}"></script>
         <!-- Chat app -->
-        <script src="{{asset('admin\assets\js\pages\jquery.chat.js') }}"></script>
+        <script src="{{asset('admin/assets/js/pages/jquery.chat.js') }}"></script>
 
         <!-- Todo app -->
-        <script src="{{asset('admin\assets\js\pages\jquery.todo.js') }}"></script>
+        <script src="{{asset('admin/assets/js/pages/jquery.todo.js') }}"></script>
 
         <!--Morris Chart-->
-        <script src="{{asset('admin\assets\libs\morris-js\morris.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\raphael\raphael.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/morris-js/morris.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/raphael/raphael.min.js') }}"></script>
 
         <!-- Sparkline charts -->
-        <script src="{{asset('admin\assets\libs\jquery-sparkline\jquery.sparkline.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
 
         <!-- Dashboard init JS -->
-        <script src="{{asset('admin\assets\js\pages\dashboard.init.js') }}"></script>
+        <script src="{{asset('admin/assets/js/pages/dashboard.init.js') }}"></script>
 
         <!-- App js -->
-        <script src="{{asset('admin\assets\js\app.min.js') }}"></script>
+        <script src="{{asset('admin/assets/js/app.min.js') }}"></script>
         @yield('script')
-        <script src="{{asset('admin\assets\libs\datatables\jquery.dataTables.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\datatables\dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/dataTables.bootstrap4.min.js') }}"></script>
         <!-- Buttons examples -->
-        <script src="{{asset('admin\assets\libs\datatables\dataTables.buttons.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\datatables\buttons.bootstrap4.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\jszip\jszip.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\pdfmake\pdfmake.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\pdfmake\vfs_fonts.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\datatables\buttons.html5.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\datatables\buttons.print.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/dataTables.buttons.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/buttons.bootstrap4.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/jszip/jszip.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/pdfmake/vfs_fonts.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/buttons.html5.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/buttons.print.min.js') }}"></script>
 
         <!-- Responsive examples -->
-        <script src="{{asset('admin\assets\libs\datatables\dataTables.responsive.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\datatables\responsive.bootstrap4.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/dataTables.responsive.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/responsive.bootstrap4.min.js') }}"></script>
 
-        <script src="{{asset('admin\assets\libs\datatables\dataTables.keyTable.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\datatables\dataTables.select.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/dataTables.keyTable.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/dataTables.select.min.js') }}"></script>
 
-        <script src="{{asset('admin\assets\libs\datatables\dataTables.select.min.js') }}"></script>
-        <script src="{{asset('admin\assets\libs\datatables\mycreate.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/dataTables.select.min.js') }}"></script>
+        <script src="{{asset('admin/assets/libs/datatables/mycreate.js') }}"></script>
 
         <!-- Datatables init -->
-        <script src="{{asset('admin\assets\js\pages\datatables.init.js') }}"></script>
+        <script src="{{asset('admin/assets/js/pages/datatables.init.js') }}"></script>
+        <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+        
 
 </body>
 

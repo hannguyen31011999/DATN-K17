@@ -5,6 +5,9 @@
 @section('main-conten')
 <div class="row">
     <div class="col-12">
+        <script>
+ 
+    </script>
         <div class="card">
             <div class="card-body table-responsive">
                 <h4 class="m-t-0 header-title mb-4"><b>Danh sách loại sản phẩm</b></h4>
@@ -76,6 +79,7 @@
                 <a href="{{route('list-admin.ds-product.add')}}" class="btn btn-success waves-effect width-md waves-light"><i class=" ion ion-ios-add-circle-outline font-20"> Thêm mới</i></a>
             </div>
         </div>
+        @include('sweetalert::alert')
     </div>
 </div>
 @endsection
