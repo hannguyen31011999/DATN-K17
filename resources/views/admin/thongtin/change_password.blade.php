@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form__group field">
-                              <input type="password" class="form__field" value="" name="ent_password" id='ent_password' placeholder="Xác nhận Mật khẩu mới"  />
+                              <input type="password" class="form__field" value="" name="ent_password" id='ent_password' placeholder="Nhập lại mật khẩu mới"  />
                             </div>
                             <br>
                             <div class="alert alert-danger " id="msg3">
@@ -138,7 +138,7 @@
                 success: function(response) {
                     $.notify(response.data,"success")
                     setTimeout(function() {
-                        window.location.replace("http://localhost:8000/account/profile");
+                        window.location.replace("http://localhost:8000/admin/profile");
                     },3000);
                 },
                 error: function (response) {
@@ -158,8 +158,7 @@
                             $('#msg1').css('display','block');
                         }
                         else if(Array.isArray(data.errors.new_password)){
-
-                            $('#msg2').html(data.errors.password);
+                            $('#msg2').html(data.errors.new_password);
                             $('#msg2').css('display','block');
                         }
                         else{

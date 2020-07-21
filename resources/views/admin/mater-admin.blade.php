@@ -7,6 +7,7 @@
     <meta content="Responsive bootstrap 4 admin template" name="description">
     <meta content="Coderthemes" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('img/logo/logo2.jpg') }}">
     <!-- Plugins css-->
@@ -50,7 +51,7 @@
                         </a>
                         <div class="dropdown-divider"></div>
                         <!-- item-->
-                        <a href="{{'/admin/logout'}}" class="dropdown-item notify-item">
+                        <a href="{{url('logout')}}" class="dropdown-item notify-item">
                             <i class="mdi mdi-logout-variant"></i>
                             <span>Đăng xuất</span>
                         </a>
@@ -99,14 +100,14 @@
                         <ul class="metismenu mm-show" id="side-menu">
                             <li class="menu-title" id="clockDiv"></li>
                             <li>
-                                <a href="{{url('/admin/dashboard')}}" class="waves-effect ">
+                                <a href="{{route('dashboard')}}" class="waves-effect ">
                                     <i class="ion-md-speedometer font-20"></i>
                                     <span> Trang chủ </span>
                                 </a>
                             </li>
                             <li class="menu-title">Bài viết</li>
                             <li>
-                                <a href="{{url('/list-news')}}" class="waves-effect ">
+                                <a href="{{route('list-admin.ds-news.list')}}" class="waves-effect ">
                                     <i class="ion ion-ios-create font-20"></i>
                                     <span>Quản lí bài viết </span>
                                 </a>
@@ -123,26 +124,26 @@
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level mm-collapse" aria-expanded="false">
-                                    <li><a href="{{url('/list-product')}}">Sản phẩm</a></li>
-                                    <li><a href="{{url('/list-typeproduct')}}">Loại sản phẩm</a></li>
+                                    <li><a href="{{route('list-admin.ds-product.list')}}">Sản phẩm</a></li>
+                                    <li><a href="{{route('list-admin.ds-typeproduct.list')}}">Loại sản phẩm</a></li>
                                 </ul>
                             </li>
                             <li class="menu-title">Đơn hàng</li>
                             <li>
-                                <a href="{{url('/list-order')}}" class="waves-effect ">
+                                <a href="{{route('list-admin.ds-order.list')}}" class="waves-effect ">
                                     <i class="ion-md-cart font-20"></i>
                                     <span>Quản lý đơn hàng</span>
                                 </a>
                             </li>
                             <li class="menu-title">QUẢN LÍ USER</li>
                             <li class="mm-active">
-                                <a href="{{url('/list-user')}}" class="waves-effect ">
+                                <a href="{{route('list-admin.ds-user.list')}}" class="waves-effect ">
                                     <i class="ion-md-contacts font-20 "></i>
                                     <span>Người dùng</span>
                                 </a>
                             </li>
                             <li class="mm-active">
-                                <a href="{{url('/list-member')}}" class="waves-effect ">
+                                <a href="{{route('list-admin.ds-member.list')}}" class="waves-effect ">
                                     <i class="ion ion-md-people font-20"></i>
                                     <span>Thành viên</span>
                                 </a>
@@ -155,7 +156,7 @@
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level mm-collapse" aria-expanded="false">
-                                    <li><a href="{{url('/admin/profile')}}">Thông tin</a></li>
+                                    <li><a href="{{url('admin/profile')}}">Thông tin</a></li>
                                     <li><a href="components-portlets.html">admin</a></li>
                                 </ul>
                             </li>

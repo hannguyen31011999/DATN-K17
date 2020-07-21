@@ -91,7 +91,7 @@
                                         <label for="showMethod">Hình</label>
                                         <div class="form-group row">
                                             <div class="col-lg-12">
-                                                <input type="file" class="form-control" id="example-fileinput" name="image">
+                                                <input type="file" name="image" id="myFile" onchange="showImage.call(this)" >
                                             </div>
                                         </div>
                                     </div>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="col-xl-6 col-md-8">
-                            @if(isset($product)) <img  class="imgpage" height="400px" width="400px" src="{{asset('img/product/'.$product->image)}}" /></td> @endif
+                            @if(isset($product)) <img  class="imgpage" height="400px" width="400px" src="{{asset('img/product/'.$product->image)}}" id="image" /></td> @endif
                         </div>
                     </div>
                     <!-- end row -->
@@ -136,6 +136,18 @@
 
 <script type="text/javascript">
     CKEDITOR.replace('ckeditor', options);
+    function showImage() 
+    {
+        if(this.files && this.files[0])
+        {
+            var object = new FileReader();
+            object.onload = function(data){
+                var image = document.getElementById("image");
+                image.src = data.target.result;
+            }
+            object.readAsDataURL(this.files[0]);
+        }
+    }
 </script>
 @include('ckfinder::setup')
 @endsection

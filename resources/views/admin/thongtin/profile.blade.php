@@ -69,7 +69,7 @@
                         <label>Mật khẩu</label>
                     </div>
                     <div class="col-md-4">
-                        <a href="{{url('account/password/change')}}" style="font-size: 15px;color: red;font-style: italic; text-decoration: none;">******** (Thay đổi)</a>
+                        <a href="{{url('admin/password/change')}}" style="font-size: 15px;color: red;font-style: italic; text-decoration: none;">******** (Thay đổi)</a>
                     </div>
                 </div>
                 <hr class="table-us" width="65%">
@@ -150,14 +150,13 @@
           var gender = $("input[name='gender']:checked").val();
           var birthdate = $('#birthday').val()
           var address =$('#address').val();
-          var url = $(this).attr('data-url');
           e.preventDefault();
           $.ajax({
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'post',
-            url: url,
+            url: '/admin/profile',
             data: {
               "name":name,
               "gender":gender,

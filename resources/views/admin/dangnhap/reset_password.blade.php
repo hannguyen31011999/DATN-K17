@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Login | admin </title>
+	<title>Admin | Lấy lại mật khẩu</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta content="Responsive bootstrap 4 admin template" name="description">
 	<meta content="Coderthemes" name="author">
@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="{{asset('user/assets/dest/css/animate')}}">
 	<link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/huong-style.css')}}">
 	<!-- App css -->
+	
 	<style>
 		#login {
 			width: 100%;
@@ -28,75 +29,74 @@
 			border-radius: 12px;
 			padding: 50px;
 			margin: 20px;
-			margin-top: 40px;
 			background: white;
 		}
-
-		#form-login {
+		#form-login{
 			background-color: rgb(212, 218, 222);
 		}
-		body {
-           	background-image: url("/img/background/background.jpg ");
-        } 
 	</style>
 </head>
-<body class="authentication-page">
-	<div class="container">
+<body>
+	<div id="form-login">
+<div class="container">
 		<div class="row">
 			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
 				<div id="login">
-					@if(Session::has('error'))
-					<div class="alert alert-danger">
-						{{Session::get('error')}}
-					</div>
-					@endif
-					<img src="{{asset('img\logo\logo.jpg')}}" class="rounded-circle" alt="">
-					<h4 style="text-align:center;">Đăng nhập</h4>
+					<h4 style="text-align:center;">Lấy lại mật khẩu</h4>
 					<div class="space20">&nbsp;</div>
-					<form action="{{url('/admin/login')}}" method="post">
+					<form action="{{url('recovery')}}" method="post" id="formReset">
 						@csrf
 						<div class="form-group">
-							<label for="email">Tài khoản*</label>
 							<div class="space10">&nbsp;</div>
 							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="fa fa-user"></i>
-								</div>
-								<input class="form-control" id="email" name="email" type="text" placeholder="Tài khoản email" />
-							</div>
-							<div class="space10">&nbsp;</div>
-							@if($errors->has('email'))
-							<div class="alert alert-danger">
-								{{ $errors->first('email') }}
-							</div>
-							@endif
+							    <div class="input-group-addon">
+							    	<i class="fa fa-envelope"></i>
+							    </div>
+							    <input class="form-control" id="email" name="email" type="text" placeholder="Tài khoản email" />
+						  	</div>
+						  	@if($errors->has('email'))
+						  		<br>
+                            	<div class="alert alert-danger">
+                            		{{ $errors->first('email') }}
+                            	</div>
+                            @endif
+						  	<div class="space10">&nbsp;</div>
 						</div>
 						<div class="form-group">
-							<label for="password">Mật khẩu*</label>
-							<div class="space10">&nbsp;</div>
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="fa fa-lock" aria-hidden="true"></i>
-								</div>
-								<input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu" />
-							</div>
-							<div class="space10">&nbsp;</div>
-							@if($errors->has('password'))
-							<div class="alert alert-danger">
-								{{ $errors->first('password') }}
-							</div>
-							@endif
+							<button type="submit" class="btn btn-primary" id="buttonClick" style="width:100%;">Lấy mật khẩu
+								@if(Session::has('success'))
+									<span id="counter"></span>
+								@endif
+							</button>
+
 						</div>
-						<div class="form-group">
-							<div class="space10">&nbsp;</div>
-							<button type="submit" class="btn btn-danger" style="width:100%;">Đăng nhập</button>
-							<hr width="100%">
-							<a href="{{url('recovery')}}" style="text-decoration:none;font-size:15px; padding: 0px 73px;">Quên mật khẩu?</a>
-						</div>
+					</form>
 				</div>
 			</div>
 			<div class="col-lg-4"></div>
 		</div>
-	</div>
-	<!-- end col -->
+</div>
+</div>
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script type="text/javascript">
+	var timer;
+	var	count = 60;
+	$("#counter").text(" (thời gian còn: "+count +" s)");
+	timer = setTimeout(update, 1000);
+	function update()
+	{	
+	    if (count > 0)
+	    {
+    		$("#counter").text("(thời gian còn: "+ (--count) +" s)");
+       		timer = setTimeout(update, 1000);
+	    }
+	    else{
+	    	$("#buttonClick").removeAttr('disabled');
+	    	$("#counter").remove();
+	    }
+	}
+	
+</script>
+</body>
+</html>

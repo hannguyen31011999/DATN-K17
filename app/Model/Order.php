@@ -19,6 +19,8 @@ class Order extends Model
     	'note',
     	'status',
     	'phone',
+        'name',
+        'email',
     	'address',
     	'created_at',
         'updated_at',
@@ -42,7 +44,8 @@ class Order extends Model
     {
         return $this->belongsTo('App\Model\User','id','customer_id');
     }
-    public function OrderDetail()
+
+    public function OrderDetails()
     {
         return $this->hasMany('App\Model\OrderDetail','bill_id','id');
     }

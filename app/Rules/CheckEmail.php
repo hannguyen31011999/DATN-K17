@@ -4,7 +4,8 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use App\Model\User;
-class CheckCode implements Rule
+
+class CheckEmail implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,10 +27,11 @@ class CheckCode implements Rule
     public function passes($attribute, $value)
     {
         //
-        $user = User::where('remember_token',$value)->get();
+        $user = User::where('email',$value)->get();
         if($user->isEmpty())
             return false;
         return true;
+        
     }
 
     /**
@@ -39,6 +41,6 @@ class CheckCode implements Rule
      */
     public function message()
     {
-        return 'Mã xác nhận không đúng';
+        return 'Tài khoản email không tồn tại';
     }
 }
