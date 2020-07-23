@@ -15,7 +15,7 @@
 								<div class="col-sm-3">
 									<div class="single-item">
 										<div class="single-item-header">
-											<a href=""><img src="user/image/product/{{$newProducts->image}}" alt="" style="height: 320px; width: 100%;"></a>
+											<a href="{{url('/'.slipString($newProducts->product_name).'.'.$newProducts->id)}}"><img src="user/image/product/{{$newProducts->image}}" alt="" style="height: 320px; width: 100%;"></a>
 										</div>
 										<div class="single-item-body">
 											<p class="single-item-title">{{$newProducts->product_name}}</p>
@@ -25,7 +25,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" href="" id="{{$newProducts->id}}"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="">Chi tiết <i class="fa fa-chevron-right"></i></a>
+											<a class="beta-btn primary" href="{{url('/'.slipString($newProducts->product_name).'.'.$newProducts->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -37,7 +37,7 @@
 										<div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
 
 										<div class="single-item-header">
-											<a href=""><img src="user/image/product/{{$newProducts->image}}" alt="" style="height: 320px; width: 100%;"></a>
+											<a href="{{url('/'.slipString($newProducts->product_name).'.'.$newProducts->id)}}"><img src="user/image/product/{{$newProducts->image}}" alt="" style="height: 320px; width: 100%;"></a>
 										</div>
 										<div class="single-item-body">
 											<p class="single-item-title">{{$newProducts->product_name}}</p>
@@ -48,7 +48,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" href="" id="{{$newProducts->id}}"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="">Chi tiết <i class="fa fa-chevron-right"></i></a>
+											<a class="beta-btn primary" href="{{url('/'.slipString($newProducts->product_name).'.'.$newProducts->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -73,7 +73,7 @@
 								<div class="col-sm-3">
 									<div class="single-item">
 										<div class="single-item-header">
-											<a href=""><img src="user/image/product/{{$products->image}}" alt="" style="height: 320px; width: 100%;"></a>
+											<a href="{{url('/'.slipString($products->product_name).'.'.$products->id)}}"><img src="user/image/product/{{$products->image}}" alt="" style="height: 320px; width: 100%;"></a>
 										</div>
 										<div class="single-item-body">
 											<p class="single-item-title">{{$products->product_name}}</p>
@@ -83,7 +83,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" href="" id="{{$products->id}}"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="">Chi tiết <i class="fa fa-chevron-right"></i></a>
+											<a class="beta-btn primary" href="{{url('/'.slipString($products->product_name).'.'.$products->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -94,7 +94,7 @@
 									<div class="single-item">
 										<div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
 										<div class="single-item-header">
-											<a href=""><img src="user/image/product/{{$products->image}}" alt="" style="height: 320px; width: 100%;"></a>
+											<a href="{{url('/'.slipString($products->product_name).'.'.$products->id)}}"><img src="user/image/product/{{$products->image}}" alt="" style="height: 320px; width: 100%;"></a>
 										</div>
 										<div class="single-item-body">
 											<p class="single-item-title">{{$products->product_name}}</p>
@@ -105,7 +105,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" id="{{$products->id}}" href="" ><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="">Chi tiết <i class="fa fa-chevron-right"></i></a>
+											<a class="beta-btn primary" href="{{url('/'.slipString($products->product_name).'.'.$products->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
 											<div class="clearfix"></div>
 										</div>
 									</div>
