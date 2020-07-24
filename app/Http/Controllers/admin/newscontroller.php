@@ -65,6 +65,9 @@ class newscontroller extends Controller
                $News->image = $fileName;
                $News->user_id_create = Auth::User()->id;
                $News->save();
+               if($News->save()){
+                toast('Thêm bài viết thành công!','success','top-right'); 
+               }
                return redirect()->route('list-admin.ds-news.list');
             }else{
                 echo"eo phai jpg";
@@ -131,6 +134,9 @@ class newscontroller extends Controller
                $updataNews->image = $fileName;
                $updataNews->user_id_create = Auth::User()->id;
                $updataNews->save();
+               if($updataNews->save()){
+                toast('Cập nhật bài viết thành công!','success','top-right'); 
+               }
                return redirect()->route('list-admin.ds-news.list');
             }else{
                 echo"eo phai jpg";
@@ -140,6 +146,9 @@ class newscontroller extends Controller
                $updataNews->content = $request->content;
                $updataNews->user_id_create = Auth::User()->id;
                $updataNews->save();
+               if($updataNews->save()){
+                toast('Cập nhật bài viết thành công!','success','top-right'); 
+               }
                return redirect()->route('list-admin.ds-news.list');
          }
     }

@@ -4,6 +4,16 @@
 @section('main-conten')
 <div class="row">
     <div class="col-12">
+        <div class="headerds">
+        <a href="{{route('list-admin.ds-typeproduct.add')}}" class="btn btn-primary waves-effect width-md waves-light"><i class=" ion ion-ios-add-circle-outline font-20"> Thêm mới</i></a>
+        </div>
+        <div>
+            <h4 class="m-t-0 header-title mb-4"><b>Danh sách bài viết</b></h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
         <div class="card">
             <div class="card-body table-responsive">
                 <h4 class="m-t-0 header-title mb-4"><b>Danh sách loại sản phẩm</b></h4>
@@ -54,9 +64,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a href="{{route('list-admin.ds-typeproduct.add')}}" class="btn btn-success waves-effect width-md waves-light"><i class=" ion ion-ios-add-circle-outline font-20"> Thêm mới</i></a>
             </div>
         </div>
+        @include('sweetalert::alert')
     </div>
 </div>
 @endsection
