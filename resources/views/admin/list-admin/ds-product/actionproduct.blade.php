@@ -1,8 +1,36 @@
 @extends('admin.mater-admin')
 @section('header')
+<title>Admin | Product</title>
+<style>
+    #overlay {
+    position: fixed;
+    top: 0;
+    width: 37%;
+    height: 75%;
+    background: rgba(0, 0, 0, 0) none 100% / contain no-repeat;
+    cursor: pointer;
+    transition: 0.3s;
+    visibility: hidden;
+    opacity: 0;
+}
+#overlay.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+#overlay:after {
+    /* X button icon */
+    content: "\2715";
+    position: absolute;
+    color: #fff;
+    top: 10px;
+    right: 20px;
+    font-size: 2em;
+}
+</style>
 @endsection
 @section('main-conten')
-@include('sweetalert::alert')
+<hr>
 <div class="row">
     <div class="col-md-12">
         @if(isset($product))
@@ -12,8 +40,8 @@
                 @endif
                 @csrf
                 <div class="card-box">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-8">
+                    <div class="row" style="margin-left: 350px;">
+                        <div class="col-xl-8 col-lg-8">
                             <h1 class="m-t-0 header-title mb-4"><b> @if(isset($product)) Cập nhật @else Thêm @endif loại sản phẩm</b></h1>
                             <div class="control-group">
                                 <div class="controls">
@@ -26,15 +54,15 @@
                                     @endif
                                     <div class="form-group mb-3">
                                         <label class="control-label">Loại</label>
-                                        <select class="custom-select " id="loai" name="type_product_id">   
-                                        @foreach( $listtypeproduct as $tpr )     
-                                            <option value="{{$tpr->id}}" @if(isset($product)) @if($product->type_product_id == $tpr->id )  selected="selected" disabled="disabled" @endif   
-                                                {{ $tpr->type_name}} 
-                                            @endif>
+                                        <select class="custom-select " id="loai" name="type_product_id">
+                                            @foreach( $listtypeproduct as $tpr )
+                                            <option value="{{$tpr->id}}" @if(isset($product)) @if($product->type_product_id == $tpr->id ) selected="selected" disabled="disabled" @endif
+                                                {{ $tpr->type_name}}
+                                                @endif>
                                                 {{ $tpr->type_name}}
                                             </option>
-                                            
-                                        @endforeach
+
+                                            @endforeach
                                         </select>
                                     </div>
                                     <label class="control-label mt-1">Mô tả</label>
@@ -84,23 +112,22 @@
                                         <strong>{{$errors->first('raw_material')}}</strong>
                                     </div>
                                     @endif
-
                                 </div>
+                                <div id="overlay"></div>
                                 <div class="controls">
                                     <div class="mt-3">
                                         <label for="showMethod">Hình</label>
                                         <div class="form-group row">
                                             <div class="col-lg-12">
-                                                <input type="file" name="image" id="myFile" onchange="showImage.call(this)" >
+                                                <input type="file" name="image" id="myFile" onchange="showImage.call(this)">
+                                                @if(isset($product)) <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('img/product/'.$product->image)}}" />
+                                                @else <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('img/logo/pngtree.jpg')}}" /> @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="col-xl-6 col-md-8">
-                            @if(isset($product)) <img  class="imgpage" height="400px" width="400px" src="{{asset('img/product/'.$product->image)}}" id="image" /></td> @endif
                         </div>
                     </div>
                     <!-- end row -->
@@ -112,8 +139,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </form>
     </div>
@@ -133,21 +158,30 @@
         filebrowserFlashUploadUrl: '../../public/ckfinder/core/connector/connector.php?command=QuickUpload&type=Images',
     };
 </script>
-
 <script type="text/javascript">
     CKEDITOR.replace('ckeditor', options);
-    function showImage() 
-    {
-        if(this.files && this.files[0])
-        {
+</script>
+<script>
+    function showImage() {
+        if (this.files && this.files[0]) {
             var object = new FileReader();
-            object.onload = function(data){
+            object.onload = function(data) {
                 var image = document.getElementById("image");
                 image.src = data.target.result;
             }
             object.readAsDataURL(this.files[0]);
         }
     }
+    $('#image').on('click', function() {
+        $('#overlay')
+            .css({
+                backgroundImage: `url(${this.src})`
+            })
+            .addClass('open')
+            .one('click', function() {
+                $(this).removeClass('open');
+            });
+    })
 </script>
 @include('ckfinder::setup')
 @endsection

@@ -17,8 +17,6 @@ class productcontroller extends Controller
      */
     public function index()
     {
-        alert()->success('Title','Lorem Lorem Lorem');
-        toast('Your Post as been submited!','success','top-right');
         $listproduct = Product::all();
         $listtypeproduct = TypeProduct::all();
         return view('admin.list-admin.ds-product.product', compact('listproduct', 'listtypeproduct'));
@@ -82,7 +80,10 @@ class productcontroller extends Controller
                     $product->origin = $request->origin;
                     $product->raw_material = $request->raw_material;
                     $product->save();
-                    return redirect()->route('list-admin.ds-product.list')->with(['flash_message'=>'Thêm thành công !']);
+                    if($product->save()){
+                        toast('Thêm thành công!','success','top-right'); 
+                    }
+                    return redirect()->route('list-admin.ds-product.list');
                 } else {
                     echo "errors";
                 }
@@ -129,7 +130,7 @@ class productcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        alert()->success('Title','Lorem Lorem Lorem');
+        // alert()->success('Title','Lorem Lorem Lorem');
         $request->validate([
             'product_name' => 'required',
             'description' => 'required',
@@ -173,6 +174,9 @@ class productcontroller extends Controller
                     $updataproduct->origin = $request->origin;
                     $updataproduct->raw_material = $request->raw_material;
                     $updataproduct->save();
+                    if($updataproduct->save()){
+                        toast('Cập nhật thành công!','success','top-right'); 
+                    }
                     return redirect()->route('list-admin.ds-product.list');
                 } else {
                     echo "eo phai jpg";
@@ -189,6 +193,9 @@ class productcontroller extends Controller
                 $updataproduct->origin = $request->origin;
                 $updataproduct->raw_material = $request->raw_material;
                 $updataproduct->save();
+                if($updataproduct->save()){
+                    toast('Cập nhật thành công!','success','top-right'); 
+                }
                 return redirect()->route('list-admin.ds-product.list');
             }
         } else {
