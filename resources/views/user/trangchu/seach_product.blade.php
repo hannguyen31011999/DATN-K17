@@ -1,7 +1,7 @@
 @extends('user.master')
 
 @section('title')
-	Trang chủ
+	Tìm kiếm
 @endsection
 
 @section('css')
@@ -50,22 +50,26 @@
         {
             event.preventDefault();
             $('li').removeClass('active');
+
             $(this).parent('li').addClass('active');
   
-            var myurl = $(this).attr('href');
+            var url = $(this).attr('href');
 
-            var page=$(this).attr('href').split('page=')[1];
+            var keyword = $('#url').val();
 
-            getData(page);
+            getData(url,keyword);
         });
     });
         
     // function xử lí ajax
-    function getData(page){
+    function getData(url,keyword){
         $.ajax(
         {
-            url: '?page=' + page,
+            url: url,
             type: "get",
+            data:{
+                "keyword":keyword
+            },
             datatype: "html"
         }).done(function(response){
             console.log(response);

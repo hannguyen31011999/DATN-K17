@@ -13,28 +13,36 @@ class CartController extends Controller
     {
     	if($request->ajax())
     	{
-    		// Cart::destroy();
-	        $product = Product::find($request->id);
-            $cart = [
-                'id' => $product->id, 
-                'name'=> $product->product_name,
-                'price'=> $product->unit_price,
-                'weight'=>0,
-                'qty'=> 1,
-                'options'=>[
-                    'img'=> $product->image,
-                    'unit'=>$product->unit,
-                    'promotion_price'=> $product->promotion_price,
-                ]
-            ];
-            if($product->promotion_price!=0)
+            if(!empty($request->keyword))
             {
-                $cart["price"] = $product->promotion_price;
+                $list = Product::where('unit_price',$request->keyword)
+                                ->orWhere('product_name','LIKE', '%'.$request->keyword.'%')
+                                ->get(['id','product_name']);
+                return view('user.template.seach',compact('list'));
             }
-        	Cart::add($cart);
-        	$item = Cart::content();
-        	return view('user.template.cart',compact('item'));
-        	// // return response()->json(['messages'=>"Đã thêm ".$product->product_name,'cart'=>$cart],200)->with('messages',"Đã thêm ".$product->product_name);
+            else
+            {
+                $product = Product::find($request->id);
+                $cart = [
+                    'id' => $product->id, 
+                    'name'=> $product->product_name,
+                    'price'=> $product->unit_price,
+                    'weight'=>0,
+                    'qty'=> 1,
+                    'options'=>[
+                        'img'=> $product->image,
+                        'unit'=>$product->unit,
+                        'promotion_price'=> $product->promotion_price,
+                    ]
+                ];
+                if($product->promotion_price!=0)
+                {
+                    $cart["price"] = $product->promotion_price;
+                }
+                Cart::add($cart);
+                $item = Cart::content();
+                return view('user.template.cart',compact('item'));
+            }
     	}
     }
 

@@ -49,6 +49,12 @@ Route::post('/{name}.{id}','User\DetailProductController@index');
 // Xử lí xóa comment chi tiết sản phẩm
 Route::delete('/{name}.{id}','User\DetailProductController@deleteComment');
 
+// Xử lí seach gửi request
+Route::get('/seach','User\HomeController@seach');
+
+// Phân trang seach
+Route::post('/seach','User\HomeController@seach');
+
 Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 	// Đăng kí
 	Route::get('/register','RegisterController@index');
@@ -172,8 +178,8 @@ Route::group(['prefix'=>'admin/list-product','middleware'=>'CheckLogin'],functio
     });  
 });
 
-Route::group(['prefix'=>'admin/list-typeproduct','middleware'=>'CheckLogin'],function(){
-	Route::name('list-admin.ds-typeproduct.')->group (function(){
+Route::prefix('admin/list-typeproduct')->group (function(){
+    Route::name('list-admin.ds-typeproduct.')->group (function(){
         Route::get('/', 'admin\typeproductcontroller@index')->name('list');
         Route::get('add', 'admin\typeproductcontroller@create')->name('add');
         Route::post('add', 'admin\typeproductcontroller@store')->name('edit-add');
@@ -182,15 +188,14 @@ Route::group(['prefix'=>'admin/list-typeproduct','middleware'=>'CheckLogin'],fun
         Route::get('delete/{id}', 'admin\typeproductcontroller@destroy')->name('delete');
     });  
 });
-
-Route::group(['prefix'=>'admin/list-user','middleware'=>'CheckLogin'],function(){
+Route::prefix('admin/list-user')->group (function(){
     Route::name('list-admin.ds-user.')->group (function(){
 		Route::get('/', 'admin\usercontroller@index')->name('list');
 		Route::get('update/{id}', 'admin\usercontroller@edit')->name('update');
 		Route::get('delete/{id}', 'admin\usercontroller@destroy')->name('delete');
     });  
 });
-Route::group(['prefix'=>'admin/list-news','middleware'=>'CheckLogin'],function(){
+Route::prefix('admin/list-news')->group (function(){
     Route::name('list-admin.ds-news.')->group (function(){
         Route::get('/', 'admin\newscontroller@index')->name('list');
         Route::get('add', 'admin\newscontroller@create')->name('add');
@@ -200,19 +205,19 @@ Route::group(['prefix'=>'admin/list-news','middleware'=>'CheckLogin'],function()
         Route::get('delete/{id}', 'admin\newscontroller@destroy')->name('delete');
     });  
 });
-Route::group(['prefix'=>'admin/list-comment','middleware'=>'CheckLogin'],function(){
+Route::prefix('admin/list-comment')->group (function(){
     Route::name('list-admin.ds-comment.')->group (function(){
 		Route::get('/', 'admin\commentcontroller@index')->name('list');
         Route::get('update/{id}', 'admin\commentcontroller@edit')->name('update');
     });  
 });
-Route::group(['prefix'=>'admin/list-member','middleware'=>'CheckLogin'],function(){
+Route::prefix('admin/list-member')->group (function(){
     Route::name('list-admin.ds-member.')->group (function(){
 		Route::get('/', 'admin\membercontroller@index')->name('list');
         Route::post('update/{id}', 'admin\membercontroller@update')->name('update');
     });  
 });
-Route::group(['prefix'=>'admin/list-order','middleware'=>'CheckLogin'],function(){
+Route::prefix('admin/list-order')->group (function(){
     Route::name('list-admin.ds-order.')->group (function(){
 		Route::get('/', 'admin\ordercontroller@index')->name('list');
         Route::post('update/{id}', 'admin\ordercontroller@update')->name('update');

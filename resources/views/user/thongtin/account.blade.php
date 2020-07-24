@@ -1,12 +1,16 @@
-@extends('admin.mater-admin')
-@section('header')
+@extends('user.master')
+
+@section('css')
 <link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/thongtin.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.css" />
 @endsection
-@section('main-conten')
-<div class="row">
-    <div class="col-md-12">
-    <div class="container">
+
+@section('title')
+	Thông tin khách hàng
+@endsection
+
+@section('content')
+<div class="container">
     <div class="row profile">
 		<div class="col-md-3">
 			<div class="profile-sidebar">
@@ -22,11 +26,30 @@
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
-					<button type="button" class="btn btn-success btn-sm">Cập nhật</button>
-					<button type="button" class="btn btn-danger btn-sm">sửa</button>
+					<button type="button" class="btn btn-success btn-sm">Upload</button>
+					<button type="button" class="btn btn-danger btn-sm">Edit</button>
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+							<a href="#">
+							<i class="fa fa-user"></i>
+							Tài khoản của tôi </a>
+						</li>
+						<li>
+							<a href="#">
+							<i class="fa fa-bars"></i>
+							Đơn mua </a>
+						</li>
+						<li>
+							<a href="#" target="_blank">
+							<i class="fa fa-bell"></i>
+							Thông báo </a>
+						</li>
+					</ul>
+				</div>
 				<!-- END MENU -->
 			</div>
 		</div>
@@ -36,6 +59,7 @@
 					<div class="row">
 						<div class="col-md-8">
 							<div class="panel-heading"><p style="font-size: 20px;">Thông tin tài khoản</p></div>
+							<div class="panel-heading"><p>Quản lí thông tin hồ sơ bảo mật tài khoản</p></div>
 							<div class="panel-heading">
 								<div class="c-line-left"></div>
 							</div>
@@ -69,7 +93,7 @@
                         <label>Mật khẩu</label>
                     </div>
                     <div class="col-md-4">
-                        <a href="{{url('admin/password/change')}}" style="font-size: 15px;color: red;font-style: italic; text-decoration: none;">******** (Thay đổi)</a>
+                        <a href="" style="font-size: 15px;color: red;font-style: italic; text-decoration: none;">******** (Thay đổi)</a>
                     </div>
                 </div>
                 <hr class="table-us" width="65%">
@@ -90,12 +114,15 @@
                       @if($user->sex==0)
                         <label class="radio-inline"><input type="radio" name="gender" id="gender" value="0" checked>Nam</label>
                         <label class="radio-inline"><input type="radio" name="gender" id="gender" value="1">Nữ</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="2">Khác</label>
                   		@elseif($user->sex==1)
                         <label class="radio-inline"><input type="radio" name="gender" id="gender" value="0">Nam</label>
                         <label class="radio-inline"><input type="radio" name="gender" id="gender" value="1" checked>Nữ</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="2">Khác</label>
                       @else
                         <label class="radio-inline"><input type="radio" name="gender" id="gender" value="0">Nam</label>
                         <label class="radio-inline"><input type="radio" name="gender" id="gender" value="1">Nữ</label>
+                        <label class="radio-inline"><input type="radio" name="gender" id="gender" value="2" checked>Khác</label>
                       @endif
                     </div>
                 </div>
@@ -105,11 +132,7 @@
                         <label>Ngày sinh</label>
                     </div>
                     <div class="col-md-4">
-                    @if(empty($user->birthdate))
-                          <input type="date" id="birthday" class="form-control" value=""  name="birthdate" style="width: 70%;">
-                      @else
-                          <input type="date" id="birthday" class="form-control" value="{{$user->birthdate->format('Y-m-d')}}"  name="birthdate" style="width: 70%;">
-                      @endif
+                    	<input type="date" id="birthday" class="form-control" value="{{$user->birthdate->format('Y-m-d')}}"  name="birthdate" style="width: 50%;">
                     </div>
                 </div>
                 <hr class="table-us" width="65%">
@@ -137,10 +160,8 @@
 		</div>
 	</div>
 </div>
-    </div>
-</div>
 @endsection
-@section('script')
+@section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 <script type="text/javascript">
@@ -150,13 +171,14 @@
           var gender = $("input[name='gender']:checked").val();
           var birthdate = $('#birthday').val()
           var address =$('#address').val();
+          var url = $(this).attr('data-url');
           e.preventDefault();
           $.ajax({
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'post',
-            url: '/admin/profile',
+            url: url,
             data: {
               "name":name,
               "gender":gender,

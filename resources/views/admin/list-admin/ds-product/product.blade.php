@@ -1,20 +1,13 @@
 @extends('admin.mater-admin')
 @section('header')
-<title>Admin | Sản phẩm</title>
+<title>Admin|product</title>
 @endsection
 @section('main-conten')
 <div class="row">
     <div class="col-12">
-        <div class="headerds">
-        <a href="{{route('list-admin.ds-product.add')}}" class="btn btn-primary waves-effect width-md waves-light"><i class=" ion ion-ios-add-circle-outline font-20"> Thêm mới</i></a>
-        </div>
-        <div>
-            <h4 class="m-t-0 header-title mb-4"><b>Danh sách bài viết</b></h4>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12">
+        <script>
+ 
+    </script>
         <div class="card">
             <div class="card-body table-responsive">
                 <h4 class="m-t-0 header-title mb-4"><b>Danh sách loại sản phẩm</b></h4>
@@ -39,23 +32,23 @@
                         <tr>
                             <td>{{ $pr->id }}</td>
                             <td>{{ $pr->product_name }}</td>
-                            @foreach( $listtypeproduct as $tpr )
-                            @if( $pr->type_product_id == $tpr->id)
-                            <td>{{ $tpr->type_name}}</td>
-                            @endif
+                             @foreach( $listtypeproduct as $tpr )
+                                    @if( $pr->type_product_id ==  $tpr->id)
+                                    <td>{{ $tpr->type_name}}</td>
+                                    @endif
                             @endforeach
                             <td>{{ $pr->description }}</td>
                             <td><span class="badge badge-purple">{{ $pr->unit_price }} VNĐ</span></td>
                             <td><span class="badge badge-primary">{{ $pr->promotion_price }} VNĐ</span></td>
                             <td>
-                                <div class="thumbnail">
-                                    <img src="{{asset('img/product/'.$pr->image)}}" alt="" />
-                                </div>
+                               <div class="thumbnail">
+                                  <img src="{{asset('img/product/'.$pr->image)}}" alt=""  />
+                               </div>
                             </td>
                             <td>{{ $pr->unit }}</td>
                             <td>{{ $pr->raw_material }}</td>
                             <td>{{ $pr->origin }}</td>
-
+                            
                             <td>
                                 <a href="{{route('list-admin.ds-product.update', ['id'=>$pr->id])}}" class="btn btn-icon waves-effect waves-light btn-warning"><i class="fa fa-wrench"></i> </a>
                                 <hr>
@@ -82,6 +75,8 @@
                         @endforeach
                     </tbody>
                 </table>
+                <hr>
+                <a href="{{route('list-admin.ds-product.add')}}" class="btn btn-success waves-effect width-md waves-light"><i class=" ion ion-ios-add-circle-outline font-20"> Thêm mới</i></a>
             </div>
         </div>
         @include('sweetalert::alert')

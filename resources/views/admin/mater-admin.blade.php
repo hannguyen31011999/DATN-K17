@@ -7,7 +7,7 @@
     <meta content="Responsive bootstrap 4 admin template" name="description">
     <meta content="Coderthemes" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('img/logo/logo2.jpg') }}">
     <!-- Plugins css-->
@@ -26,58 +26,9 @@
         .navbar-custom {
             background-image: url('img/background/backgrounduser.png');
         }
-
-        .left-side-menu {
-            width: 240px;
-            background: #ffffff;
-            bottom: 0;
-            position: fixed;
-            padding: 14px 0;
-            -webkit-transition: all .2s ease-out;
-            transition: all .2s ease-out;
-            top: 70px;
-        }
-
-        .logo-box {
-            background-color: #ffffff;
-            height: 74px;
-            width: 240px;
-            float: left;
-            -webkit-transition: all .2s ease-out;
-            transition: all .2s ease-out;
-        }
-
-        #sidebar-menu>ul>li>a.active {
-            color: #3bc0c3;
-            background: #ffffff;
-            border: dashed;
-        }
-
-        #sidebar-menu>ul>li>a {
-            color: #000000;
-            display: block;
-            padding: 10px 20px;
-            position: relative;
-            -webkit-transition: all .4s;
-            transition: all .4s;
-            font-size: 17px;
-        }
-
-        .header-title {
-            font-size: 18px;
-            margin: 0 0 15px 0;
-            text-transform: uppercase;
-            font-weight: 600;
-            /* margin-left: 153px; */
-        }
-
-        .headerds {
-            margin-left: 218px;
-            margin-bottom: -28px;
-            margin-top: 11px;
-        }
     </style>
 </head>
+
 <body>
     <div id="wrapper">
         <!-- Topbar Start -->
@@ -235,7 +186,7 @@
                 <!-- Start Content-->
                 <div class="container-fluid">
                     <!-- start page title -->
-
+                    <hr>
                     <!-- end page title -->
                     @yield('main-conten')
                     <!-- end container-fluid -->
@@ -312,7 +263,7 @@
         <!-- Datatables init -->
         <script src="{{asset('admin/assets/js/pages/datatables.init.js') }}"></script>
         <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
-
+        
 
 </body>
 

@@ -1,3 +1,6 @@
+@if(isset($url))
+	<input type="hidden" name="url" value="{{$url}}" id="url">
+@endif
 <div id="content" class="space-top-none">
 	<input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
 			<div class="main-content">
@@ -58,14 +61,23 @@
 							</form>
 							@endforeach
 						</div> <!-- .beta-products-list -->
-
 						<div class="space50">&nbsp;</div>
-
 						<div class="beta-products-list">
 							<h4>Top Products</h4>
 							<div class="beta-products-details">
 								<p class="pull-left">438 styles found</p>
 								<div class="clearfix"></div>
+							</div>
+							<div class="row">
+								<div class="col-sm-4"></div>
+								<div class="col-sm-4">
+									@if(isset($messenger))
+										<div class="alert alert-danger">
+											{{$messenger}}
+										</div>
+									@endif
+								</div>
+								<div class="col-sm-4"></div>
 							</div>
 							<div class="row">
 							@foreach($product as $products)
