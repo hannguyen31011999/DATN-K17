@@ -3,7 +3,7 @@
 <title>Admin | Bài viết</title>
 @endsection
 @section('main-conten')
-
+<hr>
 <div class="row">
     <div class="col-md-12">
         @if(isset($news))
@@ -13,8 +13,8 @@
                 @endif
                 @csrf
                 <div class="card-box">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-8">
+                <div class="row" style="margin-left: 350px;">
+                        <div class="col-xl-8 col-lg-8">
                             <h1 class="m-t-0 header-title mb-4"><b> @if(isset($news)) Cập nhật @else Thêm @endif bài viết</b></h1>
                             <div class="control-group">
                                 <div class="controls">
@@ -32,15 +32,16 @@
                                        <strong>{{$errors->first('content')}}</strong>
                                     </div>
                                  @endif
+                                 <div id="overlay"></div>
                                 </div>
                                 <div class="controls">
                                     <div class="mt-3">
                                         <label for="showMethod">Hình</label>
                                         <div class="form-group row">
                                             <div class="col-lg-12">
-                                                <input type="file" class="form-control" id="example-fileinput" name="image" >
-                                            </div>
-                                        </div>
+                                             <input type="file" name="image" id="myFile" onchange="showImage.call(this)">
+                                                @if(isset($news))  <img id="image" class="imgpage" height="300px" width="300px"  src="{{asset('img/news/'.$news->image)}}" />
+                                                @else  <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('img/logo/pngtree.jpg')}}"/> @endif 
                                     </div>
                                 </div>
                                 @if($errors->has('image'))
@@ -50,16 +51,13 @@
                                  @endif
                             </div>
                         </div>
-                        <div class="col-xl-6 col-md-8">
-                                  @if(isset($news))  <img class="imgpage" height="300px" width="300px"  src="{{asset('img/news/'.$news->image)}}" /></td> @endif
-                        </div>
                     </div>
                     <!-- end row -->
                     <hr>
                     <div class="row mt-2">
                         <div class="col-12">
                             <div>
-                                <button type="submit" class="btn btn-success waves-effect width-md waves-light">@if(isset($news))Cập nhật @else Thêm @endif</button>
+                                <button type="submit" class="btn btn-primary waves-effect width-md waves-light">@if(isset($news))Cập nhật @else Thêm @endif</button>
                             </div>
                         </div>
                     </div>
@@ -89,6 +87,28 @@
 
 <script type="text/javascript">
     CKEDITOR.replace('ckeditor', options);
+</script>
+<script>
+    function showImage() {
+        if (this.files && this.files[0]) {
+            var object = new FileReader();
+            object.onload = function(data) {
+                var image = document.getElementById("image");
+                image.src = data.target.result;
+            }
+            object.readAsDataURL(this.files[0]);
+        }
+    }
+    $('#image').on('click', function() {
+        $('#overlay')
+            .css({
+                backgroundImage: `url(${this.src})`
+            })
+            .addClass('open')
+            .one('click', function() {
+                $(this).removeClass('open');
+            });
+    })
 </script>
 @include('ckfinder::setup') 
 @endsection

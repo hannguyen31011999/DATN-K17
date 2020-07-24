@@ -60,6 +60,9 @@ class typeproductcontroller extends Controller
                $typeproduct->description = $request->description;
                $typeproduct->image = $fileName;
                $typeproduct->save();
+               if($typeproduct->save()){
+                toast('Thêm thành công!','success','top-right'); 
+               }
                return redirect()->route('list-admin.ds-typeproduct.list');
             }else{
                 echo"eo phai jpg";
@@ -89,7 +92,7 @@ class typeproductcontroller extends Controller
     public function edit($id)
     {
           $typeproduct = TypeProduct::find($id);
-         return view('admin.list-admin.ds-typeproduct.actiontypeproduct',compact('typeproduct')); 
+          return view('admin.list-admin.ds-typeproduct.actiontypeproduct',compact('typeproduct')); 
     }
 
     /**
@@ -125,6 +128,9 @@ class typeproductcontroller extends Controller
                $updatatypeproduct->description = $request->description;
                $updatatypeproduct->image = $fileName;
                $updatatypeproduct->save();
+               if($updatatypeproduct->save()){
+                toast('Cập nhật thành công!','success','top-right'); 
+               }
                return redirect()->route('list-admin.ds-typeproduct.list');
             }else{
                 echo"eo phai jpg";
@@ -133,6 +139,9 @@ class typeproductcontroller extends Controller
             $updatatypeproduct->type_name = $request->type_name;
             $updatatypeproduct->description = $request->description;
             $updatatypeproduct->save();
+            if($updatatypeproduct->save()){
+                toast('Cập nhật thành công!','success','top-right'); 
+            }
               return redirect()->route('list-admin.ds-typeproduct.list');
          }
     }
