@@ -17,9 +17,23 @@
 	<!-- <link rel="stylesheet" href="{{asset('user/assets/dest/css/animate')}}"> -->
 	<link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/huong-style.css')}}">
 	@yield('css')
-	<style>
-		.header-body{
-			background-image: url('img/background/backgrounduser.png');
+	<style type="text/css">
+		.list-seach{
+			position: absolute;
+			border: 1px solid #e1e1e1;
+			width: 220px;
+			height: 150px;
+			margin-top: .5rem;
+			z-index: 600;
+			background-color: #fff;
+			border-radius: 2px;
+			box-shadow: 0 1px 4px 0 rgba(0,0,0,.26);
+			overflow: auto;
+			display: none;
+			cursor:default;
+		}
+		.item-seach{
+
 		}
 	</style>
 </head>
@@ -55,10 +69,13 @@
 				<div class="pull-right beta-components space-left ov">
 					<div class="space10">&nbsp;</div>
 					<div class="beta-comp">
-						<form role="search" method="get" id="searchform" action="/">
-					        <input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..." />
+						<form role="search" method="get" id="searchform" action="{{url('/seach')}}">
+					        <input type="text" value="" name="keyword" id="keyword" placeholder="Nhập từ khóa..." />
 					        <button class="fa fa-search" type="submit" id="searchsubmit"></button>
 						</form>
+						<div class="list-seach" id="list-seach">
+							@include('user.template.seach')
+						</div>
 					</div>
 					@yield('shopping-cart')
 				</div>
@@ -163,5 +180,46 @@
 	<script src="{{asset('user/assets/dest/js/wow.min.js')}}"></script>
 	<!--customjs-->
 	<script src="{{asset('user/assets/dest/js/custom2.js')}}"></script>
+	<script>
+    $(document).ready(function()
+    {
+        $(document).on('keyup', '#keyword',function(event){
+            var keyword = $('#keyword').val();
+            if(keyword!="")
+            {
+                $.ajax({
+                    headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: '/',
+                    data: {
+                      "keyword":keyword
+                    },
+                    success:function(response) {
+                        console.log(response);
+                        $('.list-seach').css('display','block');
+                        $('#list-seach').empty().html(response);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+                    }
+                });
+                event.preventDefault();
+            }
+            else
+            {
+                $('.list-seach').css('display','none');
+            }
+        });
+        $(document).on('change', '#keyword',function(event){
+            $('.list-seach').css('display','none');
+            $('.list-seach').empty();
+            event.preventDefault();
+        });
+
+    });
+    
+</script>
 </body>
 </html>

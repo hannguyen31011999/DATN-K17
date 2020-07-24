@@ -49,6 +49,12 @@ Route::post('/{name}.{id}','User\DetailProductController@index');
 // Xử lí xóa comment chi tiết sản phẩm
 Route::delete('/{name}.{id}','User\DetailProductController@deleteComment');
 
+// Xử lí seach gửi request
+Route::get('/seach','User\HomeController@seach');
+
+// Phân trang seach
+Route::post('/seach','User\HomeController@seach');
+
 Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 	// Đăng kí
 	Route::get('/register','RegisterController@index');
