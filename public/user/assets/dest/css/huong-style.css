@@ -6,6 +6,8 @@
   z-index: 100000000;
 }
 .cart-body{
+	overflow: auto;
+	height: 240px;
 	z-index:999;
 }
 .inner-header{

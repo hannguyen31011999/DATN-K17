@@ -37,6 +37,6 @@ class TypeProduct extends Model
     // Relationship 1-n với bảng product
     public function Products()
     {
-        return $this->hasMany('App\Model','type_product_id','id');
+        return $this->hasMany('App\Model\Product','type_product_id','id');
     }
 }

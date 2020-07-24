@@ -22,19 +22,28 @@ class LoginController extends Controller
     }
 
     // Xử lí đăng nhập
-    public function login(  FormLogin $request)
+    public function login(FormLogin $request)
     {
     	$validated = $request->validated();
     	try{
     		if(Auth::attempt(['email'=>$validated['email'],'password'=>$validated['password']])){
+                $request->session()->put('email',Auth::User()->email);
+                $request->session()->put('id',Auth::User()->id);
                 // xử lí nếu là user
     			if(Auth::User()->role==1){
-    				$request->session()->put('email',Auth::User()->email);
-                	$request->session()->put('id',Auth::User()->id);
-                	return redirect()->route('home');
+                    if(Auth::User()->status!=1)
+                    {
+                        Auth::logout();
+                        return back()->with('error','Tài khoản bị khóa');
+                    }
+                    else{
+                        if($request->session()->has('urlAction'))
+                        {
+                            return redirect($request->session()->get('urlAction'));
+                        }
+                        return redirect()->route('home');
+                    }
     			}else{
-                    $request->session()->put('email',Auth::User()->email);
-                    $request->session()->put('id',Auth::User()->id);
                     return redirect()->route('dashboard');
     			}
             }else{
@@ -50,10 +59,11 @@ class LoginController extends Controller
     {
         $request->session()->forget('email');
         $request->session()->forget('id');
+        $request->session()->forget('urlAction');
         if(Auth::User()->role==1)
         {
             Auth::logout();
-            return redirect('/');
+            return redirect('account/login');
         }
         else{
             Auth::logout();

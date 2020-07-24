@@ -1,7 +1,7 @@
 @extends('user.master')
 
 @section('title')
-	Trang chủ
+	Loại sản phẩm
 @endsection
 
 @section('css')
@@ -19,52 +19,45 @@
 @section('shopping-cart')
 <div class="beta-comp" >
     <div class="cart">
-        <div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng <span id="count_span"></span><i class="fa fa-chevron-down"></i></div>
+        <div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng <span id="count_span" class="{{Cart::count()}}"></span><i class="fa fa-chevron-down"></i></div>
         <div class="beta-dropdown cart-body">
             @include('user.template.cart')
         </div>
     </div>
 </div>
 @endsection
-@section('slider')
-	@include('user.trangchu.template.slider')
-@endsection
-
 @section('content')
-	@include('user.trangchu.template.content')
+    @include('user.loaisanpham.content')
 @endsection
 
 @section('js')
-<!-- JavaScript -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('user/ajax/trangchu.js')}}"></script>
-<script>
-    var count = $('#count').val();
-    $('#count_span').text("("+count+")");
-    // Ajax
-    $(document).ready(function()
+<script type="text/javascript">
+	var count = $('#count').val();
+	$('#count_span').text("("+count+")");
+	$(document).ready(function()
     {
-        // Phân trang 
+    	// Phân trang 
         $(document).on('click', '.pagination a',function(event)
         {
             event.preventDefault();
-            $('li').removeClass('active');
+
+            $('ul.pagination').children().removeClass('active');
+
             $(this).parent('li').addClass('active');
   
             var myurl = $(this).attr('href');
 
-            var page=$(this).attr('href').split('page=')[1];
-
-            getData(page);
+            getData(myurl);
         });
-    });
-    
-    // function xử lí ajax
-    function getData(page){
+	});
+
+	function getData(url){
         $.ajax(
         {
-            url: '?page=' + page,
+            url:url,
             type: "get",
             datatype: "html"
         }).done(function(response){

@@ -54,7 +54,7 @@
 					<img src="{{asset('img\logo\logo.jpg')}}" class="rounded-circle" alt="">
 					<h4 style="text-align:center;">Đăng nhập</h4>
 					<div class="space20">&nbsp;</div>
-					<form action="{{url('/admin/login')}}" method="post">
+					<form action="{{url('/login')}}" method="post">
 						@csrf
 						<div class="form-group">
 							<label for="email">Tài khoản*</label>

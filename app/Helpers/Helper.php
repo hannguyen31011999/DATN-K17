@@ -37,7 +37,13 @@ if (! function_exists('thousandSeperator')) {
 		else if(($thounsand/1000)>1)
 		{
 			$milion = $thounsand/1000;
-			return strval($milion)."00"."."."000";
+			$songuyen = (int)($milion);
+			$sodu = ($milion-$songuyen)*1000;
+			if($sodu<100)
+			{
+				return strval($songuyen).'.0'.$sodu."."."000";
+			}
+			return strval($songuyen).'.'.$sodu."."."000";
 		}
 		else
 		{
@@ -46,3 +52,15 @@ if (! function_exists('thousandSeperator')) {
 	}
 }
 
+if (! function_exists('slipString')) {
+	function slipString($str)
+	{
+		for ($i=0; $i < strlen($str); $i++) { 
+			if($str[$i]==" ")
+			{
+				$str[$i] = "-";
+			}
+		}
+		return $str;
+	}
+}

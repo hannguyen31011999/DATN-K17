@@ -16,10 +16,10 @@ use App\Http\Middleware\CheckLogin;
 // Trang chủ
 Route::get('/','User\HomeController@index')->name('home');
 
-// Thêm sản phẩm vào giỏ hàng
+// Thêm sản phẩm vào giỏ hàng home
 Route::post('/','User\CartController@addCart');
 
-// Xóa sản phẩm ở giỏ hàng
+// Xóa sản phẩm ở giỏ hàng home
 Route::delete('/','User\CartController@delete');
 
 // Trang shopping-cart
@@ -36,6 +36,18 @@ Route::get('/checkout','User\CheckoutController@viewCheckout');
 
 // Xử lí đơn hàng
 Route::post('/checkout','User\CheckoutController@createCheckout');
+
+// Trang loại sản phẩm 
+Route::get('/chi-tiet-{name}.{id}','User\HomeController@typeProduct');
+
+// Trang chi tiết sản phẩm
+Route::get('/{name}.{id}','User\DetailProductController@index');
+
+// Xử lí comment ở chi tiết sản phẩm
+Route::post('/{name}.{id}','User\DetailProductController@index');
+
+// Xử lí xóa comment chi tiết sản phẩm
+Route::delete('/{name}.{id}','User\DetailProductController@deleteComment');
 
 Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 	// Đăng kí

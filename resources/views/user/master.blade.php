@@ -29,8 +29,8 @@
 			<div class="container">
 				<div class="pull-left auto-width-left">
 					<ul class="top-menu menu-beta l-inline">
-						<li><a href=""><i class="fa fa-home"></i> 90-92 Lê Thị Riêng, Bến Thành, Quận 1</a></li>
-						<li><a href=""><i class="fa fa-phone"></i> 0163 296 7751</a></li>
+						<li><a href=""><i class="fa fa-home"></i> 53 đường 144,phường Tân Phú,Quận 9</a></li>
+						<li><a href=""><i class="fa fa-phone"></i> 0382 484 093</a></li>
 					</ul>
 				</div>
 				<div class="pull-right auto-width-right">
@@ -75,7 +75,7 @@
 						<li><a href="#">Sản phẩm</a>
 							<ul class="sub-menu">
 								@foreach($menu as $menu)
-								<li><a href="#">{{$menu->type_name}}</a></li>
+								<li><a href="{{url('/chi-tiet-'.slipString($menu->type_name).'.'.$menu->id)}}">{{$menu->type_name}}</a></li>
 								@endforeach
 							</ul>
 						</li>
@@ -92,7 +92,7 @@
 	@yield('slider')
 	
 	<div class="container" id="tag_container">
-	@yield('content')
+		@yield('content')
 	</div> <!-- .container -->
 
 	<div id="footer" class="color-div">
@@ -109,12 +109,7 @@
 						<h4 class="widget-title">Information</h4>
 						<div>
 							<ul>
-								<li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web Design</a></li>
-								<li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web development</a></li>
-								<li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Marketing</a></li>
-								<li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Tips</a></li>
-								<li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Resources</a></li>
-								<li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Illustrations</a></li>
+								<li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i>Web Design</a></li>
 							</ul>
 						</div>
 					</div>
@@ -147,17 +142,10 @@
 	</div> <!-- #footer -->
 	<div class="copyright">
 		<div class="container">
-			<p class="pull-left">Privacy policy. (&copy;) 2014</p>
-			<p class="pull-right pay-options">
-				<a href="#"><img src="{{asset('user/assets/dest/images/pay/master.jpg')}}" alt="" /></a>
-				<a href="#"><img src="{{asset('user/assets/dest/images/pay/pay.jpg')}}" alt="" /></a>
-				<a href="#"><img src="{{asset('user/assets/dest/images/pay/visa.jpg')}}" alt="" /></a>
-				<a href="#"><img src="{{asset('user/assets/dest/images/pay/paypal.jpg')}}" alt="" /></a>
-			</p>
+			<p class="pull-left">CDTH17 PMA. (&copy;) 2020</p>
 			<div class="clearfix"></div>
 		</div> <!-- .container -->
 	</div> <!-- .copyright -->
-
 	@yield('js')
 
 	<!-- include js files -->
