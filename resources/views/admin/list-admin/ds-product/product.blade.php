@@ -9,7 +9,7 @@
         <a href="{{route('list-admin.ds-product.add')}}" class="btn btn-primary waves-effect width-md waves-light"><i class=" ion ion-ios-add-circle-outline font-20"> Thêm mới</i></a>
         </div>
         <div>
-            <h4 class="m-t-0 header-title mb-4"><b>Danh sách bài viết</b></h4>
+        <h4 class="m-t-0 header-title mb-4"><b>Danh sách loại sản phẩm</b></h4>
         </div>
     </div>
 </div>
@@ -17,9 +17,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body table-responsive">
-                <h4 class="m-t-0 header-title mb-4"><b>Danh sách loại sản phẩm</b></h4>
+               
                 <table id="datatable" class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
+                    <thead class="table-info">
                         <tr>
                             <th>Id</th>
                             <th>Tên SP</th>
@@ -57,9 +57,9 @@
                             <td>{{ $pr->origin }}</td>
 
                             <td>
-                                <a href="{{route('list-admin.ds-product.update', ['id'=>$pr->id])}}" class="btn btn-icon waves-effect waves-light btn-warning"><i class="fa fa-wrench"></i> </a>
+                                <a href="{{route('list-admin.ds-product.update', ['id'=>$pr->id])}}"  class="btn btn-outline-purple btn-rounded waves-effect waves-light"><i class="fa fa-wrench"></i> </a>
                                 <hr>
-                                <a onclick="del()" href="#" class="btn btn-icon waves-effect waves-light btn-danger"><i class="far fa-trash-alt"></i></a>
+                                <a onclick="del()" href="#" class="btn btn-outline-danger btn-rounded waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
                                 <script>
                                     function del() {
                                         Swal.fire({

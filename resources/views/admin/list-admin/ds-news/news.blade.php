@@ -18,13 +18,13 @@
         <div class="card">
             <div class="card-body table-responsive">
                 <table id="datatable" class="table table-bordered mb-1 " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
+                    <thead class="table-info">
                         <tr>
                             <th>Id</th>
                             <th>Tiêu đề</th>
                             <th>Nội dung</th>
-                            <th>Hình</th>
-                            <th>admin</th>
+                            <th>Hình ảnh</th>
+                            <th>Người viết</th>
                             <th>Chỉnh sửa</th>
                         </tr>
                     </thead>
@@ -45,9 +45,9 @@
                             @endif
                             @endforeach
                             <td>
-                                <a href="{{route('list-admin.ds-news.update', ['id'=>$ns->id])}}" class="btn btn-icon waves-effect waves-light btn-warning"><i class="fa fa-wrench"></i> </a>
+                                <a href="{{route('list-admin.ds-news.update', ['id'=>$ns->id])}}"  class="btn btn-outline-purple btn-rounded waves-effect waves-light"><i class="fa fa-wrench"></i> </a>
                                 <hr>
-                                <a onclick="del()" href="#" class="btn btn-icon waves-effect waves-light btn-danger"><i class="far fa-trash-alt"></i></a>
+                                <a onclick="del()" href="#" class="btn btn-outline-danger btn-rounded waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
                                 <script>
                                     function del() {
                                         Swal.fire({

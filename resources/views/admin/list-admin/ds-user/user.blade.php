@@ -6,7 +6,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body table-responsive">
-                <h4 class="m-t-0 header-title mb-4"><b>Danh sách user và admin</b></h4>
+                <h4 class="m-t-0 mb-4"><b>DANH SÁCH USER</b></h4>
                 <table id="datatable" class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
@@ -46,7 +46,7 @@
                                   <a href="{{route('list-admin.ds-user.update', ['id'=>$us->id])}}"> <span class="badge badge-danger">Đã ẩn</span> </a> 
                                 @endif
                             <td>
-                                <a onclick="del()" href="#" class="btn btn-icon waves-effect waves-light btn-danger"><i class="far fa-trash-alt"></i></a>
+                                <a onclick="del()" href="#" class="btn btn-outline-danger btn-rounded waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
                                 <script>
                                     function del() {
                                         Swal.fire({

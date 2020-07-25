@@ -2,6 +2,18 @@
 @section('header')
 <link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/thongtin.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.css" />
+<style>
+  .profile-usertitle {
+    text-align: center;
+    margin-top: 100%;
+    margin-bottom: 100%;
+    /* background: #32c5d2; */
+}
+.profile-sidebar {
+    padding: 20px 0 10px 0;
+    background: rgb(50 197 210);
+}
+</style>
 @endsection
 @section('main-conten')
 <div class="row">
@@ -29,7 +41,7 @@
               <div class="row">
                 <div class="col-md-8">
                   <div class="panel-heading">
-                    <p style="font-size: 20px;">Thông tin tài khoản</p>
+                    <p style="font-size: 30px;">THÔNG TIN TÀI KHOẢN</p>
                   </div>
                   <div class="panel-heading">
                     <div class="c-line-left"></div>

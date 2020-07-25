@@ -51,23 +51,22 @@
                                 </div>
                                 @endif
                             </div>
-                        </div>
-                    </div>
-                    <!-- end row -->
-                    <hr>
-                    <div class="row mt-2">
-                        <div class="col-12">
-                            <div>
-                                <button type="submit" class="btn btn-success waves-effect width-md waves-light">@if(isset($typeproduct))Cập nhật @else Thêm @endif</button>
+                            <!-- end row -->
+                            <hr>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <div>
+                                        <button type="submit" class="btn btn-primary waves-effect width-md waves-light">@if(isset($typeproduct))Cập nhật @else Thêm @endif</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-            </form>
     </div>
-    <!-- end col -->
+    </form>
+</div>
+<!-- end col -->
 </div>
 @endsection
 @section('script')

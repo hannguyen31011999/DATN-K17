@@ -3,34 +3,34 @@
 <title>Admin | Product</title>
 <style>
     #overlay {
-    position: fixed;
-    top: 0;
-    width: 37%;
-    height: 75%;
-    background: rgba(0, 0, 0, 0) none 100% / contain no-repeat;
-    cursor: pointer;
-    transition: 0.3s;
-    visibility: hidden;
-    opacity: 0;
-}
-#overlay.open {
-    visibility: visible;
-    opacity: 1;
-}
+        position: fixed;
+        top: 0;
+        width: 37%;
+        height: 75%;
+        background: rgba(0, 0, 0, 0) none 100% / contain no-repeat;
+        cursor: pointer;
+        transition: 0.3s;
+        visibility: hidden;
+        opacity: 0;
+    }
 
-#overlay:after {
-    /* X button icon */
-    content: "\2715";
-    position: absolute;
-    color: #fff;
-    top: 10px;
-    right: 20px;
-    font-size: 2em;
-}
+    #overlay.open {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    #overlay:after {
+        /* X button icon */
+        content: "\2715";
+        position: absolute;
+        color: #fff;
+        top: 10px;
+        right: 20px;
+        font-size: 2em;
+    }
 </style>
 @endsection
 @section('main-conten')
-<hr>
 <div class="row">
     <div class="col-md-12">
         @if(isset($product))
@@ -126,23 +126,23 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
-                    </div>
-                    <!-- end row -->
-                    <hr>
-                    <div class="row mt-2">
-                        <div class="col-12">
-                            <div>
-                                <button type="submit" class="btn btn-success waves-effect width-md waves-light">@if(isset($product))Cập nhật @else Thêm @endif</button>
+                            <!-- end row -->
+                            <hr>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <div>
+                                        <button type="submit" class="btn btn-primary waves-effect width-md waves-light">@if(isset($product))Cập nhật @else Thêm @endif</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
     </div>
-    <!-- end col -->
+    </form>
+</div>
+<!-- end col -->
 </div>
 @endsection
 @section('script')

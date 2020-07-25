@@ -23,6 +23,17 @@
     <link href="{{asset('admin/assets/libs/datatables/select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     @yield('header')
     <style>
+        body {
+            margin: 0;
+            font-family: Lato, sans-serif;
+            font-size: 1.0rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #1b0202;
+            text-align: left;
+
+        }
+
         .navbar-custom {
             background-image: url('img/background/backgrounduser.png');
         }
@@ -68,16 +79,33 @@
             margin: 0 0 15px 0;
             text-transform: uppercase;
             font-weight: 600;
-            /* margin-left: 153px; */
+            margin-left: 145px;
         }
 
         .headerds {
-            margin-left: 218px;
+            margin-left: 0px;
             margin-bottom: -28px;
             margin-top: 11px;
         }
+
+        .card-box {
+            background-color: #e7ebeb;
+            padding: 1.25rem;
+            -webkit-box-shadow: 0 1px 2px 0 rgba(33, 37, 41, .1);
+            box-shadow: 0 1px 2px 0 rgba(33, 37, 41, .1);
+            margin-bottom: 24px;
+            border-radius: 2.25rem;
+            margin-top: 20px;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #000000;
+        }
     </style>
 </head>
+
 <body>
     <div id="wrapper">
         <!-- Topbar Start -->
