@@ -9,6 +9,7 @@ use App\Http\Requests\User\FormPassword;
 use App\Http\Requests\User\FormAddress;
 use App\Model\User;
 use App\Model\Order;
+use App\Model\Product;
 use Illuminate\Support\Facades\Hash;
 class ProfileController extends Controller
 {
@@ -107,11 +108,11 @@ class ProfileController extends Controller
 		$order = User::find(Auth::User()->id)
 				->Orders()
 				->get();
-		$orderDetail = array();
+		$orderDetail = [];
+		$product = Product::all();
 		foreach ($order as $value) {
-			array_push($orderDetail,Order::find($value->id)->OrderDetails()->get());
+			$orderDetail[] = Order::find($value->id)->OrderDetails()->get();
 		}
-		$length = count($orderDetail);
-		return view('user.thongtin.purchase',compact('orderDetail'));
+		return view('user.thongtin.purchase',compact('orderDetail','product','order'));
 	}
 }
