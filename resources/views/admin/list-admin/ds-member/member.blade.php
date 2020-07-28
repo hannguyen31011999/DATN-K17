@@ -1,6 +1,6 @@
 @extends('admin.mater-admin')
 @section('header')
-<title>Admin | hội viên</title>
+<title>Admin | Thành viên</title>
 @endsection
 @section('main-conten')
 <hr>

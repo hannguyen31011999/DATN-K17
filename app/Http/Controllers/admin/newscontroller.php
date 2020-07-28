@@ -54,7 +54,7 @@ class newscontroller extends Controller
             'image.image'=>'không đúng định dạng'
         ]);
 
-        if($request->hasFile('image')){     
+        if($request->image){     
             $file = $request->file('image');
             if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
                $fileName = $file->getClientOriginalName('image');
@@ -66,14 +66,16 @@ class newscontroller extends Controller
                $News->user_id_create = Auth::User()->id;
                $News->save();
                if($News->save()){
-                toast('Thêm bài viết thành công!','success','top-right'); 
+                 toast('Thêm bài viết thành công!','success','top-right'); 
                }
                return redirect()->route('list-admin.ds-news.list');
             }else{
                 echo"eo phai jpg";
             }
          }else{
-            return '@@@@@@@';
+            $errorss = "Chưa chọn hinh ảnh !";
+            $listNews = News::all();
+            return view('admin.list-admin.ds-news.actionnews', compact('listNews', 'errorss'));
          }
     }
 
@@ -161,8 +163,9 @@ class newscontroller extends Controller
      */
     public function destroy($id)
     {
-         $deleteNews = News::find($id);
-         $destinationPath = 'img/news/'.$deleteNews->image;
+        $deleteNews = News::find($id);
+       
+        $destinationPath = 'img/news/'.$deleteNews->image;
          if(file_exists($destinationPath)){
              unlink($destinationPath);
          }

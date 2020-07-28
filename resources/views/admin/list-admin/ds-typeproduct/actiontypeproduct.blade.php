@@ -1,5 +1,15 @@
 @extends('admin.mater-admin')
 @section('header')
+<title>Admin | Loại sản phẩm</title>
+<style>
+.heard-typeproduct {
+        font-size: 20px;
+        margin: 0 0 15px 0;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-left: 37%;
+    } 
+</style>
 @endsection
 @section('main-conten')
 <div class="row">
@@ -11,9 +21,9 @@
                 @endif
                 @csrf
                 <div class="card-box">
-                    <div class="row" style="margin-left: 350px;">
-                        <div class="col-xl-8 col-lg-8">
-                            <h1 class="m-t-0 header-title mb-4"><b> @if(isset($typeproduct)) Cập nhật @else Thêm @endif loại sản phẩm</b></h1>
+                    <div class="row" style="margin-left: 180px;">
+                        <div class="col-xl-10 col-lg-12">
+                            <h1 class="heard-typeproduct"><b> @if(isset($typeproduct)) Cập nhật @else Thêm @endif loại sản phẩm</b></h1>
                             <div class="control-group">
                                 <div class="controls">
                                     <label class="control-label">Tên Loại Sản phẩm</label>

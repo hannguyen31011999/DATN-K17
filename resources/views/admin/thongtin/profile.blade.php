@@ -1,5 +1,6 @@
 @extends('admin.mater-admin')
 @section('header')
+<title>Admin | Thông tin</title>
 <link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/thongtin.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.css" />
 <style>
@@ -8,11 +9,21 @@
     margin-top: 100%;
     margin-bottom: 100%;
     /* background: #32c5d2; */
-}
-.profile-sidebar {
+  }
+
+  .profile-sidebar {
     padding: 20px 0 10px 0;
     background: rgb(50 197 210);
-}
+    border-radius: 38px;
+    margin-left: -6%;
+  }
+
+  .profile {
+    background: #ffffff;
+    margin: 21px 0;
+    border-radius: 34px;
+    padding: 5%;
+  }
 </style>
 @endsection
 @section('main-conten')
@@ -113,9 +124,9 @@
                   </div>
                   <div class="col-md-4">
                     @if(empty($user->birthdate))
-                    <input type="date" id="birthday" class="form-control" value="" name="birthdate" style="width: 70%;">
+                    <input type="date" id="birthday" class="form-control" value="" name="birthdate" style="width: 80%;">
                     @else
-                    <input type="date" id="birthday" class="form-control" value="{{$user->birthdate->format('Y-m-d')}}" name="birthdate" style="width: 70%;">
+                    <input type="date" id="birthday" class="form-control" value="{{$user->birthdate->format('Y-m-d')}}" name="birthdate" style="width: 80%;">
                     @endif
                   </div>
                 </div>

@@ -1,6 +1,15 @@
 @extends('admin.mater-admin')
 @section('header')
 <title>Admin | Bài viết</title>
+<style>
+    .heard-news {
+        font-size: 20px;
+        margin: 0 0 15px 0;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-left: 37%;
+    }
+</style>
 @endsection
 @section('main-conten')
 <div class="row">
@@ -12,9 +21,9 @@
                 @endif
                 @csrf
                 <div class="card-box">
-                    <div class="row" style="margin-left: 350px;">
-                        <div class="col-xl-8 col-lg-8">
-                            <h1 class="m-t-0 header-title mb-4"><b> @if(isset($news)) Cập nhật @else Thêm @endif bài viết</b></h1>
+                    <div class="row" style="margin-left: 180px;">
+                        <div class="col-xl-10 col-lg-12">
+                            <h1 class="heard-news"><b> @if(isset($news)) Cập nhật @else Thêm @endif bài viết</b></h1>
                             <div class="control-group">
                                 <div class="controls">
                                     <label class="control-label">Tiêu đề</label>
@@ -43,9 +52,9 @@
                                                 @else <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('img/logo/pngtree.jpg')}}" /> @endif
                                             </div>
                                         </div>
-                                        @if($errors->has('image'))
+                                        @if(isset($errorss))
                                         <div class="alert alert-danger" role="alert">
-                                            <strong>{{$errors->first('image')}}</strong>
+                                            <strong>{{$errorss}}</strong>
                                         </div>
                                         @endif
                                     </div>
@@ -55,8 +64,9 @@
                             <hr>
                             <div class="row mt-2">
                                 <div class="col-12">
-                                    <div>
+                                    <div >
                                         <button type="submit" class="btn btn-primary waves-effect width-md waves-light">@if(isset($news))Cập nhật @else Thêm @endif</button>
+                                        <a href="{{route('list-admin.ds-news.list') }}" class="btn btn-danger waves-effect width-md waves-light">Hủy</a>
                                     </div>
                                 </div>
                             </div>

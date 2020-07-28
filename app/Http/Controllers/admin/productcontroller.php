@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\TypeProduct;
+use App\Model\Comment;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -215,11 +216,12 @@ class productcontroller extends Controller
     public function destroy($id)
     {
         $deleteproduct = Product::find($id);
+        $deleteproduct->delete();
         $destinationPath = 'img/typeproduct/' . $deleteproduct->image;
         if (file_exists($destinationPath)) {
             unlink($destinationPath);
         }
-        $deleteproduct->delete();
+        // dd( $deleteproduct->delete());
         return redirect()->route('list-admin.ds-product.list');
     }
 }

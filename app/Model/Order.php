@@ -3,10 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
     //
+    use SoftDeletes;
     protected $table = "order";
     
     protected $primaryKey = "id";
@@ -45,7 +47,7 @@ class Order extends Model
         return $this->belongsTo('App\Model\User','id','customer_id');
     }
 
-    public function OrderDetail()
+    public function OrderDetails()
     {
         return $this->hasMany('App\Model\OrderDetail','bill_id','id');
     }

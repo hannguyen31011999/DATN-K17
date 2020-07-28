@@ -221,7 +221,8 @@ Route::group(['prefix'=>'admin/list-member','middleware'=>'CheckLogin'],function
 Route::group(['prefix'=>'admin/list-order','middleware'=>'CheckLogin'],function(){
     Route::name('list-admin.ds-order.')->group (function(){
 		Route::get('/', 'admin\ordercontroller@index')->name('list');
-        Route::post('update/{id}', 'admin\ordercontroller@update')->name('update');
+		Route::post('update/{id}', 'admin\ordercontroller@update')->name('update');
+		Route::get('detail/{id}', 'admin\ordercontroller@indexDetail')->name('detail');
     });  
 });
 

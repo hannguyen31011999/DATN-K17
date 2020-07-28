@@ -1,6 +1,6 @@
 @extends('admin.mater-admin')
 @section('header')
-<title>Admin | Product</title>
+<title>Admin | Sản phẩm</title>
 <style>
     #overlay {
         position: fixed;
@@ -28,6 +28,13 @@
         right: 20px;
         font-size: 2em;
     }
+    .heard-product {
+        font-size: 20px;
+        margin: 0 0 15px 0;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-left: 37%;
+    }
 </style>
 @endsection
 @section('main-conten')
@@ -40,9 +47,9 @@
                 @endif
                 @csrf
                 <div class="card-box">
-                    <div class="row" style="margin-left: 350px;">
-                        <div class="col-xl-8 col-lg-8">
-                            <h1 class="m-t-0 header-title mb-4"><b> @if(isset($product)) Cập nhật @else Thêm @endif loại sản phẩm</b></h1>
+                    <div class="row" style="margin-left: 180px;">
+                        <div class="col-xl-10 col-lg-12">
+                            <h1 class="heard-product"><b> @if(isset($product)) Cập nhật @else Thêm @endif loại sản phẩm</b></h1>
                             <div class="control-group">
                                 <div class="controls">
                                     <label class="control-label">Tên Sản phẩm</label>

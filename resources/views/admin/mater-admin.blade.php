@@ -28,7 +28,7 @@
             font-family: Lato, sans-serif;
             font-size: 1.0rem;
             font-weight: 400;
-            line-height: 1.5;
+            line-height: 1.25;
             color: #1b0202;
             text-align: left;
 
@@ -79,13 +79,7 @@
             margin: 0 0 15px 0;
             text-transform: uppercase;
             font-weight: 600;
-            margin-left: 145px;
-        }
-
-        .headerds {
-            margin-left: 0px;
-            margin-bottom: -28px;
-            margin-top: 11px;
+          
         }
 
         .card-box {
@@ -103,6 +97,13 @@
             margin-bottom: 1rem;
             color: #000000;
         }
+        div.dataTables_wrapper div.dataTables_filter input {
+        margin-left: 0.5em;
+        display: inline-block;
+        width: 195px;
+        height: 39px;
+        color: #3bc0c3;
+    }
     </style>
 </head>
 
@@ -212,10 +213,17 @@
                                     <span>Quản lý đơn hàng</span>
                                 </a>
                             </li>
-                            <li class="menu-title">QUẢN LÍ USER</li>
+                            <li class="menu-title">Bình Luận</li>
+                            <li>
+                                <a href="{{route('list-admin.ds-comment.list')}}" class="waves-effect ">
+                                    <i class=" fas fa-comment font-20"></i>
+                                    <span>Quản lý bình luận</span>
+                                </a>
+                            </li>
+                            <li class="menu-title">QUẢN LÍ TÀI KHOẢN</li>
                             <li class="mm-active">
                                 <a href="{{route('list-admin.ds-user.list')}}" class="waves-effect ">
-                                    <i class="ion-md-contacts font-20 "></i>
+                                    <i class=" fas fa-address-book font-20 "></i>
                                     <span>Người dùng</span>
                                 </a>
                             </li>
@@ -225,17 +233,11 @@
                                     <span>Thành viên</span>
                                 </a>
                             </li>
-                            <li class="menu-title">Admin</li>
-                            <li>
-                                <a href="javascript: void(0);" class="waves-effect">
-                                    <i class=" ion ion-ios-finger-print font-20"></i>
+                            <li class="mm-active">
+                                <a href="{{url('admin/profile')}}" class="waves-effect ">
+                                    <i class="ion ion-ios-finger-print font-20"></i>
                                     <span>Admin</span>
-                                    <span class="menu-arrow"></span>
                                 </a>
-                                <ul class="nav-second-level mm-collapse" aria-expanded="false">
-                                    <li><a href="{{url('admin/profile')}}">Thông tin</a></li>
-                                    <li><a href="components-portlets.html">admin</a></li>
-                                </ul>
                             </li>
                             <li class="menu-title">CẤU HÌNH</li>
                             <li class="mm-active">
@@ -339,7 +341,6 @@
 
         <!-- Datatables init -->
         <script src="{{asset('admin/assets/js/pages/datatables.init.js') }}"></script>
-        <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 
 
 </body>

@@ -3,11 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     //
-
+    use SoftDeletes;
     protected $table = "product";
     
     protected $primaryKey = "id";
@@ -52,4 +53,9 @@ class Product extends Model
     {
         return $this->hasMany('App\Model\OrderDetail','product_id','id');
     }
+    public function TypeProducts()
+    {
+        return $this->belongsTo('App\Model\TypeProduct','type_product_id','id');
+    }
+  
 }

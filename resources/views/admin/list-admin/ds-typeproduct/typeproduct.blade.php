@@ -1,21 +1,29 @@
 @extends('admin.mater-admin')
 @section('header')
+<title>Admin | Loại sản phẩm</title>
+<style>
+    .headerds {
+        margin-left: 96%;
+        margin-bottom: -38px;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter label {
+        font-weight: normal;
+        white-space: nowrap;
+        margin-right: 12%;
+    }
+</style>
 @endsection
 @section('main-conten')
-<div class="row">
-    <div class="col-12">
-        <div class="headerds">
-            <a href="{{route('list-admin.ds-typeproduct.add')}}" class="btn btn-primary waves-effect width-md waves-light"><i class=" ion ion-ios-add-circle-outline font-20"> Thêm mới</i></a>
-        </div>
-        <div>
-            <h4 class="m-t-0 header-title mb-4"><b>Danh sách loại sản phẩm</b></h4>
-        </div>
-    </div>
-</div>
+<br>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body table-responsive">
+                <h4 class="m-t-0 header-title mb-4"><b>Danh sách loại sản phẩm</b></h4>
+                <div class="headerds">
+                    <a href="{{route('list-admin.ds-typeproduct.add')}}" class="btn btn-primary waves-effect waves-light "><i class=" ion ion-ios-add-circle-outline font-20"></i></a>
+                </div>
                 <table id="datatable" class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead class="table-info">
                         <tr>
@@ -23,7 +31,7 @@
                             <th>Loại SP</th>
                             <th>Mô tả</th>
                             <th>Hình</th>
-                            <th>Edit</th>
+                            <th>Tác vụ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,9 +46,9 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="{{route('list-admin.ds-typeproduct.update', ['id'=>$tpr->id])}}" class="btn btn-outline-purple btn-rounded waves-effect waves-light"><i class="fa fa-wrench"></i> </a>
+                                <a href="{{route('list-admin.ds-typeproduct.update', ['id'=>$tpr->id])}}" class="text-primary font-20"><i class="fa fa-wrench"></i> </a>
                                 <hr>
-                                <a onclick="del()" href="#" class="btn btn-outline-danger btn-rounded waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{route('list-admin.ds-typeproduct.delete', ['id'=>$tpr->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chất chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -53,21 +61,4 @@
 </div>
 @endsection
 @section('script')
-<script>
-    function del() {
-        Swal.fire({
-            title: 'Bạn có chắc chấn xóa !',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Có',
-            cancelButtonText: 'không'
-        }).then((result) => {
-            if (result.value) {
-                open("{{route('list-admin.ds-typeproduct.delete', ['id'=>$tpr->id])}}", "_self")
-            }
-        })
-    };
-</script>
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\Order;
 use App\Model\Product;
+use App\Model\User;
 use Order as GlobalProduct;
 
 class ordercontroller extends Controller
@@ -20,7 +21,14 @@ class ordercontroller extends Controller
     {
         $listOrder = Order::all();
         $listProduct = Product::all();
-        return view('admin.list-admin.ds-order.order',compact('listOrder','listProduct'));       
+        $listUser = User::all();
+        return view('admin.list-admin.ds-order.order',compact('listOrder','listProduct','listUser'));       
+    }
+    public function indexDetail($id)
+    {
+        $listDetail = Order::find($id)->OrderDetails;
+        $listProduct = Product::all();
+        return view('admin.list-admin.ds-order.orderdetail',compact('listDetail','listProduct'));       
     }
     /**
      * Update the specified resource in storage.
