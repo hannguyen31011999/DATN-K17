@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Model\User;
 use App\Model\Order;
 use App\Model\OrderDetail;
+use Carbon\Carbon;
 use Cart;
+use Mail;
 class CheckoutController extends Controller
 {
 	// View shopping-cart
@@ -66,17 +68,24 @@ class CheckoutController extends Controller
     	$array = null;
     	if(Auth::check())
     	{
-    		$array = Order::create([
-    			'customer_id'=>Auth::User()->id,
-    			'payment'=>$request->payment,
-    			'note'=>$request->notes,
-    			'status'=>0,
-    			'phone'=>Auth::User()->phone,
-    			'address'=> Auth::User()->address,
-    			'name'=>Auth::User()->name,
-    			'email'=>Auth::User()->email
-    		]);
-    		$order = Order::find($array->id);
+            if(empty(Auth::User()->address))
+            {
+                return redirect('account/address');
+            }
+            else
+            {
+                $array = Order::create([
+                    'customer_id'=>Auth::User()->id,
+                    'payment'=>$request->payment,
+                    'note'=>$request->notes,
+                    'status'=>0,
+                    'phone'=>Auth::User()->phone,
+                    'address'=> Auth::User()->address,
+                    'name'=>Auth::User()->name,
+                    'email'=>Auth::User()->email
+                ]);
+                $order = Order::find($array->id);
+            }
     	}
     	else
     	{
@@ -100,6 +109,11 @@ class CheckoutController extends Controller
 		            'address.regex'=>'Địa chỉ không được có kí tự đặc biệt'
     			]
     		);
+            $data = array('email'=>$request->email,'cart'=>Cart::content(),'date'=>Carbon::now('Asia/Ho_Chi_Minh'),'total'=>Cart::subtotal(0,'.','.'));
+            Mail::send('user.dathang.template.mail_purchase',$data,
+                function($messenger) use ($data){
+                    $messenger->to($data["email"],'Hệ thống')->subject('[Alley Baker] Đơn hàng của bạn?');
+            });
     		$array = Order::create([
     			'customer_id'=>null,
     			'payment'=>$request->payment,

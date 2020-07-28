@@ -39,11 +39,15 @@ if (! function_exists('thousandSeperator')) {
 			$milion = $thounsand/1000;
 			$songuyen = (int)($milion);
 			$sodu = ($milion-$songuyen)*1000;
-			if($sodu<100)
+			if($sodu!=0)
 			{
-				return strval($songuyen).'.0'.$sodu."."."000";
+				if($sodu<100)
+				{
+					return strval($songuyen).'.0'.$sodu."."."000";
+				}
+				return strval($songuyen).'.'.$sodu."."."000";
 			}
-			return strval($songuyen).'.'.$sodu."."."000";
+			return strval($songuyen).'.'."000"."."."000";
 		}
 		else
 		{

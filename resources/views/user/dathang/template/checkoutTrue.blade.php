@@ -7,7 +7,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="your-order-body" style="padding: 0px 10px">
+		<div class="your-order-body" style="padding: 0px 10px;">
 			<div class="your-order-item">
 			@if(isset($user))
 				<!--  one item	 -->
@@ -33,7 +33,7 @@
 <div class="col-sm-6">
 	<div class="your-order">
 		<div class="your-order-head"><h5>Đơn hàng của bạn</h5></div>
-		<div class="your-order-body" style="padding: 0px 10px">
+		<div class="your-order-body" style="padding: 0px 10px;height: 250px;overflow: auto;">
 			<div class="your-order-item">
 				<!--  one item	 -->
 				@foreach($cart as $carts)
