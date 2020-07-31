@@ -24,5 +24,4 @@
 @include('user.dathang.template.content_checkout')
 @endsection
 @section('js')
-
 @endsection

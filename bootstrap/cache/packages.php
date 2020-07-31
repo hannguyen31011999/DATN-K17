@@ -6,24 +6,6 @@
       0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     ),
   ),
-  'bumbummen99/shoppingcart' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Cart' => 'Gloudemans\\Shoppingcart\\Facades\\Cart',
-    ),
-  ),
-  'ckfinder/ckfinder-laravel-package' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'CKSource\\CKFinderBridge\\CKFinderServiceProvider',
-    ),
-  ),
   'fideloper/proxy' => 
   array (
     'providers' => 
@@ -50,17 +32,6 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    ),
-  ),
-  'realrashid/sweet-alert' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Alert' => 'RealRashid\\SweetAlert\\Facades\\Alert',
     ),
   ),
 );

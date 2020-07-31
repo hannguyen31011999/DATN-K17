@@ -172,7 +172,7 @@
             },
         }).done(function(response){
         	console.log(response);
-            $("#table-cart").empty().html(response);
+        	$("#table-cart").empty().html(response);
             if(qty>0)
             {
             	$('#'+rowId).val(qty);

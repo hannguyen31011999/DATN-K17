@@ -65,7 +65,7 @@
                         <p>Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequaturuis autem vel eum iure reprehenderit qui in ea voluptate velit es quam nihil molestiae consequr, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? </p>
                     </div>
                     <div class="panel" id="tab-comment" style="height: 250px;overflow: auto;">
-                        <form method="post" id="form-comment" data-url="{{url('/'.slipString($product->product_name).'.'.$product->id)}}">
+                        <form method="post" id="form-comment" data-url="{{url('/'.utf8tourl($product->product_name).'.'.$product->id)}}">
                             @csrf
                             <div class="form-block">
                                 <label for="notes">Ghi bình luận</label>
@@ -89,7 +89,7 @@
                                     <a href="">Trả lời</a>
                                 @if(Auth::check())
                                     &nbsp;
-                                    <a href="" class="deleteComment" id="{{$comments->id}}" data-url="{{url('/'.slipString($product->product_name).'.'.$product->id)}}">Xóa</a>
+                                    <a href="" class="deleteComment" id="{{$comments->id}}" data-url="{{url('/'.utf8tourl($product->product_name).'.'.$product->id)}}">Xóa</a>
                                 @endif
                             </div>
                             <hr width="100%">
@@ -108,7 +108,7 @@
                             <div class="col-sm-4">
                                 <div class="single-item">
                                     <div class="single-item-header">
-                                        <a href="{{url('/'.slipString($productRelateds->product_name).'.'.$productRelateds->id)}}"><img src="user/image/product/{{$productRelateds->image}}" alt="" style="height: 320px; width: 100%;"></a>
+                                        <a href="{{url('/'.utf8tourl($productRelateds->product_name).'.'.$productRelateds->id)}}"><img src="user/image/product/{{$productRelateds->image}}" alt="" style="height: 320px; width: 100%;"></a>
                                     </div>
                                     <div class="single-item-body">
                                         <p class="single-item-title">{{$productRelateds->product_name}}</p>
@@ -118,7 +118,7 @@
                                     </div>
                                     <div class="single-item-caption">
                                         <a class="add-to-cart pull-left" href="" id="{{$productRelateds->id}}"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="{{url('/'.slipString($productRelateds->product_name).'.'.$productRelateds->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary" href="{{url('/'.utf8tourl($productRelateds->product_name).'.'.$productRelateds->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                                 <div class="single-item">
                                     <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
                                     <div class="single-item-header">
-                                        <a href="{{url('/'.slipString($productRelateds->product_name).'.'.$productRelateds->id)}}"><img src="user/image/product/{{$productRelateds->image}}" alt="" style="height: 320px; width: 100%;"></a>
+                                        <a href="{{url('/'.utf8tourl($productRelateds->product_name).'.'.$productRelateds->id)}}"><img src="user/image/product/{{$productRelateds->image}}" alt="" style="height: 320px; width: 100%;"></a>
                                     </div>
                                     <div class="single-item-body">
                                         <p class="single-item-title">{{$productRelateds->product_name}}</p>
@@ -140,7 +140,7 @@
                                     </div>
                                     <div class="single-item-caption">
                                         <a class="add-to-cart pull-left" id="{{$productRelateds->id}}" href="" ><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="{{url('/'.slipString($productRelateds->product_name).'.'.$productRelateds->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary" href="{{url('/'.utf8tourl($productRelateds->product_name).'.'.$productRelateds->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@
                         @if($value->id==$sellers["product_id"])
                             <div class="beta-sales beta-lists">
                                 <div class="media beta-sales-item">
-                                    <a class="pull-left" href="{{url('/'.slipString($value->product_name).'.'.$value->id)}}"><img src="user/image/product/{{$value['image']}}" alt=""></a>
+                                    <a class="pull-left" href="{{url('/'.utf8tourl($value->product_name).'.'.$value->id)}}"><img src="user/image/product/{{$value['image']}}" alt=""></a>
                                     <div class="media-body">
                                         {{$value['product_name']}}
                                         <br>
@@ -180,7 +180,7 @@
                         @foreach($newProduct as $newProducts)
                             @if(empty($newProducts->promotion_price))
                             <div class="media beta-sales-item">
-                                <a class="pull-left" href="{{url('/'.slipString($newProducts->product_name).'.'.$newProducts->id)}}"><img src="user/image/product/{{$newProducts->image}}" style="height: 60px; width: 80px;" alt=""></a>
+                                <a class="pull-left" href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}"><img src="user/image/product/{{$newProducts->image}}" style="height: 60px; width: 80px;" alt=""></a>
                                 <div class="media-body">
                                     <span style="font-size:15px;">{{$newProducts->product_name}}
                                     </span>
@@ -190,7 +190,7 @@
                             </div>
                             @else
                             <div class="media beta-sales-item">
-                                <a class="pull-left" href="{{url('/'.slipString($newProducts->product_name).'.'.$newProducts->id)}}"><img src="user/image/product/{{$newProducts->image}}" style="height: 60px; width: 80px;" alt=""></a>
+                                <a class="pull-left" href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}"><img src="user/image/product/{{$newProducts->image}}" style="height: 60px; width: 80px;" alt=""></a>
                                 <div class="media-body">
                                     <span style="font-size:15px;">{{$newProducts->product_name}}
                                     </span>

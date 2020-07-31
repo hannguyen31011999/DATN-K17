@@ -58,20 +58,32 @@
                      @foreach($cart as $carts)
                      <tr>
                       <th>
-                        <img src="https://alleybaker.000webhostapp.com/image/{{$carts->options['img']}}" width="80" height="60">
+                        <img src="https://alleybaker.000webhostapp.com/image/{{$carts['image']}}" width="80" height="60">
                       </th>
                       <th>
-                        <span>{{$carts->name}}</span>
+                        <span>{{$carts['name']}}</span>
                       </th>
                       <th>
-                        {{$carts->qty}}
+                        {{$carts['qty']}}
                       </th>
-                      <th>
-                        {{thousandSeperator($carts->price)}}
+                      @if(empty($carts['promotion_price']))
+                        <th>
+                        {{thousandSeperator($carts['unit_price'])}}đ
                       </th>
-                      <th>
-                        {{thousandSeperator($carts->qty*$carts->price)}}
+                      @else
+                        <th>
+                          {{thousandSeperator($carts['promotion_price'])}}đ
+                        </th>
+                      @endif
+                      @if(empty($carts['promotion_price']))
+                        <th>
+                        {{thousandSeperator($carts['qty']*$carts['unit_price'])}}đ
                       </th>
+                      @else
+                        <th>
+                          {{thousandSeperator($carts['qty']*$carts['promotion_price'])}}đ
+                        </th>
+                      @endif
                      </tr>
                      @endforeach
                      <tr>
@@ -84,7 +96,7 @@
                       <th>
                       </th>
                       <th>
-                         Tổng tiền: {{$total}}
+                         Tổng tiền: {{thousandSeperator($total)}}đ
                       </th>
                      </tr>
                     </table>

@@ -49,7 +49,7 @@
 				</div>
 				<div class="pull-right auto-width-right">
 					<ul class="top-details menu-beta l-inline">
-						@if(Auth::check()&&Session::has('email')&&Session::has('id'))
+						@if(Auth::check()&&Session::has('email')&&Session::has('id')&&Session::get('role')==1)
 							<li><a href="{{url('/account/profile')}}" style="text-decoration: none;"><i class="fa fa-user"></i>{{Session::get('email')}}</a></li>
 							<li><a href="{{url('/account/logout')}}" style="text-decoration: none;">Đăng xuất</a>
 						@else
@@ -64,7 +64,7 @@
 		<div class="header-body" >
 			<div class="container beta-relative">
 				<div class="pull-left">
-					<a href="{{route('home')}}" id="logo"><img src="{{asset('img/logo/logo.jpg')}}" width="200px" alt=""></a>
+					<a href="{{route('home')}}" id="logo"><img src="{{asset('user/logo.png')}}" width="200px" alt=""></a>
 				</div>
 				<div class="pull-right beta-components space-left ov">
 					<div class="space10">&nbsp;</div>
@@ -92,12 +92,12 @@
 						<li><a href="#">Sản phẩm</a>
 							<ul class="sub-menu">
 								@foreach($menu as $menu)
-								<li><a href="{{url('/chi-tiet-'.slipString($menu->type_name).'.'.$menu->id)}}">{{$menu->type_name}}</a></li>
+								<li><a href="{{url('/chi-tiet-'.utf8tourl($menu->type_name).'.'.$menu->id)}}">{{$menu->type_name}}</a></li>
 								@endforeach
 							</ul>
 						</li>
 						<li><a href="about.html">Giới thiệu</a></li>
-						<li><a href="contacts.html">Liên hệ</a></li>
+						<li><a href="{{url('/tin-tuc')}}">Tin tức</a></li>
 					</ul>
 					<div class="clearfix"></div>
 				</nav>
