@@ -85,5 +85,5 @@
 		<div class="text-center"><button type="submit" class="beta-btn primary">Đặt hàng <i class="fa fa-chevron-right"></i></button></div>
 	</div> <!-- .your-order -->
 </div>
-@inlcude('user.dathang.template.vnpay')
+@include('user.dathang.template.vnpay')
 @endif
