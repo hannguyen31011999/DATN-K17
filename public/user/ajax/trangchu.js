@@ -8,8 +8,8 @@ $(document).ready(function()
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            type: 'post',
-            url: '/',
+            type: 'get',
+            url: '/cart',
             data: {
               "id":id,
             },
@@ -36,8 +36,8 @@ $(document).ready(function()
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            type: 'delete',
-            url: '/',
+            type: 'post',
+            url: '/cart',
             data: {
               "rowId":rowId,
             },

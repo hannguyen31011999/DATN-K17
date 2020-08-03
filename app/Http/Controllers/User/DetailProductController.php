@@ -11,7 +11,6 @@ use App\Model\TypeProduct;
 use App\Model\OrderDetail;
 use App\Model\Comment;
 use App\Model\User;
-use Cart;
 class DetailProductController extends Controller
 {
     //
@@ -33,7 +32,6 @@ class DetailProductController extends Controller
         							->take(3)
         							->get();
         $data = Product::all();
-        $item = Cart::content();
         $comment = Product::find($id)->Comments()->orderBy('id','asc')->get();
         $count = Product::find($id)->Comments()->count();
         $user = User::all();
@@ -50,7 +48,7 @@ class DetailProductController extends Controller
 	    		$user = User::all();
 	    		$comment = Product::find($id)->Comments()->orderBy('id','asc')->get();
 	    		$count = Product::find($id)->Comments()->count();
-	    		return view('user.chitietsanpham.template.content',compact('seller','newProduct','productRelated','data','product','item','comment','count','user'));
+	    		return view('user.chitietsanpham.template.content',compact('seller','newProduct','productRelated','data','product','comment','count','user'));
 	    	}
 	    	else
 	    	{
@@ -58,7 +56,7 @@ class DetailProductController extends Controller
 	    		return response()->json(['url'=>'http://localhost:8000/account/login'],200);
 	    	}
     	}
-    	return view('user.chitietsanpham.detail_product',compact('seller','newProduct','productRelated','data','product','item','comment','count','user'));
+    	return view('user.chitietsanpham.detail_product',compact('seller','newProduct','productRelated','data','product','comment','count','user'));
     }
 
     public function deleteComment($name = null , $id = null,Request $request)
@@ -87,11 +85,10 @@ class DetailProductController extends Controller
 		        							->take(3)
 		        							->get();
 		        $data = Product::all();
-		        $item = Cart::content();
 		        $comment = Product::find($id)->Comments()->orderBy('id','asc')->get();
 		        $count = Product::find($id)->Comments()->count();
 		        $user = User::all();
-	    		return view('user.chitietsanpham.template.content',compact('seller','newProduct','productRelated','data','product','item','comment','count','user'));
+	    		return view('user.chitietsanpham.template.content',compact('seller','newProduct','productRelated','data','product','comment','count','user'));
 	    	}
     	}
     }

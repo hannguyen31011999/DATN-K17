@@ -29,6 +29,7 @@ class LoginController extends Controller
     		if(Auth::attempt(['email'=>$validated['email'],'password'=>$validated['password']])){
                 $request->session()->put('email',Auth::User()->email);
                 $request->session()->put('id',Auth::User()->id);
+                $request->session()->put('role',Auth::User()->role);
                 // xử lí nếu là user
     			if(Auth::User()->role==1){
                     if(Auth::User()->status!=1)
@@ -60,6 +61,7 @@ class LoginController extends Controller
         $request->session()->forget('email');
         $request->session()->forget('id');
         $request->session()->forget('urlAction');
+        $request->session()->forget('role');
         if(Auth::User()->role==1)
         {
             Auth::logout();

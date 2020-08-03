@@ -1,5 +1,4 @@
 @extends('user.master')
-
 @section('title')
 	Trang chủ
 @endsection
@@ -17,9 +16,12 @@
 @endsection
 
 @section('shopping-cart')
+
 <div class="beta-comp" >
     <div class="cart">
-        <div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng <span id="count_span"></span><i class="fa fa-chevron-down"></i></div>
+        <div class="beta-select"> 
+            <i class="fa fa-shopping-cart"></i> Giỏ hàng <span id="count_span"></span>
+        </div>
         <div class="beta-dropdown cart-body">
             @include('user.template.cart')
         </div>
@@ -41,7 +43,14 @@
 <script src="{{asset('user/ajax/trangchu.js')}}"></script>
 <script>
     var count = $('#count').val();
-    $('#count_span').text("("+count+")");
+    if(count>0)
+    {
+        $('#count_span').text("("+count+")");
+    }
+    else
+    {
+        $('#count_span').text("(0)");
+    }
     // Ajax
     $(document).ready(function()
     {

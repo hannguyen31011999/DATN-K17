@@ -30,19 +30,24 @@
 		</div>
 	</div>
 </div>
+@if(Session::has('cart'))
 <div class="col-sm-6">
 	<div class="your-order">
 		<div class="your-order-head"><h5>Đơn hàng của bạn</h5></div>
 		<div class="your-order-body" style="padding: 0px 10px;height: 250px;overflow: auto;">
 			<div class="your-order-item">
 				<!--  one item	 -->
-				@foreach($cart as $carts)
+				@foreach(Session::get('cart')->products as $carts)
 					<div class="media">
-						<img width="15%" src="user/image/product/{{$carts->options['img']}}" alt="" class="pull-left">
+						<img width="15%" src="user/image/product/{{$carts['image']}}" alt="" class="pull-left">
 						<div class="media-body">
-							<p class="font-large">{{$carts->name}}</p>
-							<span class="color-gray your-order-info">Đơn giá: {{$carts->price}}đ</span>
-							<span class="color-gray your-order-info">Số lượng: {{$carts->qty}}</span>
+							<p class="font-large">{{$carts['name']}}</p>
+							@if(empty($carts['promotion_price']))
+								<span class="color-gray your-order-info">Đơn giá: {{$carts['unit_price']}}đ</span>
+							@else
+								<span class="color-gray your-order-info">Đơn giá: {{$carts['promotion_price']}}đ</span>
+							@endif
+							<span class="color-gray your-order-info">Số lượng: {{$carts['qty']}}</span>
 						</div>
 					</div>
 				@endforeach
@@ -51,7 +56,7 @@
 			</div>
 			<div class="your-order-item">
 				<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
-				<div class="pull-right"><h5 class="color-black">{{Cart::subtotal(0,'.','.')}}đ</h5></div>
+				<div class="pull-right"><h5 class="color-black">{{thousandSeperator(Session::get('cart')->totalPrice)}}đ</h5></div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -68,13 +73,9 @@
 				</li>
 
 				<li class="payment_method_cheque">
-					<input id="payment_method_cheque" type="radio" class="input-radio" name="payment" value="1" data-order_button_text="">
+					<input id="payment_method_cheque" type="radio" class="input-radio" name="payment" value="1" data-toggle="modal" data-target="#vnpay">
 					<label for="payment_method_cheque">Chuyển khoản </label>
 					<div class="payment_box payment_method_cheque" style="display: none;">
-						Chuyển tiền đến tài khoản sau:
-						<br>- Số tài khoản: 123 456 789
-						<br>- Chủ TK: Nguyễn A
-						<br>- Ngân hàng ACB, Chi nhánh TPHCM
 					</div>						
 				</li>
 				
@@ -84,3 +85,5 @@
 		<div class="text-center"><button type="submit" class="beta-btn primary">Đặt hàng <i class="fa fa-chevron-right"></i></button></div>
 	</div> <!-- .your-order -->
 </div>
+@include('user.dathang.template.vnpay')
+@endif

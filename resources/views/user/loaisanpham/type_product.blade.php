@@ -36,7 +36,11 @@
 <script src="{{asset('user/ajax/trangchu.js')}}"></script>
 <script type="text/javascript">
 	var count = $('#count').val();
-	$('#count_span').text("("+count+")");
+    if(count>0)
+    {
+        $('#count_span').text("("+count+")");
+    }
+	$('#count_span').text("(0)");
 	$(document).ready(function()
     {
     	// Phân trang 

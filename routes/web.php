@@ -15,14 +15,16 @@ use Illuminate\Support\Facades\DB;
 */
 // User
 
+Route::post('/demo/checkout','User\NewsController@CheckoutVnPay');
+
 // Trang chủ
 Route::get('/','User\HomeController@index')->name('home');
 
 // Thêm sản phẩm vào giỏ hàng home
-Route::post('/','User\CartController@addCart');
+Route::get('/cart','User\CartController@addCart');
 
 // Xóa sản phẩm ở giỏ hàng home
-Route::delete('/','User\CartController@delete');
+Route::post('/cart','User\CartController@delete');
 
 // Trang shopping-cart
 Route::get('/shopping-cart','User\CheckoutController@index');
@@ -56,6 +58,11 @@ Route::get('/seach','User\HomeController@seach');
 
 // Phân trang seach
 Route::post('/seach','User\HomeController@seach');
+
+// Trang tin tức
+Route::get('/tin-tuc','User\NewsController@index');
+
+Route::get('/tin-tuc/{url}/{id}','User\NewsController@detailPost');
 
 Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 	// Đăng kí

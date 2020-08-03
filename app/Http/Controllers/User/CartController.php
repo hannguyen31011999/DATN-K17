@@ -5,9 +5,20 @@ namespace App\Http\Controllers\user;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Product;
-use Cart;
+use Session;
+use App\ShoppingCart;
 class CartController extends Controller
 {
+    public function update($id,Request $request)
+    {
+        if(Session::has('cart'))
+        {
+            $updateCart = new ShoppingCart(Session('cart'));
+            $updateCart->updateCart($id,8);
+            Session(['cart'=>$updateCart]);
+        }
+    }
+
     // Thêm sản phẩm giỏ hàng
     public function addCart(Request $request)
     {
@@ -23,25 +34,14 @@ class CartController extends Controller
             else
             {
                 $product = Product::find($request->id);
-                $cart = [
-                    'id' => $product->id, 
-                    'name'=> $product->product_name,
-                    'price'=> $product->unit_price,
-                    'weight'=>0,
-                    'qty'=> 1,
-                    'options'=>[
-                        'img'=> $product->image,
-                        'unit'=>$product->unit,
-                        'promotion_price'=> $product->promotion_price,
-                    ]
-                ];
-                if($product->promotion_price!=0)
+                if(!empty($product))
                 {
-                    $cart["price"] = $product->promotion_price;
+                    $oldCart = !empty(Session('cart')) ? Session('cart') : null;
+                    $newCart = new ShoppingCart($oldCart);
+                    $newCart->AddCart($product,$request->id);
+                    Session(['cart'=>$newCart]);
                 }
-                Cart::add($cart);
-                $item = Cart::content();
-                return view('user.template.cart',compact('item'));
+                return view('user.template.cart');
             }
     	}
     }
@@ -51,9 +51,13 @@ class CartController extends Controller
     {
     	if($request->ajax())
     	{
-    		Cart::remove($request->rowId);
-    		$item = Cart::content();
-    		return view('user.template.cart',compact('item'));
+            if(Session::has('cart'))
+            {
+                $deleteCart = new ShoppingCart(Session('cart'));
+                $deleteCart->deleteCart($request->rowId);
+                Session(['cart'=>$deleteCart]);
+            }
+    		return view('user.template.cart');
     	}
     }
 }
