@@ -18,8 +18,8 @@
                             <th>Ngày sinh</th>
                             <th>SĐT</th>
                             <th>Địa chỉ</th>
-                            <th>Vai trò</th>
-                            <th>status</th>
+                            <!-- <th>Vai trò</th> -->
+                            <th>Trạng thái</th>
                             <th>Xóa</th>
                         </tr>
                     </thead>
@@ -42,13 +42,13 @@
                             @endif
                             <td>{{ $us->phone }}</td>
                             <td>{{ $us->address }}</td>
-                            <td>
+                            <!-- <td>
                                 @if($us->role == 0)
                                 <a href="#"> <span class="badge badge-dark">Admin</span>
                                     @else
                                     <a href="#"> <span class="badge badge-pink">User</span> </a>
                                     @endif
-                            </td>
+                            </td> -->
                             <td>
                                 @if($us->status == 1)
                                 <a href="{{route('list-admin.ds-user.update', ['id'=>$us->id])}}" class="text-info font-20"> <i class=" fas fa-check"></i></a>

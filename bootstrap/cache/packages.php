@@ -63,4 +63,15 @@
       'Alert' => 'RealRashid\\SweetAlert\\Facades\\Alert',
     ),
   ),
+  'yajra/laravel-datatables-oracle' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
+    ),
+  ),
 );

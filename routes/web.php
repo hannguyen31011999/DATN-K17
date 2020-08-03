@@ -1,6 +1,8 @@
 <?php
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Middleware\CheckLogin;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -161,10 +163,7 @@ Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 
 });
 
-Route::get('/admin/dashboard', function () {
-	alert()->success('Title','Lorem Lorem Lorem');
-    return view('admin.trangchu.dashboard');
-})->name('dashboard');
+Route::get('/admin/dashboard','admin\dashboardcontroller@index')->name('dashboard')->middleware(CheckLogin::class);
 
 
 Route::group(['prefix'=>'admin/list-product','middleware'=>'CheckLogin'],function(){

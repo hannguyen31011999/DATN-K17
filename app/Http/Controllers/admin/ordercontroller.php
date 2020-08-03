@@ -30,6 +30,20 @@ class ordercontroller extends Controller
         $listProduct = Product::all();
         return view('admin.list-admin.ds-order.orderdetail',compact('listDetail','listProduct'));       
     }
+    public function update(Request $request)
+	{
+		if($request->ajax()){
+			try{
+				$Order = Order::find($this->id);
+				$Order->update([
+					'status'=>$request->status,
+				]);
+				return response()->json(['data'=>'Cập nhật thông tin thành công'],200);
+			}catch(Exception $e){
+				return response()->json(['data'=>'Cập nhật thông tin thất bại'],500);
+			}
+		}
+	}
     /**
      * Update the specified resource in storage.
      *
@@ -38,6 +52,7 @@ class ordercontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     /**
+     * 
      * Remove the specified resource from storage.
      *
      * @param  int  $id
