@@ -24,9 +24,9 @@ class FormRegister extends FormRequest
     public function rules()
     {
         return [
-            'fullname'=>'required|regex:[^[a-zA-Z]]',
-            'email'=>'required|email|unique:user,email',
-            'password'=>'required|min:6',
+            'fullname'=>'required|regex:[^[a-zA-Z]]|max:124',
+            'email'=>'required|email|unique:user,email|max:124',
+            'password'=>'required|min:6|max:124',
             'phone'=>'required|numeric|regex:/(0)[0-9]{9}/',
         ];
     }
@@ -36,14 +36,17 @@ class FormRegister extends FormRequest
         return [
             'fullname.required'=>'Vui lòng nhập tên đầy đủ',
             'fullname.regex'=>'Họ tên có kí tự đặc biệt',
+            'fullname.max'=>'Họ tên quá dài',
             'email.required'=>'Vui lòng nhập email',
             'email.email'=>'Không đúng định dạng email',
             'email.unique'=>'Email tồn tại',
-            'password.required'=>'Vui lòng nhập password',
-            'password.regex'=>'Password phải có 6 kí tự',
+            'email.max'=>'Email quá dài',
+            'password.required'=>'Vui lòng nhập mật khẩu',
+            'password.regex'=>'Mật khẩu phải có 6 kí tự',
+            'password.max'=>'Mật khẩu quá dài',
             'phone.required'=>'Vui lòng nhập số điện thoại',
-            'phone.regex'=>'Mobile phải bắt đầu bằng số 0 và mobile có có 10 số',
-            'phone.numeric'=>'Mobile phải là số',
+            'phone.regex'=>'Số điện thoại sai định dạng',
+            'phone.numeric'=>'Số điện thoại phải là số',
         ];
     }
 }

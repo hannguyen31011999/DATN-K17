@@ -147,22 +147,25 @@ class CheckoutController extends Controller
             {
                 $this->validate($request,
                     [
-                        'name'=>'required|regex:[^[a-zA-Z]]',
-                        'email'=>'required|email',
-                        'address'=>'required|regex:[^[a-zA-Z0-9]]',
+                        'name'=>'required|regex:[^[a-zA-Z]]|max:124',
+                        'email'=>'required|email|max:124',
+                        'address'=>'required|regex:[^[a-zA-Z0-9]]|max:124',
                         'phone'=>'required|numeric|regex:/(0)[0-9]{9}/'
                     ],
     
                     [
                         'name.required'=>'Vui lòng nhập tên đầy đủ',
                         'name.regex'=>'Họ tên không được có kí tự đặc biệt',
+                        'name.max'=>'Họ tên quá dài',
                         'email.required'=>'Vui lòng nhập email',
                         'email.email'=>'Không đúng định dạng email',
+                        'email.max'=>'Email quá dài',
                         'phone.required'=>'Vui lòng nhập số điện thoại',
                         'phone.regex'=>'Mobile phải bắt đầu bằng số 0 và mobile có có 10 số',
                         'phone.numeric'=>'Mobile phải là số',
                         'address.required'=>'Vui lòng nhập địa chỉ',
-                        'address.regex'=>'Địa chỉ không được có kí tự đặc biệt'
+                        'address.regex'=>'Địa chỉ không được có kí tự đặc biệt',
+                        'address.max'=>'Địa chỉ quá dài'
                     ]
                 );
                 $data = array('email'=>$request->email,'cart'=>Session('cart')->products,'date'=>Carbon::now('Asia/Ho_Chi_Minh'),'total'=>Session('cart')->totalPrice);

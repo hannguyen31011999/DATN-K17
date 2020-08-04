@@ -39,12 +39,10 @@
 							    <input class="form-control" id="email" name="email" type="text" placeholder="Tài khoản email" />
 						  	</div>
 						  	@if($errors->has('email'))
-						  		<br>
-                            	<div class="alert alert-danger">
+                            	<div class="messenger-errors">
                             		{{ $errors->first('email') }}
                             	</div>
                             @endif
-						  	<div class="space10">&nbsp;</div>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary" id="buttonClick" style="width:100%;">Lấy mật khẩu

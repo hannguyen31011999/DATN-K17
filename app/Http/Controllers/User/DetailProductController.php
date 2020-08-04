@@ -33,7 +33,7 @@ class DetailProductController extends Controller
         							->get();
         $data = Product::all();
         $comment = Product::find($id)->Comments()->orderBy('id','asc')->get();
-        $count = Product::find($id)->Comments()->count();
+        $count = Product::find($id)->Comments()->where('status',0)->count();
         $user = User::all();
         if($request->ajax())
     	{

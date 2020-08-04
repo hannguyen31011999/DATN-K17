@@ -12,15 +12,13 @@
 					<div class="form-group">
 						<label for="">Số điện thoại</label>
 						<input name="phone" type="text" class="form-control" id="edit_phone" value="{{$user->phone}}">
-						<br>
-						<div class="alert alert-danger " id="msg1">
+						<div class="messenger-errors" id="msg3">
                         </div>
 					</div>
 					<div class="form-group">
 						<label for="">Địa chỉ</label>
 						<input name="address" type="text" class="form-control edit_address" id="" value="{{$user->address}}">
-						<br>
-						<div class="alert alert-danger " id="msg2">
+						<div class="messenger-errors" id="msg2">
                         </div>
 					</div>
 				</div>

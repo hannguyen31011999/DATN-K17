@@ -30,7 +30,7 @@
 					<h4 style="text-align:center;">Lấy lại mật khẩu</h4>
 					<div class="space20">&nbsp;</div>
 					@if(Session::has('notifi'))
-						<div class="alert alert-danger">
+						<div class="messenger-errors">
 							{{Session::get('notifi')}}
 						</div>
 					@endif
@@ -46,7 +46,7 @@
 						  	</div>
 						  	@if($errors->has('password'))
 						  		<br>
-                            	<div class="alert alert-danger">
+                            	<div class="messenger-errors">
                             		{{ $errors->first('password') }}
                             	</div>
                             @endif
@@ -62,7 +62,7 @@
 						  	</div>
 						  	@if($errors->has('ent_password'))
 						  		<br>
-                            	<div class="alert alert-danger">
+                            	<div class="messenger-errors">
                             		{{ $errors->first('ent_password') }}
                             	</div>
                             @endif
@@ -78,7 +78,7 @@
 						  	</div>
 						  	@if($errors->has('code'))
 						  		<br>
-                            	<div class="alert alert-danger">
+                            	<div class="messenger-errors">
                             		{{ $errors->first('code') }}
                             	</div>
                             @endif

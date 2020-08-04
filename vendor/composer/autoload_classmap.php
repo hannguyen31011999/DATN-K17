@@ -15,6 +15,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\admin\\commentcontroller' => $baseDir . '/app/Http/Controllers/admin/commentcontroller.php',
+    'App\\Http\\Controllers\\admin\\dashboardcontroller' => $baseDir . '/app/Http/Controllers/admin/dashboardcontroller.php',
     'App\\Http\\Controllers\\admin\\membercontroller' => $baseDir . '/app/Http/Controllers/admin/membercontroller.php',
     'App\\Http\\Controllers\\admin\\newscontroller' => $baseDir . '/app/Http/Controllers/admin/newscontroller.php',
     'App\\Http\\Controllers\\admin\\ordercontroller' => $baseDir . '/app/Http/Controllers/admin/ordercontroller.php',

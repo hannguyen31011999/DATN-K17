@@ -20,7 +20,17 @@ class HomeController extends Controller
     						->take(4)
                             ->get();
     	if($request->ajax()){
-    		return view('user.trangchu.template.content',compact('product','newProduct'));
+            if(!empty($request->keyword))
+            {
+                $list = Product::where('unit_price',$request->keyword)
+                                ->orWhere('product_name','LIKE', '%'.$request->keyword.'%')
+                                ->get(['id','product_name']);
+                return view('user.template.seach',compact('list'));
+            }
+            else
+            {
+                return view('user.trangchu.template.content',compact('product','newProduct'));
+            }
     	}
     	return view('user.trangchu.index',compact('product','newProduct','item'));
     }

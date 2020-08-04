@@ -1,71 +1,70 @@
 @extends('admin.mater-admin')
 @section('header')
 <title>Admin | Bài viết</title>
+<style>
+    .headerds {
+        margin-left: 96%;
+        margin-bottom: -38px;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter label {
+        font-weight: normal;
+        white-space: nowrap;
+        margin-right: 12%;
+    }
+</style>
 @endsection
 @section('main-conten')
+<br>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body table-responsive">
                 <h4 class="m-t-0 header-title mb-4"><b>Danh sách bài viết</b></h4>
-                <table id="datatable" class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
+                <div class="headerds">
+                    <a href="{{route('list-admin.ds-news.add')}}" class="btn btn-primary waves-effect waves-light"><i class=" ion ion-ios-add-circle-outline font-20"></i></a>
+                </div>
+                <table id="datatable" class="table table-bordered mb-1 " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead class="table-info">
                         <tr>
-                            <th>Id</th>
                             <th>Tiêu đề</th>
                             <th>Nội dung</th>
-                            <th>Hình</th>
-                            <th>admin</th>
-                            <th>Chỉnh sửa</th>
+                            <th>Hình ảnh</th>
+                            <th>Người viết</th>
+                            <th>Tác vụ</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach( $listNews as $ns )
                         <tr>
-                            <td>{{ $ns->id }}</td>
                             <td>{{ $ns->title }}</td>
                             <td>{{ $ns->content }}</td>
                             <td>
                                 <div class="thumbnail">
-                                  <img src="{{asset('img/news/'.$ns->image)}}" alt=""  />
-                               </div>
+                                    <img src="{{asset('img/news/'.$ns->image)}}" alt="" />
+                                </div>
                             </td>
                             @foreach($listUser as $us)
-                                @if($ns->user_id_create == $us->id)
-                                   <td>{{$us->email}}</td>
-                                @endif
-                            @endforeach 
+                            @if($ns->user_id_create == $us->id)
+                            <td>{{$us->email}}</td>
+                            @endif
+                            @endforeach
                             <td>
-                                <a href="{{route('list-admin.ds-news.update', ['id'=>$ns->id])}}" class="btn btn-icon waves-effect waves-light btn-warning"><i class="fa fa-wrench"></i> </a>
+                                <a href="{{route('list-admin.ds-news.update', ['id'=>$ns->id])}}" class="text-primary font-20"><i class="fas fa-pencil-alt"></i> </a>
                                 <hr>
-                                <a onclick="del()" href="#" class="btn btn-icon waves-effect waves-light btn-danger"><i class="far fa-trash-alt"></i></a>
-                                <script>
-                                    function del() {
-                                        Swal.fire({
-                                            title: 'Bạn có chắc chấn xóa !',
-                                            type: 'warning',
-                                            showCancelButton: true,
-                                            confirmButtonColor: '#3085d6',
-                                            cancelButtonColor: '#d33',
-                                            confirmButtonText: 'Có',
-                                            cancelButtonText: 'không'
-                                        }).then((result) => {
-                                            if (result.value) {
-                                                open("{{route('list-admin.ds-news.delete', ['id'=>$ns->id])}}", "_self")
-                                            }
-                                        })
-                                    };
-                                </script>
+                                <a href="{{route('list-admin.ds-news.delete', ['id'=>$ns->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chất chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <a href="{{route('list-admin.ds-news.add')}}" class="btn btn-success waves-effect width-md waves-light"><i class=" ion ion-ios-add-circle-outline font-20"> Thêm mới</i></a>
             </div>
         </div>
+
     </div>
+
 </div>
 @endsection
 @section('script')
+
 @endsection

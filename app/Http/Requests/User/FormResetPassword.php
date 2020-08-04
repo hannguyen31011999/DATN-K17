@@ -24,7 +24,7 @@ class FormResetPassword extends FormRequest
     public function rules()
     {
         return [
-            'password'=>'required|min:6',
+            'password'=>'required|min:6|max:124',
             'ent_password'=>'required|same:password',
             'code'=> ['required',new CheckCode],
         ];
@@ -35,6 +35,7 @@ class FormResetPassword extends FormRequest
         return [
             'password.required'=>'Vui lòng nhập mật khẩu mới',
             'password.min'=>'Mật khẩu ít hơn 6 kí tự',
+            'password.max'=>'Mật khẩu quá dài',
             'ent_password.required'=>'Vui lòng nhập lại mật khẩu mới',
             'ent_password.same'=>'Mật khẩu không trùng khớp',
             'code.required'=>'Vui lòng nhập mã xác nhận',

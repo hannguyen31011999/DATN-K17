@@ -25,7 +25,7 @@ class FormPassword extends FormRequest
     {
         return [
             'password'=>['required',new CheckPassword],
-            'new_password'=>'required|min:6',
+            'new_password'=>'required|min:6|max:124',
             'ent_password'=>'required|same:new_password',
         ];
     }
@@ -36,6 +36,7 @@ class FormPassword extends FormRequest
             'password.required'=>'Vui lòng nhập mật khẩu',
             'new_password.required'=>'Vui lòng nhập mật khẩu mới',
             'new_password.min'=>'Mật khẩu ít hơn 6 kí tự',
+            'new_password.max'=>'Mật khẩu quá dài',
             'ent_password.required'=>'Vui lòng nhập lại mật khẩu mới',
             'ent_password.same'=>'Mật khẩu không trùng khớp',
         ];

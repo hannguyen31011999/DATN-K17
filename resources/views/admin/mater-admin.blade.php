@@ -7,7 +7,7 @@
     <meta content="Responsive bootstrap 4 admin template" name="description">
     <meta content="Coderthemes" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}"> 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('img/logo/logo2.jpg') }}">
     <!-- Plugins css-->
@@ -23,9 +23,87 @@
     <link href="{{asset('admin/assets/libs/datatables/select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     @yield('header')
     <style>
+        body {
+            margin: 0;
+            font-family: Lato, sans-serif;
+            font-size: 1.0rem;
+            font-weight: 400;
+            line-height: 1.25;
+            color: #1b0202;
+            text-align: left;
+
+        }
+
         .navbar-custom {
             background-image: url('img/background/backgrounduser.png');
         }
+
+        .left-side-menu {
+            width: 240px;
+            background: #ffffff;
+            bottom: 0;
+            position: fixed;
+            padding: 14px 0;
+            -webkit-transition: all .2s ease-out;
+            transition: all .2s ease-out;
+            top: 70px;
+        }
+
+        .logo-box {
+            background-color: #ffffff;
+            height: 74px;
+            width: 240px;
+            float: left;
+            -webkit-transition: all .2s ease-out;
+            transition: all .2s ease-out;
+        }
+
+        #sidebar-menu>ul>li>a.active {
+            color: #3bc0c3;
+            background: #ffffff;
+            border: dashed;
+        }
+
+        #sidebar-menu>ul>li>a {
+            color: #000000;
+            display: block;
+            padding: 10px 20px;
+            position: relative;
+            -webkit-transition: all .4s;
+            transition: all .4s;
+            font-size: 17px;
+        }
+
+        .header-title {
+            font-size: 18px;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            font-weight: 600;
+          
+        }
+
+        .card-box {
+            background-color: #e7ebeb;
+            padding: 1.25rem;
+            -webkit-box-shadow: 0 1px 2px 0 rgba(33, 37, 41, .1);
+            box-shadow: 0 1px 2px 0 rgba(33, 37, 41, .1);
+            margin-bottom: 24px;
+            border-radius: 2.25rem;
+            margin-top: 20px;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #000000;
+        }
+        div.dataTables_wrapper div.dataTables_filter input {
+        margin-left: 0.5em;
+        display: inline-block;
+        width: 195px;
+        height: 39px;
+        color: #3bc0c3;
+    }
     </style>
 </head>
 
@@ -135,10 +213,17 @@
                                     <span>Quản lý đơn hàng</span>
                                 </a>
                             </li>
-                            <li class="menu-title">QUẢN LÍ USER</li>
+                            <li class="menu-title">Bình Luận</li>
+                            <li>
+                                <a href="{{route('list-admin.ds-comment.list')}}" class="waves-effect ">
+                                    <i class=" fas fa-comment font-20"></i>
+                                    <span>Quản lý bình luận</span>
+                                </a>
+                            </li>
+                            <li class="menu-title">QUẢN LÍ TÀI KHOẢN</li>
                             <li class="mm-active">
                                 <a href="{{route('list-admin.ds-user.list')}}" class="waves-effect ">
-                                    <i class="ion-md-contacts font-20 "></i>
+                                    <i class=" fas fa-address-book font-20 "></i>
                                     <span>Người dùng</span>
                                 </a>
                             </li>
@@ -148,17 +233,11 @@
                                     <span>Thành viên</span>
                                 </a>
                             </li>
-                            <li class="menu-title">Admin</li>
-                            <li>
-                                <a href="javascript: void(0);" class="waves-effect">
-                                    <i class=" ion ion-ios-finger-print font-20"></i>
+                            <li class="mm-active">
+                                <a href="{{url('admin/profile')}}" class="waves-effect ">
+                                    <i class="ion ion-ios-finger-print font-20"></i>
                                     <span>Admin</span>
-                                    <span class="menu-arrow"></span>
                                 </a>
-                                <ul class="nav-second-level mm-collapse" aria-expanded="false">
-                                    <li><a href="{{url('admin/profile')}}">Thông tin</a></li>
-                                    <li><a href="components-portlets.html">admin</a></li>
-                                </ul>
                             </li>
                             <li class="menu-title">CẤU HÌNH</li>
                             <li class="mm-active">
@@ -186,7 +265,7 @@
                 <!-- Start Content-->
                 <div class="container-fluid">
                     <!-- start page title -->
-                    <hr>
+
                     <!-- end page title -->
                     @yield('main-conten')
                     <!-- end container-fluid -->
@@ -262,8 +341,7 @@
 
         <!-- Datatables init -->
         <script src="{{asset('admin/assets/js/pages/datatables.init.js') }}"></script>
-        <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
-        
+
 
 </body>
 

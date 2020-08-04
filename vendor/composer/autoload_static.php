@@ -408,6 +408,7 @@ class ComposerStaticInite6fbc066f7ce9771de67b666799dbf72
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\admin\\commentcontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/commentcontroller.php',
+        'App\\Http\\Controllers\\admin\\dashboardcontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/dashboardcontroller.php',
         'App\\Http\\Controllers\\admin\\membercontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/membercontroller.php',
         'App\\Http\\Controllers\\admin\\newscontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/newscontroller.php',
         'App\\Http\\Controllers\\admin\\ordercontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/ordercontroller.php',
