@@ -20,7 +20,7 @@
 <div class="beta-comp" >
     <div class="cart">
         <div class="beta-select"> 
-            <i class="fa fa-shopping-cart"></i> Giỏ hàng <span id="count_span"></span>
+            <i class="fa fa-shopping-cart"></i> Giỏ hàng <span id="count_span"></span><i class="fa fa-chevron-down"></i>
         </div>
         <div class="beta-dropdown cart-body">
             @include('user.template.cart')

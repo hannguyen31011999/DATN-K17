@@ -106,7 +106,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form__group field">
-                          <input type="input" class="form__field" value="{{$user->address}}" name="address" id='address' required />
+                          <input type="input" class="form__field" value="{{$user->address}}" name="address" id='address' />
                         </div>
                     </div>
                 </div>

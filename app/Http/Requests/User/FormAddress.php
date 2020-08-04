@@ -25,7 +25,7 @@ class FormAddress extends FormRequest
     {
         return [
             'phone'=>'required|numeric|regex:/(0)[0-9]{9}/',
-            'address'=>'required',
+            'address'=>'required|max:255',
         ];
     }
 
@@ -36,6 +36,7 @@ class FormAddress extends FormRequest
             'phone.regex'=>'Mobile phải bắt đầu bằng số 0 và mobile có có 10 số',
             'phone.numeric'=>'Mobile phải là số',
             'address.required'=>'Vui lòng nhập địa chỉ',
+            'address.max'=>'Địa chỉ quá dài'
         ];
     }
 }

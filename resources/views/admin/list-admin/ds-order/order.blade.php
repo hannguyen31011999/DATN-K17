@@ -17,87 +17,25 @@
         <div class="card">
             <div class="card-body table-responsive">
                 <h4 class="m-t-0 mb-4"><b>DANH SÁCH ORDER</b></h4>
-                <table class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Thời gian</th>
-                            <th>Khách hàng id</th>
-                            <th>Thanh toán</th>
-                            <th>Ghi chú</th>
-                            <th>Trạng thái</th>
-                            <th>SĐT</th>
-                            <th>Địa chỉ</th>
-                            <th>Chi tiết</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach( $listOrder as $od )
-                        <tr >
-                            <td>{{$od->created_at->format('d/m/yy - H:i')}}</td>
-                            @if($od->customer_id == NULL)
-                            <td>Khách hàng</td>
-                            @else
-                            @foreach( $listUser as $us )
-                            @if($us->id == $od->customer_id)
-                            <td>{{ $us->email }}</td>
-                            @endif
-                            @endforeach
-                            @endif
-                            @if($od->payment==0)
-                            <td>Khi nhận hàng</td>
-                            @elseif($od->payment==1)
-                            <td>Thanh toán ATM</td>
-                            @endif
-                            <td>{{ $od->id }}</td>
-                            <td>
-                                @if(isset($od->id))
-                                @endif
-                                <input type="hidden" id="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" id='idsl' value="{{$od->id}}">
-                                <select class="custom-select " id="1" name="status">
-                                    @if($od->status==0)
-                                    <option value="{{$od->status}}" disabled="disabled">
-                                        Chưa xác nhận
-                                    </option>
-                                    <option value="1">
-                                        xác nhận
-                                    </option>
-                                    <option value="2">
-                                        Hoàn thành
-                                    </option>
-                                    @elseif($od->status==1)
-                                    <option value="0">
-                                        Chưa xác nhận
-                                    </option>
-                                    <option value="{{$od->status}}" disabled="disabled">
-                                        xác nhận
-                                    </option>
-                                    <option value="2">
-                                        Hoàn thành
-                                    </option>
-                                    @elseif($od->status==2)
-                                    <option value="0">
-                                        Chưa xác nhận
-                                    </option>
-                                    <option value="1">
-                                        xác nhận
-                                    </option>
-                                    <option value="{{$od->status}}" disabled="disabled">
-                                        Hoàn thành
-                                    </option>
-
-                                </select>
-                                @endif
-                            </td>
-                            <td>{{ $od->phone }}</td>
-                            <td>{{ $od->address }}</td>
-                            <td>
-                                <a href="{{route('list-admin.ds-order.detail', ['id'=>$od->id])}}" class="text-warning font-20"><i class="  fas fa-paperclip"></i></a>
-                            </td>
-                         </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <select class="custom-select" id="select-list" name="list-order" style="width:145px;">
+                    <option value="3">
+                        Tất cả
+                    </option>
+                    <option value="0">
+                        Chưa xác nhận
+                    </option>
+                    <option value="1">
+                        Xác nhận
+                    </option>
+                    <option value="2">
+                        Hoàn thành
+                    </option>
+                </select>
+                <input type="seach" id="seach" class="form-control form-control-sm" placeholder="Nhập tìm kiếm" aria-controls="datatable" style="width: 15%; float: right;">
+                <br></br>
+                <div id="table_order">
+                    @include('admin.list-admin.ds-order.template.content_order')
+                </div>
             </div>
         </div>
     </div>
@@ -107,37 +45,133 @@
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 <script type="text/javascript">
-    $('select').change(function() {
-        var id = $("#idsl").val();
-        var optionSelected = $(this).find("option:selected");
-        var valueSelected = optionSelected.val();
-        alert(id)
-    });
-    // $(document).ready(function() {
-    //     $('#change-order').submit(function(e) {
-    //         var status = $('#status').val();
-    //         var url = $(this).attr('data-url');
-    //         e.preventDefault();
-    //         $.ajax({
-    //             headers: {
-    //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //             },
-    //             type: 'post',
-    //             url: url,
-    //             data: {
-    //                 "status": status,
+    $(document).ready(function() {
+        
 
-    //             },
-    //             success: function(response) {
-    //                 console.log(response.data)
-    //                 $.notify(response.data, "success")
-    //             },
-    //             error: function(jqXHR, textStatus, errorThrown) {
-    //                 //xử lý lỗi tại đây
-    //             }
-    //         });
-    //     });
-    // });
+        $(document).on('click', '.pagination a',function(event)
+        {
+            event.preventDefault();
+
+            $('li').removeClass('active');
+
+            $(this).parent('li').addClass('active');
+  
+            var myurl = $(this).attr('href');
+
+            var selectoption =  $('select[name="list-order"]').val();
+
+            var page=$(this).attr('href').split('page=')[1];
+
+            getData(page,selectoption);
+        });
+
+        $(document).on('change', '#select-list',function(e){
+            var selectedlist = $('select[name="list-order"]').val();
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'get',
+                url: '/admin/list-order',
+                datatype:"html",
+                data: {
+                  "selectedlist":selectedlist
+                },
+                success: function(response) {
+                    console.log(response);
+                    $('#table_order').empty().html(response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                }
+            });
+            e.preventDefault();
+        });
+    });
+
+    $(document).on('change', '.custom-select',function(e){
+            var id = $(this).attr('id');
+            var selected = $('select[name="status"]').val();
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: '/admin/list-order',
+                data: {
+                  "id":id,
+                  "selected":selected
+                },
+                success: function(response) {
+                    alert(response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                }
+            });
+            e.preventDefault();
+        });
+
+
+    $(document).on('keyup', '#seach',function(event){
+        var keyword = $('#seach').val();
+        if(keyword!="")
+        {
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'get',
+                url: '/admin/list-order',
+                data: {
+                  "keyword":keyword
+                },
+                success:function(response) {
+                    console.log(response);
+                    $("#table_order").empty().html(response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+            event.preventDefault();
+        }
+        else
+        {
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'get',
+                url: '/admin/list-order',
+                data: {
+                  "keyword":keyword
+                },
+                success:function(response) {
+                    console.log(response);
+                    $("#table_order").empty().html(response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+            event.preventDefault();
+        }
+    });
+    function getData(page,selectoption){
+        $.ajax(
+        {
+            url: '/admin/list-order?page=' + page,
+            data:{
+                'selectoption':selectoption
+            },
+            type: "get",
+            datatype: "html"
+        }).done(function(response){
+            console.log(response);
+            $("#table_order").empty().html(response);
+        }).fail(function(jqXHR, ajaxOptions, thrownError){
+              alert('No response from server');
+        });
+    }
 </script>
 
 @endsection

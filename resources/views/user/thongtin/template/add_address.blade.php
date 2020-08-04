@@ -12,7 +12,7 @@
 					<div class="form-group">
 						<label for="">Địa chỉ</label>
 						<input name="address" type="text" class="form-control" id="add_address" placeholder="Nhập vào địa chỉ">
-						<div class="alert alert-danger " id="msg1">
+						<div class="messenger-errors" id="msg1">
                         </div>
 					</div>
 				</div>

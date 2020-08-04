@@ -4,7 +4,7 @@
 	<div class="media">
 		@foreach(Session::get('cart')->products as $key => $carts)
 			@if(empty($carts['promotion_price']))
-			<a class="pull-left" href="#"><img src="user/image/product/{{$carts['image']}}" alt=""></a>
+			<a class="pull-left" href="#"><img src="{{asset('admin/image/product/'.$carts['image'])}}" alt=""></a>
 				<div class="media-body">
 					<span class="cart-item-title">{{$carts['name']}}</span>
 					<span class="cart-item-amount">{{$carts['qty']}}*<span>{{thousandSeperator($carts['unit_price'])}}đ</span></span>
@@ -12,7 +12,7 @@
 				</div>
 			<br>
 			@else
-			<a class="pull-left" href="#"><img src="user/image/product/{{$carts['image']}}" alt=""></a>
+			<a class="pull-left" href="#"><img src="{{asset('admin/image/product/'.$carts['image'])}}" alt=""></a>
 				<div class="media-body">
 					<span class="cart-item-title">{{$carts['name']}}</span>
 					<span class="cart-item-amount">{{$carts['qty']}}*<span>{{thousandSeperator($carts['promotion_price'])}}đ</span></span>

@@ -25,29 +25,26 @@
 		<div class="row">
 			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
-
 				<div id="login">
-					@if(Session::has('error'))
-		                <div class="alert alert-danger">
-		                    {{Session::get('error')}}
-		                </div>
-		            @endif
 					<h4 style="text-align:center;">Đăng nhập</h4>
 					<div class="space20">&nbsp;</div>
 					<form action="{{url('/account/login')}}" method="post">
 						@csrf
 						<div class="form-group">
+							@if(Session::has('error'))
+				                <div class="messenger-errors" style="text-align: center;">
+				                    {{Session::get('error')}}
+				                </div>
+				            @endif
 							<label for="email">Tài khoản*</label>
-							<div class="space10">&nbsp;</div>
 							<div class="input-group">
 							    <div class="input-group-addon">
 							    	<i class="fa fa-user"></i>
 							    </div>
 							    <input class="form-control" id="email" name="email" type="text" placeholder="Tài khoản email" />
 						  	</div>
-						  	<div class="space10">&nbsp;</div>
 						  	@if($errors->has('email'))
-                            	<div class="alert alert-danger">
+                            	<div class="messenger-errors">
                             		{{ $errors->first('email') }}
                             	</div>
                             @endif
@@ -61,9 +58,8 @@
 							    </div>
 							    <input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu"/>
 						  	</div>
-						  	<div class="space10">&nbsp;</div>
 						  	@if($errors->has('password'))
-                            	<div class="alert alert-danger">
+                            	<div class="messenger-errors">
                             		{{ $errors->first('password') }}
                             	</div>
                             @endif

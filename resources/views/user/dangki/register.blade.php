@@ -27,7 +27,7 @@
             <div class="col-lg-4">
                 <div id="login">
                     @if(Session::has('error'))
-                        <div class="alert alert-danger">
+                        <div class="messenger-errors">
                             {{Session::get('error')}}
                         </div>
                     @endif
@@ -43,9 +43,8 @@
                                 </div>
                                 <input class="form-control" id="fullname" name="fullname" type="text" placeholder="Họ tên người dùng" />
                             </div>
-                            <div class="space10">&nbsp;</div>
                             @if($errors->has('fullname'))
-                                <div class="alert alert-danger">
+                                <div class="messenger-errors">
                                     {{ $errors->first('fullname') }}
                                 </div>
                             @endif
@@ -60,9 +59,8 @@
                                 </div>
                                 <input class="form-control" id="email" name="email" type="text" placeholder="Tài khoản email" />
                             </div>
-                            <div class="space10">&nbsp;</div>
                             @if($errors->has('email'))
-                                <div class="alert alert-danger">
+                                <div class="messenger-errors">
                                     {{ $errors->first('email') }}
                                 </div>
                             @endif
@@ -77,9 +75,8 @@
                                 </div>
                                 <input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu"/>
                             </div>
-                            <div class="space10">&nbsp;</div>
                             @if($errors->has('password'))
-                                <div class="alert alert-danger">
+                                <div class="messenger-errors">
                                     {{ $errors->first('password') }}
                                 </div>
                             @endif
@@ -94,9 +91,8 @@
                                 </div>
                                 <input class="form-control" id="phone" name="phone" type="text" placeholder="Số điện thoại người dùng"/>
                             </div>
-                            <div class="space10">&nbsp;</div>
                             @if($errors->has('phone'))
-                                <div class="alert alert-danger">
+                                <div class="messenger-errors">
                                     {{ $errors->first('phone') }}
                                 </div>
                             @endif

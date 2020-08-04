@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
@@ -12,24 +11,43 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class productcontroller extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $listproduct = Product::all();
         $listtypeproduct = TypeProduct::all();
         return view('admin.list-admin.ds-product.product', compact('listproduct', 'listtypeproduct'));
+         
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $listtypeproduct = TypeProduct::all();
         return view('admin.list-admin.ds-product.actionproduct', compact('listtypeproduct'));
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $request->validate([
             'product_name' => 'required|unique:product',
             'description' => 'required',
-            'unit_price' => 'required|numeric|integer|min:0',
-            'promotion_price' => 'required|numeric|min:0',
+            'unit_price' => 'required|numeric',
+            'promotion_price' => 'required|numeric',
             'unit' => 'required',
             'origin' => 'required',
             'raw_material' => 'required'
@@ -39,13 +57,12 @@ class productcontroller extends Controller
             'description.required' => 'Chưa nhập mô tả',
             'unit_price.required' => 'Chưa nhập giá',
             'unit_price.numeric' => 'Nhập sai giá',
-            'unit_price.min' => 'Giá trị không được âm',
             'unit.required' => 'Chưa nhập đơn vị',
             'origin.required' => 'Chưa nhập nguồn gốc',
             'promotion_price.required' => 'Chưa nhập giá khuyến mãi',
             'promotion_price.numeric' => 'Nhập sai giá khuyến mãi',
-            'promotion_price.min' => 'Giá trị không được âm',
             'raw_material.required' => 'Chưa nhập nguyên liệu',
+
         ]);
         if ($request->promotion_price < $request->unit_price) {
             if ($request->hasFile('image')) {
@@ -64,8 +81,8 @@ class productcontroller extends Controller
                     $product->origin = $request->origin;
                     $product->raw_material = $request->raw_material;
                     $product->save();
-                    if ($product->save()) {
-                        toast('Thêm thành công!', 'success', 'top-right');
+                    if($product->save()){
+                        toast('Thêm thành công!','success','top-right'); 
                     }
                     return redirect()->route('list-admin.ds-product.list');
                 } else {
@@ -80,35 +97,58 @@ class productcontroller extends Controller
             return view('admin.list-admin.ds-product.actionproduct', compact('listtypeproduct', 'errorss'));
         }
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         $product = Product::find($id);
         $listtypeproduct = TypeProduct::all();
         return view('admin.list-admin.ds-product.actionproduct', compact('product', 'listtypeproduct'));
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         // alert()->success('Title','Lorem Lorem Lorem');
         $request->validate([
-            'product_name' => 'required|unique:product',
+            'product_name' => 'required',
             'description' => 'required',
-            'unit_price' => 'required|numeric|integer|min:0',
-            'promotion_price' => 'required|numeric|min:0',
+            'unit_price' => 'required|numeric',
+            'promotion_price' => 'required|numeric',
             'unit' => 'required',
             'origin' => 'required',
             'raw_material' => 'required'
         ], [
-            'product_name.unique' => 'Tên sản phẩm tồn tại',
             'product_name.required' => 'Chưa nhập tên',
             'description.required' => 'Chưa nhập mô tả',
             'unit_price.required' => 'Chưa nhập giá',
             'unit_price.numeric' => 'Nhập sai giá',
-            'unit_price.min' => 'Giá trị không được âm',
             'unit.required' => 'Chưa nhập đơn vị',
             'origin.required' => 'Chưa nhập nguồn gốc',
             'promotion_price.required' => 'Chưa nhập giá khuyến mãi',
             'promotion_price.numeric' => 'Nhập sai giá khuyến mãi',
-            'promotion_price.min' => 'Giá trị không được âm',
             'raw_material.required' => 'Chưa nhập nguyên liệu',
         ]);
 
@@ -135,6 +175,9 @@ class productcontroller extends Controller
                     $updataproduct->origin = $request->origin;
                     $updataproduct->raw_material = $request->raw_material;
                     $updataproduct->save();
+                    if($updataproduct->save()){
+                        toast('Cập nhật thành công!','success','top-right'); 
+                    }
                     return redirect()->route('list-admin.ds-product.list');
                 } else {
                     echo "eo phai jpg";
@@ -151,7 +194,9 @@ class productcontroller extends Controller
                 $updataproduct->origin = $request->origin;
                 $updataproduct->raw_material = $request->raw_material;
                 $updataproduct->save();
-
+                if($updataproduct->save()){
+                    toast('Cập nhật thành công!','success','top-right'); 
+                }
                 return redirect()->route('list-admin.ds-product.list');
             }
         } else {

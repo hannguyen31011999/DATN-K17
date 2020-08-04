@@ -128,25 +128,19 @@
                 error: function (response) {
                 	var data = response.responseJSON;
                 	var length = Object.keys(data.errors).length;
-                	$('#msg1').css('display','none');
-                    $('#msg2').css('display','none');
+                	$('.messenger-errors').css('display','block');
                 	if(length===1)
                 	{
                 		if(Array.isArray(data.errors.phone)){
-                			$('#msg1').html(data.errors.phone);
-                            $('#msg1').css('display','block');
+                			$('#msg3').html(data.errors.phone);
                 		}
                 		else{
                 			$('#msg2').html(data.errors.address);
-                            $('#msg2').css('display','block');
                 		}
                 	}
                 	else{
-                		$('#msg1').html(data.errors.phone);
-                        $('#msg1').css('display','block');
-
+                		$('#msg3').html(data.errors.phone);
                         $('#msg2').html(data.errors.address);
-                        $('#msg2').css('display','block');
                 	}
                 }
             });
