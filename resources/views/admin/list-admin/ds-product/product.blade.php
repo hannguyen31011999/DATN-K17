@@ -28,8 +28,7 @@
                 <table id="datatable" class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead class="table-info">
                         <tr>
-                            <th>Id</th>
-                            <th>Tên SP</th>
+                            <th>Tên sản phẩm</th>
                             <th>Loại</th>
                             <th>Mô tả</th>
                             <th>Giá</th>
@@ -38,13 +37,13 @@
                             <th>Đơn vị</th>
                             <th>Nguyên liệu thô</th>
                             <th>Nguồn</th>
+                            <th>Thời gian</th>
                             <th>Tác vụ</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach( $listproduct as $pr )
                         <tr>
-                            <td>{{ $pr->id }}</td>
                             <td>{{ $pr->product_name }}</td>
                             @foreach( $listtypeproduct as $tpr )
                             @if( $pr->type_product_id == $tpr->id)
@@ -62,6 +61,7 @@
                             <td>{{ $pr->unit }}</td>
                             <td>{{ $pr->raw_material }}</td>
                             <td>{{ $pr->origin }}</td>
+                            <td>{{ $pr->created_at->format('d/m/20y - H:i') }}</td>
                             <td>
                                 <a href="{{route('list-admin.ds-product.update', ['id'=>$pr->id])}}" class="text-primary font-20"><i class="fa fa-wrench"></i> </a>
                                 <hr>

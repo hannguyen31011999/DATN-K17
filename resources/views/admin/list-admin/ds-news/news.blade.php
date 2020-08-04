@@ -15,7 +15,6 @@
 </style>
 @endsection
 @section('main-conten')
-@include('sweetalert::alert')
 <br>
 <div class="row">
     <div class="col-12">
@@ -32,6 +31,7 @@
                             <th>Nội dung</th>
                             <th>Hình ảnh</th>
                             <th>Người viết</th>
+                            <th>Thời gian</th>
                             <th>Tác vụ</th>
                         </tr>
                     </thead>
@@ -50,6 +50,7 @@
                             <td>{{$us->email}}</td>
                             @endif
                             @endforeach
+                            <td>{{$ns->updated_at->format('d/m/yy - H:i')}}</td>
                             <td>
                                 <a href="{{route('list-admin.ds-news.update', ['id'=>$ns->id])}}" class="text-primary font-20"><i class="fas fa-pencil-alt"></i> </a>
                                 <hr>
@@ -61,11 +62,8 @@
                 </table>
             </div>
         </div>
-
     </div>
-
 </div>
 @endsection
 @section('script')
-
 @endsection

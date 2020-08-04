@@ -22,7 +22,7 @@
                     <tbody>
                         @foreach( $listComment as $cm )
                         <tr>
-                            <td>{{ $cm->created_at->format('d/m/y - H:i') }}</td>
+                            <td>{{ $cm->created_at->format('d/m/20y - H:i') }}</td>
                             @foreach( $listUser as $us )
                             @if($cm->user_id == $us->id)
                             <td>{{ $us->email }}</td>
@@ -35,12 +35,12 @@
                             @endforeach
                             <td>{{ $cm->content }}</td>
                             <td>
-                                @if($cm->status == 1)
+                                @if($cm->status == 0)
                                 <div>
-                                <a href="{{route('list-admin.ds-comment.update', ['id'=>$cm->id])}}" class="text-info font-20"> <i class=" fas fa-check"></i></a>
-                                </div> @else
+                                <a href="{{route('list-admin.ds-comment.update', ['id'=>$cm->id])}}" class="text-info font-20" onclick="return confirm('Bạn chất chắn khóa bình luận này ?');"> <i class=" fas fa-check"></i></a>
+                                </div> @elseif($cm->status == 1)
                                 <div>
-                                <a href="{{route('list-admin.ds-comment.update', ['id'=>$cm->id])}}" class="text-dark font-20"> <i class="fas fa-lock"></i></a>
+                                <a href="{{route('list-admin.ds-comment.update', ['id'=>$cm->id])}}" class="text-dark font-20" onclick="return confirm('Bạn chất chắn mở lại bình luận này?');"> <i class="fas fa-lock"></i></a>
                                 </div> @endif
                             </td>
                         </tr>

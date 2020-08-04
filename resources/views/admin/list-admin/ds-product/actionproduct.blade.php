@@ -80,14 +80,14 @@
                                     </div>
                                     @endif
                                     <label class="control-label">Giá</label>
-                                    <input id="unit_price" type="text" class="input-large form-control" name="unit_price" @if(isset($product)) value="{{$product->unit_price}}" @endif>
+                                    <input id="unit_price" type="number" class="input-large form-control" name="unit_price" @if(isset($product)) value="{{$product->unit_price}}" @endif>
                                     @if($errors->has('unit_price'))
                                     <div class="alert alert-danger" role="alert">
                                         <strong>{{$errors->first('unit_price')}}</strong>
                                     </div>
                                     @endif
                                     <label class="control-label">Giá khuyến mãi</label>
-                                    <input id="promotion_price" type="text" class="input-large form-control" name="promotion_price" @if(isset($product)) value="{{$product->promotion_price}}" @endif>
+                                    <input id="promotion_price" type="number" class="input-large form-control" name="promotion_price" @if(isset($product)) value="{{$product->promotion_price}}" @endif>
                                     @if($errors->has('promotion_price'))
                                     <div class="alert alert-danger" role="alert">
                                         <strong>{{$errors->first('promotion_price')}}</strong>
@@ -140,6 +140,7 @@
                                 <div class="col-12">
                                     <div>
                                         <button type="submit" class="btn btn-primary waves-effect width-md waves-light">@if(isset($product))Cập nhật @else Thêm @endif</button>
+                                        <a href="{{route('list-admin.ds-product.list') }}" class="btn btn-danger waves-effect width-md waves-light">Hủy</a>
                                     </div>
                                 </div>
                             </div>

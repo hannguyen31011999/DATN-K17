@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\TypeProduct;
-use typeproduct as GlobalProduct;
 
 class typeproductcontroller extends Controller
 {
@@ -42,34 +40,20 @@ class typeproductcontroller extends Controller
         $request->validate([
             'type_name' => 'required|unique:type_product',
             'description' => 'required',
-            'image'=>'image'
         ],[
             'type_name.required' => 'chưa nhập loại sản phẩm',
             'description.required' => 'chưa nhập mô tả',
             'type_name.unique'=>'Loại này đã tồn tại',
-            'image.image'=>'không đúng định dạng'
+            // 'image.image'=>'không đúng định dạng'
         ]);
-
-        if($request->hasFile('image')){     
-            $file = $request->file('image');
-            if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
-               $fileName = $file->getClientOriginalName('image');
-               $file->move('img/typeproduct',$fileName);
                $typeproduct = new TypeProduct();
                $typeproduct->type_name = $request->type_name;
                $typeproduct->description = $request->description;
-               $typeproduct->image = $fileName;
                $typeproduct->save();
-               if($typeproduct->save()){
-                toast('Thêm thành công!','success','top-right'); 
-               }
+            //    if($typeproduct->save()){
+            //     toast('Thêm thành công!','success','top-right'); 
+            //    }
                return redirect()->route('list-admin.ds-typeproduct.list');
-            }else{
-                echo"eo phai jpg";
-            }
-         }else{
-            return '@@@@@@@';
-         }
     }
 
     /**
@@ -107,45 +91,23 @@ class typeproductcontroller extends Controller
         $request->validate([
             'type_name' => 'required',
             'description' => 'required',
-            'image'=>'image'
+      
         ],[
             'type_name.required' => 'Chưa nhập loại sản phẩm',
             'description.required' => 'Chưa nhập mô tả',
             // 'type_name.unique'=>'Loại này đã tồn tại',
-            'image.image'=>'không đúng định dạng'
+        
         ]);
-        $updatatypeproduct = TypeProduct::find($id);
-        if($request->hasFile('image')){    
-            $destinationPath = 'img/typeproduct/'.$updatatypeproduct->image;
-            if(file_exists($destinationPath)){
-                unlink($destinationPath);
-            } 
-            $file = $request->file('image');
-            if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
-               $fileName = $file->getClientOriginalName('image');
-               $file->move('img/typeproduct',$fileName);
+               $updatatypeproduct = TypeProduct::find($id);
                $updatatypeproduct->type_name = $request->type_name;
                $updatatypeproduct->description = $request->description;
-               $updatatypeproduct->image = $fileName;
                $updatatypeproduct->save();
-               if($updatatypeproduct->save()){
-                toast('Cập nhật thành công!','success','top-right'); 
-               }
+            //    if($updatatypeproduct->save()){
+            //     toast('Cập nhật thành công!','success','top-right'); 
+            //    }
                return redirect()->route('list-admin.ds-typeproduct.list');
-            }else{
-                echo"eo phai jpg";
-            }
-         }else{
-            $updatatypeproduct->type_name = $request->type_name;
-            $updatatypeproduct->description = $request->description;
-            $updatatypeproduct->save();
-            if($updatatypeproduct->save()){
-                toast('Cập nhật thành công!','success','top-right'); 
-            }
-              return redirect()->route('list-admin.ds-typeproduct.list');
-         }
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -155,10 +117,6 @@ class typeproductcontroller extends Controller
     public function destroy($id)
     {
          $deletetypeproduct = TypeProduct::find($id);
-         $destinationPath = 'img/typeproduct/'.$deletetypeproduct->image;
-         if(file_exists($destinationPath)){
-             unlink($destinationPath);
-         }
          $deletetypeproduct->delete();
         return redirect()->route('list-admin.ds-typeproduct.list');
     }

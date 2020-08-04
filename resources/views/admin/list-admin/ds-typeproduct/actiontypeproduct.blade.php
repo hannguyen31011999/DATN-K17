@@ -2,13 +2,13 @@
 @section('header')
 <title>Admin | Loại sản phẩm</title>
 <style>
-.heard-typeproduct {
+    .heard-typeproduct {
         font-size: 20px;
         margin: 0 0 15px 0;
         text-transform: uppercase;
         font-weight: 600;
         margin-left: 37%;
-    } 
+    }
 </style>
 @endsection
 @section('main-conten')
@@ -41,25 +41,6 @@
                                     </div>
                                     @endif
                                 </div>
-                                <div id="overlay"></div>
-                                <div class="controls">
-                                    <div class="mt-3">
-                                        <label for="showMethod">Hình</label>
-                                        <div class="form-group row">
-                                            <div class="col-lg-12">
-                                                <input type="file" name="image" id="myFile" onchange="showImage.call(this)">
-                                                @if(isset($typeproduct)) <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('img/typeproduct/'.$typeproduct->image)}}" />
-                                                @else <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('img/logo/pngtree.jpg')}}" /> @endif
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                @if($errors->has('image'))
-                                <div class="alert alert-danger" role="alert">
-                                    <strong>{{$errors->first('image')}}</strong>
-                                </div>
-                                @endif
                             </div>
                             <!-- end row -->
                             <hr>
@@ -67,6 +48,7 @@
                                 <div class="col-12">
                                     <div>
                                         <button type="submit" class="btn btn-primary waves-effect width-md waves-light">@if(isset($typeproduct))Cập nhật @else Thêm @endif</button>
+                                        <a href="{{route('list-admin.ds-typeproduct.list') }}" class="btn btn-danger waves-effect width-md waves-light">Hủy</a>
                                     </div>
                                 </div>
                             </div>
@@ -98,10 +80,7 @@
 <script type="text/javascript">
     CKEDITOR.replace('ckeditor', options);
 </script>
-<script type="text/javascript">
-    CKEDITOR.replace('ckeditor', options);
-</script>
-<script>
+<!-- <script>
     function showImage() {
         if (this.files && this.files[0]) {
             var object = new FileReader();
@@ -122,6 +101,6 @@
                 $(this).removeClass('open');
             });
     })
-</script>
+</script> -->
 @include('ckfinder::setup')
 @endsection

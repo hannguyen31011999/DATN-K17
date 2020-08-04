@@ -51,9 +51,9 @@
                             </td> -->
                             <td>
                                 @if($us->status == 1)
-                                <a href="{{route('list-admin.ds-user.update', ['id'=>$us->id])}}" class="text-info font-20"> <i class=" fas fa-check"></i></a>
+                                <a href="{{route('list-admin.ds-user.update', ['id'=>$us->id])}}" class="text-info font-20" onclick="return confirm('Bạn chắc chắn khóa tài khoản này ?');"> <i class=" fas fa-check"></i></a>
                                 @else
-                                <a href="{{route('list-admin.ds-user.update', ['id'=>$us->id])}}" class="text-dark font-20"> <i class="fas fa-lock"></i></a>
+                                <a href="{{route('list-admin.ds-user.update', ['id'=>$us->id])}}" class="text-dark font-20" onclick="return confirm('Bạn chắc chắn mở khóa tài khoản này ?');"> <i class="fas fa-lock"></i></a>
                                 @endif
 
                             </td>

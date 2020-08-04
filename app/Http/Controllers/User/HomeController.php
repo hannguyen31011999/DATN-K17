@@ -22,7 +22,7 @@ class HomeController extends Controller
     	if($request->ajax()){
     		return view('user.trangchu.template.content',compact('product','newProduct'));
     	}
-    	return view('user.trangchu.index',compact('product','newProduct','item'));
+    	return view('user.trangchu.index',compact('product','newProduct'));
     }
 
     // View loại sản phẩm

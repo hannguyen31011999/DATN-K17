@@ -24,7 +24,7 @@
     }
 
     #my-style::-webkit-scrollbar {
-        width: 5px;
+        width: 1px;
         background-color: #edf0f0;
     }
 
@@ -59,7 +59,6 @@
 @endsection
 @section('main-conten')
 <br>
-<!-- dd($sluser,$sloder, $slProduct,$slTypeProduct,$slComment, $slMember,$slNews); -->
 <div class="row">
     <div class="col-xl-3 col-sm-6">
         <div class="card bg-pink">
@@ -125,10 +124,10 @@
                 </div>
                 <div class="col-6">
                     <div class="text-right">
-                        <h3 class="my-0 font-weight-bold"><span data-plugin="counterup">
-                                @foreach( $oddetail as $dxs)
-                                {{$dxs->tong}}
-                                @endforeach</span></h3>
+                        <h3 class="my-0 font-weight-bold" style="margin-left: -75px">
+                            @foreach( $oddetail as $dxs)
+                            {{thousandSeperator($dxs->tong)}}<i>VNĐ</i>
+                            @endforeach</h3>
                         <p class="mb-0 mt-1 text-truncate">Danh thu hiện tại tháng này</p>
                     </div>
                 </div>
@@ -205,8 +204,13 @@
                             @foreach($odercxd as $dx)
                             <li class="list-group-item border-0 pt-2">
                                 <a href="#">
-                                    <img style="width: 80px" src="{{asset('img/background/doi-tra-hang.png')}}" />
-                                    <a class="header-title mb-4"> Mã đơn hàng : {{$dx->id}}</a>
+                                    <img style="width: 70px;margin-top: -5px;" src="{{asset('img/background/doi-tra-hang.png')}}" />
+                                    <a style="font-size: 30px" class=" title mb-4">{{thousandSeperator($dx->tong)}}<i>VNĐ</i> <br> </a>
+                                    <?php $a =($dx->created_at); $myDate = new DateTime($a);?>
+                                    <a class="header-title mb-4">MÃ: {{$dx->id}}&nbsp;&nbsp;/&nbsp;&nbsp;{{$myDate->format('d/m/yy - H:i')}}</a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </a>
@@ -232,30 +236,28 @@
                     <div class="scrollbar" id="my-style">
                         <div class="force-overflow">
                             <div class="chat-conversation">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 314px;">
-                                    <ul class="conversation-list slimscroll" style="min-height: 330px; overflow: hidden; width: auto; height: 314px;">
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 314px;margin-left:-20px">
+                                    <ul class="conversation-list slimscroll" style="min-height: 330px; overflow: hidden; width: 350pxs; height: 314px;">
                                         @foreach($commet as $cm)
                                         <li class="clearfix">
                                             <div class="chat-avatar">
                                                 <img src="{{asset('img/background/1200.png')}}" alt="male">
-                                                <i>{{$cm->created_at->format('d/m/y - H:i')}}</i>
+                                                <!-- <i> {{$cm->created_at->format('d/m/yy - H:i')}}</i> -->
                                             </div>
                                             <div class="conversation-text">
-                                                <div class="ctext-wrap">
+                                                <div class="ctext-wrap" style="width: 260px">
                                                     @foreach($user as $u)
                                                     @if($cm->user_id == $u->id)
-                                                    <h5>{{$u->email}}</h5>
+                                                    <h5> <u>{{$u->email}}</u></h5>
                                                     @endif
                                                     @endforeach
                                                     @foreach($product as $up)
                                                     @if($cm->product_id == $up->id)
-                                                    <i>Sản phẩm: {{$up->product_name}}</i>
-                                                    @endif
-                                                    @endforeach
-                                                    <i>Nội dung:</i>
-                                                    <h6>
-                                                        {{$cm->content}}
-                                                    </h6>
+                                                    <h5>Sản phẩm: {{$up->product_name}}</5>
+                                                        @endif
+                                                        @endforeach
+                                                        <h6>Nội dung : {{$cm->content}}</h6>
+                                                        <h5> {{$cm->created_at->format('d/m/yy - H:i')}}</h5>
                                                 </div>
                                             </div>
                                         </li>
@@ -286,7 +288,9 @@
                             <li class="list-group-item border-0 pt-2">
                                 <img style="width:45px;margin-top: -1px" src="{{asset('img/background/user.png')}}" alt="male">
                                 <a class="ctext-wrap" style="border-top-right-radius: 22px;border-bottom-right-radius: 22px">
-                                    {{$usn->email}} <br>
+                                    {{$usn->email}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <br>
                                     <!-- {{$usn->created_at->format('d/m/y - H:i')}} -->
                                 </a>
                             </li>
@@ -305,9 +309,9 @@
         <div class="table-responsive">
             <table class="table mb-0">
                 <thead>
-                <thead class="table-info">
+                    <thead class="table-info">
                         <tr>
-                            <th>Tên SP</th>
+                            <th>Tên sản phẩm</th>
                             <th>Loại</th>
                             <th>Mô tả</th>
                             <th>Giá</th>
@@ -319,35 +323,77 @@
                             <th>Tác vụ</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach( $product_nearest as $pr )
-                        <tr>
-                            <td>{{ $pr->product_name }}</td>
-                            @foreach( $listtypeproduct as $tpr )
-                            @if( $pr->type_product_id == $tpr->id)
-                            <td>{{ $tpr->type_name}}</td>
-                            @endif
-                            @endforeach
-                            <td>{{ $pr->description }}</td>
-                            <td><span class="badge badge-purple">{{ $pr->unit_price }} VNĐ</span></td>
-                            <td><span class="badge badge-primary">{{ $pr->promotion_price }} VNĐ</span></td>
-                            <td>
-                                <div class="thumbnail">
-                                    <img src="{{asset('img/product/'.$pr->image)}}" alt="" />
-                                </div>
-                            </td>
-                            <td>{{ $pr->unit }}</td>
-                            <td>{{ $pr->raw_material }}</td>
-                            <td>{{ $pr->origin }}</td>
-                            <td>
-                                <a href="{{route('list-admin.ds-product.update', ['id'=>$pr->id])}}" class="text-primary font-20"><i class="fa fa-wrench"></i> </a>
-                                <hr>
-                                <a href="{{route('list-admin.ds-product.delete', ['id'=>$pr->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chất chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
-                            </td>
-
-                        </tr>
+                <tbody>
+                    @foreach( $product_nearest as $pr )
+                    <tr>
+                        <td>{{ $pr->product_name }}</td>
+                        @foreach( $listtypeproduct as $tpr )
+                        @if( $pr->type_product_id == $tpr->id)
+                        <td>{{ $tpr->type_name}}</td>
+                        @endif
                         @endforeach
-                    </tbody>
+                        <td>{{ $pr->description }}</td>
+                        <td><span class="badge badge-purple">{{thousandSeperator($pr->unit_price) }} VNĐ</span></td>
+                        <td><span class="badge badge-primary">{{ thousandSeperator($pr->promotion_price) }} VNĐ</span></td>
+                        <td>
+                            <div class="thumbnail">
+                                <img src="{{asset('img/product/'.$pr->image)}}" alt="" />
+                            </div>
+                        </td>
+                        <td>{{ $pr->unit }}</td>
+                        <td>{{ $pr->raw_material }}</td>
+                        <td>{{ $pr->origin }}</td>
+                        <td>
+                            <a href="{{route('list-admin.ds-product.update', ['id'=>$pr->id])}}" class="text-primary font-20"><i class="fa fa-wrench"></i> </a>
+                            <hr>
+                            <a href="{{route('list-admin.ds-product.delete', ['id'=>$pr->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chất chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
+                        </td>
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="header-title mb-4">Bài viết gần đây</h4>
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead class="table-info">
+                    <tr>
+                        <th>Tiêu đề</th>
+                        <th>Nội dung</th>
+                        <th>Hình ảnh</th>
+                        <th>Người viết</th>
+                        <th>Tác vụ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach( $new_nearest as $ns )
+                    <tr>
+                        <td>{{ $ns->title }}</td>
+                        <td>{{ $ns->content }}</td>
+                        <td>
+                            <div class="thumbnail">
+                                <img src="{{asset('img/news/'.$ns->image)}}" alt="" />
+                            </div>
+                        </td>
+                        @foreach($user as $us)
+                        @if($ns->user_id_create == $us->id)
+                        <td>{{$us->email}}</td>
+                        @endif
+                        @endforeach
+                        <td>
+                            <a href="{{route('list-admin.ds-news.update', ['id'=>$ns->id])}}" class="text-primary font-20"><i class="fas fa-pencil-alt"></i> </a>
+                            <hr>
+                            <a href="{{route('list-admin.ds-news.delete', ['id'=>$ns->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chất chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+
             </table>
         </div>
     </div>

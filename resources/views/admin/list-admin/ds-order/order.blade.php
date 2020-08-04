@@ -33,7 +33,7 @@
                     <tbody>
                         @foreach( $listOrder as $od )
                         <tr >
-                            <td>{{$od->created_at->format('d/m/y - H:i')}}</td>
+                            <td>{{$od->created_at->format('d/m/yy - H:i')}}</td>
                             @if($od->customer_id == NULL)
                             <td>Khách hàng</td>
                             @else

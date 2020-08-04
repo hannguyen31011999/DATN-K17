@@ -27,24 +27,24 @@
                 <table id="datatable" class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead class="table-info">
                         <tr>
-                            <th>Id</th>
+                            <th>Thời gian</th>
                             <th>Loại SP</th>
                             <th>Mô tả</th>
-                            <th>Hình</th>
+                            <!-- <th>Hình</th> -->
                             <th>Tác vụ</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach( $listtypeproduct as $tpr )
                         <tr>
-                            <td>{{ $tpr->id }}</td>
+                            <td>{{ $tpr->created_at->format('d/m/20y - H:i') }}</td>
                             <td>{{ $tpr->type_name }}</td>
                             <td>{{ $tpr->description }}</td>
-                            <td>
+                            <!-- <td>
                                 <div class="thumbnail">
                                     <img src="{{asset('img/typeproduct/'.$tpr->image)}} alt=" />
                                 </div>
-                            </td>
+                            </td> -->
                             <td>
                                 <a href="{{route('list-admin.ds-typeproduct.update', ['id'=>$tpr->id])}}" class="text-primary font-20"><i class="fa fa-wrench"></i> </a>
                                 <hr>
@@ -56,7 +56,6 @@
                 </table>
             </div>
         </div>
-        @include('sweetalert::alert')
     </div>
 </div>
 @endsection

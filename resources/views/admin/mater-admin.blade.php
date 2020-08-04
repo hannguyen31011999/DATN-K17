@@ -51,7 +51,7 @@
 
         .logo-box {
             background-color: #ffffff;
-            height: 74px;
+            height: 60px;
             width: 240px;
             float: left;
             -webkit-transition: all .2s ease-out;
@@ -108,29 +108,31 @@
 </head>
 
 <body>
+    
     <div id="wrapper">
         <!-- Topbar Start -->
         <div class="navbar-custom">
             <ul class="list-unstyled topnav-menu float-right mb-0">
                 <li class="dropdown notification-list">
                     <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" href="#" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                      <li class=" far fa-clock font-20" id="clockDiv" style="margin-top:25px;"></li>
                         <span class="pro-user-name ml-1">
-                            Admin :
+                        <li class=" far fa-user font-20"></li>
                         </span>
-                        <img src="{{asset('img/logo/logo2.jpg')}}" alt="user-image" class="rounded-circle">
+                        <!-- <img src="{{asset('img/logo/logo2.jpg')}}" alt="user-image" class="rounded-circle"> -->
                         <span class="pro-user-name ml-1">
                             {{Session::get('email')}} <i class="mdi mdi-chevron-down"></i>
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                         <a href="{{url('/admin/profile')}}" class="dropdown-item notify-item">
-                            <i class="mdi mdi-account-outline"></i>
+                            <i class="far fa-star"></i>
                             <span>Thông tin</span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <!-- item-->
                         <a href="{{url('logout')}}" class="dropdown-item notify-item">
-                            <i class="mdi mdi-logout-variant"></i>
+                            <i class="fas fa-sign-out-alt"></i>
                             <span>Đăng xuất</span>
                         </a>
                     </div>
@@ -176,7 +178,7 @@
                     <!--- Sidemenu -->
                     <div id="sidebar-menu" class="mm-active">
                         <ul class="metismenu mm-show" id="side-menu">
-                            <li class="menu-title" id="clockDiv"></li>
+                         
                             <li>
                                 <a href="{{route('dashboard')}}" class="waves-effect ">
                                     <i class="ion-md-speedometer font-20"></i>

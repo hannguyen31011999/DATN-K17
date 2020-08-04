@@ -35,8 +35,13 @@
 			background-color: rgb(212, 218, 222);
 		}
 		body {
-           	background-image: url("/img/background/background.jpg ");
-        } 
+			background-image: url(/img/background/background.jpg);
+			font-variant: full-width;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover; 
+			background-size: cover;
+		}
 	</style>
 </head>
 <body class="authentication-page">
