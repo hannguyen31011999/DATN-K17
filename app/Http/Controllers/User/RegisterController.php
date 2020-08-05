@@ -24,7 +24,7 @@ class RegisterController extends Controller
         $validated = $request->validated();
         try{
             // create tài khoản
-            User::create([
+            $user = User::create([
                 'email'=>$validated['email'],
                 'password'=>Hash::make($validated['password']),
                 'name'=>$validated['fullname'],
@@ -34,9 +34,11 @@ class RegisterController extends Controller
                 'status'=>1
             ]);
             // Nếu tạo thành công thì login
-            if(Auth::attempt(['email'=>$validated['email'],'password'=>$validated['password']])){
+            if(Auth::attempt(['email'=>$validated['email'],'password'=>$validated['password']]))
+            {
                 $request->session()->put('email',Auth::User()->email);
                 $request->session()->put('id',Auth::User()->id);
+                $request->session()->put('role',Auth::User()->role);
                 return redirect()->route('home');
             }
         }catch(Exception $e){

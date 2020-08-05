@@ -5,7 +5,7 @@
 		<label for="name">Họ tên*</label>
 		<input type="text" id="name" name="name" placeholder="Họ tên">
 		@if($errors->has('name'))
-            <div class="alert alert-danger">
+            <div class="messenger-errors" style="margin-left: 200px;" >
                 {{ $errors->first('name') }}
             </div>
         @endif
@@ -14,7 +14,7 @@
 		<label for="email">Email*</label>
 		<input type="email" id="email" name="email"  placeholder="Nhập email của bạn">
 		@if($errors->has('email'))
-            <div class="alert alert-danger">
+            <div class="messenger-errors" style="margin-left: 200px;" >
                 {{ $errors->first('email') }}
             </div>
         @endif
@@ -24,7 +24,7 @@
 		<label for="adress">Địa chỉ*</label>
 		<input type="text" id="address" name="address" placeholder="Nhập địa chỉ của bạn" >
 		@if($errors->has('address'))
-            <div class="alert alert-danger">
+            <div class="messenger-errors" style="margin-left: 200px;" >
                 {{ $errors->first('address') }}
             </div>
         @endif
@@ -35,7 +35,7 @@
 		<label for="phone">Điện thoại*</label>
 		<input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại của bạn">
 		@if($errors->has('phone'))
-            <div class="alert alert-danger">
+            <div class="messenger-errors" style="margin-left: 200px;" >
                 {{ $errors->first('phone') }}
             </div>
         @endif
@@ -55,7 +55,7 @@
 				<!--  one item	 -->
 				@foreach(Session::get('cart')->products as $carts)
 					<div class="media">
-						<img width="15%" src="user/image/product/{{$carts['image']}}" alt="" class="pull-left">
+						<img width="15%" src="{{asset('admin/image/product/'.$carts['image'])}}" alt="" class="pull-left">
 						<div class="media-body">
 							<p class="font-large">{{$carts['name']}}</p>
 							@if(empty($carts['promotion_price']))

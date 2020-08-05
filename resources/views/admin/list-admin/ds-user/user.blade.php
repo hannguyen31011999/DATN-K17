@@ -10,7 +10,7 @@
             <div class="card-body table-responsive">
                 <h4 class="m-t-0 mb-4"><b>DANH SÁCH USER</b></h4>
                 <table id="datatable" class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
+                    <thead class="table-info">
                         <tr>
                             <th>Email</th>
                             <th>Tên</th>

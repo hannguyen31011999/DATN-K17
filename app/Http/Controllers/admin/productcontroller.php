@@ -52,7 +52,7 @@ class productcontroller extends Controller
                 $file = $request->file('image');
                 if ($file->getClientOriginalExtension('image') == "png" || "jpg" || "PNG" || "JPG") {
                     $fileName = $file->getClientOriginalName('image');
-                    $file->move('img/product', $fileName);
+                    $file->move('admin/image/product', $fileName);
                     $product = new Product();
                     $product->type_product_id  = $request->type_product_id;
                     $product->product_name = $request->product_name;
@@ -115,14 +115,14 @@ class productcontroller extends Controller
         $updataproduct = Product::find($id);
         if ($request->promotion_price < $request->unit_price) {
             if ($request->hasFile('image')) {
-                $destinationPath = 'img/product/' . $updataproduct->image;
+                $destinationPath = 'admin/image/product/'. $updataproduct->image;
                 if (file_exists($destinationPath)) {
                     unlink($destinationPath);
                 }
                 $file = $request->file('image');
                 if ($file->getClientOriginalExtension('image') == "png" || "jpg" || "PNG" || "JPG") {
                     $fileName = $file->getClientOriginalName('image');
-                    $file->move('img/product', $fileName);
+                    $file->move('admin/image/product', $fileName);
                     if ($request->type_product_id) {
                         $updataproduct->type_product_id  = $request->type_product_id;
                     }
@@ -151,7 +151,6 @@ class productcontroller extends Controller
                 $updataproduct->origin = $request->origin;
                 $updataproduct->raw_material = $request->raw_material;
                 $updataproduct->save();
-
                 return redirect()->route('list-admin.ds-product.list');
             }
         } else {
@@ -172,7 +171,7 @@ class productcontroller extends Controller
     {
         $deleteproduct = Product::find($id);
         $deleteproduct->delete();
-        $destinationPath = 'img/typeproduct/' . $deleteproduct->image;
+        $destinationPath = 'admin/image/product/'. $deleteproduct->image;
         if (file_exists($destinationPath)) {
             unlink($destinationPath);
         }

@@ -24,25 +24,15 @@ class CartController extends Controller
     {
     	if($request->ajax())
     	{
-            if(!empty($request->keyword))
+            $product = Product::find($request->id);
+            if(!empty($product))
             {
-                $list = Product::where('unit_price',$request->keyword)
-                                ->orWhere('product_name','LIKE', '%'.$request->keyword.'%')
-                                ->get(['id','product_name']);
-                return view('user.template.seach',compact('list'));
+                $oldCart = !empty(Session('cart')) ? Session('cart') : null;
+                $newCart = new ShoppingCart($oldCart);
+                $newCart->AddCart($product,$request->id);
+                Session(['cart'=>$newCart]);
             }
-            else
-            {
-                $product = Product::find($request->id);
-                if(!empty($product))
-                {
-                    $oldCart = !empty(Session('cart')) ? Session('cart') : null;
-                    $newCart = new ShoppingCart($oldCart);
-                    $newCart->AddCart($product,$request->id);
-                    Session(['cart'=>$newCart]);
-                }
-                return view('user.template.cart');
-            }
+            return view('user.template.cart');
     	}
     }
 

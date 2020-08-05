@@ -46,7 +46,7 @@
                               <input type="password" class="form__field" value="" name="password" id='password' placeholder="Mật khẩu hiện tại"  />
                             </div>
                             <br>
-                            <div class="alert alert-danger " id="msg1">
+                            <div class="messenger-errors " id="msg1">
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                               <input type="password" class="form__field" value="" name="new_password" id='new_password' placeholder="Mật khẩu mới"  />
                             </div>
                             <br>
-                            <div class="alert alert-danger " id="msg2">
+                            <div class="messenger-errors " id="msg2">
 
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                               <input type="password" class="form__field" value="" name="ent_password" id='ent_password' placeholder="Xác nhận Mật khẩu mới"  />
                             </div>
                             <br>
-                            <div class="alert alert-danger " id="msg3">
+                            <div class="messenger-errors " id="msg3">
                             </div>
                         </div>
                     </div>

@@ -58,13 +58,16 @@ class newscontroller extends Controller
             $file = $request->file('image');
             if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
                $fileName = $file->getClientOriginalName('image');
-               $file->move('img/news',$fileName);
+               $file->move('admin/image/posts',$fileName);
                $News = new News();
                $News->title = $request->title;
                $News->content = $request->content;
                $News->image = $fileName;
                $News->user_id_create = Auth::User()->id;
                $News->save();
+               if($News->save()){
+                 toast('Thêm bài viết thành công!','success','top-right'); 
+               }
                return redirect()->route('list-admin.ds-news.list');
             }else{
                 echo"eo phai jpg";
@@ -120,19 +123,22 @@ class newscontroller extends Controller
 
         $updataNews = News::find($id);
         if($request->hasFile('image')){    
-            $destinationPath = 'img/news/'.$updataNews->image;
+            $destinationPath = 'admin/image/posts'.$updataNews->image;
             if(file_exists($destinationPath)){
                 unlink($destinationPath);
             } 
             $file = $request->file('image');
             if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
                $fileName = $file->getClientOriginalName('image');
-               $file->move('img/news',$fileName);
+               $file->move('admin/image/posts',$fileName);
                $updataNews->title = $request->title;
                $updataNews->content = $request->content;
                $updataNews->image = $fileName;
                $updataNews->user_id_create = Auth::User()->id;
                $updataNews->save();
+               if($updataNews->save()){
+                toast('Cập nhật bài viết thành công!','success','top-right'); 
+               }
                return redirect()->route('list-admin.ds-news.list');
             }else{
                 echo"eo phai jpg";
@@ -157,7 +163,7 @@ class newscontroller extends Controller
     {
         $deleteNews = News::find($id);
        
-        $destinationPath = 'img/news/'.$deleteNews->image;
+        $destinationPath = 'admin/image/posts'.$deleteNews->image;
          if(file_exists($destinationPath)){
              unlink($destinationPath);
          }

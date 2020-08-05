@@ -39,7 +39,7 @@
 				<!--  one item	 -->
 				@foreach(Session::get('cart')->products as $carts)
 					<div class="media">
-						<img width="15%" src="user/image/product/{{$carts['image']}}" alt="" class="pull-left">
+						<img width="15%" src="{{asset('admin/image/product/'.$carts['image']}}" alt="" class="pull-left">
 						<div class="media-body">
 							<p class="font-large">{{$carts['name']}}</p>
 							@if(empty($carts['promotion_price']))
@@ -85,5 +85,5 @@
 		<div class="text-center"><button type="submit" class="beta-btn primary">Đặt hàng <i class="fa fa-chevron-right"></i></button></div>
 	</div> <!-- .your-order -->
 </div>
-@include('user.dathang.template.vnpay')
+@inlcude('user.dathang.template.vnpay')
 @endif

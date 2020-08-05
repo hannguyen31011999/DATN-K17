@@ -32,8 +32,9 @@
 			display: none;
 			cursor:default;
 		}
-		.item-seach{
-
+		.messenger-errors{
+			color: red;
+			padding: 5px;
 		}
 	</style>
 </head>
@@ -191,7 +192,7 @@
                     headers: {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    type: 'post',
+                    type: 'get',
                     url: '/',
                     data: {
                       "keyword":keyword

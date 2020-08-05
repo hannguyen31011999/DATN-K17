@@ -17,16 +17,58 @@ class ordercontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $listOrder = Order::all();
+        $listOrder = Order::paginate(10);
         $listProduct = Product::all();
         $listUser = User::all();
+        if($request->ajax())
+        {
+            if($request->selectedlist!=null||$request->selectoption!=null)
+            {
+                $status = $request->selectedlist==null ? $request->selectoption : $request->selectedlist;
+                if($status==0)
+                {
+                    $listOrder = Order::where('status',$status)->paginate(10);
+                    return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
+                }
+                else if($status==1)
+                {
+                    $listOrder = Order::where('status',$status)->paginate(10);
+                    return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
+                }
+                else if($status==2)
+                {
+                    $listOrder = Order::where('status',$status)->paginate(10);
+                    return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
+                }
+                else
+                {
+                    return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
+                }
+            }
+            else
+            {
+                if(!empty($request->keyword))
+                {
+                    if($request->keyword!="")
+                    {
+                        $listOrder = Order::where('id','=',(int)$request->keyword)
+                                ->orWhere('phone','LIKE', $request->keyword.'%')
+                                ->orWhere('name','LIKE', $request->keyword.'%')
+                                ->paginate(10);
+                        return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
+                    }
+                    return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
+                }
+                return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
+            }
+        }
         return view('admin.list-admin.ds-order.order',compact('listOrder','listProduct','listUser'));       
     }
     public function indexDetail($id)
     {
-        $listDetail = Order::find($id)->OrderDetails;
+        $listDetail = Order::find($id)->OrderDetails()->get();
         $listProduct = Product::all();
         return view('admin.list-admin.ds-order.orderdetail',compact('listDetail','listProduct'));       
     }
@@ -34,11 +76,9 @@ class ordercontroller extends Controller
 	{
 		if($request->ajax()){
 			try{
-				$Order = Order::find($this->id);
-				$Order->update([
-					'status'=>$request->status,
-				]);
-				return response()->json(['data'=>'Cập nhật thông tin thành công'],200);
+                $order = Order::find($request->id);
+                $order->update(['status'=>$request->selected]);
+                return "Cập nhật trạng thái thành công";
 			}catch(Exception $e){
 				return response()->json(['data'=>'Cập nhật thông tin thất bại'],500);
 			}
