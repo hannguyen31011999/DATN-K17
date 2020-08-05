@@ -48,8 +48,8 @@
                                         <div class="form-group row">
                                             <div class="col-lg-12">
                                                 <input type="file" name="image" id="myFile" onchange="showImage.call(this)">
-                                                @if(isset($news)) <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('img/news/'.$news->image)}}" />
-                                                @else <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('img/logo/pngtree.jpg')}}" /> @endif
+                                                @if(isset($news)) <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('admin/image/posts/'.$news->image)}}" />
+                                                @else <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('admin/image/background/pngtree.jpg')}}" /> @endif
                                             </div>
                                         </div>
                                         @if(isset($errorss))
@@ -64,7 +64,7 @@
                             <hr>
                             <div class="row mt-2">
                                 <div class="col-12">
-                                    <div >
+                                    <div>
                                         <button type="submit" class="btn btn-primary waves-effect width-md waves-light">@if(isset($news))Cập nhật @else Thêm @endif</button>
                                         <a href="{{route('list-admin.ds-news.list') }}" class="btn btn-danger waves-effect width-md waves-light">Hủy</a>
                                     </div>
@@ -80,7 +80,7 @@
 @endsection
 @section('script')
 <script src="{{asset('ckeditor\ckeditor.js') }}"></script>
-<script src="{{asset('ckfinder\ckfinder.js') }}"></script>
+<!-- <script src="{{asset('ckfinder\ckfinder.js') }}"></script> -->
 <!-- <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script> -->
 <script>
     var options = {
@@ -91,11 +91,9 @@
         filebrowserFlashUploadUrl: '../../public/ckfinder/core/connector/connector.php?command=QuickUpload&type=Images',
     };
 </script>
-
 <script type="text/javascript">
     CKEDITOR.replace('ckeditor', options);
-</script>
-<script>
+
     function showImage() {
         if (this.files && this.files[0]) {
             var object = new FileReader();

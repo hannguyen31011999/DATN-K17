@@ -55,7 +55,7 @@
                             <td><span class="badge badge-primary">{{ $pr->promotion_price }} VNĐ</span></td>
                             <td>
                                 <div class="thumbnail">
-                                    <img src="{{asset('img/product/'.$pr->image)}}" alt="" />
+                                    <img src="{{asset('admin/image/product/'.$pr->image)}}" alt="" />
                                 </div>
                             </td>
                             <td>{{ $pr->unit }}</td>

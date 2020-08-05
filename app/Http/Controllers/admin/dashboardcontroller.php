@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Http\Controllers\admin;
-use Validator;
+
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,22 +15,23 @@ use App\Model\Comment;
 use App\Model\News;
 use App\Model\OrderDetail;
 use Carbon\Carbon;
+
 class dashboardcontroller extends Controller
 {
     public function index()
-    {	
+    {
         $listtypeproduct = TypeProduct::all();
         $product = Product::all();
         $user = User::all();
-        $a=Carbon::now();
-        $format=date('Y-m-d 0:0:0');
+        $a = Carbon::now();
+        $format = date('Y-m-d 0:0:0');
         //Số lương đơn hàng mới
-        $odernew= DB::table('Order')->where('created_at','>',$format)->count();
+        $odernew = DB::table('Order')->where('created_at', '>', $format)->count();
         //Đơn hang chưa xác nhận
-        $odercxd= Order::where('status',0)->get();
+        // $odercxd = Order::orderBy('created_at', 'desc')->where('status', 0)->get();
         //Tổng đơn hàng
-        $thang=Carbon::now()->month;
-        $nam=Carbon::now()->year;
+        $thang = Carbon::now()->month;
+        $nam = Carbon::now()->year;
         $oddetail = DB::select(
             "SELECT
                 SUM(product_price) as tong
@@ -40,18 +43,34 @@ class dashboardcontroller extends Controller
             GROUP BY
                 MONTH(o.created_at)
             ORDER BY
-                SUM(product_price)");
-        //Bình lận gần nhất
-        $commet = comment::orderBy('created_at', 'desc')->take(5)->where('status',0)->get();    
+                SUM(product_price)"
+        );
+        $odercxd = DB::select(
+           
+            "SELECT v.`id`,v.`created_at`, SUM(product_price) as tong
+            FROM
+                `order_detail` AS o,
+                `order` AS v
+            WHERE
+                 o.`bill_id` = v.`id` AND v.`status` = 0
+            GROUP BY
+                v.`created_at`
+                ,v.`id`
+            ORDER BY
+               SUM(product_price)"
+        );
+        //Bình luận gần nhất
+        $commet = comment::orderBy('created_at', 'desc')->take(5)->where('status', 0)->get();
+
         //Đơn hàng
         //Người dung gần nhất
-        $user_nearest = User::orderBy('created_at', 'desc')->take(5)->where('status',1 )->where('role',1)->get();
+        $user_nearest = User::orderBy('created_at', 'desc')->take(5)->where('status', 1)->where('role', 1)->get();
         //Tổng đơn hàng
         $sloder = Order::all()->count();
         //Tổng người dung 
-        $sluser = User::where('role',1)->count();
+        $sluser = User::where('role', 1)->count();
         //Người dùng mới
-        $usernew = DB::table('User')->where('created_at','>',$format)->count();
+        $usernew = DB::table('User')->where('created_at', '>', $format)->count();
         //Tổng sản phẩm
         $slProduct = Product::all()->count();
         //Tổng loại sản phẩm
@@ -62,33 +81,51 @@ class dashboardcontroller extends Controller
         $slMember = Member::all()->count();
         //Tong bài viết
         $slNews = News::all()->count();
-         //Số lượng thành viên
+        //Bài viết mới 
+        $new_nearest = News::orderBy('updated_at', 'desc')->take(3)->get();
+        //Số lượng thành viên
         $slmember = Member::all()->count();
         //sản phẩm gần đây
-        $product_nearest = Product::orderBy('created_at', 'desc')->take(5)->get();
-    
-        return view('admin.trangchu.dashboard',
-        compact(
-            'sluser',
-            'sloder',
-            'slProduct',
-            'slTypeProduct',
-            'slComment', 
-            'slMember',
-            'slNews',
-            'odernew',
-            'usernew',
-            'slmember',
-            'odercxd',
-            'oddetail',
-            'commet',
-            'user',
-            'product',
-            'user_nearest',
-            'product_nearest',
-            'listtypeproduct'
+        $product_nearest = Product::orderBy('updated_at', 'desc')->take(3)->get();
+
+
+       
+
+        $range = Carbon::now()->subDays(7);
+      
+        $orderYear = DB::table('order')
+          ->where('created_at', '>=', $range)
+          ->groupBy('date')
+          ->orderBy('date', 'ASC')
+          ->get([
+            DB::raw('Date(created_at) as date'),
+            DB::raw('COUNT(*) as value')
+          ]);
+ 
+        return view(
+            'admin.trangchu.dashboard',
+            compact(
+                'sluser',
+                'sloder',
+                'slProduct',
+                'slTypeProduct',
+                'slComment',
+                'slMember',
+                'slNews',
+                'odernew',
+                'usernew',
+                'slmember',
+                'odercxd',
+                'oddetail',
+                'commet',
+                'user',
+                'product',
+                'user_nearest',
+                'product_nearest',
+                'listtypeproduct',
+                'new_nearest',
+                'orderYear'
             )
         );
     }
-  
 }

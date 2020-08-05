@@ -42,7 +42,7 @@
                             <td>{{ $ns->content }}</td>
                             <td>
                                 <div class="thumbnail">
-                                    <img src="{{asset('img/news/'.$ns->image)}}" alt="" />
+                                    <img src="{{asset('admin/image/posts/'.$ns->image)}}" alt="" />
                                 </div>
                             </td>
                             @foreach($listUser as $us)

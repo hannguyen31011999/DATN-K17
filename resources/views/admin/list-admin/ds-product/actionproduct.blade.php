@@ -127,8 +127,8 @@
                                         <div class="form-group row">
                                             <div class="col-lg-12">
                                                 <input type="file" name="image" id="myFile" onchange="showImage.call(this)">
-                                                @if(isset($product)) <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('img/product/'.$product->image)}}" />
-                                                @else <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('img/logo/pngtree.jpg')}}" /> @endif
+                                                @if(isset($product)) <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('admin/image/product/'.$product->image)}}" />
+                                                @else <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('admin/image/background/pngtree.jpg')}}" /> @endif
                                             </div>
                                         </div>
                                     </div>

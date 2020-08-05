@@ -25,7 +25,7 @@
                     <a href="{{route('list-admin.ds-order.list')}}" class="btn btn-primary waves-effect waves-light"><i class="fas fa-arrow-right"></i></a>
                 </div>
                 <table id="datatable" class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
+                    <thead class="table-info">
                         <tr>
                             <th>Đơn hàng</th>
                             <th>Sản phẩm</th>

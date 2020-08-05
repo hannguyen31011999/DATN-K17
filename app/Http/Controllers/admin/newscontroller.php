@@ -58,7 +58,7 @@ class newscontroller extends Controller
             $file = $request->file('image');
             if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
                $fileName = $file->getClientOriginalName('image');
-               $file->move('img/news',$fileName);
+               $file->move('admin/image/posts',$fileName);
                $News = new News();
                $News->title = $request->title;
                $News->content = $request->content;
@@ -120,14 +120,14 @@ class newscontroller extends Controller
 
         $updataNews = News::find($id);
         if($request->hasFile('image')){    
-            $destinationPath = 'img/news/'.$updataNews->image;
+            $destinationPath = 'admin/image/posts'.$updataNews->image;
             if(file_exists($destinationPath)){
                 unlink($destinationPath);
             } 
             $file = $request->file('image');
             if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
                $fileName = $file->getClientOriginalName('image');
-               $file->move('img/news',$fileName);
+               $file->move('admin/image/posts',$fileName);
                $updataNews->title = $request->title;
                $updataNews->content = $request->content;
                $updataNews->image = $fileName;
@@ -157,7 +157,7 @@ class newscontroller extends Controller
     {
         $deleteNews = News::find($id);
        
-        $destinationPath = 'img/news/'.$deleteNews->image;
+        $destinationPath = 'admin/image/posts'.$deleteNews->image;
          if(file_exists($destinationPath)){
              unlink($destinationPath);
          }

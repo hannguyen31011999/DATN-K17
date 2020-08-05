@@ -142,22 +142,22 @@
             <div class="logo-box">
                 <a href="index.html" class="logo text-center logo-dark">
                     <span class="logo-lg">
-                        <img src="{{asset('img/logo/logo.jpg')}}" alt="" height="18">
+                        <img src="{{asset('admin/image/logo/logo.png')}}" alt="" height="18">
                         <!-- <span class="logo-lg-text-dark">Velonic</span> -->
                     </span>
                     <span class="logo-sm">
                         <!-- <span class="logo-lg-text-dark">V</span> -->
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                        <img src="{{asset('admin/image/logo/logo.png')}}" alt="" height="22">
                     </span>
                 </a>
                 <a href="#" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="{{asset('img/logo/logo.jpg')}}" alt="" height="90">
+                        <img src="{{asset('admin/image/logo/logo.png')}}" alt="" height="70">
                         <!-- <span class="logo-lg-text-dark">Velonic</span> -->
                     </span>
                     <span class="logo-sm">
                         <!-- <span class="logo-lg-text-dark">V</span> -->
-                        <img src="{{asset('img/logo/logo.jpg')}}" alt="" height="30">
+                        <img src="{{asset('admin/image/logo/logo.png')}}" alt="" height="30">
                     </span>
                 </a>
             </div>
@@ -343,8 +343,6 @@
 
         <!-- Datatables init -->
         <script src="{{asset('admin/assets/js/pages/datatables.init.js') }}"></script>
-
-
 </body>
 
 </html>

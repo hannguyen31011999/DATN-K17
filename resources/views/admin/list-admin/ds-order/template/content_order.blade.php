@@ -1,5 +1,5 @@
 <table class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
+                    <thead class="table-info">
                         <tr>
                             <th>Thời gian</th>
                             <th>Khách hàng</th>
