@@ -343,8 +343,6 @@
 
         <!-- Datatables init -->
         <script src="{{asset('admin/assets/js/pages/datatables.init.js') }}"></script>
-
-
 </body>
 
 </html>

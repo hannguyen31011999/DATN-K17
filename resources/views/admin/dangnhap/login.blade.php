@@ -35,7 +35,7 @@
 			background-color: rgb(212, 218, 222);
 		}
 		body {
-			background-image: url(/img/background/background.jpg);
+			background-image: url(admin/image/background/loginbackground.jpg);
 			font-variant: full-width;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;

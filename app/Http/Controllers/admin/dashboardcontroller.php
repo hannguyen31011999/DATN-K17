@@ -88,6 +88,20 @@ class dashboardcontroller extends Controller
         //sản phẩm gần đây
         $product_nearest = Product::orderBy('updated_at', 'desc')->take(3)->get();
 
+
+       
+
+        $range = Carbon::now()->subDays(7);
+      
+        $orderYear = DB::table('order')
+          ->where('created_at', '>=', $range)
+          ->groupBy('date')
+          ->orderBy('date', 'ASC')
+          ->get([
+            DB::raw('Date(created_at) as date'),
+            DB::raw('COUNT(*) as value')
+          ]);
+ 
         return view(
             'admin.trangchu.dashboard',
             compact(
@@ -109,7 +123,8 @@ class dashboardcontroller extends Controller
                 'user_nearest',
                 'product_nearest',
                 'listtypeproduct',
-                'new_nearest'
+                'new_nearest',
+                'orderYear'
             )
         );
     }
