@@ -1,6 +1,7 @@
 <table class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead class="table-info">
                         <tr>
+                            <th>Mã hóa đơn</th>
                             <th>Thời gian</th>
                             <th>Khách hàng</th>
                             <th>Thanh toán</th>
@@ -14,6 +15,7 @@
                     <tbody>
                         @foreach( $listOrder as $od )
                         <tr >
+                            <td>{{$od->id}}</td>
                             <td>{{$od->created_at->format('d/m/y - H:i')}}</td>
                             <td>{{$od->name}}</td>
                             @if($od->payment==0)
@@ -28,7 +30,7 @@
                                 <input type="hidden" id="_token" value="{{ csrf_token() }}">
                                 <select class="custom-select" id="{{$od->id}}" name="status" style="width:145px;">
                                     @if($od->status==0)
-                                    <option value="{{$od->status}}" selected>
+                                    <option value="0" selected>
                                         Chưa xác nhận
                                     </option>
                                     <option value="1">
@@ -41,7 +43,7 @@
                                     <option value="0">
                                         Chưa xác nhận
                                     </option>
-                                    <option value="{{$od->status}}" selected>
+                                    <option value="1" selected>
                                         Xác nhận
                                     </option>
                                     <option value="2">
@@ -54,7 +56,7 @@
                                     <option value="1">
                                         Xác nhận
                                     </option>
-                                    <option value="{{$od->status}}" selected> 
+                                    <option value="2" selected> 
                                         Hoàn thành
                                     </option>
                                 </select>

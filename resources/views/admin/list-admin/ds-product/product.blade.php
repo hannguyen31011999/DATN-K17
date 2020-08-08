@@ -74,7 +74,6 @@
                 </table>
             </div>
         </div>
-        @include('sweetalert::alert')
     </div>
 </div>
 @endsection

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Model\Order;
 use App\Model\Product;
 use App\Model\User;
+use App\Model\Member;
 use Order as GlobalProduct;
 
 class ordercontroller extends Controller
@@ -19,7 +20,9 @@ class ordercontroller extends Controller
      */
     public function index(Request $request)
     {
-        $listOrder = Order::paginate(10);
+        $listOrder = Order::where('deleted_at',null)
+                        ->orderBy('created_at','desc')
+                        ->paginate(10);
         $listProduct = Product::all();
         $listUser = User::all();
         if($request->ajax())
@@ -29,17 +32,26 @@ class ordercontroller extends Controller
                 $status = $request->selectedlist==null ? $request->selectoption : $request->selectedlist;
                 if($status==0)
                 {
-                    $listOrder = Order::where('status',$status)->paginate(10);
+                    $listOrder = Order::where([
+                            ['status',$status],
+                            ['deleted_at',null]
+                        ])->orderBy('created_at','desc')->paginate(10);
                     return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
                 }
                 else if($status==1)
                 {
-                    $listOrder = Order::where('status',$status)->paginate(10);
+                    $listOrder = Order::where([
+                            ['status',$status],
+                            ['deleted_at',null]
+                        ])->orderBy('created_at','desc')->paginate(10);
                     return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
                 }
                 else if($status==2)
                 {
-                    $listOrder = Order::where('status',$status)->paginate(10);
+                    $listOrder = Order::where([
+                            ['status',$status],
+                            ['deleted_at',null]
+                        ])->orderBy('created_at','desc')->paginate(10);
                     return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
                 }
                 else
@@ -78,6 +90,24 @@ class ordercontroller extends Controller
 			try{
                 $order = Order::find($request->id);
                 $order->update(['status'=>$request->selected]);
+                // if($request->selected==2)
+                // {
+                //     $member = Member::where('user_id',$order->customer_id)->get();
+                //     if(empty($member)){
+                //         Member::create([
+                //             'user_id'=>$order->customer_id,
+                //             'point'=>1,
+                //             'discount'=>0
+                //         ]);
+                //         return "Cập nhật trạng thái thành công";
+                //     }
+                //     else
+                //     {
+                //         $user = User::find($order->customer_id);
+                //         $user->Members()->update(['point'=>$user->Members()->point++]);
+                //         return "Cập nhật trạng thái thành công";
+                //     }
+                // }
                 return "Cập nhật trạng thái thành công";
 			}catch(Exception $e){
 				return response()->json(['data'=>'Cập nhật thông tin thất bại'],500);

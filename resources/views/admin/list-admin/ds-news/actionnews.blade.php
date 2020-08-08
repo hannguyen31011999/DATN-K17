@@ -115,5 +115,4 @@
             });
     })
 </script>
-@include('ckfinder::setup')
 @endsection

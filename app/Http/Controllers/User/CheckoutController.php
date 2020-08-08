@@ -186,7 +186,7 @@ class CheckoutController extends Controller
                 $order = Order::find($array->id);
             }
         }
-        if($request->payment==1){
+        if($request->payment==1&&$request->order_desc!=null){
             session(['cost_id' => $request->id]);
             session(['url_prev' => url()->previous()]);
             $vnp_TmnCode = "LFKGQ0FH"; //Mã website tại VNPAY 

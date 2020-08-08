@@ -8,9 +8,8 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="beta-products-list">
-							<h4>New Products</h4>
+							<h4>Sản phẩm mới</h4>
 							<div class="beta-products-details">
-								<p class="pull-left">438 styles found</p>
 								<div class="clearfix"></div>
 							</div>
 							@foreach($newProduct as $newProducts)
@@ -63,9 +62,9 @@
 						</div> <!-- .beta-products-list -->
 						<div class="space50">&nbsp;</div>
 						<div class="beta-products-list">
-							<h4>Top Products</h4>
+							<h4>Sản phẩm</h4>
 							<div class="beta-products-details">
-								<p class="pull-left">438 styles found</p>
+								<p class="pull-left">Tổng sản phẩm @if(isset($count_product)){{$count_product}}@endif</p>
 								<div class="clearfix"></div>
 							</div>
 							<div class="row">

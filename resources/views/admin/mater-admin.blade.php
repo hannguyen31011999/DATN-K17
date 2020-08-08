@@ -241,12 +241,18 @@
                                     <span>Admin</span>
                                 </a>
                             </li>
-                            <li class="menu-title">CẤU HÌNH</li>
+                            <li class="menu-title">Thống kê</li>
                             <li class="mm-active">
-                                <a href="javascript: void(0);" class="waves-effect ">
-                                    <i class="fa fa-cogs font-20"></i>
-                                    <span>Cài dặt</span>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class=" ion ion-ios-list font-20"></i>
+                                    <span>Quản lí thống kê</span>
+                                    <span class="menu-arrow"></span>
                                 </a>
+                                <ul class="nav-second-level mm-collapse" aria-expanded="false">
+                                    <li><a href="{{url('admin/thong-ke/doanh-thu')}}">Doanh thu</a></li>
+                                    <li><a href="">Đơn hàng</a></li>
+                                    <li><a href="">Người dùng</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>

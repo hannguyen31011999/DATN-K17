@@ -19,7 +19,9 @@
                             <div class="clearfix"></div>
                             <div class="space20">&nbsp;</div>
                             <div class="single-item-desc">
-                                <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo ms id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe.</p>
+                                <br>
+                                <p>Nguyên liệu:{{$product->origin}}</p>
+                                <p>Xuất sứ:{{$product->raw_material}}</p>
                             </div>
                             <div class="space20">&nbsp;</div>
                             <div class="single-item-options">
@@ -44,11 +46,12 @@
                             <div class="clearfix"></div>
                             <div class="space20">&nbsp;</div>
                             <div class="single-item-desc">
-                                <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo ms id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe.</p>
+                                <br>
+                                <p>Nguyên liệu:{{$product->origin}}</p>
+                                <p>Xuất sứ:{{$product->raw_material}}</p>
                             </div>
                             <div class="space20">&nbsp;</div>
                             <div class="single-item-options">
-                                
                                 <div class="clearfix"></div>
                             </div>
                         </div>
@@ -61,8 +64,9 @@
                         <li><a href="#tab-comment">Reviews ({{$count}})</a></li>
                     </ul>
                     <div class="panel" id="tab-description">
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-                        <p>Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequaturuis autem vel eum iure reprehenderit qui in ea voluptate velit es quam nihil molestiae consequr, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? </p>
+                        @if(isset($product))
+                            {!! $product->description !!}
+                        @endif
                     </div>
                     <div class="panel" id="tab-comment" style="height: 250px;overflow: auto;">
                         <form method="post" id="form-comment" data-url="{{url('/'.utf8tourl($product->product_name).'.'.$product->id)}}">
@@ -102,7 +106,7 @@
                 <div class="space50">&nbsp;</div>
             @endif
             <div class="beta-products-list">
-                <h4>Related Products</h4>
+                <h4>Sản phẩm liên quan</h4>
                 <div class="space20">&nbsp;</div>
                 <div class="row">
                     @foreach($productRelated as $productRelateds)
@@ -155,7 +159,7 @@
         </div>
         <div class="col-sm-3 aside">
             <div class="widget">
-                <h3 class="widget-title">Best Sellers</h3>
+                <h3 class="widget-title">Sản phẩm bán chạy</h3>
                 <div class="widget-body">
                 @foreach($data as $value)
                     @foreach($seller as $sellers)
@@ -176,7 +180,7 @@
                 </div>
             </div> <!-- best sellers widget -->
             <div class="widget">
-                <h3 class="widget-title">New Products</h3>
+                <h3 class="widget-title">Sản phẩm mới</h3>
                 <div class="widget-body">
                     <div class="beta-sales beta-lists">
                         @foreach($newProduct as $newProducts)

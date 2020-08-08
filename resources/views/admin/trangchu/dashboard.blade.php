@@ -410,6 +410,7 @@
         listOfYear.push(element.date);
         listOfValue.push(element.value);
     });
+    console.log(listOfYear);
     console.log(listOfValue);
     var chart = Highcharts.chart('container', {
 
