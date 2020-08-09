@@ -7,7 +7,7 @@
         margin: 0 0 15px 0;
         text-transform: uppercase;
         font-weight: 600;
-        margin-left: 37%;
+        text-align: center;
     }
 </style>
 @endsection
@@ -21,39 +21,42 @@
                 @endif
                 @csrf
                 <div class="card-box">
-                    <div class="row" style="margin-left: 180px;">
-                        <div class="col-xl-10 col-lg-12">
-                            <h1 class="heard-typeproduct"><b> @if(isset($typeproduct)) Cập nhật @else Thêm @endif loại sản phẩm</b></h1>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <label class="control-label">Tên Loại Sản phẩm</label>
-                                    <input id="title" type="text" class="input-large form-control" name="type_name" @if(isset($typeproduct)) value="{{$typeproduct->type_name}}" @endif>
-                                    @if($errors->has('type_name'))
-                                    <div class="alert alert-danger" role="alert">
-                                        <strong>{{$errors->first('type_name')}}</strong>
+                    <div class="row">
+                        <div class="conten-add-post">
+                            <div class="col-xl-10 col-lg-12">
+                                <h1 class="heard-typeproduct"><b> @if(isset($typeproduct)) Cập nhật @else Thêm @endif loại sản phẩm</b></h1>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <label class="control-label">Loại Sản phẩm</label>
+                                        <input id="title" type="text" class="input-large form-control"  placeholder="Nhập loại sản phẩm ..." name="type_name" @if(isset($typeproduct)) value="{{$typeproduct->type_name}}" @endif>
+                                        @if($errors->has('type_name'))
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>{{$errors->first('type_name')}}</strong>
+                                        </div>
+                                        @endif
+                                        <br>
+                                        <label class="control-label mt-1">Mô tả</label>
+                                        <textarea name="description" id="ckeditor" cols="30" rows="10">@if(isset($typeproduct)) {{$typeproduct->description}} @endif</textarea>
+                                        @if($errors->has('description'))
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>{{$errors->first('description')}}</strong>
+                                        </div>
+                                        @endif
                                     </div>
-                                    @endif
-                                    <label class="control-label mt-1">Mô tả</label>
-                                    <textarea name="description" id="ckeditor" cols="30" rows="10">@if(isset($typeproduct)) {{$typeproduct->description}} @endif</textarea>
-                                    @if($errors->has('description'))
-                                    <div class="alert alert-danger" role="alert">
-                                        <strong>{{$errors->first('description')}}</strong>
-                                    </div>
-                                    @endif
                                 </div>
-                            </div>
-                            <!-- end row -->
-                            <hr>
-                            <div class="row mt-2">
-                                <div class="col-12">
-                                    <div>
-                                        <button type="submit" class="btn btn-primary waves-effect width-md waves-light">@if(isset($typeproduct))Cập nhật @else Thêm @endif</button>
-                                        <a href="{{route('list-admin.ds-typeproduct.list') }}" class="btn btn-danger waves-effect width-md waves-light">Hủy</a>
+                                <!-- end row -->
+                                <hr>
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <div>
+                                            <button type="submit" class="btn btn-primary waves-effect width-md waves-light">@if(isset($typeproduct))Cập nhật @else Thêm @endif</button>
+                                            <a href="{{route('list-admin.ds-typeproduct.list') }}" class="btn btn-danger waves-effect width-md waves-light">Hủy</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                 </div>
                 </div>
     </div>
     </form>

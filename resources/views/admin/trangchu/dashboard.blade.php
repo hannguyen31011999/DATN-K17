@@ -9,36 +9,43 @@
     .text-truncate {
         margin-left: -100px;
     }
+
     .scrollbar {
         margin-left: 22px;
-        float: left;
+        float: unset;
         height: 300px;
         background: #ffffff;
         overflow-y: scroll;
         margin-bottom: 25px;
     }
+
     .force-overflow {
         min-height: 450px;
     }
+
     #my-style::-webkit-scrollbar {
         width: 1px;
         background-color: #edf0f0;
     }
+
     #my-style::-webkit-scrollbar-thumb {
         background-color: #0ae;
         background-image: -webkit-gradient(linear, 0 0, 0 100%,
                 color-stop(.5, rgba(255, 255, 255, .2)),
                 color-stop(.5, transparent), to(transparent));
     }
+
     #my-style::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         border-radius: 50px;
         background-color: blue;
     }
+
     #my-style::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         background-color: #F5F5F5;
     }
+
     .ctext-wrap {
         -moz-border-radius: 3px;
         -webkit-border-radius: 3px;
@@ -192,20 +199,16 @@
             </div>
             <div id="cardCollpase3" class="collapse show">
                 <div class="card-body">
-                    <div class="scrollbar" id="my-style">
-                        <div class="force-overflow">
+                    <div class="chat-conversation">
+                        <div class="scrollbar" id="my-style">
                             @foreach($odercxd as $dx)
                             <li class="list-group-item border-0 pt-2">
-                                <a href="#">
-                                    <img style="width: 70px;margin-top: -5px;" src="{{asset('admin/image/background/doi-tra-hang.png')}}" />
+                                <a href="{{route('list-admin.ds-order.list')}}">
+                                    <img style="width: 60px;margin-top: -10px;" src="{{asset('admin/image/background/doi-tra-hang.png')}}" />
                                     <a style="font-size: 30px" class=" title mb-4">{{thousandSeperator($dx->tong)}}<i>VNĐ</i> <br> </a>
-                                    <?php $a =($dx->created_at); $myDate = new DateTime($a);?>
-                                    <a class="header-title mb-4">MÃ: {{$dx->id}}&nbsp;&nbsp;/&nbsp;&nbsp;{{$myDate->format('d/m/yy - H:i')}}</a>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <?php $a = ($dx->created_at);
+                                    $myDate = new DateTime($a); ?>
+                                    <a class="header-title mb-4">MÃ: {{$dx->id}} -NG: {{$myDate->format('d/m/yy - H:i')}}</a>
                                 </a>
                             </li>
                             @endforeach
@@ -226,19 +229,19 @@
             </div>
             <div id="cardCollpase3" class="collapse show">
                 <div class="card-body">
-                    <div class="scrollbar" id="my-style">
-                        <div class="force-overflow">
-                            <div class="chat-conversation">
+                    <div class="chat-todoapp">
+                        <div class="scrollbar" id="my-style">
+                            <div class="force-overflow">
                                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 314px;margin-left:-20px">
                                     <ul class="conversation-list slimscroll" style="min-height: 330px; overflow: hidden; width: 350pxs; height: 314px;">
                                         @foreach($commet as $cm)
                                         <li class="clearfix">
-                                            <div class="chat-avatar">
-                                                <img src="{{asset('admin/image/background/1200.png')}}" alt="male">
-                                                <!-- <i> {{$cm->created_at->format('d/m/yy - H:i')}}</i> -->
-                                            </div>
-                                            <div class="conversation-text">
-                                                <div class="ctext-wrap" style="width: 260px">
+                                            <div>
+                                                <div class="chat-avatar">
+                                                    <img style="width: 60%" src="{{asset('admin/image/background/1200.png')}}" alt="male">
+                                                    <!-- <i> {{$cm->created_at->format('d/m/yy - H:i')}}</i> -->
+                                                </div>
+                                                <div class="ctext-wrap" style="width: 280px">
                                                     @foreach($user as $u)
                                                     @if($cm->user_id == $u->id)
                                                     <h5> <u>{{$u->email}}</u></h5>
@@ -250,7 +253,7 @@
                                                         @endif
                                                         @endforeach
                                                         <h6>Nội dung : {{$cm->content}}</h6>
-                                                        <h5> {{$cm->created_at->format('d/m/yy - H:i')}}</h5>
+                                                        <h5> {{$cm->updated_at->format('d/m/yy - H:i')}}</h5>
                                                 </div>
                                             </div>
                                         </li>
@@ -276,13 +279,12 @@
             <div id="cardCollpase3" class="collapse show">
                 <div class="card-body">
                     <div class="scrollbar" id="my-style">
-                        <div class="force-overflow">
+                        <div>
                             @foreach($user_nearest as $usn)
                             <li class="list-group-item border-0 pt-2">
                                 <img style="width:45px;margin-top: -1px" src="{{asset('admin/image/background/user.png')}}" alt="male">
-                                <a class="ctext-wrap" style="border-top-right-radius: 22px;border-bottom-right-radius: 22px">
-                                    {{$usn->email}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a style="border-top-right-radius: 22px;border-bottom-right-radius: 22px">
+                                    {{$usn->email}}
                                     <br>
                                     <!-- {{$usn->created_at->format('d/m/y - H:i')}} -->
                                 </a>
@@ -294,6 +296,53 @@
             </div>
         </div>
         <!-- end card-->
+    </div>
+</div>
+<div class="card">
+<div id="container" data-order="{{ $orderYear }}"></div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="header-title mb-4">Bài viết gần đây</h4>
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead class="table-info">
+                    <tr>
+                        <th>Tiêu đề</th>
+                        <th>Nội dung</th>
+                        <th>Hình ảnh</th>
+                        <th>Người viết</th>
+                        <th>Thời gian</th>
+                        <th>Tác vụ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach( $new_nearest as $ns )
+                    <tr>
+                        <td>{{ $ns->title }}</td>
+                        <td>{{ $ns->content }}</td>
+                        <td>
+                            <div class="thumbnail">
+                                <img src="{{asset('admin/image/posts/'.$ns->image)}}" alt="" />
+                            </div>
+                        </td>
+                        @foreach($user as $us)
+                        @if($ns->user_id_create == $us->id)
+                        <td>{{$us->email}}</td>
+                        @endif
+                        @endforeach
+                        <td>{{ $us->updated_at->format('d/m/20y - H:i') }}</td>
+                        <td>
+                            <a href="{{route('list-admin.ds-news.update', ['id'=>$ns->id])}}" class="text-primary font-20"><i class="fas fa-pencil-alt"></i> </a>
+                            <hr>
+                            <a href="{{route('list-admin.ds-news.delete', ['id'=>$ns->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chất chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+
+            </table>
+        </div>
     </div>
 </div>
 <div class="card">
@@ -313,6 +362,7 @@
                             <th>Đơn vị</th>
                             <th>Nguyên liệu thô</th>
                             <th>Nguồn</th>
+                            <th>Thời gian</th>
                             <th>Tác vụ</th>
                         </tr>
                     </thead>
@@ -336,6 +386,7 @@
                         <td>{{ $pr->unit }}</td>
                         <td>{{ $pr->raw_material }}</td>
                         <td>{{ $pr->origin }}</td>
+                        <td>{{ $pr->updated_at->format('d/m/20y - H:i') }}</td>
                         <td>
                             <a href="{{route('list-admin.ds-product.update', ['id'=>$pr->id])}}" class="text-primary font-20"><i class="fa fa-wrench"></i> </a>
                             <hr>
@@ -349,49 +400,6 @@
         </div>
     </div>
 </div>
-<div class="card">
-    <div class="card-body">
-        <h4 class="header-title mb-4">Bài viết gần đây</h4>
-        <div class="table-responsive">
-            <table class="table mb-0">
-                <thead class="table-info">
-                    <tr>
-                        <th>Tiêu đề</th>
-                        <th>Nội dung</th>
-                        <th>Hình ảnh</th>
-                        <th>Người viết</th>
-                        <th>Tác vụ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach( $new_nearest as $ns )
-                    <tr>
-                        <td>{{ $ns->title }}</td>
-                        <td>{{ $ns->content }}</td>
-                        <td>
-                            <div class="thumbnail">
-                                <img src="{{asset('admin/image/posts/'.$ns->image)}}" alt="" />
-                            </div>
-                        </td>
-                        @foreach($user as $us)
-                        @if($ns->user_id_create == $us->id)
-                        <td>{{$us->email}}</td>
-                        @endif
-                        @endforeach
-                        <td>
-                            <a href="{{route('list-admin.ds-news.update', ['id'=>$ns->id])}}" class="text-primary font-20"><i class="fas fa-pencil-alt"></i> </a>
-                            <hr>
-                            <a href="{{route('list-admin.ds-news.delete', ['id'=>$ns->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chất chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-
-            </table>
-        </div>
-    </div>
-</div>
-<div id="container" data-order="{{ $orderYear }}"></div>
 </div>
 <!-- end card-->
 @endsection
@@ -402,74 +410,76 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.jss"></script>
 <script>
-    $(document).ready(function(){
-    var order = $('#container').data('order');
-    var listOfValue = [];
-    var listOfYear = [];
-    order.forEach(function(element){
-        listOfYear.push(element.date);
-        listOfValue.push(element.value);
-    });
-    console.log(listOfValue);
-    var chart = Highcharts.chart('container', {
+    $(document).ready(function() {
+        var order = $('#container').data('order');
+        var listOfValue = [];
+        var listOfYear = [];
+        order.forEach(function(element) {
+            var userDate = element.date;
+            var date_string = moment(userDate, "YYYY-MM-DD").format("DD/MM/YYYY");
+            // var date1 = new Date(element.date).toLocaleString();
+            listOfYear.push(date_string);
+            listOfValue.push(element.value);
+        });
+        console.log(listOfValue);
+        var chart = Highcharts.chart('container', {
 
-        title: {
-            text: 'Thông kê 7 ngày'
-        },
-
-        subtitle: {
-            text: 'Plain'
-        },
-
-        xAxis: {
-            categories: listOfYear,
-        },
-
-        series: [{
-            type: 'column',
-            colorByPoint: true,
-            data: listOfValue,
-            showInLegend: false
-        }]
-    });
-    
-    $('#plain').click(function () {
-        chart.update({
-            chart: {
-                inverted: false,
-                polar: false
+            title: {
+                text: 'Đơn hàng theo ngày'
             },
+
             subtitle: {
-                text: 'Plain'
-            }
+                text: ''
+            },
+
+            xAxis: {
+                categories: listOfYear,
+            },
+
+            series: [{
+                type: 'column',
+                colorByPoint: true,
+                data: listOfValue,
+                showInLegend: false
+            }]
+        });
+
+        $('#plain').click(function() {
+            chart.update({
+                chart: {
+                    inverted: false,
+                    polar: false
+                },
+                subtitle: {
+                    text: 'Plain'
+                }
+            });
+        });
+
+        $('#inverted').click(function() {
+            chart.update({
+                chart: {
+                    inverted: true,
+                    polar: false
+                },
+                subtitle: {
+                    text: 'Inverted'
+                }
+            });
+        });
+
+        $('#polar').click(function() {
+            chart.update({
+                chart: {
+                    inverted: false,
+                    polar: true
+                },
+                subtitle: {
+                    text: 'Polar'
+                }
+            });
         });
     });
-
-    $('#inverted').click(function () {
-        chart.update({
-            chart: {
-                inverted: true,
-                polar: false
-            },
-            subtitle: {
-                text: 'Inverted'
-            }
-        });
-    });
-
-    $('#polar').click(function () {
-        chart.update({
-            chart: {
-                inverted: false,
-                polar: true
-            },
-            subtitle: {
-                text: 'Polar'
-            }
-        });
-    });
-});
-
 </script>
 <script src="{{asset('admin/assets/js/pages/dashboard3.init.js') }}"></script>
 @endsection

@@ -51,8 +51,8 @@
                             @endif
                             @endforeach
                             <td>{{ $pr->description }}</td>
-                            <td><span class="badge badge-purple">{{ $pr->unit_price }} VNĐ</span></td>
-                            <td><span class="badge badge-primary">{{ $pr->promotion_price }} VNĐ</span></td>
+                            <td><span class="badge badge-purple">{{thousandSeperator($pr->unit_price) }} VNĐ</span></td>
+                            <td><span class="badge badge-primary">{{thousandSeperator($pr->promotion_price) }} VNĐ</span></td>
                             <td>
                                 <div class="thumbnail">
                                     <img src="{{asset('admin/image/product/'.$pr->image)}}" alt="" />

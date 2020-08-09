@@ -7,7 +7,7 @@
         margin: 0 0 15px 0;
         text-transform: uppercase;
         font-weight: 600;
-        margin-left: 37%;
+        text-align: center;
     }
 </style>
 @endsection
@@ -21,18 +21,20 @@
                 @endif
                 @csrf
                 <div class="card-box">
-                    <div class="row" style="margin-left: 180px;">
+                    <div class="row">
+                    <div class="conten-add-post">
                         <div class="col-xl-10 col-lg-12">
                             <h1 class="heard-news"><b> @if(isset($news)) Cập nhật @else Thêm @endif bài viết</b></h1>
                             <div class="control-group">
                                 <div class="controls">
                                     <label class="control-label">Tiêu đề</label>
-                                    <input id="title" type="text" class="input-large form-control" name="title" @if(isset($news)) value="{{$news->title}}" @endif>
+                                    <input id="title" type="text" class="input-large form-control"  placeholder="Nhập tiêu đề . . ." name="title" @if(isset($news)) value="{{$news->title}}" @endif>
                                     @if($errors->has('title'))
                                     <div class="alert alert-danger" role="alert">
                                         <strong>{{$errors->first('title')}}</strong>
                                     </div>
                                     @endif
+                                    <br>
                                     <label class="control-label mt-1">Nội dung</label>
                                     <textarea name="content" id="ckeditor" cols="30" rows="10">@if(isset($news)) {{$news->content}} @endif</textarea>
                                     @if($errors->has('content'))
@@ -41,6 +43,7 @@
                                     </div>
                                     @endif
                                     <div id="overlay"></div>
+                                    <br>
                                 </div>
                                 <div class="controls">
                                     <div class="mt-3">
@@ -61,6 +64,7 @@
                                 </div>
                             </div>
                             <!-- end row -->
+                   
                             <hr>
                             <div class="row mt-2">
                                 <div class="col-12">
@@ -70,6 +74,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

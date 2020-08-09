@@ -24,6 +24,7 @@
     @yield('header')
     <style>
         body {
+            background-image: url(image/background/Banh.jpg);
             margin: 0;
             font-family: Lato, sans-serif;
             font-size: 1.0rem;
@@ -31,11 +32,10 @@
             line-height: 1.25;
             color: #1b0202;
             text-align: left;
-
         }
 
         .navbar-custom {
-            background-image: url('img/background/backgrounduser.png');
+            background-image: url(image/background/backgrounduser.png);
         }
 
         .left-side-menu {
@@ -51,7 +51,7 @@
 
         .logo-box {
             background-color: #ffffff;
-            height: 60px;
+            height: 70px;
             width: 240px;
             float: left;
             -webkit-transition: all .2s ease-out;
@@ -74,12 +74,20 @@
             font-size: 17px;
         }
 
+        .col-xl-10.col-lg-12 {
+            margin: 0 auto;
+        }
+
+        .conten-add-post {
+            width: 100%;
+        }
+
         .header-title {
             font-size: 18px;
             margin: 0 0 15px 0;
             text-transform: uppercase;
             font-weight: 600;
-          
+
         }
 
         .card-box {
@@ -97,45 +105,79 @@
             margin-bottom: 1rem;
             color: #000000;
         }
+
         div.dataTables_wrapper div.dataTables_filter input {
-        margin-left: 0.5em;
-        display: inline-block;
-        width: 195px;
-        height: 39px;
-        color: #3bc0c3;
-    }
+            margin-left: 0.5em;
+            display: inline-block;
+            width: 195px;
+            height: 39px;
+            color: #3bc0c3;
+        }
+
+        label {
+            font-size: 16px !important;
+        }
+
+        .form-control {
+            color: #000000;
+            background-color: #fff;
+            border: 1px solid #000;
+        }
+
+        .custom-select {
+            color: #000000;
+            border: 1px solid #000;
+        }
+
+        @media all and (max-width: 480px) {
+            button.button-menu-mobile.waves-effect {
+                top: -45px;
+            }
+            input#seach {
+                    float: right;
+                    height: 37px;
+                    width: 42%!important;
+                }
+            a.btn.btn-primary.waves-effect.waves-light {
+                top: 37px;
+                left: -17px;
+            }
+        }
+
+        /* Dành cho máy tính bảng */
+        @media all and (max-width: 1024px) {}
     </style>
 </head>
 
 <body>
-    
+
     <div id="wrapper">
         <!-- Topbar Start -->
         <div class="navbar-custom">
             <ul class="list-unstyled topnav-menu float-right mb-0">
                 <li class="dropdown notification-list">
                     <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" href="#" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
-                      <li class=" far fa-clock font-20" id="clockDiv" style="margin-top:25px;"></li>
-                        <span class="pro-user-name ml-1">
-                        <li class=" far fa-user font-20"></li>
-                        </span>
-                        <!-- <img src="{{asset('img/logo/logo2.jpg')}}" alt="user-image" class="rounded-circle"> -->
-                        <span class="pro-user-name ml-1">
-                            {{Session::get('email')}} <i class="mdi mdi-chevron-down"></i>
-                        </span>
+                <li class=" far fa-clock font-20" id="clockDiv" style="margin-top:25px;"></li>
+                <span class="pro-user-name ml-1">
+                    <li class=" far fa-user font-20"></li>
+                </span>
+                <!-- <img src="{{asset('img/logo/logo2.jpg')}}" alt="user-image" class="rounded-circle"> -->
+                <span class="pro-user-name ml-1">
+                    {{Session::get('email')}} <i class="mdi mdi-chevron-down"></i>
+                </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                    <a href="{{url('/admin/profile')}}" class="dropdown-item notify-item">
+                        <i class="far fa-star"></i>
+                        <span>Thông tin</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                        <a href="{{url('/admin/profile')}}" class="dropdown-item notify-item">
-                            <i class="far fa-star"></i>
-                            <span>Thông tin</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <!-- item-->
-                        <a href="{{url('logout')}}" class="dropdown-item notify-item">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Đăng xuất</span>
-                        </a>
-                    </div>
+                    <div class="dropdown-divider"></div>
+                    <!-- item-->
+                    <a href="{{url('logout')}}" class="dropdown-item notify-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Đăng xuất</span>
+                    </a>
+                </div>
                 </li>
             </ul>
             <!-- LOGO -->
@@ -150,7 +192,7 @@
                         <img src="{{asset('admin/image/logo/logo.png')}}" alt="" height="22">
                     </span>
                 </a>
-                <a href="#" class="logo text-center logo-light">
+                <a href="{{route('dashboard')}}" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="{{asset('admin/image/logo/logo.png')}}" alt="" height="70">
                         <!-- <span class="logo-lg-text-dark">Velonic</span> -->
@@ -178,7 +220,7 @@
                     <!--- Sidemenu -->
                     <div id="sidebar-menu" class="mm-active">
                         <ul class="metismenu mm-show" id="side-menu">
-                         
+
                             <li>
                                 <a href="{{route('dashboard')}}" class="waves-effect ">
                                     <i class="ion-md-speedometer font-20"></i>

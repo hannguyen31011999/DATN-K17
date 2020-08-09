@@ -90,7 +90,7 @@ class productcontroller extends Controller
     {
         // alert()->success('Title','Lorem Lorem Lorem');
         $request->validate([
-            'product_name' => 'required|unique:product',
+            'product_name' => 'required',
             'description' => 'required',
             'unit_price' => 'required|numeric|integer|min:0',
             'promotion_price' => 'required|numeric|min:0',
@@ -98,7 +98,6 @@ class productcontroller extends Controller
             'origin' => 'required',
             'raw_material' => 'required'
         ], [
-            'product_name.unique' => 'Tên sản phẩm tồn tại',
             'product_name.required' => 'Chưa nhập tên',
             'description.required' => 'Chưa nhập mô tả',
             'unit_price.required' => 'Chưa nhập giá',

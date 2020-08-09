@@ -59,7 +59,7 @@
                   </div>
                 </div>
               </div>
-              <form action="" data-url="{{url('account/profile')}}" method="post" id="change-profile">
+              <form action="" data-url="{{url('account/profile')}}" style="font-size: 20px;" method="post" id="change-profile">
                 <input type="hidden" id="_token" value="{{ csrf_token() }}">
                 @if(isset($user))
                 <div class="row">
@@ -68,7 +68,7 @@
                   </div>
                   <div class="col-md-4">
                     <div class="form__group field">
-                      <input type="input" class="form__field" value="{{$user->name}}" name="name" id='name' required />
+                      <input type="input" class="form__field" value="{{$user->name}}" style="font-size: 20px;" name="name" id='name' required />
                     </div>
                   </div>
                 </div>
