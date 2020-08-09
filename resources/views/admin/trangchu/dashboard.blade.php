@@ -410,19 +410,34 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.jss"></script>
 <script>
-    $(document).ready(function() {
-        var order = $('#container').data('order');
-        var listOfValue = [];
-        var listOfYear = [];
-        order.forEach(function(element) {
-            var userDate = element.date;
-            var date_string = moment(userDate, "YYYY-MM-DD").format("DD/MM/YYYY");
-            // var date1 = new Date(element.date).toLocaleString();
-            listOfYear.push(date_string);
-            listOfValue.push(element.value);
-        });
-        console.log(listOfValue);
-        var chart = Highcharts.chart('container', {
+    // $(document).ready(function() {
+    //     var order = $('#container').data('order');
+    //     var listOfValue = [];
+    //     var listOfYear = [];
+    //     order.forEach(function(element) {
+    //         var userDate = element.date;
+    //         var date_string = moment(userDate, "YYYY-MM-DD").format("DD/MM/YYYY");
+    //         // var date1 = new Date(element.date).toLocaleString();
+    //         listOfYear.push(date_string);
+    //         listOfValue.push(element.value);
+    //     });
+    //     console.log(listOfValue);
+    //     var chart = Highcharts.chart('container', {
+    $(document).ready(function(){
+    var order = $('#container').data('order');
+    var listOfValue = [];
+    var listOfYear = [];
+    order.forEach(function(element){
+        listOfYear.push(element.date);
+        listOfValue.push(element.value);
+    });
+    console.log(listOfYear);
+    console.log(listOfValue);
+    var chart = Highcharts.chart('container', {
+
+        title: {
+            text: 'Thông kê 7 ngày'
+        },
 
             title: {
                 text: 'Đơn hàng theo ngày'

@@ -232,3 +232,9 @@ Route::group(['prefix'=>'admin/list-order','middleware'=>'CheckLogin'],function(
     });  
 });
 
+Route::group(['prefix'=>'admin/thong-ke','middleware'=>'CheckLogin'],function(){
+    Route::name('thong-ke.')->group (function(){
+    	Route::get('/doanh-thu','admin\ThongKeController@sumPriceByYear');
+    });  
+});
+

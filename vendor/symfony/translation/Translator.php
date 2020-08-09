@@ -460,7 +460,7 @@ EOF
     protected function computeFallbackLocales($locale)
     {
         if (null === $this->parentLocales) {
-            $this->parentLocales = json_decode(file_get_contents(__DIR__.'/Resources/data/parents.json'), true);
+            $parentLocales = json_decode(file_get_contents(__DIR__.'/Resources/data/parents.json'), true);
         }
 
         $locales = [];
@@ -473,7 +473,7 @@ EOF
         }
 
         while ($locale) {
-            $parent = $this->parentLocales[$locale] ?? null;
+            $parent = $parentLocales[$locale] ?? null;
 
             if ($parent) {
                 $locale = 'root' !== $parent ? $parent : null;

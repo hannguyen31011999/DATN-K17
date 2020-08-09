@@ -31,9 +31,8 @@
 			</div>
 			<div class="col-sm-9">
 				<div class="beta-products-list">
-					<h4>New Products</h4>
+					<h4>Sản phẩm mới</h4>
 					<div class="beta-products-details">
-						<p class="pull-left">438 styles found</p>
 						<div class="clearfix"></div>
 					</div>
 					<div class="row">
@@ -86,9 +85,9 @@
 				</div> <!-- .beta-products-list -->
 				<div class="space50">&nbsp;</div>
 				<div class="beta-products-list">
-						<h4>Top Products</h4>
+						<h4>Sản phẩm</h4>
 						<div class="beta-products-details">
-							<p class="pull-left">438 styles found</p>
+							<p class="pull-left">Tổng sản phẩm {{$count_type}}</p>
 							<div class="clearfix"></div>
 						</div>
 						<div class="row">

@@ -65,8 +65,8 @@
             getData(page,selectoption);
         });
 
-        $(document).on('change', '#select-list',function(e){
-            var selectedlist = $('select[name="list-order"]').val();
+    $(document).on('change', '#select-list',function(e){
+            var selectedlist = $(this).find(":selected").val();
             $.ajax({
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -90,7 +90,8 @@
 
     $(document).on('change', '.custom-select',function(e){
             var id = $(this).attr('id');
-            var selected = $('select[name="status"]').val();
+            var selected = $(this).find(":selected").val();
+            alert(selected);
             $.ajax({
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

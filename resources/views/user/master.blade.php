@@ -184,7 +184,43 @@
 			visibility: visible;
 			opacity: 1;
 		}
-	</style>
+	
+.navbar-custom {
+    background-color:#229922;
+    color:#ffffff;
+    border-radius:0;
+    font-size: 15px;
+}
+  
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+
+.navbar-custom .navbar-nav > .active > a {
+    color: #ffffff;
+    background-color:transparent;
+}
+      
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open >a {
+    text-decoration: none;
+    background-color: #33aa33;
+}
+     
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+    background-color:#eeeeee;
+}
+.navbar-custom .icon-bar {
+    background-color:#33aa33;
+}
+
+</style>
 </head>
 
 <body>
@@ -205,6 +241,7 @@
 				</div>
 			</div> <!-- .container -->
 		</div> <!-- .header-body -->
+
 		<div class="header-bottom" style="background-color: #0277b8;">
 			<div class="container">
 				<a class="visible-xs beta-menu-toggle pull-right" href="#"> <i class="fa fa-bars"></i></a>
@@ -377,8 +414,8 @@
 					scrollTop: 0
 				}, 1400);
 			});
-		});
-	</script>
+		});    
+</script>
 </body>
 
 </html>

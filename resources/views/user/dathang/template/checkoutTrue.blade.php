@@ -10,6 +10,7 @@
 		<div class="your-order-body" style="padding: 0px 10px;">
 			<div class="your-order-item">
 			@if(isset($user))
+				@if($user->role==1)
 				<!--  one item	 -->
 					<span style="font-weight: bold;font-size: 17px; margin-left: 2.5rem; ">{{$user->name}}&nbsp;&nbsp;&nbsp;({{$user->phone}})</span>
 					<span style="font-size: 17px; margin-left: 1rem;">{{$user->address}}</span>
@@ -25,6 +26,7 @@
 					<label for="notes">Ghi chú</label>
 					<textarea id="notes" name="notes"></textarea>
 				</div>
+				@endif
 			@endif
 			</div>
 		</div>
@@ -39,7 +41,7 @@
 				<!--  one item	 -->
 				@foreach(Session::get('cart')->products as $carts)
 					<div class="media">
-						<img width="15%" src="{{asset('admin/image/product/'.$carts['image']}}" alt="" class="pull-left">
+						<img width="15%" src="{{asset('admin/image/product/'.$carts['image'])}}" alt="" class="pull-left">
 						<div class="media-body">
 							<p class="font-large">{{$carts['name']}}</p>
 							@if(empty($carts['promotion_price']))
@@ -85,5 +87,5 @@
 		<div class="text-center"><button type="submit" class="beta-btn primary">Đặt hàng <i class="fa fa-chevron-right"></i></button></div>
 	</div> <!-- .your-order -->
 </div>
-@inlcude('user.dathang.template.vnpay')
+@include('user.dathang.template.vnpay')
 @endif

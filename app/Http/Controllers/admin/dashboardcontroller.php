@@ -101,7 +101,6 @@ class dashboardcontroller extends Controller
             DB::raw('Date(created_at) as date'),
             DB::raw('COUNT(*) as value')
           ]);
- 
         return view(
             'admin.trangchu.dashboard',
             compact(

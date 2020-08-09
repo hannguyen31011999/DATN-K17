@@ -19,6 +19,7 @@ class HomeController extends Controller
     						->orderBy('created_at','desc')
     						->take(4)
                             ->get();
+        $count_product = Product::count();
     	if($request->ajax()){
             if(!empty($request->keyword))
             {
@@ -29,10 +30,10 @@ class HomeController extends Controller
             }
             else
             {
-                return view('user.trangchu.template.content',compact('product','newProduct'));
+                return view('user.trangchu.template.content',compact('product','newProduct','count_product'));
             }
     	}
-    	return view('user.trangchu.index',compact('product','newProduct'));
+    	return view('user.trangchu.index',compact('product','newProduct','count_product'));
     }
 
     // View loại sản phẩm
@@ -44,10 +45,11 @@ class HomeController extends Controller
                     ->take(3)
                     ->get();
         $product = TypeProduct::find($id)->Products()->paginate(6);
+        $count_type = TypeProduct::find($id)->Products()->count();
         if($request->ajax()){
-            return view('user.loaisanpham.content',compact('product','newProduct'));
+            return view('user.loaisanpham.content',compact('product','newProduct','count_type'));
         }
-        return view('user.loaisanpham.type_product',compact('product','newProduct'));
+        return view('user.loaisanpham.type_product',compact('product','newProduct','count_type'));
     }
 
     public function seach(Request $request)
@@ -62,19 +64,23 @@ class HomeController extends Controller
             $product = Product::where('product_name','LIKE', '%'.$url.'%')
                         ->orWhere('unit_price',$url)
                         ->paginate(8);
-            return view('user.trangchu.template.content',compact('product','newProduct','item','url'));
+            $count_product = Product::where('product_name','LIKE', '%'.$url.'%')
+                        ->orWhere('unit_price',$url)->count();
+            return view('user.trangchu.template.content',compact('product','newProduct','item','url','count_product'));
         }
         else
         {
+            $count_product = Product::where('product_name','LIKE', '%'.$url.'%')
+                        ->orWhere('unit_price',$url)->count();
             $product = Product::where('product_name','LIKE', '%'.$request->get('keyword').'%')
                         ->orWhere('unit_price',$request->get('keyword'))
                         ->paginate(8);
             $messenger = "Không tìm thấy sản phẩm";
             if($product->isEmpty())
             {
-                return view('user.trangchu.seach_product',compact('product','newProduct','url','messenger'));
+                return view('user.trangchu.seach_product',compact('product','newProduct','url','messenger','count_product'));
             }
-            return view('user.trangchu.seach_product',compact('product','newProduct','url'));
+            return view('user.trangchu.seach_product',compact('product','newProduct','url','count_product'));
         }
     }
 }

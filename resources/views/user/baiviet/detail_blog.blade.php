@@ -23,6 +23,8 @@
             </div>
             @if(isset($news))
             <div class="col-sm-8">
+                <br></br>
+                <img src="{{asset('admin/image/posts/'.$news->image)}}" style="width: 100%;height: 400px;">
                 {!!$news->content!!}
             </div>
             @endif

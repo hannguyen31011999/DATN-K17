@@ -4,7 +4,7 @@
 		@foreach($list as $news)
 			<div class="col-sm-4" id="box-img">
 					<div class="blog-img">
-						<a href="{{url('tin-tuc',['url'=>utf8tourl($news->title),'id'=>$news->id])}}"><img src="{{asset('admin//image/product/'.$news->image)}}"></a>
+						<a href="{{url('tin-tuc',['url'=>utf8tourl($news->title),'id'=>$news->id])}}"><img src="{{asset('admin/image/posts/'.$news->image)}}"></a>
 					</div>
 					<div class="blog-create">{{$news->created_at->format('d-m-Y')}} Admin</div>
 					<br>
