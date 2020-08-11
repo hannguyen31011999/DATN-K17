@@ -62,14 +62,21 @@ class LoginController extends Controller
         $request->session()->forget('id');
         $request->session()->forget('urlAction');
         $request->session()->forget('role');
-        if(Auth::User()->role==1)
+        if(empty(Auth::User()->role))
         {
-            Auth::logout();
-            return redirect('account/login');
+            return redirect('/')->with('timeLogin','Tài khoản hết hạn đăng nhập');
         }
-        else{
-            Auth::logout();
-            return redirect('login');
+        else
+        {
+            if(Auth::User()->role==1)
+            {
+                Auth::logout();
+                return redirect('account/login');
+            }
+            else{
+                Auth::logout();
+                return redirect('login');
+            }
         }
     }
 

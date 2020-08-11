@@ -48,4 +48,15 @@
 	          </td>
 	        </tr>
 @endforeach
+@else
+<tr class="cart_item">
+	<td></td>
+	<td></td>
+	<td>
+		<div style="text-align: center;">Giỏ hàng trống</div>
+		<div style="text-align: center;"><a href="{{route('home')}}">Quay lại mua hàng tiếp</a></div>
+	</td>
+	<td></td>
+	<td></td>
+</tr>
 @endif

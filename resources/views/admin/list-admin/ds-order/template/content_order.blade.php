@@ -30,7 +30,7 @@
                                 <input type="hidden" id="_token" value="{{ csrf_token() }}">
                                 <select class="custom-select" id="{{$od->id}}" name="status" style="width:145px;">
                                     @if($od->status==0)
-                                    <option value="0" selected>
+                                    <option value="0" selected disabled="disabled">
                                         Chưa xác nhận
                                     </option>
                                     <option value="1">
@@ -43,20 +43,14 @@
                                     <option value="0">
                                         Chưa xác nhận
                                     </option>
-                                    <option value="1" selected>
+                                    <option value="1" selected disabled="disabled">
                                         Xác nhận
                                     </option>
                                     <option value="2">
                                         Hoàn thành
                                     </option>
-                                    @elseif($od->status==2)
-                                    <option value="0">
-                                        Chưa xác nhận
-                                    </option>
-                                    <option value="1">
-                                        Xác nhận
-                                    </option>
-                                    <option value="2" selected> 
+                                    @else($od->status==2)
+                                    <option value="2" selected disabled="disabled">
                                         Hoàn thành
                                     </option>
                                 </select>

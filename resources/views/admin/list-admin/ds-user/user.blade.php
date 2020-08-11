@@ -20,7 +20,7 @@
                             <th>Địa chỉ</th>
                             <!-- <th>Vai trò</th> -->
                             <th>Trạng thái</th>
-                            <th>Xóa</th>
+                            <!-- <th>Xóa</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -57,9 +57,9 @@
                                 @endif
 
                             </td>
-                            <td>
+<!--                             <td>
                                 <a href="{{route('list-admin.ds-user.delete', ['id'=>$us->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chất chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
-                            </td>
+                            </td> -->
                         </tr>
                         @endforeach
                     </tbody>

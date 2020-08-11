@@ -46,10 +46,16 @@ class HomeController extends Controller
                     ->get();
         $product = TypeProduct::find($id)->Products()->paginate(6);
         $count_type = TypeProduct::find($id)->Products()->count();
+        $data = Product::all();
+        $seller = OrderDetail::groupBy(['product_id','product_price'])
+                ->selectRaw('sum(qty) as total,product_id,product_price')
+                ->orderBy('total','desc')
+                ->take(10)
+                ->get();
         if($request->ajax()){
-            return view('user.loaisanpham.content',compact('product','newProduct','count_type'));
+            return view('user.loaisanpham.content',compact('product','newProduct','count_type','data','seller'));
         }
-        return view('user.loaisanpham.type_product',compact('product','newProduct','count_type'));
+        return view('user.loaisanpham.type_product',compact('product','newProduct','count_type','data','seller'));
     }
 
     public function seach(Request $request)

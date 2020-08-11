@@ -14,6 +14,11 @@
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 
+<style type="text/css">
+    .product-seller{
+        border: 1px solid gray;
+    }
+</style>
 @endsection
 
 @section('shopping-cart')

@@ -72,7 +72,7 @@
 			</div>
 			<div class="your-order-item">
 				<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
-				<div class="pull-right"><h5 class="color-black">{{thousandSeperator(Session::get('cart')->totalPrice)}}đ</h5></div>
+				<div class="pull-right"><h5 class="color-black">{{thousandSeperator(Session::get('cart')->totalPrice+50000)}}đ</h5></div>
 				<div class="clearfix"></div>
 			</div>
 		</div>

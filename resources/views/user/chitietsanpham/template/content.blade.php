@@ -60,8 +60,8 @@
                 <div class="space40">&nbsp;</div>
                 <div class="woocommerce-tabs">
                     <ul class="tabs">
-                        <li><a href="#tab-description">Description</a></li>
-                        <li><a href="#tab-comment">Reviews ({{$count}})</a></li>
+                        <li><a href="#tab-description">Mô tả</a></li>
+                        <li><a href="#tab-comment">Bình luận ({{$count}})</a></li>
                     </ul>
                     <div class="panel" id="tab-description">
                         @if(isset($product))

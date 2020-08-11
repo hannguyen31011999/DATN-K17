@@ -26,7 +26,7 @@ class productcontroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_name' => 'required|unique:product',
+            'product_name' => 'required|unique:product|max:124',
             'description' => 'required',
             'unit_price' => 'required|numeric|integer|min:0',
             'promotion_price' => 'required|numeric|min:0',
@@ -36,6 +36,7 @@ class productcontroller extends Controller
         ], [
             'product_name.unique' => 'Tên sản phẩm tồn tại',
             'product_name.required' => 'Chưa nhập tên',
+            'product_name.max'=>'Tên sản phẩm quá dài',
             'description.required' => 'Chưa nhập mô tả',
             'unit_price.required' => 'Chưa nhập giá',
             'unit_price.numeric' => 'Nhập sai giá',
@@ -90,7 +91,7 @@ class productcontroller extends Controller
     {
         // alert()->success('Title','Lorem Lorem Lorem');
         $request->validate([
-            'product_name' => 'required',
+            'product_name' => 'required|max:124',
             'description' => 'required',
             'unit_price' => 'required|numeric|integer|min:0',
             'promotion_price' => 'required|numeric|min:0',
@@ -99,6 +100,7 @@ class productcontroller extends Controller
             'raw_material' => 'required'
         ], [
             'product_name.required' => 'Chưa nhập tên',
+            'product_name.max'=>'Tên sản phẩm quá dài',
             'description.required' => 'Chưa nhập mô tả',
             'unit_price.required' => 'Chưa nhập giá',
             'unit_price.numeric' => 'Nhập sai giá',

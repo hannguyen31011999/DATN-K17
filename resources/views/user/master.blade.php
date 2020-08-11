@@ -232,7 +232,7 @@
 				</div>
 				<div class="pull-right auto-width-right">
 					@if(Auth::check()&&Session::has('email')&&Session::has('id')&&Session::get('role')==1)
-					<a class="button" href="{{url('/account/profile')}}" style="text-decoration: none;vertical-align:middle"><i class="fa fa-user"></i>{{Session::get('email')}}</a>
+					<a class="button" href="{{url('/account/profile')}}" style="text-decoration: none;vertical-align:middle;width: 200px;">{{Session::get('email')}}</a>
 					<a class="button" href="{{url('/account/logout')}}" style="text-decoration: none;vertical-align:middle">Đăng xuất</a>
 					@else
 					<a class="button" href="{{url('/account/register')}}" style="text-decoration: none;vertical-align:middle"><span>Đăng kí </span></a>
@@ -257,7 +257,7 @@
 								@endforeach
 							</ul>
 						</li>
-						<li> <a class="button" style="text-decoration: none;vertical-align:middle"> <span>Giới thiệu</span></a></li>
+						<li> <a class="button" href="{{url('gioi-thieu')}}" style="text-decoration: none;vertical-align:middle"> <span>Giới thiệu</span></a></li>
 						<li> <a class="button" href="{{url('/tin-tuc')}}" style="text-decoration: none;vertical-align:middle"> <span>Tin tức</span></a></li>
 						<li>
 							<div class="pull-right beta-components space-left ov">

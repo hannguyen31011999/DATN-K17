@@ -35,7 +35,15 @@
                       </td>
                       <td>
                       <td colspan="2">
-                        <h4 style="margin-left: 10px;">Ngày đặt:{{date_format($date,"d/m/Y H:i:s")}}</h4>
+                        <h3 style="margin-left: 10px;">Ngày đặt:{{date_format($date,"d/m/Y H:i:s")}}</h3>
+                      </td>
+                     </tr>
+                     <tr>
+                      <td colspan="2">
+                        <h4 style="margin-left: 10px;">Mã hóa đơn:{{$mahoadon}}</h4>
+                        <h4 style="margin-left: 10px;">Khách hàng:{{$name}}</h4>
+                        <h4 style="margin-left: 10px;">Số điện thoại:{{$phone}}</h4>
+                        <h4 style="margin-left: 10px;">Địa chỉ:{{$address}}</h4>
                       </td>
                      </tr>
                      <tr>
@@ -96,7 +104,8 @@
                       <th>
                       </th>
                       <th>
-                         Tổng tiền: {{thousandSeperator($total)}}đ
+                        <p>Phí ship:50.000đ</p>
+                        Tổng tiền: {{thousandSeperator($total+50000)}}đ
                       </th>
                      </tr>
                     </table>

@@ -8,10 +8,13 @@
 		border-radius: 12px;
 		padding: 50px;
 		margin: 20px;
-		background: white;
-	}
-	#form-login{
 		background-color: rgb(212, 218, 222);
+	}
+	#formFooter {
+	  padding: 10px;
+	  text-align: center;
+	  -webkit-border-radius: 0 0 10px 10px;
+	  border-radius: 0 0 10px 10px;
 	}
 </style>
 @endsection
@@ -23,8 +26,8 @@
 <div id="form-login">
 <div class="container">
 		<div class="row">
-			<div class="col-lg-4"></div>
-			<div class="col-lg-4">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
 				<div id="login">
 					<h4 style="text-align:center;">Đăng nhập</h4>
 					<div class="space20">&nbsp;</div>
@@ -68,12 +71,14 @@
 							<div class="space10">&nbsp;</div>
 							<button type="submit" class="btn btn-danger" style="width:100%;">Đăng nhập</button>
 							<hr width="100%">
-							<a href="{{url('account/recovery')}}" style="text-decoration:none;font-size:15px; padding: 0px 73px;">Quên mật khẩu?</a>
+							<div id="formFooter">
+						    	<a class="underlineHover" href="{{url('account/recovery')}}">Quên mật khẩu?</a>
+						    </div>
 						</div>
 					</form>
 				</div>
 			</div>
-			<div class="col-lg-4"></div>
+			<div class="col-sm-4"></div>
 		</div>
 </div>
 </div>

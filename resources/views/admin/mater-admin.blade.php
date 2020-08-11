@@ -292,8 +292,8 @@
                                 </a>
                                 <ul class="nav-second-level mm-collapse" aria-expanded="false">
                                     <li><a href="{{url('admin/thong-ke/doanh-thu')}}">Doanh thu</a></li>
-                                    <li><a href="">Đơn hàng</a></li>
-                                    <li><a href="">Người dùng</a></li>
+                                    <li><a href="{{url('admin/thong-ke/don-hang')}}">Đơn hàng</a></li>
+                                    <li><a href="{{url('admin/thong-ke/nguoi-dung')}}">Người dùng</a></li>
                                 </ul>
                             </li>
                         </ul>

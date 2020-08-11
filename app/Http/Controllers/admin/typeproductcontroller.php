@@ -38,10 +38,11 @@ class typeproductcontroller extends Controller
     {
         
         $request->validate([
-            'type_name' => 'required|unique:type_product',
+            'type_name' => 'required|unique:type_product|max:124',
             'description' => 'required',
         ],[
             'type_name.required' => 'chưa nhập loại sản phẩm',
+            'type_name.max'=>'tên loại sản phẩm quá dài',
             'description.required' => 'chưa nhập mô tả',
             'type_name.unique'=>'Loại này đã tồn tại',
             // 'image.image'=>'không đúng định dạng'
@@ -89,11 +90,12 @@ class typeproductcontroller extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'type_name' => 'required',
+            'type_name' => 'required|max:124',
             'description' => 'required',
       
         ],[
             'type_name.required' => 'Chưa nhập loại sản phẩm',
+            'type_name.max'=>'tên loại sản phẩm quá dài',
             'description.required' => 'Chưa nhập mô tả',
             // 'type_name.unique'=>'Loại này đã tồn tại',
         
