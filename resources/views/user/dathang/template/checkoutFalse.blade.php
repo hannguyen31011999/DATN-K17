@@ -1,5 +1,6 @@
-<div class="col-sm-6">
+<div class="col-sm-6" style="background: #f8f8f8;">
 	<h4>Đặt hàng</h4>
+	<hr style="height: 2px;border-width:0;color: #6b0709;background-color: #0277b8;margin-top: 1px;">
 	<div class="space20">&nbsp;</div>
 	<div class="form-block">
 		<label for="name">Họ tên*</label>

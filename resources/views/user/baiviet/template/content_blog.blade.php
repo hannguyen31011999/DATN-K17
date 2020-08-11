@@ -13,7 +13,7 @@
 					</div>
 					<br>
 					<div class="read-more">
-						<a href="{{url('tin-tuc',['url'=>utf8tourl($news->title),'id'=>$news->id])}}" class="btn-read">Đọc tiếp</a>
+						<a class="beta-btn primary" href="{{url('tin-tuc',['url'=>utf8tourl($news->title),'id'=>$news->id])}}" style="text-decoration: none;vertical-align:middle;width: auto;">Đọc tiếp<span></span></a></li>
 					</div>
 			</div>
 			<div class="space20">&nbsp;</div>

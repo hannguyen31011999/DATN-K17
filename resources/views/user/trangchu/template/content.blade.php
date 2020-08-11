@@ -9,6 +9,7 @@
 					<div class="col-sm-12">
 						<div class="beta-products-list">
 							<h4>Sản phẩm mới</h4>
+							<hr style="height: 2px;border-width:0;color: #6b0709;background-color: #0277b8;margin-top: 1px;">
 							<div class="beta-products-details">
 								<div class="clearfix"></div>
 							</div>
@@ -27,7 +28,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" href="" id="{{$newProducts->id}}"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+											<a class="beta-btn primary" href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}" style="text-decoration: none;vertical-align:middle">chi tiết<span></span></a></li>
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -37,7 +38,6 @@
 								<div class="col-sm-3">
 									<div class="single-item">
 										<div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
-
 										<div class="single-item-header">
 											<a href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}"><img src="{{asset('admin/image/product/'.$newProducts->image)}}" alt="" style="height: 320px; width: 100%;"></a>
 										</div>
@@ -50,7 +50,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" href="" id="{{$newProducts->id}}"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+											<a class="beta-btn primary" href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}" style="text-decoration: none;vertical-align:middle">chi tiết<span></span></a></li>
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -63,6 +63,7 @@
 						<div class="space50">&nbsp;</div>
 						<div class="beta-products-list">
 							<h4>Sản phẩm</h4>
+							<hr style="height: 2px;border-width:0;color: #6b0709;background-color: #0277b8;margin-top: 1px;">
 							<div class="beta-products-details">
 								<p class="pull-left">Tổng sản phẩm @if(isset($count_product)){{$count_product}}@endif</p>
 								<div class="clearfix"></div>
@@ -94,7 +95,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" href="" id="{{$products->id}}"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="{{url('/'.utf8tourl($products->product_name).'.'.$products->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+											<a class="beta-btn primary" href="{{url('/'.utf8tourl($products->product_name).'.'.$products->id)}}" style="text-decoration: none;vertical-align:middle">chi tiết<span></span></a></li>
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -116,7 +117,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" id="{{$products->id}}" href="" ><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="{{url('/'.utf8tourl($products->product_name).'.'.$products->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+											<a class="beta-btn primary" href="{{url('/'.utf8tourl($products->product_name).'.'.$products->id)}}" style="text-decoration: none;vertical-align:middle">chi tiết<span></span></a></li>
 											<div class="clearfix"></div>
 										</div>
 									</div>

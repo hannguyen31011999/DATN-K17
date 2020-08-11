@@ -7,7 +7,8 @@
 		border: 0.3px solid white;
 		border-radius: 12px;
 		padding: 50px;
-		margin: 20px;
+		margin-top: 10%;
+		margin-bottom: 10%;
 		background: white;
 	}
 	#form-login{

@@ -19,6 +19,121 @@
 	<link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/huong-style.css')}}">
 	@yield('css')
 	<style type="text/css">
+		.header-body {
+			padding: 14px 0 0px;
+			background: #0277b8;
+		}
+
+		.cart-item .media {
+			line-height: 100%;
+			padding-right: 0px;
+		}
+
+		.cart-item {
+			position: relative;
+			padding: 20px 0;
+			border-bottom: 1px solid #e1e1e1;
+			font-size: 15px;
+			font-family: sans-serif;
+		}
+
+		.aside .widget {
+			background: #f9f9f9;
+			border-radius: 5px;
+		}
+
+		button.btn.btn-default.btn-circle.btn-xl {
+			border-radius: 50%;
+			width: 45px;
+			height: 44px;
+			box-shadow: inset 0px 1px 0px 0px #ffffff;
+
+			background-color: #f9f9f9;
+
+			border: 1px solid #dcdcdc;
+			display: inline-block;
+			cursor: pointer;
+			color: #000000;
+
+			font-size: 19px;
+			font-weight: bold;
+
+			text-shadow: 1px 0px 0px #f6f6f6;
+		}
+
+		#content {
+			padding: 60px 0;
+			font: message-box;
+		}
+
+		ul.nav-user {
+			font-size: 16px;
+			padding: 25px;
+			color: white;
+			margin-left: 65%;
+		}
+
+		li.font-li {
+			padding: 10px;
+			margin-top: 35px;
+			margin-left: 70px;
+		}
+		.your-order-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #f8f8f8;
+    font-size: x-large;
+}
+
+		@media (max-width: 767px) {
+			.back-to-top.hien-ra {
+				visibility: visible;
+				opacity: 1;
+				/* margin-left: -158%; */
+				padding: -48px;
+				margin-right: 12%;
+			}
+
+			.main-menu ul li {
+				float: none;
+				width: 100%;
+				padding: 10px;
+			}
+
+			.main-menu>ul.l-inline>li>a {
+				padding: 19px 5px;
+				font-weight: bold !important;
+				margin-bottom: -5px;
+				text-shadow: 3px 5px 2px #474747;
+			}
+
+			.pull-right.beta-components.space-left.ov {
+				margin: -313px -5px 4px -1px !important;
+				width: 42%;
+			}
+
+			.cart-body {
+				overflow: auto;
+				height: 239px;
+				z-index: 999;
+				width: 90%;
+				border-radius: 5px;
+			}
+
+			ul.nav-user {
+				font-size: 42px;
+				padding: 1px;
+				color: white;
+				margin-left: 0px;
+				margin-top: -15%;
+			}
+
+			li.font-li {
+				padding: 2px;
+				margin-top: 2px;
+				margin-left: 100%;
+			}
+		}
+
 		.list-seach {
 			position: absolute;
 			border: 1px solid #e1e1e1;
@@ -41,35 +156,6 @@
 
 		ul.dropdown-menu li {
 			padding: 5px;
-		}
-
-		@media (max-width: 767px) {
-			.main-menu ul li {
-				float: none;
-				width: 100%;
-				padding: 10px;
-			}
-
-			.main-menu>ul.l-inline>li>a {
-				color: black;
-			}
-
-			.main-menu>ul.l-inline>li>a {
-				padding: 9px 70px !important;
-			}
-
-			.pull-right.beta-components.space-left.ov {
-				margin: -313px -5px 4px -1px !important;
-				width: 42%;
-			}
-
-			.cart-body {
-				overflow: auto;
-				height: 239px;
-				z-index: 999;
-				width: 90%;
-				border-radius: 5px;
-			}
 		}
 
 		.main-menu>ul.l-inline>li>a {
@@ -160,67 +246,236 @@
 			z-index: 100000;
 		}
 
+		.navbar-custom {
+			background-color: #229922;
+			color: #ffffff;
+			border-radius: 0;
+			font-size: 15px;
+		}
+
+		.navbar-custom .navbar-nav>li>a {
+			color: #fff;
+		}
+
+		.navbar-custom .navbar-nav>.active>a {
+			color: #ffffff;
+			background-color: transparent;
+		}
+
+		.navbar-custom .navbar-nav>li>a:hover,
+		.navbar-custom .navbar-nav>li>a:focus,
+		.navbar-custom .navbar-nav>.active>a:hover,
+		.navbar-custom .navbar-nav>.active>a:focus,
+		.navbar-custom .navbar-nav>.open>a {
+			text-decoration: none;
+			background-color: #33aa33;
+		}
+
+		.navbar-custom .navbar-brand {
+			color: #eeeeee;
+		}
+
+		.navbar-custom .navbar-toggle {
+			background-color: #eeeeee;
+		}
+
+		.navbar-custom .icon-bar {
+			background-color: #33aa33;
+		}
+
 		.back-to-top {
-			width: 50px;
-			height: 50px;
-			background: rgb(0, 0, 0, 0.7);
-			font-size: 35px;
-			color: whitesmoke;
-			text-align: center;
-			vertical-align: center;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			position: fixed;
-			left: 50%;
-			bottom: 20px;
-			margin-left: -25px;
+			box-shadow: 0px 10px 14px -7px #276873;
+			background-color: #599bb3;
+			border-radius: 50%;
+			display: inline-block;
 			cursor: pointer;
+			font-size: 20px;
+			font-weight: bold;
+			padding: 15px 16px;
+			text-shadow: 0px 1px 0px #3d768a;
+			background: rgb(0, 0, 0, 0.7);
+			color: whitesmoke;
+			vertical-align: center;
+			position: fixed;
+			bottom: 20px;
+			right: 0%;
+			margin-left: 0px;
 			visibility: hidden;
 			opacity: 0;
+			z-index: 100000;
+		}
+
+		.back-to-top:hover {
+			background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+			background-color: #408c99;
 		}
 
 		.back-to-top.hien-ra {
 			visibility: visible;
 			opacity: 1;
 		}
-	
-.navbar-custom {
-    background-color:#229922;
-    color:#ffffff;
-    border-radius:0;
-    font-size: 15px;
-}
-  
-.navbar-custom .navbar-nav > li > a {
-    color:#fff;
-}
 
-.navbar-custom .navbar-nav > .active > a {
-    color: #ffffff;
-    background-color:transparent;
-}
-      
-.navbar-custom .navbar-nav > li > a:hover,
-.navbar-custom .navbar-nav > li > a:focus,
-.navbar-custom .navbar-nav > .active > a:hover,
-.navbar-custom .navbar-nav > .active > a:focus,
-.navbar-custom .navbar-nav > .open >a {
-    text-decoration: none;
-    background-color: #33aa33;
-}
-     
-.navbar-custom .navbar-brand {
-    color:#eeeeee;
-}
-.navbar-custom .navbar-toggle {
-    background-color:#eeeeee;
-}
-.navbar-custom .icon-bar {
-    background-color:#33aa33;
-}
+		.beta-btn primary {
+			display: inline-block;
+			vertical-align: middle;
+			-webkit-transform: perspective(1px) translateZ(0);
+			transform: perspective(1px) translateZ(0);
+			box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+			position: relative;
+			-webkit-transition-property: color;
+			transition-property: color;
+			-webkit-transition-duration: 0.3s;
+			transition-duration: 0.3s;
+		}
 
-</style>
+		.cart-body {
+			overflow: auto;
+			height: 240px;
+			z-index: 999;
+
+			float: right;
+			background: white;
+			width: 320px;
+			/* position: relative; */
+			border-radius: 3px;
+			padding: 20px;
+		}
+
+		.cart-body:after {
+			right: 0;
+			top: 0;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+			border-top-color: #0277b8;
+			border-width: 8px;
+			margin-left: -1px;
+			border-right-color: #0277b8;
+		}
+
+		.add-to-cart {
+			width: 45px;
+			position: relative;
+			height: 42px;
+			background-color: #0277b8;
+			border: none;
+			font-size: 28px;
+			color: #0d0c0c;
+			text-align: center;
+			transition-duration: 0.4s;
+			text-decoration: none;
+			overflow: hidden;
+			box-shadow: 3px 4px 0px 0px #0b0b0b36;
+			cursor: pointer;
+			text-shadow: 0px 1px 0px #686b8d;
+			border-radius: 2px;
+		}
+
+		.add-to-cart:after {
+			content: "";
+			background: #f1f1f1;
+			display: block;
+			position: absolute;
+			padding-top: 300%;
+			padding-left: 350%;
+			margin-left: -20px !important;
+			margin-top: -120%;
+			opacity: 0;
+			transition: all 1.8s
+		}
+
+		.add-to-cart:active:after {
+			padding: 0;
+			margin: 0;
+			opacity: 1;
+			transition: 0s
+		}
+
+		.beta-btn.primary {
+			display: inline-block;
+			border-radius: 4px;
+			background-color: #0277b8;
+			border: none;
+			color: #FFFFFF;
+			text-align: center;
+			font-size: 21px;
+			padding: 11px;
+			width: 78%;
+			transition: all 0.5s;
+			cursor: pointer;
+		}
+
+		.beta-btn.primary span:after {
+			content: '\00bb';
+
+			opacity: 0;
+			top: 0;
+
+			margin-left: 17px;
+			transition: 1.0s;
+		}
+
+		.beta-btn.primary:hover span {
+			padding-right: 25px;
+		}
+
+		.beta-btn.primary:hover span:after {
+			opacity: 1;
+			right: 0;
+		}
+
+		.aside .widget-title {
+
+			border: 1px solid #0277b8;
+			border-left: 3px solid #0277b8;
+			color: #0277b8;
+		}
+
+		h4,
+		.h4 {
+			color: #0277b8;
+			font-family: inherit;
+			text-shadow: 1px 0px 1px #ccc, 0px 1px 1px #eee, 2px 1px 1px #ccc, 1px 2px 1px #eee, 3px 2px 1px #ccc, 2px 3px 1px #eee, 4px 3px 1px #ccc, 3px 4px 1px #eee, 5px 4px 1px #ccc, 4px 5px 1px #eee, 6px 5px 1px #ccc, 5px 6px 1px #eee, 7px 6px 1px #ccc;
+		}
+
+		.single-item-title {
+			font-size: 15px;
+			margin-bottom: 5px;
+		}
+
+		.single-item-title {
+			font-size: 18px;
+			margin-bottom: 7px;
+			text-shadow: #0277b8 3px 2px 5px;
+		}
+
+		.woocommerce-tabs .panel {
+			background: #f9f9f9;
+		}
+
+		.woocommerce-tabs ul.tabs li a {
+			box-shadow: 0px 0px 19px 0px #000000;
+		}
+
+		.cart .beta-select {
+			position: static;
+			font-size: initial;
+			text-shadow: 0 0 10px #000;
+			font-family: Georgia, serif;
+			font-size: 17px;
+			letter-spacing: -0.8px;
+			word-spacing: 2.8px;
+			color: #ffffff;
+			font-weight: 700;
+			text-decoration: none solid rgb(68, 68, 68);
+			font-style: normal;
+			font-variant: normal;
+			text-transform: none;
+		}
+	</style>
 </head>
 
 <body>
@@ -230,15 +485,28 @@
 				<div class="pull-left">
 					<a href="{{route('home')}}" id="logo"><img src="{{asset('user/logo.png')}}" width="200px" alt=""></a>
 				</div>
-				<div class="pull-right auto-width-right">
-					@if(Auth::check()&&Session::has('email')&&Session::has('id')&&Session::get('role')==1)
-					<a class="button" href="{{url('/account/profile')}}" style="text-decoration: none;vertical-align:middle"><i class="fa fa-user"></i>{{Session::get('email')}}</a>
-					<a class="button" href="{{url('/account/logout')}}" style="text-decoration: none;vertical-align:middle">Đăng xuất</a>
-					@else
-					<a class="button" href="{{url('/account/register')}}" style="text-decoration: none;vertical-align:middle"><span>Đăng kí </span></a>
-					<a class="button" href="{{url('/account/login')}}" style="text-decoration: none;vertical-align:middle"><span>Đăng nhập </span></a></li>
-					@endif
-				</div>
+				<ul class="nav navbar-nav">
+					<li class="font-li"><button type="button" class="btn btn-default btn-circle btn-xl">
+							<i class="fa fa-phone  font-20"></i></button></a></li>
+					<li class="font-li"><button type="button" class="btn btn-default btn-circle btn-xl"><i class="fa fa-map-marker font-20"></i></button></a></li>
+					<li class="font-li"><button type="button" class="btn btn-default btn-circle btn-xl"><i class="fa fa-facebook-square"></i></button></a></li>
+					<li class="font-li"><button type="button" class="btn btn-default btn-circle btn-xl"><i class="fa fa-envelope"></i></button></a></li>
+
+				</ul>
+				@if(Auth::check()&&Session::has('email')&&Session::has('id')&&Session::get('role')==1)
+				<ul class="nav-user">
+					<li><a class="button" href="{{url('/account/profile')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-user"></i>{{Session::get('email')}}</span></a></li>
+					<li><a class="button" href="{{url('/account/logout')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-sign-out"></i>Đăng xuất</span></a></li>
+				</ul>
+				@else
+				<ul class="nav-user">
+					<li><a class="button" href="{{url('/account/register')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-user"></i> Đăng kí</span></a></li>
+					<li><a class="button" href="{{url('/account/login')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-sign-in"></i> Đăng nhập</span></a></li>
+					</li>
+				</ul>
+				@endif
+
+
 			</div> <!-- .container -->
 		</div> <!-- .header-body -->
 
@@ -247,6 +515,7 @@
 				<a class="visible-xs beta-menu-toggle pull-right" href="#"> <i class="fa fa-bars"></i></a>
 				<div class="visible-xs clearfix"></div>
 				<nav class="main-menu">
+
 					<ul class="l-inline ov">
 						<li><a class="button" href="{{route('home')}}" style="text-decoration: none;vertical-align:middle"><i class="fa fa-home"></i><span>Trang chủ </span></a></li>
 						<li class="dropdown">
@@ -275,12 +544,13 @@
 							</div>
 						</li>
 					</ul>
+
 					<div class="clearfix"></div>
 				</nav>
 			</div> <!-- .container -->
 		</div> <!-- .header-bottom -->
 	</div> <!-- #header -->
-	<div class="back-to-top"><i class="fas fa-chevron-up"></i></div>
+	<div class="back-to-top"><i class="fa fa-arrow-up"></i></div>
 
 
 	@yield('slider')
@@ -398,7 +668,7 @@
 			$(window).scroll(function(event) {
 				var pos_body = $('html,body').scrollTop();
 				// console.log(pos_body);
-				if (pos_body > 20) {
+				if (pos_body > 15) {
 					$('.main-menu').addClass('main-menu-cd');
 				} else {
 					$('.main-menu').removeClass('main-menu-cd');
@@ -414,8 +684,8 @@
 					scrollTop: 0
 				}, 1400);
 			});
-		});    
-</script>
+		});
+	</script>
 </body>
 
 </html>

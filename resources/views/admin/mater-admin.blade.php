@@ -37,7 +37,7 @@
         .navbar-custom {
             background-image: url(image/background/backgrounduser.png);
         }
-
+       
         .left-side-menu {
             width: 240px;
             background: #ffffff;
@@ -141,6 +141,9 @@
             a.btn.btn-primary.waves-effect.waves-light {
                 top: 37px;
                 left: -17px;
+            }
+            a.loginqmk{
+                font-size: 10px;
             }
         }
 
@@ -286,7 +289,7 @@
                             <li class="menu-title">Thống kê</li>
                             <li class="mm-active">
                                 <a href="javascript: void(0);" class="waves-effect">
-                                    <i class=" ion ion-ios-list font-20"></i>
+                                    <i class="ion ion-md-stats font-20"></i>
                                     <span>Quản lí thống kê</span>
                                     <span class="menu-arrow"></span>
                                 </a>

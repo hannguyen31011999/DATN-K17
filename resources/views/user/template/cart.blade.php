@@ -8,7 +8,8 @@
 				<div class="media-body">
 					<span class="cart-item-title">{{$carts['name']}}</span>
 					<span class="cart-item-amount">{{$carts['qty']}}*<span>{{thousandSeperator($carts['unit_price'])}}đ</span></span>
-					<span class="cart-item-options"><a href="" class="deleteCart" id="{{$key}}">Xóa</a></span>
+					<span class="cart-item-options"><a href="" class="deleteCart" id="{{$key}}">Xóa<i class="fa fa-trash-o"></i></a></span>
+					<hr style="height: 2px;border-width:0;color: #6b0709;background-color: #0277b8;margin-top: 1px;">
 				</div>
 			<br>
 			@else
@@ -16,7 +17,8 @@
 				<div class="media-body">
 					<span class="cart-item-title">{{$carts['name']}}</span>
 					<span class="cart-item-amount">{{$carts['qty']}}*<span>{{thousandSeperator($carts['promotion_price'])}}đ</span></span>
-					<span class="cart-item-options"><a href="" class="deleteCart" id="{{$key}}">Xóa</a></span>
+					<span class="cart-item-options"><a href="" class="deleteCart" id="{{$key}}">Xóa<i class="fa fa-trash-o"></i></a></span>
+					<hr style="height: 2px;border-width:0;color: #6b0709;background-color: #0277b8;margin-top: 1px;">
 				</div>
 			@endif
 		@endforeach

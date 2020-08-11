@@ -28,11 +28,18 @@
 			border: 0.3px solid white;
 			border-radius: 12px;
 			padding: 50px;
-			margin: 20px;
+			margin-top: 10%;
+		   margin-bottom: 10%;
 			background: white;
 		}
-		#form-login{
-			background-color: rgb(212, 218, 222);
+	
+		body {
+			background-image: url(admin/image/background/loginbackground.jpg);
+			font-variant: full-width;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover; 
+			background-size: cover;
 		}
 	</style>
 </head>

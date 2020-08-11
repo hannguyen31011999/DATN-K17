@@ -7,21 +7,23 @@
 		border: 0.3px solid white;
 		border-radius: 12px;
 		padding: 50px;
-		margin: 20px;
 		background: white;
+		margin-top: 10%;
+		margin-bottom: 10%;
 	}
-	#form-login{
+
+	#form-login {
 		background-color: rgb(212, 218, 222);
 	}
 </style>
 @endsection
 
 @section('title')
-	Đăng nhập
+Đăng nhập
 @endsection
 @section('content')
 <div id="form-login">
-<div class="container">
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
@@ -32,37 +34,37 @@
 						@csrf
 						<div class="form-group">
 							@if(Session::has('error'))
-				                <div class="messenger-errors" style="text-align: center;">
-				                    {{Session::get('error')}}
-				                </div>
-				            @endif
+							<div class="messenger-errors" style="text-align: center;">
+								{{Session::get('error')}}
+							</div>
+							@endif
 							<label for="email">Tài khoản*</label>
 							<div class="input-group">
-							    <div class="input-group-addon">
-							    	<i class="fa fa-user"></i>
-							    </div>
-							    <input class="form-control" id="email" name="email" type="text" placeholder="Tài khoản email" />
-						  	</div>
-						  	@if($errors->has('email'))
-                            	<div class="messenger-errors">
-                            		{{ $errors->first('email') }}
-                            	</div>
-                            @endif
+								<div class="input-group-addon">
+									<i class="fa fa-user"></i>
+								</div>
+								<input class="form-control" id="email" name="email" type="text" placeholder="Tài khoản email" />
+							</div>
+							@if($errors->has('email'))
+							<div class="messenger-errors">
+								{{ $errors->first('email') }}
+							</div>
+							@endif
 						</div>
 						<div class="form-group">
 							<label for="password">Mật khẩu*</label>
 							<div class="space10">&nbsp;</div>
 							<div class="input-group">
-							    <div class="input-group-addon">
-							    	<i class="fa fa-lock" aria-hidden="true"></i>
-							    </div>
-							    <input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu"/>
-						  	</div>
-						  	@if($errors->has('password'))
-                            	<div class="messenger-errors">
-                            		{{ $errors->first('password') }}
-                            	</div>
-                            @endif
+								<div class="input-group-addon">
+									<i class="fa fa-lock" aria-hidden="true"></i>
+								</div>
+								<input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu" />
+							</div>
+							@if($errors->has('password'))
+							<div class="messenger-errors">
+								{{ $errors->first('password') }}
+							</div>
+							@endif
 						</div>
 						<div class="form-group">
 							<div class="space10">&nbsp;</div>
@@ -75,6 +77,6 @@
 			</div>
 			<div class="col-lg-4"></div>
 		</div>
-</div>
+	</div>
 </div>
 @endsection

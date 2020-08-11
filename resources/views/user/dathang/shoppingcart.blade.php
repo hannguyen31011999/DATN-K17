@@ -65,7 +65,7 @@
 	      <div class="cart-totals-row"><h5 class="cart-total-title" style="font-weight: bold;">Tổng Tiền</h5></div>
 	      <div class="cart-totals-row"><span>Shipping:</span> <span style="color: black;">Free Shipping</span></div>
 	      <div class="cart-totals-row"><span>Tổng đơn hàng:</span><span id="total" style="color: black;"></span></div>
-	      <div class="cart-totals-row"><a href="{{url('checkout')}}" class="beta-btn primary" style="margin-left: 75px;">Đặt hàng<i class="fa fa-chevron-right"></i></a>
+	      <div class="cart-totals-row"><a href="{{url('checkout')}}" class="beta-btn primary" style="margin-left: 20px;">Đặt hàng<i class="fa fa-chevron-right"></i></a>
 	    	</div>
 		</div>
 
