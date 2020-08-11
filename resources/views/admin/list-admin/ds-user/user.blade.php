@@ -57,9 +57,6 @@
                                 @endif
 
                             </td>
-                            <!-- <td>
-                                <a href="{{route('list-admin.ds-user.delete', ['id'=>$us->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chất chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
-                            </td> -->
                         </tr>
                         @endforeach
                     </tbody>

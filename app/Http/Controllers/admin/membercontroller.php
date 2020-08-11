@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\Member;
 use App\Model\User;
-
+use App\Model\Order;
 class membercontroller extends Controller
 {
+    private $silver = 0.01;
+    private $good = 0.02;
     /**
      * Display a listing of the resource.
      *
@@ -99,19 +101,29 @@ class membercontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
-            'discount' => 'required|numeric|unique:member',
+            'discount' => 'required|numeric',
+            'discount1'=> 'required|numeric'
         ],[
             'discount.required' => 'Chưa nhập dữ liệu',
-            'discount.numeric'=>'nhập không đúng',
-            'discount.unique'=>'Đã tồn tại'
+            'discount.numeric'=>'Dữ liệu phải là số thập phân',
+            'discount1.required' => 'Chưa nhập dữ liệu',
+            'discount1.numeric'=>'Dữ liệu phải là số thập phân',
         ]);
-            $updataMember = Member::find($id);
-            $updataMember->discount = $request->discount;
-            $updataMember->save();
-           
+            $updataMember = Member::all();
+            foreach ($updataMember as $value) {
+                if($value->point>=100&&$value->point<1000)
+                {
+                    Member::find($value->id)->update(['discount'=>$request->discount]);
+                }
+                else
+                {
+                    Member::find($value->id)->update(['discount'=>$request->discount]);
+                }
+            }
+        return back()->with('success','Cập nhật khuyến mãi thành công');
     }
 
     /**

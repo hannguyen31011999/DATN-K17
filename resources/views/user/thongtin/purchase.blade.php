@@ -49,7 +49,7 @@
                           <div>
                           <!--  one item   -->
                             <div class="media">
-                              <img style="height: 90px;width: 90px;" src="../user/image/product/{{$products->image}}" alt="" class="pull-left">
+                              <img style="height: 90px;width: 90px;" src="{{asset('../admin/image/product/'.$products->image)}}" alt="" class="pull-left">
                               <div class="media-body">
                                 <p class="font-large">{{$products->product_name}}</p>
                                 <span class="color-gray your-order-info" style="margin-top: 1px;">Giá:{{$value->product_price}}đ</span>
@@ -86,7 +86,7 @@
                                     <div>
                                     <!--  one item   -->
                                       <div class="media">
-                                        <img style="height: 90px;width: 90px;" src="../user/image/product/{{$products->image}}" alt="" class="pull-left">
+                                        <img style="height: 90px;width: 90px;" src="{{asset('../admin/image/product/'.$products->image)}}" alt="" class="pull-left">
                                         <div class="media-body">
                                           <p class="font-large">{{$products->product_name}}</p>
                                           <span class="color-gray your-order-info" style="margin-top: 1px;">Giá:{{$value->product_price}}đ</span>
@@ -116,7 +116,7 @@
                                     <div>
                                     <!--  one item   -->
                                       <div class="media">
-                                        <img style="height: 90px;width: 90px;" src="../user/image/product/{{$products->image}}" alt="" class="pull-left">
+                                        <img style="height: 90px;width: 90px;" src="{{asset('../admin/image/product/'.$products->image)}}" alt="" class="pull-left">
                                         <div class="media-body">
                                           <p class="font-large">{{$products->product_name}}</p>
                                           <span class="color-gray your-order-info" style="margin-top: 1px;">Giá:{{$value->product_price}}đ</span>
@@ -147,7 +147,7 @@
                                     <div>
                                     <!--  one item   -->
                                       <div class="media">
-                                        <img style="height: 90px;width: 90px;" src="../user/image/product/{{$products->image}}" alt="" class="pull-left">
+                                        <img style="height: 90px;width: 90px;" src="{{asset('../admin/image/product/'.$products->image)}}" alt="" class="pull-left">
                                         <div class="media-body">
                                           <p class="font-large">{{$products->product_name}}</p>
                                           <span class="color-gray your-order-info" style="margin-top: 1px;">Giá:{{$value->product_price}}đ</span>

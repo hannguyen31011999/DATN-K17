@@ -91,7 +91,6 @@
     $(document).on('change', '.custom-select',function(e){
             var id = $(this).attr('id');
             var selected = $(this).find(":selected").val();
-            alert(selected);
             $.ajax({
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

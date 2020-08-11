@@ -44,11 +44,12 @@ class newscontroller extends Controller
     {
         
         $request->validate([
-            'title' => 'required|unique:news',
+            'title' => 'required|unique:news|max:254',
             'content' => 'required',
             'image'=>'image'
         ],[
             'title.required' => 'Chưa nhập tiêu đề',
+            'title.max'=>'Tiêu đề quá dài',
             'content.required' => 'Chưa nhập nội dung',
             'title.unique'=>'Tiêu đề này đã tồn tại',
             'image.image'=>'không đúng định dạng'
@@ -109,11 +110,12 @@ class newscontroller extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|max:254',
             'content' => 'required',
             'image'=>'image'
         ],[
             'title.required' => 'Chưa nhập tiêu đề',
+            'title.max'=>'Tiêu đề quá dài',
             'content.required' => 'Chưa nhập nội dung',
             'image.image'=>'không đúng định dạng'
         ]);

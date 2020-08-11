@@ -51,6 +51,13 @@ if (! function_exists('thousandSeperator')) {
 		}
 		else
 		{
+			if($thounsand-(int)$thounsand!=0)
+			{
+				$songuyen = (int)($thounsand)+1;
+				$sodu = $thounsand-(int)($thounsand);
+				$sodu *=10;
+				return strval($songuyen)."."."000";
+			}
 			return strval($thounsand)."."."000";
 		}
 	}

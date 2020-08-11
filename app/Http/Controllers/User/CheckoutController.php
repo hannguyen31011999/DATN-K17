@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Model\User;
 use App\Model\Order;
 use App\Model\OrderDetail;
+use App\Model\Member;
 use Carbon\Carbon;
 use App\ShoppingCart;
 use Session;
@@ -16,8 +17,14 @@ use Mail;
 class CheckoutController extends Controller
 {
     // View shopping-cart
-    public function index()
+    public function index(Request $request)
     {
+        $request->session()->put('urlAction',$request->url());
+        if(Auth::check())
+        {
+            $discount = Member::where('user_id',Auth::User()->id)->pluck('point');
+            return view('user.dathang.shoppingcart',compact('discount'));
+        }
         return view('user.dathang.shoppingcart');
     }
 
@@ -100,10 +107,12 @@ class CheckoutController extends Controller
             }
         }
         else{
+            $request->session()->put('urlAction',$request->url());
             if(Auth::check())
             {
+                $discount = Member::where('user_id',Auth::User()->id)->pluck('point');
                 $user = User::find(Auth::User()->id);
-                return view('user.dathang.checkout',compact('user'));
+                return view('user.dathang.checkout',compact('user','discount'));
             }
             return view('user.dathang.checkout');
         }
@@ -168,11 +177,6 @@ class CheckoutController extends Controller
                         'address.max'=>'Địa chỉ quá dài'
                     ]
                 );
-                $data = array('email'=>$request->email,'cart'=>Session('cart')->products,'date'=>Carbon::now('Asia/Ho_Chi_Minh'),'total'=>Session('cart')->totalPrice);
-                Mail::send('user.dathang.template.mail_purchase',$data,
-                    function($messenger) use ($data){
-                        $messenger->to($data["email"],'Hệ thống')->subject('[Alley Baker] Đơn hàng của bạn?');
-                });
                 $array = Order::create([
                     'customer_id'=>null,
                     'payment'=>$request->payment,
@@ -184,6 +188,11 @@ class CheckoutController extends Controller
                     'email'=>$request->email,
                 ]);
                 $order = Order::find($array->id);
+                $data = array('email'=>$request->email,'cart'=>Session('cart')->products,'date'=>Carbon::now('Asia/Ho_Chi_Minh'),'total'=>Session('cart')->totalPrice,'address'=>$request->address,'phone'=>$request->phone,'name'=>$request->name,'mahoadon'=>$array->id);
+                Mail::send('user.dathang.template.mail_purchase',$data,
+                    function($messenger) use ($data){
+                        $messenger->to($data["email"],'Hệ thống')->subject('[Alley Baker] Đơn hàng của bạn?');
+                });
             }
         }
         if($request->payment==1&&$request->order_desc!=null){

@@ -24,8 +24,8 @@ class FormLogin extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'required|email',
-            'password'=>'required',
+            'email'=>'required|email|max:124',
+            'password'=>'required|max:124',
         ];
     }
 
@@ -34,7 +34,9 @@ class FormLogin extends FormRequest
         return [
             'email.required'=>'Vui lòng nhập email',
             'email.email'=>'Không đúng định dạng email',
+            'email.max'=>'Email quá dài',
             'password.required'=>'Vui lòng nhập password',
+            'password.max'=>'Mật khẩu quá dài'
         ];
     }
 }

@@ -526,7 +526,7 @@
 								@endforeach
 							</ul>
 						</li>
-						<li> <a class="button" style="text-decoration: none;vertical-align:middle"> <span>Giới thiệu</span></a></li>
+						<li> <a class="button" href="{{url('gioi-thieu')}}" style="text-decoration: none;vertical-align:middle"> <span>Giới thiệu</span></a></li>
 						<li> <a class="button" href="{{url('/tin-tuc')}}" style="text-decoration: none;vertical-align:middle"> <span>Tin tức</span></a></li>
 						<li>
 							<div class="pull-right beta-components space-left ov">

@@ -33,6 +33,10 @@ class RegisterController extends Controller
                 'role'=>1,
                 'status'=>1
             ]);
+            $user->Members()->create([
+                'user_id'=>$user->id,
+                'point'=>0
+            ]);
             // Nếu tạo thành công thì login
             if(Auth::attempt(['email'=>$validated['email'],'password'=>$validated['password']]))
             {

@@ -13,7 +13,8 @@
 				@if($user->role==1)
 				<!--  one item	 -->
 					<span style="font-weight: bold;font-size: 17px; margin-left: 2.5rem; ">{{$user->name}}&nbsp;&nbsp;&nbsp;({{$user->phone}})</span>
-					<span style="font-size: 17px; margin-left: 1rem;">{{$user->address}}</span>
+					<br>
+					<span style="font-size: 17px; margin-left: 2.5rem;">{{$user->address}}</span>
 					<br>
 					<span style="margin-left: 2.5rem; color: #929292;font-size: 15px;">
 						Mặc định
@@ -56,11 +57,18 @@
 				<!-- end one item -->
 				<div class="clearfix"></div>
 			</div>
-			<div class="your-order-item">
-				<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
-				<div class="pull-right"><h5 class="color-black">{{thousandSeperator(Session::get('cart')->totalPrice)}}đ</h5></div>
-				<div class="clearfix"></div>
-			</div>
+	      	@if($discount[0]>=200)
+		      	<div class="your-order-item">
+					<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
+					<div class="pull-right"><h5 class="color-black">{{thousandSeperator(Session::get('cart')->totalPrice)}}đ</h5></div>
+				</div>
+	      	@else
+		      	<div class="your-order-item">
+					<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
+					<div class="pull-right"><h5 class="color-black">{{thousandSeperator(Session::get('cart')->totalPrice+50000)}}đ</h5></div>
+				</div>
+	      	@endif
+			
 		</div>
 		<div class="your-order-head"><h5>Hình thức thanh toán</h5></div>
 		

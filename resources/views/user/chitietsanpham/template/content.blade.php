@@ -24,10 +24,17 @@
                         <p>Nguyên liệu:{{$product->origin}}</p>
                         <p>Xuất sứ:{{$product->raw_material}}</p>
                     </div>
-                    <div class="space20">&nbsp;</div>
-                    <div class="single-item-options">
-
-                        <div class="clearfix"></div>
+                @endif
+                <div class="space40">&nbsp;</div>
+                <div class="woocommerce-tabs">
+                    <ul class="tabs">
+                        <li><a href="#tab-description">Mô tả</a></li>
+                        <li><a href="#tab-comment">Bình luận ({{$count}})</a></li>
+                    </ul>
+                    <div class="panel" id="tab-description">
+                        @if(isset($product))
+                            {!! $product->description !!}
+                        @endif
                     </div>
                 </div>
             </div>

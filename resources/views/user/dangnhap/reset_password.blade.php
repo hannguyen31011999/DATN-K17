@@ -21,7 +21,6 @@
 	Lấy lại mật khẩu
 @endsection
 @section('content')
-<div id="form-login">
 <div class="container">
 		<div class="row">
 			<div class="col-lg-4"></div>
@@ -58,7 +57,6 @@
 			</div>
 			<div class="col-lg-4"></div>
 		</div>
-</div>
 </div>
 @endsection
 

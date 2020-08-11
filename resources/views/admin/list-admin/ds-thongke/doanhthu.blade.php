@@ -4,7 +4,25 @@
 @endsection
 @section('main-conten')
 <br></br>
-<div id="container" data-order="{{ $total }}">
+<div class="card">
+<div class="card-body">
+<form action="" method="POST" id="submit-doanhthu">
+    @csrf
+    <select class="custom-select" id="doanh-thu" name="list-order" style="width:100px;"></select>
+    <select class="custom-select" id="doanh-thu-month" name="list-order" style="width:100px;">
+        <option>
+            Tháng
+        </option>
+    </select>
+    <button class="btn btn-primary waves-effect waves-light">Tìm kiếm</button>
+</form>
+</select>
+
+<br></br>
+<div id="chart-content">
+    @include('admin.list-admin.ds-thongke.content_chart')
+</div>
+</div>
 </div>
 @endsection
 @section('script')
@@ -14,55 +32,115 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.jss"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-        var order = $('#container').data('order');
+function getData(order,nam)
+{
         var listOfValue = [];
         var listOfMonth = [];
-        var year = new Date();
         order.forEach(function(element){
             listOfMonth.push(element.month);
             listOfValue.push(parseInt(element.total));
         });
-        console.log(listOfValue);
-        console.log(listOfMonth);
-Highcharts.chart('container',{
-    chart: {
-        type: 'column'
-      },
-    title: {
-        text: 'Tổng doanh thu của năm '+ year.getFullYear(),
-      },
-    accessibility: {
-        announceNewData: {
-          enabled: true
-        }
-      },
-    xAxis: {
-        title: {
-            text: 'Tháng'
-        },
-        categories: listOfMonth,
-    },
-    yAxis: {
-        title: {
-          text: 'Đơn vị triệu'
-        }
-      },
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">Tháng {point.x}</span><br>',
-        pointFormat: '<span>{point.y}VNĐ</b><br/>',
-    },
-    series: [
+        Highcharts.chart('container',{
+            chart: {
+                type: 'column'
+              },
+            title: {
+                text: 'Tổng doanh thu của năm '+ nam,
+              },
+            accessibility: {
+                announceNewData: {
+                  enabled: true
+                }
+              },
+            xAxis: {
+                title: {
+                    text: 'Tháng'
+                },
+                categories: listOfMonth,
+            },
+            yAxis: {
+                title: {
+                  text: 'Đơn vị VNĐ'
+                }
+              },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">Tháng {point.x}</span><br>',
+                pointFormat: '<span>{point.y}VNĐ</b><br/>',
+            },
+            series: [
+                {
+                    type: 'column',
+                    colorByPoint: true,
+                    data: listOfValue,
+                    showInLegend: false
+                }
+            ]
+        });
+}
+
+function getDatabyMonth(order,nam,thang)
+{
+        var listOfValue = [];
+        var listOfMonth = [];
+        order.forEach(function(element){
+            listOfMonth.push(element.day);
+            listOfValue.push(parseInt(element.total));
+        });
+        Highcharts.chart('container',{
+            chart: {
+                type: 'column'
+              },
+            title: {
+                text: 'Tổng doanh thu của tháng '+ thang + " năm "+nam,
+              },
+            accessibility: {
+                announceNewData: {
+                  enabled: true
+                }
+              },
+            xAxis: {
+                title: {
+                    text: 'Ngày'
+                },
+                categories: listOfMonth,
+            },
+            yAxis: {
+                title: {
+                  text: 'Đơn vị VNĐ'
+                }
+              },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">Ngày {point.x}</span><br>',
+                pointFormat: '<span>{point.y}VNĐ</b><br/>',
+            },
+            series: [
+                {
+                    type: 'column',
+                    colorByPoint: true,
+                    data: listOfValue,
+                    showInLegend: false
+                }
+            ]
+    });
+}
+$(document).ready(function(){
+    var year = new Date();
+    var n = year.getFullYear();
+    var order = $('#container').data('order');
+    for (var i = 2015; i <= n; i++) {
+        if(i==n)
         {
-            type: 'column',
-            colorByPoint: true,
-            data: listOfValue,
-            showInLegend: false
+            $('#doanh-thu').append($('<option />').val(i).attr("selected","selected").html(i));
+            break;
         }
-    ]
-});
-        
-        $('#plain').click(function () {
+        $('#doanh-thu').append($('<option />').val(i).html(i));
+    }
+
+    for (var i = 1; i <= 12; i++) {
+        $('#doanh-thu-month').append($('<option />').val(i).html(i));
+    }
+    getData(order,n);
+    $('#plain').click(function () {
             chart.update({
                 chart: {
                     inverted: false,
@@ -97,6 +175,50 @@ Highcharts.chart('container',{
                 }
             });
         });
+
+        $('#submit-doanhthu').submit(function(e) {
+            var nam = $('#doanh-thu').val();
+            var thang = $('#doanh-thu-month').val();
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: '/admin/thong-ke/doanh-thu',
+                data: {
+                  "nam":nam,
+                  "thang":thang
+                },
+                success: function(response) {
+                    getDatabyMonth(response,nam,thang);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                }
+            });
+            e.preventDefault();
+        });
+
+        $(document).on('change', '#doanh-thu',function(e){
+            var nam = $(this).find(":selected").val();
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'get',
+                url: '/admin/thong-ke/doanh-thu',
+                data: {
+                  "nam":nam
+                },
+                success: function(response) {
+                    getData(response,nam);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                }
+            });
+            e.preventDefault();
+        });   
     });
+    
+
 </script>
 @endsection

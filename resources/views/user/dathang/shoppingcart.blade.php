@@ -63,7 +63,15 @@
 		</form>
 	    <div class="cart-totals pull-right">
 	      <div class="cart-totals-row"><h5 class="cart-total-title" style="font-weight: bold;">Tổng Tiền</h5></div>
-	      <div class="cart-totals-row"><span>Shipping:</span> <span style="color: black;">Free Shipping</span></div>
+	      @if(isset($discount))
+	      	@if($discount[0]>=200)
+	      		<div class="cart-totals-row"><span>Phí ship:</span> <span style="color: black;">Miễn phí</span></div>
+	      	@else
+	      		<div class="cart-totals-row"><span>Phí ship:</span> <span style="color: black;">50.000đ</span></div>
+	      	@endif
+	      @else
+	      	<div class="cart-totals-row"><span>Phí ship:</span> <span style="color: black;">50.000đ</span></div>
+	      @endif
 	      <div class="cart-totals-row"><span>Tổng đơn hàng:</span><span id="total" style="color: black;"></span></div>
 	      <div class="cart-totals-row"><a href="{{url('checkout')}}" class="beta-btn primary" style="margin-left: 20px;">Đặt hàng<i class="fa fa-chevron-right"></i></a>
 	    	</div>
@@ -79,7 +87,14 @@
 @section('js')
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script>
-	$('#total').text($('#total_sub').val()+"đ");
+	if($('#total_sub').val()!="")
+	{
+		$('#total').text($('#total_sub').val()+"đ");
+	}
+	else
+	{
+		$('#total').text('0đ');
+	}
 	$(document).ready(function(){
 		// Update số lượng
 		$(document).on('click', '.number-next',function(event){

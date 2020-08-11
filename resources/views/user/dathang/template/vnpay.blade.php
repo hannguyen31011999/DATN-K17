@@ -21,8 +21,14 @@
                     </div>
                     <div class="form-group">
                         <label for="amount">Số tiền</label>
-                        @if(Session::has('cart'))
-                            <input class="form-control" id="amount" name="amount" type="number" value="{{Session::get('cart')->totalPrice}}"/>
+                        @if(Session::has('cart')&&isset($discount[0]))
+                            @if($discount[0]>=200)
+                                <input class="form-control" id="amount" name="amount" type="number" value="{{Session::get('cart')->totalPrice}}"/>
+                            @else
+                                <input class="form-control" id="amount" name="amount" type="number" value="{{Session::get('cart')->totalPrice+50000}}"/>
+                            @endif
+                        @else
+                            <input class="form-control" id="amount" name="amount" type="number" value="{{Session::get('cart')->totalPrice+50000}}"/>
                         @endif
                     </div>
                     <div class="form-group">

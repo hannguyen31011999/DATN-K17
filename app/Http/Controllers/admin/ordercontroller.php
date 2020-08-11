@@ -89,25 +89,13 @@ class ordercontroller extends Controller
 		if($request->ajax()){
 			try{
                 $order = Order::find($request->id);
+                if($request->selected==2&&$order->customer_id!=null)
+                {
+                    $id = User::find($order->customer_id)->Members->id;
+                    $point = $order->OrderDetails()->count() + User::find($order->customer_id)->Members->point;
+                    Member::find($id)->update(['point'=>$point]);
+                }
                 $order->update(['status'=>$request->selected]);
-                // if($request->selected==2)
-                // {
-                //     $member = Member::where('user_id',$order->customer_id)->get();
-                //     if(empty($member)){
-                //         Member::create([
-                //             'user_id'=>$order->customer_id,
-                //             'point'=>1,
-                //             'discount'=>0
-                //         ]);
-                //         return "Cập nhật trạng thái thành công";
-                //     }
-                //     else
-                //     {
-                //         $user = User::find($order->customer_id);
-                //         $user->Members()->update(['point'=>$user->Members()->point++]);
-                //         return "Cập nhật trạng thái thành công";
-                //     }
-                // }
                 return "Cập nhật trạng thái thành công";
 			}catch(Exception $e){
 				return response()->json(['data'=>'Cập nhật thông tin thất bại'],500);

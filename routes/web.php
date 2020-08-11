@@ -1,6 +1,7 @@
 <?php
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Middleware\CheckLogin;
+use App\Http\Middleware\checkAdmin;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 /*
@@ -27,19 +28,19 @@ Route::get('/cart','User\CartController@addCart');
 Route::post('/cart','User\CartController@delete');
 
 // Trang shopping-cart
-Route::get('/shopping-cart','User\CheckoutController@index');
+Route::get('/shopping-cart','User\CheckoutController@index')->middleware(checkAdmin::class);
 
 // Cập nhật số lượng shopping-cart
-Route::post('/shopping-cart','User\CheckoutController@update');
+Route::post('/shopping-cart','User\CheckoutController@update')->middleware(checkAdmin::class);
 
 // Xóa sản phẩm ở shopping-cart
-Route::delete('/shopping-cart','User\CheckoutController@delete');
+Route::delete('/shopping-cart','User\CheckoutController@delete')->middleware(checkAdmin::class);
 
 // Trang checkout
-Route::get('/checkout','User\CheckoutController@viewCheckout');
+Route::get('/checkout','User\CheckoutController@viewCheckout')->middleware(checkAdmin::class);
 
 // Xử lí đơn hàng
-Route::post('/checkout','User\CheckoutController@createCheckout');
+Route::post('/checkout','User\CheckoutController@createCheckout')->middleware(checkAdmin::class);
 
 // Trang loại sản phẩm 
 Route::get('/chi-tiet-{name}.{id}','User\HomeController@typeProduct');
@@ -62,7 +63,12 @@ Route::post('/seach','User\HomeController@seach');
 // Trang tin tức
 Route::get('/tin-tuc','User\NewsController@index');
 
+// Trang chi tiết bài viết
 Route::get('/tin-tuc/{url}/{id}','User\NewsController@detailPost');
+
+Route::get('/gioi-thieu',function(){
+	return view('user.baiviet.introduce');
+});
 
 Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 	// Đăng kí
@@ -221,7 +227,7 @@ Route::group(['prefix'=>'admin/list-comment','middleware'=>'CheckLogin'],functio
 Route::group(['prefix'=>'admin/list-member','middleware'=>'CheckLogin'],function(){
     Route::name('list-admin.ds-member.')->group (function(){
 		Route::get('/', 'admin\membercontroller@index')->name('list');
-        Route::post('update/{id}', 'admin\membercontroller@update')->name('update');
+        Route::post('/', 'admin\membercontroller@update')->name('update');
     });  
 });
 Route::group(['prefix'=>'admin/list-order','middleware'=>'CheckLogin'],function(){
@@ -235,6 +241,10 @@ Route::group(['prefix'=>'admin/list-order','middleware'=>'CheckLogin'],function(
 Route::group(['prefix'=>'admin/thong-ke','middleware'=>'CheckLogin'],function(){
     Route::name('thong-ke.')->group (function(){
     	Route::get('/doanh-thu','admin\ThongKeController@sumPriceByYear');
+    	Route::post('/doanh-thu','admin\ThongKeController@seachPriceByYear');
+    	Route::get('/don-hang','admin\ThongKeController@sumOrderByYear');
+    	Route::post('/don-hang','admin\ThongKeController@seachOrderByYear');
+    	Route::get('/nguoi-dung','admin\ThongKeController@sumUserByYear');
     });  
 });
 

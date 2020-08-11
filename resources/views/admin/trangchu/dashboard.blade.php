@@ -9,7 +9,6 @@
     .text-truncate {
         margin-left: -100px;
     }
-
     .scrollbar {
         margin-left: 22px;
         float: unset;
@@ -18,34 +17,9 @@
         overflow-y: scroll;
         margin-bottom: 25px;
     }
-
     .force-overflow {
         min-height: 450px;
     }
-
-    #my-style::-webkit-scrollbar {
-        width: 1px;
-        background-color: #edf0f0;
-    }
-
-    #my-style::-webkit-scrollbar-thumb {
-        background-color: #0ae;
-        background-image: -webkit-gradient(linear, 0 0, 0 100%,
-                color-stop(.5, rgba(255, 255, 255, .2)),
-                color-stop(.5, transparent), to(transparent));
-    }
-
-    #my-style::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        border-radius: 50px;
-        background-color: blue;
-    }
-
-    #my-style::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        background-color: #F5F5F5;
-    }
-
     .ctext-wrap {
         -moz-border-radius: 3px;
         -webkit-border-radius: 3px;
