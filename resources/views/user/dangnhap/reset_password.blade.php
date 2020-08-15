@@ -9,10 +9,7 @@
 		padding: 50px;
 		margin-top: 10%;
 		margin-bottom: 10%;
-		background: white;
-	}
-	#form-login{
-		background-color: rgb(212, 218, 222);
+		background-color: rgb(212, 218, 222);	
 	}
 </style>
 @endsection

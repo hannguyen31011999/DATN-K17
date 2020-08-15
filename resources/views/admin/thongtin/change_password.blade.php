@@ -85,7 +85,6 @@
                             <form action="" data-url="{{url('account/password/change')}}" method="post" id="change-password">
                                 <input type="hidden" id="_token" value="{{ csrf_token() }}">
                                 <div class="row">
-
                                     <div class="col-md-2">
                                     </div>
 
@@ -168,7 +167,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: url,
+                url: '/admin/password/change',
                 data: {
                     "password": password,
                     "new_password": new_password,
@@ -208,11 +207,11 @@
                             $('#msg1').html(data.errors.password);
                             $('#msg1').css('display', 'block');
 
-                            $('#msg2').html(data.errors.password);
+                            $('#msg2').html(data.errors.new_password);
                             $('#msg2').css('display', 'block');
                         } else if (Array.isArray(data.errors.new_password) && Array.isArray(data.errors.ent_password)) {
 
-                            $('#msg2').html(data.errors.password);
+                            $('#msg2').html(data.errors.new_password);
                             $('#msg2').css('display', 'block');
 
                             $('#msg3').html(data.errors.ent_password);

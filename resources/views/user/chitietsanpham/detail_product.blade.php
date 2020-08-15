@@ -30,14 +30,16 @@
 @section('js')
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('user/ajax/trangchu.js')}}"></script>
 <script type="text/javascript">
     var count = $('#count').val();
     if(count>0)
     {
         $('#count_span').text("("+count+")");
     }
-    $('#count_span').text("(0)");
+    else
+    {
+        $('#count_span').text("(0)");
+    }
     $(document).ready(function(){
         $(document).on('submit', '#form-comment',function(event){
             var comment = $('#comment').val();
@@ -80,7 +82,7 @@
                     headers: {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    type: 'delete',
+                    type: 'post',
                     url: url,
                     data: {
                       "commentId":commentId
@@ -96,6 +98,86 @@
             }
             event.preventDefault();
         });
+
+
+        // Update số lượng
+        $(document).on('click', '.number-next',function(event){
+            event.preventDefault();
+            var number = $('#input-qty').val();
+            var qty = 1 + Number(number);
+            $('#input-qty').val(qty);
+        });
+
+        $(document).on('change','.number-input',function(event){
+            event.preventDefault();
+            var number = $('#input-qty').val();
+        });
+
+        $(document).on('click', '.number-pre',function(event){
+            event.preventDefault();
+            var number = $('#input-qty').val();
+            var qty = number - 1;
+            if(qty<1)
+            {
+                alert('Số lượng không âm');
+                $('#input-qty').val(1);
+            }
+        });
+
+        $(document).on('click', '.add-to-cart',function(event){
+            var id = $(this).attr('id');
+            var qty = $('#input-qty').val();
+            var url = $(this).attr('data-url');
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: {
+                  "id":id,
+                  "qty":qty
+                },
+                success:function(response) {
+                    console.log(response);
+                    $('.cart-body').empty().html(response);
+                    var count = $('#count').val();
+                    $('#count_span').text("("+count+")");
+                    alertify.success('Thêm sản phẩm thành công');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+            event.preventDefault();
+        });
+
+        $(document).on('click', '.deleteCart',function(event){
+        event.preventDefault();
+        var bool = confirm('Bạn có muốn xóa sản phẩm này không?');
+        var rowId = $(this).attr('id');
+        if(bool)
+        {
+            $.ajax({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: '/cart',
+            data: {
+              "rowId":rowId,
+            },
+            success: function(response) {
+                $('.cart-body').empty().html(response);
+                var count = $('#count').val();
+                $('#count_span').text("("+count+")");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              //xử lý lỗi tại đây
+            }
+          });
+        }
+    });
     });
 </script>
 @endsection

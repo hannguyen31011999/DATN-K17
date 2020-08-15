@@ -124,9 +124,9 @@
                   </div>
                   <div class="col-md-4">
                     @if(empty($user->birthdate))
-                    <input type="date" id="birthday" class="form-control" value="" name="birthdate" style="width: 80%;">
+                    <input type="date" id="birthday" class="form-control" value="" name="birthdate" style="width: 100%;">
                     @else
-                    <input type="date" id="birthday" class="form-control" value="{{$user->birthdate->format('Y-m-d')}}" name="birthdate" style="width: 80%;">
+                    <input type="date" id="birthday" class="form-control" value="{{$user->birthdate->format('Y-m-d')}}" name="birthdate" style="width: 100%;">
                     @endif
                   </div>
                 </div>
@@ -137,7 +137,7 @@
                   </div>
                   <div class="col-md-4">
                     <div class="form__group field">
-                      <input type="input" class="form__field" value="{{$user->address}}" name="address" id='address' />
+                      <input type="input" class="form__field" value="{{$user->address}}" name="address" id='address' style="width: 250px;" />
                     </div>
                   </div>
                 </div>

@@ -13,7 +13,7 @@
             Tháng
         </option>
     </select>
-    <button>Tìm kiếm</button>
+    <button class="btn btn-primary waves-effect waves-light">Tìm kiếm</button>
 </form>
 <br></br>
 <div id="chart-content">

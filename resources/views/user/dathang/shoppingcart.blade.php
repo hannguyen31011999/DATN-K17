@@ -28,10 +28,6 @@
 	      <tfoot>
 	        <tr>
 	          <td colspan="8" class="actions">
-	            <div class="coupon">
-	              <input type="text" name="coupon_code" value="" placeholder="Mã giảm giá"> 
-	              <button type="submit" class="beta-btn primary" name="apply_coupon">Áp Dụng<i class="fa fa-chevron-right"></i></button>
-	            </div>
 	          </td>
 	        </tr>
 	      </tfoot>
@@ -63,7 +59,7 @@
 		</form>
 	    <div class="cart-totals pull-right">
 	      <div class="cart-totals-row"><h5 class="cart-total-title" style="font-weight: bold;">Tổng Tiền</h5></div>
-	      @if(isset($discount))
+	      @if(Auth::check())
 	      	@if($discount[0]>=200)
 	      		<div class="cart-totals-row"><span>Phí ship:</span> <span style="color: black;">Miễn phí</span></div>
 	      	@else
@@ -158,8 +154,8 @@
 	        	headers: {
 	              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 	            },
-	            url: '/shopping-cart',
-	            type: "delete",
+	            url: '/shopping-cart/delete',
+	            type: "post",
 	            data: {
 	            	"rowId":rowId
 	            },

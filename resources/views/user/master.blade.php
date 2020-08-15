@@ -19,6 +19,9 @@
 	<link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/huong-style.css')}}">
 	@yield('css')
 	<style type="text/css">
+		ul{
+			list-style: none;
+		}
 		.header-body {
 			padding: 14px 0 0px;
 			background: #0277b8;
@@ -438,7 +441,6 @@
 		.h4 {
 			color: #0277b8;
 			font-family: inherit;
-			text-shadow: 1px 0px 1px #ccc, 0px 1px 1px #eee, 2px 1px 1px #ccc, 1px 2px 1px #eee, 3px 2px 1px #ccc, 2px 3px 1px #eee, 4px 3px 1px #ccc, 3px 4px 1px #eee, 5px 4px 1px #ccc, 4px 5px 1px #eee, 6px 5px 1px #ccc, 5px 6px 1px #eee, 7px 6px 1px #ccc;
 		}
 
 		.single-item-title {
@@ -447,7 +449,7 @@
 		}
 
 		.single-item-title {
-			font-size: 18px;
+			font-size: 17px;
 			margin-bottom: 7px;
 			text-shadow: #0277b8 3px 2px 5px;
 		}
@@ -463,12 +465,11 @@
 		.cart .beta-select {
 			position: static;
 			font-size: initial;
-			text-shadow: 0 0 10px #000;
-			font-family: Georgia, serif;
+			text-shadow: 1 1 2px #000;
 			font-size: 17px;
 			letter-spacing: -0.8px;
 			word-spacing: 2.8px;
-			color: #ffffff;
+			color: white;
 			font-weight: 700;
 			text-decoration: none solid rgb(68, 68, 68);
 			font-style: normal;
@@ -572,10 +573,12 @@
 				</div>
 				<div class="col-sm-2">
 					<div class="widget">
-						<h4 class="widget-title">Information</h4>
+						<h4 class="widget-title">Những chính sách</h4>
 						<div>
 							<ul>
-								<li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i>Web Design</a></li>
+								<li><a href=""><i class="fa fa-chevron-right"></i>Chính sách và quy định chung</a></li>
+								<li><a href=""><i class="fa fa-chevron-right"></i>Chính sách giao dịch, thanh toán</a></li>
+								<li><a href=""><i class="fa fa-chevron-right"></i>Chính sách đổi trả</a></li>
 							</ul>
 						</div>
 					</div>
@@ -583,12 +586,11 @@
 				<div class="col-sm-4">
 					<div class="col-sm-10">
 						<div class="widget">
-							<h4 class="widget-title">Contact Us</h4>
+							<h4 class="widget-title">Liên hệ với chúng tôi</h4>
 							<div>
 								<div class="contact-info">
 									<i class="fa fa-map-marker"></i>
-									<p>30 South Park Avenue San Francisco, CA 94108 Phone: +78 123 456 78</p>
-									<p>Nemo enim ipsam voluptatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione.</p>
+									<p>53 đường 144,khu phố 3,phường Tân Phú,Quận 9,TPHCM</p>
 								</div>
 							</div>
 						</div>
@@ -596,10 +598,10 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="widget">
-						<h4 class="widget-title">Newsletter Subscribe</h4>
+						<h4 class="widget-title">Góp ý cho chúng tôi</h4>
 						<form action="#" method="post">
-							<input type="email" name="your_email">
-							<button class="pull-right" type="submit">Subscribe <i class="fa fa-chevron-right"></i></button>
+							<input type="email" name="your_email" placeholder="Email của mail">
+							<button class="pull-right" type="submit">Gửi <i class="fa fa-chevron-right"></i></button>
 						</form>
 					</div>
 				</div>

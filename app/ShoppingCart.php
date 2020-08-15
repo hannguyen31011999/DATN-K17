@@ -41,11 +41,25 @@ class ShoppingCart{
 		$this->products[$id]["qty"] * $this->products[$id]["promotion_price"];
 
 		$this->totalQuantity -= $this->products[$id]["qty"];
-
 		$newProduct = ['name'=>$this->products[$id]["name"],'unit_price'=>$this->products[$id]["unit_price"],'promotion_price'=>$this->products[$id]["promotion_price"],'qty'=>$soluong,'image'=>$this->products[$id]["image"]];
 		if(array_key_exists($id,$this->products))
 		{
 			$this->products[$id] = $newProduct;
+		}
+		$this->totalQuantity += $soluong;
+		$this->totalPrice += empty($this->products[$id]["promotion_price"]) ? 
+		$soluong * $this->products[$id]["unit_price"] : 
+		$soluong * $this->products[$id]["promotion_price"];
+	}
+
+	public function updateAddCart($id,$soluong)
+	{
+		$this->totalQuantity -= 1;
+		$this->totalPrice -= empty($this->products[$id]["promotion_price"]) ? $this->products[$id]["unit_price"] : $this->products[$id]["promotion_price"];
+		$newProduct = ['name'=>$this->products[$id]["name"],'unit_price'=>$this->products[$id]["unit_price"],'promotion_price'=>$this->products[$id]["promotion_price"],'qty'=>$soluong,'image'=>$this->products[$id]["image"]];
+		if(array_key_exists($id,$this->products))
+		{
+			$this->products[$id]['qty'] += $newProduct['qty']-1;
 		}
 		$this->totalQuantity += $soluong;
 		$this->totalPrice += empty($this->products[$id]["promotion_price"]) ? 

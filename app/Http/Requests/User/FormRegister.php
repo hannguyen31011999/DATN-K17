@@ -27,7 +27,7 @@ class FormRegister extends FormRequest
             'fullname'=>'required|regex:[^[a-zA-Z]]|max:124',
             'email'=>'required|email|unique:user,email|max:124',
             'password'=>'required|min:6|max:124',
-            'phone'=>'required|numeric|regex:/(0)[0-9]{9}/',
+            'phone'=>'required|numeric|regex:/(0)[0-9]{9}/|max:10',
         ];
     }
 
@@ -42,11 +42,12 @@ class FormRegister extends FormRequest
             'email.unique'=>'Email tồn tại',
             'email.max'=>'Email quá dài',
             'password.required'=>'Vui lòng nhập mật khẩu',
-            'password.regex'=>'Mật khẩu phải có 6 kí tự',
+            'password.min'=>'Mật khẩu phải có 6 kí tự',
             'password.max'=>'Mật khẩu quá dài',
             'phone.required'=>'Vui lòng nhập số điện thoại',
             'phone.regex'=>'Số điện thoại sai định dạng',
             'phone.numeric'=>'Số điện thoại phải là số',
+            'phone.max'=>'Số điện thoại 10 số'
         ];
     }
 }

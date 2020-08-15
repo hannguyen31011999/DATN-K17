@@ -13,6 +13,11 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+<style type="text/css">
+    .paginate{
+        
+    }
+</style>
 
 @endsection
 
@@ -41,7 +46,14 @@
 <script src="{{asset('user/ajax/trangchu.js')}}"></script>
 <script>
     var count = $('#count').val();
-    $('#count_span').text("("+count+")");
+    if(count>0)
+    {
+        $('#count_span').text("("+count+")");
+    }
+    else
+    {
+        $('#count_span').text("(0)");
+    }
     // Ajax
     $(document).ready(function()
     {

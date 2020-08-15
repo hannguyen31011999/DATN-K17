@@ -7,13 +7,9 @@
 		border: 0.3px solid white;
 		border-radius: 12px;
 		padding: 50px;
-		background: white;
+		background-color: rgb(212, 218, 222);
 		margin-top: 10%;
 		margin-bottom: 10%;
-	}
-
-	#form-login {
-		background-color: rgb(212, 218, 222);
 	}
 	#formFooter {
 	  padding: 10px;

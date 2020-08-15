@@ -24,13 +24,15 @@ $config = array();
 
 $config['loadRoutes'] = true;
 
-$config['authentication'] = '\CKSource\CKFinderBridge\CKFinderMiddleware';
+$config['authentication'] = function () {
+    return true;
+};
 
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = 'sanvu88';
-$config['licenseKey']  = 'licenseKey';
+$config['licenseName'] = 'localhost';
+$config['licenseKey']  = '1GZGMGBWP7PH6QP8PVG64Z656USJ3';
 
 /*============================ CKFinder Internal Directory ============================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir

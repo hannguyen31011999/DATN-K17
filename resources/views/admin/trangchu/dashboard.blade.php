@@ -98,11 +98,12 @@
                 </div>
                 <div class="col-6">
                     <div class="text-right">
-                        <h3 class="my-0 font-weight-bold" style="margin-left: -75px">
+                        <h3 class="my-0 font-weight-bold" style="margin-left: -60px">
                             @foreach( $oddetail as $dxs)
                             {{thousandSeperator($dxs->tong)}}<i>VNĐ</i>
                             @endforeach</h3>
-                        <p class="mb-0 mt-1 text-truncate">Danh thu hiện tại tháng này</p>
+                        <br>
+                        <p class="mb-0 mt-1 text-truncate">Danh thu tháng hiện tại</p>
                     </div>
                 </div>
             </div>
@@ -176,15 +177,17 @@
                     <div class="chat-conversation">
                         <div class="scrollbar" id="my-style">
                             @foreach($odercxd as $dx)
+                            
                             <li class="list-group-item border-0 pt-2">
-                                <a href="{{route('list-admin.ds-order.list')}}">
+                                <a href="{{route('list-admin.ds-order.detail',['id'=>$dx->id])}}">
                                     <img style="width: 60px;margin-top: -10px;" src="{{asset('admin/image/background/doi-tra-hang.png')}}" />
                                     <a style="font-size: 30px" class=" title mb-4">{{thousandSeperator($dx->tong)}}<i>VNĐ</i> <br> </a>
                                     <?php $a = ($dx->created_at);
                                     $myDate = new DateTime($a); ?>
-                                    <a class="header-title mb-4">MÃ: {{$dx->id}} -NG: {{$myDate->format('d/m/yy - H:i')}}</a>
+                                    <a class="header-title mb-4">MÃ: {{$dx->id}} -NG:{{$dx->created_at}} </a>
                                 </a>
                             </li>
+                            
                             @endforeach
                         </div>
                     </div>
@@ -213,7 +216,7 @@
                                             <div>
                                                 <div class="chat-avatar">
                                                     <img style="width: 60%" src="{{asset('admin/image/background/1200.png')}}" alt="male">
-                                                    <!-- <i> {{$cm->created_at->format('d/m/yy - H:i')}}</i> -->
+                                                    
                                                 </div>
                                                 <div class="ctext-wrap" style="width: 280px">
                                                     @foreach($user as $u)
@@ -227,7 +230,7 @@
                                                         @endif
                                                         @endforeach
                                                         <h6>Nội dung : {{$cm->content}}</h6>
-                                                        <h5> {{$cm->updated_at->format('d/m/yy - H:i')}}</h5>
+                                                        <h5> {{$cm->updated_at}}</h5>
                                                 </div>
                                             </div>
                                         </li>
@@ -260,7 +263,7 @@
                                 <a style="border-top-right-radius: 22px;border-bottom-right-radius: 22px">
                                     {{$usn->email}}
                                     <br>
-                                    <!-- {{$usn->created_at->format('d/m/y - H:i')}} -->
+                                   
                                 </a>
                             </li>
                             @endforeach
@@ -305,7 +308,7 @@
                         <td>{{$us->email}}</td>
                         @endif
                         @endforeach
-                        <td>{{ $us->updated_at->format('d/m/20y - H:i') }}</td>
+                        <td>{{ $us->updated_at }}</td>
                         <td>
                             <a href="{{route('list-admin.ds-news.update', ['id'=>$ns->id])}}" class="text-primary font-20"><i class="fas fa-pencil-alt"></i> </a>
                             <hr>
@@ -360,7 +363,7 @@
                         <td>{{ $pr->unit }}</td>
                         <td>{{ $pr->raw_material }}</td>
                         <td>{{ $pr->origin }}</td>
-                        <td>{{ $pr->updated_at->format('d/m/20y - H:i') }}</td>
+                        <td>{{ $pr->updated_at }}</td>
                         <td>
                             <a href="{{route('list-admin.ds-product.update', ['id'=>$pr->id])}}" class="text-primary font-20"><i class="fa fa-wrench"></i> </a>
                             <hr>
@@ -407,30 +410,41 @@
     });
     console.log(listOfYear);
     console.log(listOfValue);
-    var chart = Highcharts.chart('container', {
-
-        title: {
-            text: 'Thông kê 7 ngày'
-        },
-
+    Highcharts.chart('container',{
+            chart: {
+                type: 'column'
+              },
             title: {
-                text: 'Đơn hàng theo ngày'
-            },
-
-            subtitle: {
-                text: ''
-            },
-
+                text: 'Đơn hàng theo 7 ngày gần nhất',
+              },
+            accessibility: {
+                announceNewData: {
+                  enabled: true
+                }
+              },
             xAxis: {
+                title: {
+                    text: 'Ngày'
+                },
                 categories: listOfYear,
             },
-
-            series: [{
-                type: 'column',
-                colorByPoint: true,
-                data: listOfValue,
-                showInLegend: false
-            }]
+            yAxis: {
+                title: {
+                  text: 'Đơn vị'
+                }
+              },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">Ngày {point.x}</span><br>',
+                pointFormat: '<span>{point.y} đơn hàng</b><br/>',
+            },
+            series: [
+                {
+                    type: 'column',
+                    colorByPoint: true,
+                    data: listOfValue,
+                    showInLegend: false
+                }
+            ]
         });
 
         $('#plain').click(function() {

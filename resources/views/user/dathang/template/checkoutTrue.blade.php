@@ -19,7 +19,6 @@
 					<span style="margin-left: 2.5rem; color: #929292;font-size: 15px;">
 						Mặc định
 					</span>
-					<span style="margin-left: 3.75rem;font-size: 15px;"><a href="" style="color: #05a;">Thay đổi</a></span>
 				<!-- end one item -->
 				<div class="clearfix"></div>
 				<br></br>
@@ -46,22 +45,29 @@
 						<div class="media-body">
 							<p class="font-large">{{$carts['name']}}</p>
 							@if(empty($carts['promotion_price']))
-								<span class="color-gray your-order-info">Đơn giá: {{$carts['unit_price']}}đ</span>
+								<p class="font-large">Đơn giá: {{$carts['unit_price']}}đ</p>
 							@else
-								<span class="color-gray your-order-info">Đơn giá: {{$carts['promotion_price']}}đ</span>
+								<p class="font-large">Đơn giá: {{$carts['promotion_price']}}đ</p>
 							@endif
-							<span class="color-gray your-order-info">Số lượng: {{$carts['qty']}}</span>
+							<p class="font-large">Số lượng: {{$carts['qty']}}</p>
 						</div>
 					</div>
 				@endforeach
 				<!-- end one item -->
 				<div class="clearfix"></div>
 			</div>
-	      	@if($discount[0]>=200)
+	      	@if(!empty($discount))
+	      		@if($discount[0]>=200)
 		      	<div class="your-order-item">
 					<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
-					<div class="pull-right"><h5 class="color-black">{{thousandSeperator(Session::get('cart')->totalPrice)}}đ</h5></div>
+					<div class="pull-right"><h5 style="font-size: 15px;">{{thousandSeperator(Session::get('cart')->totalPrice)}}đ</h5></div>
 				</div>
+				@else
+				<div class="your-order-item">
+					<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
+					<div class="pull-right"><h5 class="color-black">{{thousandSeperator(Session::get('cart')->totalPrice+50000)}}đ</h5></div>
+				</div>
+				@endif
 	      	@else
 		      	<div class="your-order-item">
 					<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
@@ -84,16 +90,14 @@
 
 				<li class="payment_method_cheque">
 					<input id="payment_method_cheque" type="radio" class="input-radio" name="payment" value="1" data-toggle="modal" data-target="#vnpay">
-					<label for="payment_method_cheque">Chuyển khoản </label>
+					<label for="payment_method_cheque">Thanh toán trực tuyến</label>
 					<div class="payment_box payment_method_cheque" style="display: none;">
 					</div>						
 				</li>
-				
 			</ul>
 		</div>
 
 		<div class="text-center"><button type="submit" class="beta-btn primary">Đặt hàng <i class="fa fa-chevron-right"></i></button></div>
 	</div> <!-- .your-order -->
 </div>
-@include('user.dathang.template.vnpay')
 @endif

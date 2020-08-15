@@ -12,8 +12,8 @@
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
-					<button type="button" class="btn btn-success btn-sm">Upload</button>
-					<button type="button" class="btn btn-danger btn-sm">Edit</button>
+					<!-- <button type="button" class="btn btn-success btn-sm">Upload</button>
+					<button type="button" class="btn btn-danger btn-sm">Edit</button> -->
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
@@ -35,11 +35,11 @@
 							<i class="fa fa-bars"></i>
 							Đơn mua </a>
 						</li>
-						<li>
+						<!-- <li>
 							<a href="#" target="_blank">
 							<i class="fa fa-bell"></i>
 							Thông báo </a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<!-- END MENU -->

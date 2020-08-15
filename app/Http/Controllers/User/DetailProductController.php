@@ -11,6 +11,8 @@ use App\Model\TypeProduct;
 use App\Model\OrderDetail;
 use App\Model\Comment;
 use App\Model\User;
+use App\ShoppingCart;
+use Session;
 class DetailProductController extends Controller
 {
     //
@@ -90,6 +92,25 @@ class DetailProductController extends Controller
 		        $user = User::all();
 	    		return view('user.chitietsanpham.template.content',compact('seller','newProduct','productRelated','data','product','comment','count','user'));
 	    	}
+    	}
+    }
+
+    public function addCart(Request $request)
+    {
+    	if($request->ajax())
+    	{
+    		$product = Product::find($request->id);
+            if(!empty($product))
+            {
+                $oldCart = !empty(Session('cart')) ? Session('cart') : null;
+                $newCart = new ShoppingCart($oldCart);
+                $newCart->AddCart($product,$request->id);
+                Session(['cart'=>$newCart]);
+                $updateCart = new ShoppingCart(Session('cart'));
+                $updateCart->updateAddCart($request->id,$request->qty);
+                Session(['cart'=>$updateCart]);
+            }
+            return view('user.template.cart');
     	}
     }
 }

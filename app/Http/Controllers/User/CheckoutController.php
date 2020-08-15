@@ -96,7 +96,7 @@ class CheckoutController extends Controller
             }
             else
             {
-                Session('transaction_id',$request->vnp_TxnRef);
+                $request->session()->put('transaction_id',$request->vnp_TxnRef);
                 $error_bank = "Thanh toán trực tuyến thất bại";
                 if(Auth::check())
                 {
@@ -123,6 +123,7 @@ class CheckoutController extends Controller
     {
         $array = null;
         $order = null;
+        $point = 0;
         if(isset($request->vnp_TxnRef)||Session::has('transaction_id'))
         {
             $id = !empty($request->vnp_TxnRef) ? $request->vnp_TxnRef : Session('transaction_id');
@@ -133,6 +134,7 @@ class CheckoutController extends Controller
         {
             if(Auth::check())
             {
+                $point = User::find(Auth::User()->id)->Members()->get()->pluck('point')[0];
                 if(empty(Auth::User()->address))
                 {
                     return redirect('account/address');
@@ -195,59 +197,60 @@ class CheckoutController extends Controller
                 });
             }
         }
-        if($request->payment==1&&$request->order_desc!=null){
-            session(['cost_id' => $request->id]);
-            session(['url_prev' => url()->previous()]);
-            $vnp_TmnCode = "LFKGQ0FH"; //Mã website tại VNPAY 
-            $vnp_HashSecret = "IPCQSWSJZHHOWPDWPODJDLZTAHCAIOZL"; //Chuỗi bí mật
-            $vnp_Url = "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-            $vnp_Returnurl = "https://suoitien2.000webhostapp.com/checkout";
-            $vnp_TxnRef = $order->id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-            $vnp_OrderInfo = $request->order_desc."0123456789";
-            $vnp_OrderType = 'billpayment';
-            $vnp_Amount = $request->amount * 100;
-            $vnp_Locale = 'vn';
-            $vnp_IpAddr = request()->ip();
-    
-            $inputData = array(
-                "vnp_Version" => "2.0.0",
-                "vnp_TmnCode" => $vnp_TmnCode,
-                "vnp_Amount" => $vnp_Amount,
-                "vnp_Command" => "pay",
-                "vnp_CreateDate" => date('YmdHis'),
-                "vnp_CurrCode" => "VND",
-                "vnp_IpAddr" => $vnp_IpAddr,
-                "vnp_Locale" => $vnp_Locale,
-                "vnp_OrderInfo" => $vnp_OrderInfo,
-                "vnp_OrderType" => $vnp_OrderType,
-                "vnp_ReturnUrl" => $vnp_Returnurl,
-                "vnp_TxnRef" => $vnp_TxnRef,
+        if($request->payment==1)
+        {
+                session(['cost_id' => $request->id]);
+                session(['url_prev' => url()->previous()]);
+                $vnp_TmnCode = "EOGCBMO4"; //Mã website tại VNPAY 
+                $vnp_HashSecret = "XJGOTNOGROZCWMCRJRBIDUBFTCPMGMWD"; //Chuỗi bí mật
+                $vnp_Url = "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+                $vnp_Returnurl = "http://localhost:8000/checkout";
+                $vnp_TxnRef = $order->id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+                $vnp_OrderInfo = $request->order_desc."0123456789";
+                $vnp_OrderType = 'billpayment';
+                $vnp_Amount = ($point>=200) ? Session::get('cart')->totalPrice*100 : (Session::get('cart')->totalPrice + 50000)*100;
+                $vnp_Locale = 'vn';
+                $vnp_IpAddr = request()->ip();
+        
+                $inputData = array(
+                    "vnp_Version" => "2.0.0",
+                    "vnp_TmnCode" => $vnp_TmnCode,
+                    "vnp_Amount" => $vnp_Amount,
+                    "vnp_Command" => "pay",
+                    "vnp_CreateDate" => date('YmdHis'),
+                    "vnp_CurrCode" => "VND",
+                    "vnp_IpAddr" => $vnp_IpAddr,
+                    "vnp_Locale" => $vnp_Locale,
+                    "vnp_OrderInfo" => $vnp_OrderInfo,
+                    "vnp_OrderType" => $vnp_OrderType,
+                    "vnp_ReturnUrl" => $vnp_Returnurl,
+                    "vnp_TxnRef" => $vnp_TxnRef,
             );
     
             if (isset($vnp_BankCode) && $vnp_BankCode != "") {
                 $inputData['vnp_BankCode'] = $vnp_BankCode;
             }
-            ksort($inputData);
-            $query = "";
-            $i = 0;
-            $hashdata = "";
-            foreach ($inputData as $key => $value) {
-                if ($i == 1) {
-                    $hashdata .= '&' . $key . "=" . $value;
-                } else {
-                    $hashdata .= $key . "=" . $value;
-                    $i = 1;
+                ksort($inputData);
+                $query = "";
+                $i = 0;
+                $hashdata = "";
+                foreach ($inputData as $key => $value) {
+                    if ($i == 1) {
+                        $hashdata .= '&' . $key . "=" . $value;
+                    } else {
+                        $hashdata .= $key . "=" . $value;
+                        $i = 1;
+                    }
+                    $query .= urlencode($key) . "=" . urlencode($value) . '&';
                 }
-                $query .= urlencode($key) . "=" . urlencode($value) . '&';
-            }
-    
-            $vnp_Url = $vnp_Url . "?" . $query;
-            if (isset($vnp_HashSecret)) {
-               // $vnpSecureHash = md5($vnp_HashSecret . $hashdata);
-                $vnpSecureHash = hash('sha256', $vnp_HashSecret . $hashdata);
-                $vnp_Url .= 'vnp_SecureHashType=SHA256&vnp_SecureHash=' . $vnpSecureHash;
-            }
-            return redirect($vnp_Url);
+        
+                $vnp_Url = $vnp_Url . "?" . $query;
+                if (isset($vnp_HashSecret)) {
+                   // $vnpSecureHash = md5($vnp_HashSecret . $hashdata);
+                    $vnpSecureHash = hash('sha256', $vnp_HashSecret . $hashdata);
+                    $vnp_Url .= 'vnp_SecureHashType=SHA256&vnp_SecureHash=' . $vnpSecureHash;
+                }
+                return redirect($vnp_Url);
         }
         else
         {
@@ -262,6 +265,7 @@ class CheckoutController extends Controller
                 }
             }
             $request->session()->forget('cart');
+            $request->session()->forget('transaction_id');
             return view('user.dathang.template.success_checkout');
         }
     }

@@ -1,4 +1,4 @@
-/* ============================================================================
+your-order-info/* ============================================================================
 
 Theme Name: BetaDesign - A Premium HTML Template
 Theme URI: http://webredox.com/demo/html/betadesign/
@@ -1420,8 +1420,8 @@ margin-top:-10px
 
 .your-order-info {
 display:block;
-margin-top:-5px;
-margin-bottom:-2px
+margin-top:2px;
+margin-bottom:2px
 }
 
 .payment_methods li {
@@ -4450,7 +4450,7 @@ background:#fff
 
 .main-menu ul li {
 float:none;
-width:100%;
+width:100%
 }
 
 .main-menu ul.sub-menu {

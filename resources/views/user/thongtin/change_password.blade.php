@@ -119,7 +119,7 @@
                 success: function(response) {
                     $.notify(response.data,"success")
                     setTimeout(function() {
-                        window.location.replace("http://localhost:8000/account/profile");
+                        window.location.replace(response.url);
                     },3000);
                 },
                 error: function (response) {
@@ -153,12 +153,12 @@
                             $('#msg1').html(data.errors.password);
                             $('#msg1').css('display','block');
 
-                            $('#msg2').html(data.errors.password);
+                            $('#msg2').html(data.errors.new_password);
                             $('#msg2').css('display','block');
                         }
                         else if(Array.isArray(data.errors.new_password)&&Array.isArray(data.errors.ent_password)){
 
-                            $('#msg2').html(data.errors.password);
+                            $('#msg2').html(data.errors.new_password);
                             $('#msg2').css('display','block');
 
                             $('#msg3').html(data.errors.ent_password);

@@ -40,7 +40,7 @@
                                         Hoàn thành
                                     </option>
                                     @elseif($od->status==1)
-                                    <option value="0">
+                                    <option value="0" disabled="disabled">
                                         Chưa xác nhận
                                     </option>
                                     <option value="1" selected disabled="disabled">

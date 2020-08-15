@@ -9,6 +9,16 @@
 @endsection
 @section('content')
 <div class="inner-header">
+	@if(Session::has('errorbank'))
+		<div class="alert alert-danger">
+			{{Session::get('errorbank')}}
+		</div>
+	@endif
+	@if(isset($error_bank))
+		<div class="alert alert-danger">
+			{{$error_bank}}
+		</div>
+	@endif
 	<div class="container">
 		<div class="pull-left">
 		</div>

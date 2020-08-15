@@ -539,6 +539,7 @@ class ComposerStaticInite6fbc066f7ce9771de67b666799dbf72
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Middleware\\checkAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/checkAdmin.php',
         'App\\Http\\Requests\\Admin\\FormLogin' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/FormLogin.php',
         'App\\Http\\Requests\\Admin\\FormPassword' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/FormPassword.php',
         'App\\Http\\Requests\\Admin\\FormRegister' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/FormRegister.php',

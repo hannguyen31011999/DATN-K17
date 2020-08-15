@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\FormPassword;
 use App\Http\Requests\User\FormAddress;
+use Illuminate\Support\Facades\DB;
 use App\Model\User;
 use App\Model\Order;
 use App\Model\Product;
@@ -68,7 +69,11 @@ class ProfileController extends Controller
 				$user->update([
 					'password'=>Hash::make($validated["new_password"]),
 				]);
-				return response()->json(['data'=>'Thay đổi mật khẩu thành công'],200);
+				if($user->role==2)
+				{
+					return response()->json(['data'=>'Thay đổi mật khẩu thành công','url'=>'http://localhost:8000/admin/profile'],200);
+				}
+				return response()->json(['data'=>'Thay đổi mật khẩu thành công','url'=>'http://localhost:8000/account/profile'],200);
 			}catch(Exception $e){
 				return response()->json(['data'=>'Thay đổi mật khẩu thất bại'],500);
 			}
@@ -107,12 +112,56 @@ class ProfileController extends Controller
 	{
 		$order = User::find(Auth::User()->id)
 				->Orders()
+				->orderBy('created_at','desc')
 				->get();
-		$orderDetail = [];
-		$product = Product::all();
-		foreach ($order as $value) {
-			$orderDetail[] = Order::find($value->id)->OrderDetails()->get();
+		return view('user.thongtin.purchase',compact('order'));
+	}
+
+	public function deletePurchase(Request $request)
+	{
+		if($request->ajax())
+		{
+			$order = Order::find($request->id);
+			$order->delete();
+			return response()->json(['messenger'=>"Xóa thành công đơn hàng"],200);
 		}
-		return view('user.thongtin.purchase',compact('orderDetail','product','order'));
+	}
+
+	public function detailPurchase($id)
+	{
+		$priceShip = 0;
+		$order = null;
+		$member = User::find($this->id)->Members()->get(['point','created_at']);
+		$total = Order::where('order.id',$id)
+    				->join('order_detail','order_detail.bill_id','order.id')
+    				->select(
+    					DB::raw('sum(order_detail.qty*order_detail.product_price) as total'))
+    				->groupBy('order.id')
+    				->get();
+		$temp = Order::where('id',$id)
+						->whereDate('created_at','>',$member[0]->created_at)
+						->get();
+		$product = Product::all();
+		if($member[0]->point>=200)
+		{
+			if($temp->isEmpty())
+			{
+				$order = Order::find($id)->OrderDetails()->get();
+				$priceShip += 50000;
+				return view('user.thongtin.detail_purchase',compact('product','order','total','priceShip'));
+			}
+			else
+			{
+				$order = Order::find($id)->OrderDetails()->get();
+				return view('user.thongtin.detail_purchase',compact('product','order','total','priceShip'));
+			}
+			
+		}
+		else
+		{
+			$order = Order::find($id)->OrderDetails()->get();
+			$priceShip += 50000;
+			return view('user.thongtin.detail_purchase',compact('product','order','total','priceShip'));
+		}
 	}
 }

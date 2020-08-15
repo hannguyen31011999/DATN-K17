@@ -34,7 +34,7 @@ Route::get('/shopping-cart','User\CheckoutController@index')->middleware(checkAd
 Route::post('/shopping-cart','User\CheckoutController@update')->middleware(checkAdmin::class);
 
 // Xóa sản phẩm ở shopping-cart
-Route::delete('/shopping-cart','User\CheckoutController@delete')->middleware(checkAdmin::class);
+Route::post('/shopping-cart/delete','User\CheckoutController@delete')->middleware(checkAdmin::class);
 
 // Trang checkout
 Route::get('/checkout','User\CheckoutController@viewCheckout')->middleware(checkAdmin::class);
@@ -52,7 +52,10 @@ Route::get('/{name}.{id}','User\DetailProductController@index');
 Route::post('/{name}.{id}','User\DetailProductController@index');
 
 // Xử lí xóa comment chi tiết sản phẩm
-Route::delete('/{name}.{id}','User\DetailProductController@deleteComment');
+Route::post('/{name}.{id}/delete','User\DetailProductController@deleteComment');
+
+// Xử lí thêm giỏ hàng ở detail sản phẩm
+Route::post('/{name}.{id}/add-cart','User\DetailProductController@addCart');
 
 // Xử lí seach gửi request
 Route::get('/seach','User\HomeController@seach');
@@ -126,6 +129,10 @@ Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 
 	// Đơn mua
 	Route::get('/purchase','ProfileController@viewPurchase');
+
+	Route::post('/purchase','ProfileController@deletePurchase');
+
+	Route::get('/purchase/{id}','ProfileController@detailPurchase');
 });
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 

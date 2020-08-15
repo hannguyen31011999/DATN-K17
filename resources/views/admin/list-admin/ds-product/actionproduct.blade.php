@@ -176,8 +176,11 @@
     };
 </script>
 <script type="text/javascript">
-    CKEDITOR.replace('ckeditor', options);
+    CKEDITOR.replace( 'ckeditor', {
+        filebrowserBrowseUrl: '{{ route("ckfinder_browser") }}',
+    });
 </script>
+@include('ckfinder::setup')
 <script>
     function showImage() {
         if (this.files && this.files[0]) {

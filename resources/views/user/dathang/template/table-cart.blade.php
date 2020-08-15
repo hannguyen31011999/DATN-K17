@@ -26,7 +26,7 @@
 			                  	<span class="glyphicon glyphicon-minus"></span>
 			                </button>
 		                </span>
-		                <input type="text" name="qty" class="form-control number-input" id="{{$key}}" value="{{$carts['qty']}}" min="1" max="10" style="height: 34px;">
+		                <input type="text" name="qty" class="form-control number-input" id="{{$key}}" value="{{$carts['qty']}}" min="1" max="10" style="height: 34px;text-align: center;">
 		                <span class="input-group-btn">
 		              		<button type="button" class="btn btn-default number-next" id="" data-type="plus" data-field="{{$key}}">
 		                 		<span class="glyphicon glyphicon-plus"></span>
@@ -48,7 +48,8 @@
 	          </td>
 	        </tr>
 @endforeach
-@else
+@endif
+@if(Session::get('cart')->totalQuantity==0)
 <tr class="cart_item">
 	<td></td>
 	<td></td>

@@ -40,6 +40,7 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Middleware\\checkAdmin' => $baseDir . '/app/Http/Middleware/checkAdmin.php',
     'App\\Http\\Requests\\Admin\\FormLogin' => $baseDir . '/app/Http/Requests/Admin/FormLogin.php',
     'App\\Http\\Requests\\Admin\\FormPassword' => $baseDir . '/app/Http/Requests/Admin/FormPassword.php',
     'App\\Http\\Requests\\Admin\\FormRegister' => $baseDir . '/app/Http/Requests/Admin/FormRegister.php',

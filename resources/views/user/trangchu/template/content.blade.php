@@ -9,7 +9,6 @@
 					<div class="col-sm-12">
 						<div class="beta-products-list">
 							<h4>Sản phẩm mới</h4>
-							<hr style="height: 2px;border-width:0;color: #6b0709;background-color: #0277b8;margin-top: 1px;">
 							<div class="beta-products-details">
 								<div class="clearfix"></div>
 							</div>
@@ -63,7 +62,6 @@
 						<div class="space50">&nbsp;</div>
 						<div class="beta-products-list">
 							<h4>Sản phẩm</h4>
-							<hr style="height: 2px;border-width:0;color: #6b0709;background-color: #0277b8;margin-top: 1px;">
 							<div class="beta-products-details">
 								<p class="pull-left">Tổng sản phẩm @if(isset($count_product)){{$count_product}}@endif</p>
 								<div class="clearfix"></div>
@@ -129,7 +127,7 @@
 							<div class="row">
 								<div class="col-sm-4">
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-4 paginate">
 									<span style="">{{ $product->links() }}</span>
 								</div>
 								<div class="col-sm-4">
