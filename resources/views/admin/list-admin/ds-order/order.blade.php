@@ -8,6 +8,11 @@
         margin-bottom: -28px;
         margin-top: 11px;
     }
+    input#seach {
+        width: 15%;
+    height: 40px;
+    float: right;
+}
 </style>
 @endsection
 @section('main-conten')

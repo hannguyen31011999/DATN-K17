@@ -121,6 +121,8 @@
             {
                 alert('Số lượng không âm');
                 $('#input-qty').val(1);
+            }else{
+                $('#input-qty').val(qty);
             }
         });
 

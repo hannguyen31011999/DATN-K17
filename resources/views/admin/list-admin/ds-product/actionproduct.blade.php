@@ -176,9 +176,7 @@
     };
 </script>
 <script type="text/javascript">
-    CKEDITOR.replace( 'ckeditor', {
-        filebrowserBrowseUrl: '{{ route("ckfinder_browser") }}',
-    });
+    CKEDITOR.replace( 'ckeditor', options);
 </script>
 @include('ckfinder::setup')
 <script>

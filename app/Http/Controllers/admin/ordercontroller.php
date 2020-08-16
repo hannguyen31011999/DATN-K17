@@ -33,9 +33,9 @@ class ordercontroller extends Controller
                 if($status==0)
                 {
                     $listOrder = Order::where([
-                            ['status',$status],
-                            ['deleted_at',null]
-                        ])->orderBy('created_at','desc')->paginate(10);
+                            ['status',$status]
+                            
+                        ])->paginate(10);
                     return view('admin.list-admin.ds-order.template.content_order',compact('listOrder','listProduct','listUser'));
                 }
                 else if($status==1)

@@ -16,13 +16,96 @@ class commentcontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $listComment = Comment::all();
-        $listUser = User::all();
+        $listComment = Comment::where('deleted_at',null)
+        ->orderBy('created_at','desc')
+        ->paginate(10);
         $listProduct = Product::all();
-        return view('admin.list-admin.ds-comment.comment', compact('listComment', 'listUser', 'listProduct'));
+        $listUser = User::all();
+        // vd
+    
+
+
+        if($request->ajax())
+        {
+        if($request->selectedlist!=null||$request->selectoption!=null)
+        {
+        $status = $request->selectedlist==null ? $request->selectoption : $request->selectedlist;
+        if($status==0)
+        {
+            $listComment = Comment::where([
+                    ['status',$status],
+                    ['deleted_at',null]
+                ])->orderBy('created_at','desc')->paginate(10);
+            return view('admin.list-admin.ds-comment.template.content_comment',compact('listComment','listProduct','listUser'));
+        }
+        else if($status==1)
+        {
+            $listComment = Comment::where([
+                    ['status',$status]
+                ])->paginate(10);
+            return view('admin.list-admin.ds-comment.template.content_comment',compact('listComment','listProduct','listUser'));
+        }
+        else
+        {
+            return view('admin.list-admin.ds-comment.template.content_comment',compact('listComment','listProduct','listUser'));
+        }
+        }
+        else
+        {
+        if(!empty($request->keyword))
+        {
+            if($request->keyword!="")
+            {
+                //    $list= DB::table('user' ) //Lấy bảng user
+                //      ->join('comment', 'user.id', '=', 'comment.user_id')
+                //      ->join('product', 'product.id', '=', 'comment.product_id')
+                //      ->Where('product_name','LIKE',$request->keyword.'%')
+                //      ->paginate(10);
+                //      dd( $list);
+                $listComment = Comment::where('id','=',(int)$request->keyword)
+                        ->orWhere('content','LIKE', $request->keyword.'%')
+                        ->orWhere('name','LIKE', $request->keyword.'%')
+                        ->paginate(10);
+                        
+                return view('admin.list-admin.ds-comment.template.content_comment',compact('listComment','listProduct','listUser'));
+            }
+            return view('admin.list-admin.ds-comment.template.content_comment',compact('listComment','listProduct','listUser'));
+        }
+        return view('admin.list-admin.ds-comment.template.content_comment',compact('listComment','listProduct','listUser'));
+        }
+        }
+        return view('admin.list-admin.ds-comment.comment',compact('listComment','listProduct','listUser'));       
     }
+    //     if($request->key_st){
+    //         // $result= $result ->where('status',(int)$request->key_word_content) ;
+    //        dd($request->key_word_content);
+    //      }
+    //     // $listComment = Comment::all();
+      
+    //     $listUser = User::all();
+    //     $listProduct = Product::all();
+    //     $result =DB::table('comment') ;
+    //     if($request->key_word){
+    //         $result =DB::table('comment') ;
+    //         $result= $result ->where('content', 'like', '%' .$request->key_word. '%' ) ;
+     
+    //      }
+    //     //  if($request->key_word_products){
+    //     //     $result =DB::table('comment') 
+    //     //     ->join('user', 'user.id', '=', 'comment.user_id' ) 
+    //     //     ->join('product', 'product.id', '=', 'comment.product_id' );
+    //     //     $result= $result ->where('product_name', 'like', '%' .$request->key_word_products. '%' ) ;
+    //     //  }
+    //     //  if($request->key_word_content){
+    //     //     $result =DB::table('comment') ;
+    //     //     $result= $result ->where('content', 'like', '%' .$request->key_word_content. '%' ) ;
+    //     //  }
+      
+    //      $listComment=$result->paginate(10);
+    //     return view('admin.list-admin.ds-comment.comment', compact('listComment', 'listUser', 'listProduct'));
+    // }
 
     /**
      * Show the form for editing the specified resource.

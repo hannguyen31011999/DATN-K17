@@ -19,9 +19,10 @@
 	<link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/huong-style.css')}}">
 	@yield('css')
 	<style type="text/css">
-		ul{
+		ul {
 			list-style: none;
 		}
+
 		.header-body {
 			padding: 14px 0 0px;
 			background: #0277b8;
@@ -81,11 +82,12 @@
 			margin-top: 35px;
 			margin-left: 70px;
 		}
+
 		.your-order-item {
-    padding: 10px 0;
-    border-bottom: 1px solid #f8f8f8;
-    font-size: x-large;
-}
+			padding: 10px 0;
+			border-bottom: 1px solid #f8f8f8;
+			font-size: x-large;
+		}
 
 		@media (max-width: 767px) {
 			.back-to-top.hien-ra {
@@ -95,6 +97,12 @@
 				padding: -48px;
 				margin-right: 12%;
 			}
+			input#seach {
+				width: 41%;
+    height: 38px;
+    float: left;
+    margin-right: 8px;
+}
 
 			.main-menu ul li {
 				float: none;
@@ -496,7 +504,13 @@
 				</ul>
 				@if(Auth::check()&&Session::has('email')&&Session::has('id')&&Session::get('role')==1)
 				<ul class="nav-user">
-					<li><a class="button" href="{{url('/account/profile')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-user"></i>{{Session::get('email')}}</span></a></li>
+					<div class="dropdown">
+						<a class="button" style="display: initial; text-decoration: none;vertical-align:middle" data-toggle="dropdown"><span><i class="fa fa-bars"></i>{{Session::get('email')}}</span></a>
+						<ul class="dropdown-menu">
+							<li><a class="button" href="{{url('/account/profile')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-user"></i>Thông tin tài khoản</span></a></li>
+							<li><a class="button" href="{{url('/account/purchase')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-clock-o"></i> Lịch sử mua hàng</span></a></li>
+						</ul>
+					</div>
 					<li><a class="button" href="{{url('/account/logout')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-sign-out"></i>Đăng xuất</span></a></li>
 				</ul>
 				@else
