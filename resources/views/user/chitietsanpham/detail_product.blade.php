@@ -9,7 +9,12 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
-
+<style type="text/css">
+    .nguyenlieu{
+        font-family: "UTMAvo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        line-height: 1.5rem;
+    }
+</style>
 @endsection
 @section('title')
 	Chi tiết sản phẩm

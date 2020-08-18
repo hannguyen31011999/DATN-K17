@@ -8,7 +8,7 @@
 					</div>
 					<div class="blog-create">{{$news->created_at->format('d-m-Y')}} Admin</div>
 					<br>
-					<div class="blog-title"><a href="">{{$news->title}}</a></div>
+					<div class="blog-title"><a href="{{url('tin-tuc',['url'=>utf8tourl($news->title),'id'=>$news->id])}}">{{$news->title}}...</a></div>
 					<div class="blog-content">
 					</div>
 					<br>

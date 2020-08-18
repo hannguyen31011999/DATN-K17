@@ -22,7 +22,10 @@
 		ul {
 			list-style: none;
 		}
-
+		.fa-shopping-cart
+		{
+			margin-top: 3px;
+		}
 		.header-body {
 			padding: 14px 0 0px;
 			background: #0277b8;
@@ -618,7 +621,7 @@ ul.nav-user-s {
 					<ul class="l-inline ov">
 						<li><a class="button" href="{{route('home')}}" style="text-decoration: none;vertical-align:middle"><i class="fa fa-home"></i><span>Trang chủ </span></a></li>
 						<li class="dropdown">
-							<a class="button" style="text-decoration: none;vertical-align:middle" data-toggle="dropdown"> <span>Sản phẩm <i class="fa fa-chevron-right"></i></span></a>
+							<a class="button" style="text-decoration: none;vertical-align:middle" data-toggle="dropdown"><span>Sản phẩm <i class="fa fa-chevron-right"></i></span></a>
 							<ul class="dropdown-menu">
 								@foreach($menu as $menu)
 								<li><a class="button" href="{{url('/chi-tiet-'.utf8tourl($menu->type_name).'.'.$menu->id)}}" style="vertical-align:middle"><span>{{$menu->type_name}}</span></a></li>

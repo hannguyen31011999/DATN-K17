@@ -332,9 +332,4 @@ class CheckoutController extends Controller
             }
         }
     }
-
-    // public function deletedOrderByMail(Request $request)
-    // {
-        
-    // }
 }

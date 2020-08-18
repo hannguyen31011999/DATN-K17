@@ -6,6 +6,9 @@
         font-size: 20px;
         line-height: 2rem;
     }
+    .content-post h2{
+        line-height: 3rem;
+    }
 </style>
 @endsection
 @section('title')

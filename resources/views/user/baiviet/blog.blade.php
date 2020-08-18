@@ -10,7 +10,7 @@
         width: 360px;
     }
     .blog-create{
-        font-size: 10px;
+        font-size: 14px;
         padding: 5px 0px;
         clear: both;
         display: inline-block;
@@ -37,7 +37,7 @@
     .read-more{
         clear: both;
         display: inline-block;
-        padding: 10px 0px;
+        padding: 5px 0px;
     }
     .btn-read{
         font-family: Arial;

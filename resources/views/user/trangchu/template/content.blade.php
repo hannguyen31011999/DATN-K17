@@ -28,7 +28,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" href="" id="{{$newProducts->id}}"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}" style="text-decoration: none;vertical-align:middle">chi tiết<span></span></a></li>
+											<a class="beta-btn primary" href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}" style="text-decoration: none;vertical-align:middle">Chi tiết<span></span></a></li>
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -50,7 +50,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" href="" id="{{$newProducts->id}}"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}" style="text-decoration: none;vertical-align:middle">chi tiết<span></span></a></li>
+											<a class="beta-btn primary" href="{{url('/'.utf8tourl($newProducts->product_name).'.'.$newProducts->id)}}" style="text-decoration: none;vertical-align:middle">Chi tiết<span></span></a></li>
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -95,7 +95,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" href="" id="{{$products->id}}"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="{{url('/'.utf8tourl($products->product_name).'.'.$products->id)}}" style="text-decoration: none;vertical-align:middle">chi tiết<span></span></a></li>
+											<a class="beta-btn primary" href="{{url('/'.utf8tourl($products->product_name).'.'.$products->id)}}" style="text-decoration: none;vertical-align:middle">Chi tiết<span></span></a></li>
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -117,7 +117,7 @@
 										</div>
 										<div class="single-item-caption">
 											<a class="add-to-cart pull-left" id="{{$products->id}}" href="" ><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="{{url('/'.utf8tourl($products->product_name).'.'.$products->id)}}" style="text-decoration: none;vertical-align:middle">chi tiết<span></span></a></li>
+											<a class="beta-btn primary" href="{{url('/'.utf8tourl($products->product_name).'.'.$products->id)}}" style="text-decoration: none;vertical-align:middle">Chi tiết<span></span></a></li>
 											<div class="clearfix"></div>
 										</div>
 									</div>

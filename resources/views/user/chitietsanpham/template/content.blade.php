@@ -40,10 +40,12 @@
                                 @endif
                             </div>
                             <div class="clearfix"></div>
-                            <div class="space20">&nbsp;</div>
+                            <div class="space10">&nbsp;</div>
                             <div class="single-item-desc">
-                                <p style="font-size: 20px;">Nguyên liệu: {{$product->raw_material}}</p>
-                                <p style="font-size: 20px;">Xuất sứ: {{$product->origin}}</p>
+                                <div class="nguyenlieu">
+                                    <span style="font-size: 20px;">Nguyên liệu:</span><p style="font-size: 15px;">{{$product->raw_material}}</p>
+                                    <p style="font-size: 17px;">Xuất sứ:{{$product->origin}}</p>
+                                </div>
                             </div>
                             <div class="space20">&nbsp;</div>
                             <div class="single-item-options">
@@ -89,10 +91,12 @@
                                 @endif
                             </div>
                             <div class="clearfix"></div>
-                            <div class="space20">&nbsp;</div>
+                            <div class="space10">&nbsp;</div>
                             <div class="single-item-desc">
-                                <p style="font-size: 20px;">Nguyên liệu: {{$product->raw_material}}</p>
-                                <p style="font-size: 20px;">Xuất sứ: {{$product->origin}}</p>
+                                <div class="nguyenlieu">
+                                    <span style="font-size: 20px;">Nguyên liệu:</span><p style="font-size: 15px;">{{$product->raw_material}}</p>
+                                    <p style="font-size: 17px;">Xuất sứ:{{$product->origin}}</p>
+                                </div>
                             </div>
                             <div class="space20">&nbsp;</div>
                             <div class="single-item-options">
