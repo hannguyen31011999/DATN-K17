@@ -39,7 +39,7 @@
                         @foreach( $listNews as $ns )
                         <tr>
                             <td>{{ $ns->title }}</td>
-                            <td>{{ $ns->content }}</td>
+                            <td><div style="max-height: 200px;overflow: auto;">{!! $ns->content !!}</div></td>
                             <td>
                                 <div class="thumbnail">
                                     <img src="{{asset('admin/image/posts/'.$ns->image)}}" alt="" />

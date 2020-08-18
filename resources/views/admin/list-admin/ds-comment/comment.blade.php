@@ -150,7 +150,7 @@
                 },
                 success:function(response) {
                     console.log(response);
-                    $("#table_comnent").empty().html(response);
+                    $("#table_comment").empty().html(response);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
 

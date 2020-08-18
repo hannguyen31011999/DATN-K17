@@ -27,7 +27,7 @@ class FormRegister extends FormRequest
             'fullname'=>'required|regex:[^[a-zA-Z]]|max:124',
             'email'=>'required|email|unique:user,email|max:124',
             'password'=>'required|min:6|max:124',
-            'phone'=>'required|numeric|regex:/(0)[0-9]{9}/|max:10',
+            'phone'=>'required|numeric|regex:/(0)[0-9]{9}/',
         ];
     }
 
@@ -47,7 +47,7 @@ class FormRegister extends FormRequest
             'phone.required'=>'Vui lòng nhập số điện thoại',
             'phone.regex'=>'Số điện thoại sai định dạng',
             'phone.numeric'=>'Số điện thoại phải là số',
-            'phone.max'=>'Số điện thoại 10 số'
+            // 'phone.max'=>'Số điện thoại 10 số'
         ];
     }
 }

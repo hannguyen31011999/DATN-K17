@@ -136,6 +136,7 @@
             @endif
             <div class="beta-products-list">
                 <h4>Sản phẩm liên quan</h4>
+                <hr style="height: 2px;border-width:0;color: #6b0709;background-color: #0277b8;margin-top: 1px;">
                 <div class="space20">&nbsp;</div>
                 <div class="row">
                     @foreach($productRelated as $productRelateds)

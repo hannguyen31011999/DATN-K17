@@ -11,7 +11,7 @@
                     <tbody>
                         @foreach( $listComment as $cm )
                         <tr>
-                            <td>{{ $cm->created_at }}</td>
+                            <td>{{ $cm->created_at->format('d/m/20y h:i')}}</td>
                             @foreach( $listUser as $us )
                             @if($cm->user_id == $us->id)
                             <td>{{ $us->email }}</td>

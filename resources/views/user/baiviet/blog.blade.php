@@ -5,10 +5,7 @@
     .blog-img{
         float: left;
     }
-    .blog-img img{
-        height: 200px;
-        width: 360px;
-    }
+ 
     .blog-create{
         font-size: 10px;
         padding: 5px 0px;
