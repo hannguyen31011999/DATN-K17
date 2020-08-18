@@ -16,8 +16,7 @@ class CreateMember extends Migration
         Schema::create('member', function (Blueprint $table) {
             $table->Increments('id');
             $table->integer('user_id')->unsigned();
-            $table->tinyInteger('point');
-            $table->decimal('discount');
+            $table->integer('point');
             $table->softDeletes();
             $table->timestamps();
         });

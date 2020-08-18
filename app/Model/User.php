@@ -5,6 +5,8 @@ namespace App\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable
 {
@@ -15,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-
+    use SoftDeletes;
     protected $table = "user";
     
     protected $primaryKey = "id";
@@ -26,6 +28,8 @@ class User extends Authenticatable
         'email',
         'password',
         'name',
+        'sex',
+        'birthdate',
         'phone',
         'address',
         'role',
@@ -42,11 +46,13 @@ class User extends Authenticatable
 
 
     protected $casts = [
+        'birthdate'=>'datetime:d/m/Y - H:i',
         'created_at'=>'datetime:d/m/Y - H:i',
         'updated_at'=>'datetime:d/m/Y - H:i',
     ];
 
     protected $dates = [
+        'birthdate',
         'created_at',
         'updated_at',
         'deleted_at'

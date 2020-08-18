@@ -3,10 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 class Order extends Model
 {
     //
+    use SoftDeletes;
     protected $table = "order";
     
     protected $primaryKey = "id";
@@ -14,11 +16,14 @@ class Order extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'id',
     	'customer_id',
     	'payment',
     	'note',
     	'status',
     	'phone',
+        'name',
+        'email',
     	'address',
     	'created_at',
         'updated_at',
@@ -41,5 +46,10 @@ class Order extends Model
     public function Users()
     {
         return $this->belongsTo('App\Model\User','id','customer_id');
+    }
+
+    public function OrderDetails()
+    {
+        return $this->hasMany('App\Model\OrderDetail','bill_id','id');
     }
 }

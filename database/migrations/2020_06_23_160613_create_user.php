@@ -18,6 +18,8 @@ class CreateUser extends Migration
             $table->char('email');
             $table->string('password');
             $table->string('name');
+            $table->tinyInteger('sex')->nullable();
+            $table->date('birthdate')->nullable();
             $table->char('phone',10);
             $table->string('address')->nullable();
             $table->tinyInteger('role');

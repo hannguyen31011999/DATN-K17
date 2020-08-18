@@ -3,10 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Member extends Model
 {
     //
+    use SoftDeletes;
     protected $table = "member";
     
     protected $primaryKey = "id";
@@ -16,7 +18,6 @@ class Member extends Model
     protected $fillable = [
         'user_id',
         'point',
-        'discount',
     	'created_at',
         'updated_at',
         'deleted_at'

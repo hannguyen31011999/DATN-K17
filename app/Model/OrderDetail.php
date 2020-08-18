@@ -3,10 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderDetail extends Model
 {
     //
+    use SoftDeletes;
     protected $table = "order_detail";
     
     protected $primaryKey = "id";
@@ -14,6 +16,7 @@ class OrderDetail extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'id',
     	'bill_id',
     	'product_id',
     	'qty',
@@ -40,10 +43,13 @@ class OrderDetail extends Model
     {
         return $this->belongsTo('App\Model\Order','id','bill_id');
     }
-
+    // public function Orders()
+    // {
+    //     return $this->hasMany('App\Model\Order','bill_id','id');
+    // }
     //Relationship inverse giữa bảng product và order_detail
-    public function Product()
+    public function Products()
     {
-        return $this->belongsTo('App\Model\Product','id','product_id');
+        return $this->belongsTo('App\Model\Product','product_id','id');
     }
 }

@@ -20,10 +20,11 @@ class CreateProduct extends Migration
             $table->text('description')->nullable();
             $table->integer('unit_price');
             $table->integer('promotion_price');
+            $table->integer('qty');
             $table->char('image');
             $table->string('unit',10);
-            $table->text('raw_material');
-            $table->text('origin');
+            $table->text('raw_material')->nullable();
+            $table->text('origin')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

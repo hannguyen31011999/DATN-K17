@@ -3,10 +3,13 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class TypeProduct extends Model
 {
     //
+    use SoftDeletes;
     protected $table = "type_product";
     
     protected $primaryKey = "id";
@@ -37,6 +40,12 @@ class TypeProduct extends Model
     // Relationship 1-n với bảng product
     public function Products()
     {
-        return $this->hasMany('App\Model','type_product_id','id');
+        return $this->hasMany('App\Model\Product','type_product_id','id');
+    }
+    public function delete()
+    {
+        $this->Products()->delete();
+
+        return parent::delete();
     }
 }
