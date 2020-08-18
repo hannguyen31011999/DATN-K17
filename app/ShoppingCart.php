@@ -4,14 +4,12 @@ class ShoppingCart{
 	public $products = null;
 	public $totalPrice = 0;
 	public $totalQuantity = 0;
-	public $shipping = 0;
 	public function __construct($cart)
 	{
 		if($cart){
 			$this->products = $cart->products;
 			$this->totalPrice = $cart->totalPrice;
 			$this->totalQuantity = $cart->totalQuantity;
-			$this->shipping = $cart->shipping;
 		}
 	}
 	public function AddCart($product,$id)

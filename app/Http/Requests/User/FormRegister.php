@@ -47,7 +47,7 @@ class FormRegister extends FormRequest
             'phone.required'=>'Vui lòng nhập số điện thoại',
             'phone.regex'=>'Số điện thoại sai định dạng',
             'phone.numeric'=>'Số điện thoại phải là số',
-            'phone.max'=>'Số điện thoại 10 số'
+
         ];
     }
 }

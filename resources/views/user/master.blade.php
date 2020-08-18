@@ -93,16 +93,23 @@
 			.back-to-top.hien-ra {
 				visibility: visible;
 				opacity: 1;
-				/* margin-left: -158%; */
 				padding: -48px;
 				margin-right: 12%;
 			}
+			a#logo img {
+    max-width: 101%!important;
+}
+ul.nav-user-s {
+   
+     margin-left: 1% !important;
+}
+
 			input#seach {
 				width: 41%;
-    height: 38px;
-    float: left;
-    margin-right: 8px;
-}
+				height: 38px;
+				float: left;
+				margin-right: 8px;
+			}
 
 			.main-menu ul li {
 				float: none;
@@ -121,7 +128,9 @@
 				margin: -313px -5px 4px -1px !important;
 				width: 42%;
 			}
-
+			.navbar-nav {
+    margin: -4.5px 50px;
+}
 			.cart-body {
 				overflow: auto;
 				height: 239px;
@@ -131,11 +140,10 @@
 			}
 
 			ul.nav-user {
-				font-size: 42px;
-				padding: 1px;
-				color: white;
-				margin-left: 0px;
-				margin-top: -15%;
+				font-size: 16px;
+    padding: 24px;
+    color: white;
+    margin-left: 0%;
 			}
 
 			li.font-li {
@@ -166,7 +174,7 @@
 		}
 
 		ul.dropdown-menu li {
-			padding: 5px;
+			padding: 1px;
 		}
 
 		.main-menu>ul.l-inline>li>a {
@@ -174,7 +182,10 @@
 			font-weight: bold !important;
 			margin-bottom: -5px;
 		}
-
+		.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    
+    background-color: #3a5c83;
+}
 		.dropdown-menu>li>a {
 			display: block;
 			padding: 15px 13px;
@@ -215,18 +226,17 @@
 			width: 175px;
 			transition: all 0.5s;
 			cursor: pointer;
-
 		}
 
 		.button span {
 			cursor: pointer;
-			display: inline-block;
-			position: relative;
-			transition: 0.5s;
+    display: inline-block;
+    position: relative;
+    transition: 0s;
+    color: cornsilk;
 		}
 
 		.button span:after {
-			content: '\00bb';
 			position: absolute;
 			opacity: 0;
 			top: 0;
@@ -243,18 +253,57 @@
 			right: 0;
 		}
 
-		.main-menu-cd {
-			height: 57px;
-			display: table-cell;
-			/* font-weight: 400; */
-			width: 100%;
-			background-color: #0277b8;
-			display: block;
-			box-shadow: 0px 0px 5px rgb(0 0 0);
-			position: fixed;
+		.buttons {
+			display: inline-block;
+			border-radius: 4px;
+			background-color: #f9f9f9;
+			border: none;
+			color: #111111;
+			text-align: center;
+			font-size: 21px;
+			padding: 11px;
+			width: 175px;
+			transition: all 0.5s;
+			cursor: pointer;
+			margin: 5px;
+		}
+
+		.buttons span {
+			cursor: pointer;
+			display: inline-block;
+			position: relative;
+			transition: 0.5s;
+		}
+
+		.buttons span:after {
+			position: absolute;
+			opacity: 0;
 			top: 0;
-			left: 0;
-			z-index: 100000;
+			right: -20px;
+			transition: 0.5s;
+		}
+
+		.buttons:hover span {
+			padding-right: 25px;
+		}
+
+		.buttons:hover span:after {
+			opacity: 1;
+			right: 0;
+		}
+
+		.main-menu-cd {
+			width: 100%;
+    background-color: #0277b8;
+    display: block;
+    box-shadow: 0px 0px 5px rgb(11 11 11);
+    position: fixed;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    top: 0;
+    left: 0;
+    background: #0277b8;
+    z-index: 100000;
 		}
 
 		.navbar-custom {
@@ -379,7 +428,6 @@
 			transition-duration: 0.4s;
 			text-decoration: none;
 			overflow: hidden;
-			box-shadow: 3px 4px 0px 0px #0b0b0b36;
 			cursor: pointer;
 			text-shadow: 0px 1px 0px #686b8d;
 			border-radius: 2px;
@@ -387,9 +435,9 @@
 
 		.add-to-cart:after {
 			content: "";
-			background: #f1f1f1;
+			background: #f90;
 			display: block;
-			position: absolute;
+		
 			padding-top: 300%;
 			padding-left: 350%;
 			margin-left: -20px !important;
@@ -484,6 +532,42 @@
 			font-variant: normal;
 			text-transform: none;
 		}
+		.flash-sale {
+    color: #ff2127;
+}
+.beta-products-details {
+    /* font-size: 15px; */
+    /* margin-bottom: 17px; */
+    font-size: 17px;
+    margin-bottom: 7px;
+    text-shadow: #ff0000 3px 2px 5px;
+}
+ul.nav-user {
+    font-size: 16px;
+    padding: 56px;
+    color: white;
+    margin-left: 67%;
+}
+ul.nav-user-s {
+    font-size: 16px;
+    padding: 10px;
+    color: white;
+    margin-left: 67%;
+}
+.button-dr{
+	display: inline-block;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    border: none;
+    color: #111111;
+    text-align: center;
+    font-size: 21px;
+    padding: 11px;
+    width: 175px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
 	</style>
 </head>
 
@@ -505,18 +589,18 @@
 				@if(Auth::check()&&Session::has('email')&&Session::has('id')&&Session::get('role')==1)
 				<ul class="nav-user">
 					<div class="dropdown">
-						<a class="button" style="display: initial; text-decoration: none;vertical-align:middle" data-toggle="dropdown"><span><i class="fa fa-bars"></i>{{Session::get('email')}}</span></a>
+						<a class="button-dr" style="display: initial; text-decoration: none;vertical-align:middle" data-toggle="dropdown"><span><i class="fa fa-bars"></i></span></a>
 						<ul class="dropdown-menu">
 							<li><a class="button" href="{{url('/account/profile')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-user"></i>Thông tin tài khoản</span></a></li>
 							<li><a class="button" href="{{url('/account/purchase')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-clock-o"></i> Lịch sử mua hàng</span></a></li>
+							<li><a class="button" href="{{url('/account/logout')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-sign-out"></i>Đăng xuất</span></a></li>
 						</ul>
 					</div>
-					<li><a class="button" href="{{url('/account/logout')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-sign-out"></i>Đăng xuất</span></a></li>
 				</ul>
 				@else
-				<ul class="nav-user">
-					<li><a class="button" href="{{url('/account/register')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-user"></i> Đăng kí</span></a></li>
-					<li><a class="button" href="{{url('/account/login')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-sign-in"></i> Đăng nhập</span></a></li>
+				<ul class="nav-user-s">
+					<li><a class="buttons" href="{{url('/account/register')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-user"></i> Đăng kí</span></a></li>
+					<li><a class="buttons" href="{{url('/account/login')}}" style="width: auto;text-decoration: none;vertical-align:middle"><span><i class="fa fa-sign-in"></i> Đăng nhập</span></a></li>
 					</li>
 				</ul>
 				@endif
@@ -529,12 +613,13 @@
 			<div class="container">
 				<a class="visible-xs beta-menu-toggle pull-right" href="#"> <i class="fa fa-bars"></i></a>
 				<div class="visible-xs clearfix"></div>
+				<div class="menu-cd">
 				<nav class="main-menu">
 
 					<ul class="l-inline ov">
 						<li><a class="button" href="{{route('home')}}" style="text-decoration: none;vertical-align:middle"><i class="fa fa-home"></i><span>Trang chủ </span></a></li>
 						<li class="dropdown">
-							<a class="button" style="text-decoration: none;vertical-align:middle" data-toggle="dropdown"> <span>Sản phẩm</span></a>
+							<a class="button" style="text-decoration: none;vertical-align:middle" data-toggle="dropdown"> <span>Sản phẩm <i class="fa fa-chevron-right"></i></span></a>
 							<ul class="dropdown-menu">
 								@foreach($menu as $menu)
 								<li><a class="button" href="{{url('/chi-tiet-'.utf8tourl($menu->type_name).'.'.$menu->id)}}" style="vertical-align:middle"><span>{{$menu->type_name}}</span></a></li>
@@ -562,6 +647,7 @@
 
 					<div class="clearfix"></div>
 				</nav>
+				</div>
 			</div> <!-- .container -->
 		</div> <!-- .header-bottom -->
 	</div> <!-- #header -->
@@ -685,9 +771,9 @@
 				var pos_body = $('html,body').scrollTop();
 				// console.log(pos_body);
 				if (pos_body > 15) {
-					$('.main-menu').addClass('main-menu-cd');
+					$('.header-bottom').addClass('main-menu-cd');
 				} else {
-					$('.main-menu').removeClass('main-menu-cd');
+					$('.header-bottom').removeClass('main-menu-cd');
 				}
 				if (pos_body > 1200) {
 					$('.back-to-top').addClass('hien-ra');

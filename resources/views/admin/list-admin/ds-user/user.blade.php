@@ -1,6 +1,20 @@
 @extends('admin.mater-admin')
 @section('header')
-<title>Admin | Người dùng</title>
+<title>Admin | Đơn hàng</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.css" />
+<style>
+    .headerds {
+        margin-left: 92%;
+        margin-bottom: -28px;
+        margin-top: 11px;
+    }
+    input#seach {
+        width: 15%;
+    height: 40px;
+    float: right;
+}
+   
+</style>
 @endsection
 @section('main-conten')
 <br>
@@ -8,64 +22,159 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body table-responsive">
-                <h4 class="m-t-0 mb-4"><b>DANH SÁCH USER</b></h4>
-                <table id="datatable" class="table table-bordered table-stried" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead class="table-info">
-                        <tr>
-                            <th>Email</th>
-                            <th>Tên</th>
-                            <th>Giới tính</th>
-                            <th>Ngày sinh</th>
-                            <th>SĐT</th>
-                            <th>Địa chỉ</th>
-                            <!-- <th>Vai trò</th> -->
-                            <th>Trạng thái</th>
-                            <!-- <th>Xóa</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach( $listUser as $us )
-                        <tr>
-                            <td>{{ $us->email }}</td>
-                            <td>{{ $us->name }}</td>
-                            @if($us->sex == 0)
-                            <td>Nam</td>
-                            @elseif($us->sex == 1)
-                            <td>Nữ</td>
-                            @elseif($us->sex == 2)
-                            <td>khác</td>
-                            @endif
-                            @if(isset($us->birthdate))
-                            <td>{{ $us->birthdate->format('d/m/y')}}</td>
-                            @else
-                            <td>{{ $us->birthdate}}</td>
-                            @endif
-                            <td>{{ $us->phone }}</td>
-                            <td>{{ $us->address }}</td>
-                            <!-- <td>
-                                @if($us->role == 0)
-                                <a href="#"> <span class="badge badge-dark">Admin</span>
-                                    @else
-                                    <a href="#"> <span class="badge badge-pink">User</span> </a>
-                                    @endif
-                            </td> -->
-                            <td>
-                                @if($us->status == 1)
-                                <a href="{{route('list-admin.ds-user.update', ['id'=>$us->id])}}" class="text-info font-20" onclick="return confirm('Bạn chắc chắn khóa tài khoản này ?');"> <i class=" fas fa-check"></i></a>
-                                @else
-                                <a href="{{route('list-admin.ds-user.update', ['id'=>$us->id])}}" class="text-dark font-20" onclick="return confirm('Bạn chắc chắn mở khóa tài khoản này ?');"> <i class="fas fa-lock"></i></a>
-                                @endif
-
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
+                <h4 class="m-t-0 mb-4"><b>DANH SÁCH NGƯỜI DÙNG</b></h4>
+                <select class="custom-select" id="select-list" name="list-user" style="width:145px;">
+                    <option value="3">
+                        Tất cả
+                    </option>
+                    <option value="0">
+                        Mở
+                    </option>
+                    <option value="1">
+                        Khóa
+                    </option>
+                </select>
+                <input type="seach" id="seach" class="form-control form-control-sm" placeholder="Nhập tìm kiếm" aria-controls="datatable" >
+                <br></br>
+                <div id="table_user">
+                    @include('admin.list-admin.ds-user.template.content_user')
+                </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
 @section('script')
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+
+        $(document).on('click', '.pagination a',function(event)
+        {
+            event.preventDefault();
+
+            $('li').removeClass('active');
+
+            $(this).parent('li').addClass('active');
+  
+            var myurl = $(this).attr('href');
+
+            var selectoption =  $('select[name="list-user"]').val();
+
+            var page=$(this).attr('href').split('page=')[1];
+
+            getData(page,selectoption);
+        });
+
+    $(document).on('change', '#select-list',function(e){
+            var selectedlist = $(this).find(":selected").val();
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'get',
+                url: '/admin/list-user',
+                datatype:"html",
+                data: {
+                  "selectedlist":selectedlist
+                },
+                success: function(response) {
+                    console.log(response);
+                    $('#table_user').empty().html(response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                }
+            });
+            e.preventDefault();
+        });
+    });
+
+    $(document).on('change', '.custom-select',function(e){
+            var id = $(this).attr('id');
+            var selected = $(this).find(":selected").val();
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: '/admin/list-user',
+                data: {
+                  "id":id,
+                  "selected":selected
+                },
+                success: function(response) {
+                    alert(response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                }
+            });
+            e.preventDefault();
+        });
+
+
+    $(document).on('keyup', '#seach',function(event){
+        var keyword = $('#seach').val();
+        if(keyword!="")
+        {
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'get',
+                url: '/admin/list-user',
+                data: {
+                  "keyword":keyword
+                },
+                success:function(response) {
+                    console.log(response);
+                    $("#table_user").empty().html(response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+            event.preventDefault();
+        }
+        else
+        {
+            $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'get',
+                url: '/admin/list-user',
+                data: {
+                  "keyword":keyword
+                },
+                success:function(response) {
+                    console.log(response);
+                    $("#table_user").empty().html(response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+            event.preventDefault();
+        }
+    });
+    function getData(page,selectoption){
+        $.ajax(
+        {
+            url: '/admin/list-user?page=' + page,
+            data:{
+                'selectoption':selectoption
+            },
+            type: "get",
+            datatype: "html"
+        }).done(function(response){
+            console.log(response);
+            $("#table_user").empty().html(response);
+        }).fail(function(jqXHR, ajaxOptions, thrownError){
+              alert('No response from server');
+        });
+    }
+</script>
+
 @endsection

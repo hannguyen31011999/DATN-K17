@@ -1,4 +1,3 @@
-
 <div class="col-sm-6" style="background: #f8f8f8;">
 	<h4>Đặt hàng</h4>
 	<hr style="height: 2px;border-width:0;color: #6b0709;background-color: #0277b8;margin-top: 1px;">
@@ -21,9 +20,17 @@
             </div>
         @endif
 	</div>
-	<div id="list-address">
-		@include('user.dathang.template.address')
+
+	<div class="form-block">
+		<label for="adress">Địa chỉ*</label>
+		<input type="text" id="address" name="address" placeholder="Nhập địa chỉ của bạn" >
+		@if($errors->has('address'))
+            <div class="messenger-errors" style="margin-left: 200px;" >
+                {{ $errors->first('address') }}
+            </div>
+        @endif
 	</div>
+	
 
 	<div class="form-block">
 		<label for="phone">Điện thoại*</label>
@@ -44,7 +51,7 @@
 <div class="col-sm-6">
 	<div class="your-order">
 		<div class="your-order-head"><h5>Đơn hàng của bạn</h5></div>
-		<div class="your-order-body" style="padding: 0px 10px;max-height: 500px;overflow: auto;">
+		<div class="your-order-body" style="padding: 0px 10px;height: 250px;overflow: auto;">
 			<div class="your-order-item">
 				<!--  one item	 -->
 				@foreach(Session::get('cart')->products as $carts)
@@ -66,15 +73,8 @@
 			</div>
 			<div class="your-order-item">
 				<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
-				@if(isset($shipping))
-					
-					<div class="pull-right"><p style="font-size: 20px;">{{thousandSeperator(Session::get('cart')->totalPrice+$shipping->price_shipping)}}đ</p></div>
-					<div class="clearfix"></div>
-				@else
-					<input type="hidden" id="total" name="" value="{{Session::get('cart')->totalPrice}}">
-					<div class="pull-right"><p id="total_price" style="font-size: 20px;">{{Session::get('cart')->totalPrice}}đ</p></div>
-					<div class="clearfix"></div>
-				@endif
+				<div class="pull-right"><p style="font-size: 20px;">{{thousandSeperator(Session::get('cart')->totalPrice+50000)}}đ</p></div>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 		<div class="your-order-head"><h5>Hình thức thanh toán</h5></div>
