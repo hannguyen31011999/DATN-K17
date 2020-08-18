@@ -2,6 +2,9 @@
 
 @section('css')
 <style type="text/css">
+    .circle{
+        margin-right: 68px;
+    }
 </style>
 @endsection
 @section('title')
@@ -38,7 +41,7 @@
                         <div> 
                             <div class="row">
                             <div class="col-sm-5">
-                                <img src="{{asset('admin/image/daubep/duong-huy-khai-54123.jpg')}}" style="height: 320px;
+                                <img src="{{asset('admin/image/daubep/am-thuc-viet-la-so-1-the-gioi.jpg')}}" style="height: 320px;
         width: 450px;" alt="">
                             </div>
                             <div class="col-sm-7">
@@ -144,7 +147,7 @@
                 <div class="col-sm-2 col-sm-push-2">
                     <div class="beta-counter">
                         <p class="beta-counter-icon"><i class="fa fa-user"></i></p>
-                        <p class="beta-counter-value timer numbers" data-to="19855" data-speed="2000">19855</p>
+                        <p class="beta-counter-value timer numbers" data-to="19855" data-speed="2000">{{$countUser}}</p>
                         <p class="beta-counter-title">Người dùng đã đăng kí</p>
                     </div>
                 </div>
@@ -152,24 +155,24 @@
                 <div class="col-sm-2 col-sm-push-2">
                     <div class="beta-counter">
                         <p class="beta-counter-icon"><i class="fa fa-picture-o"></i></p>
-                        <p class="beta-counter-value timer numbers" data-to="3568" data-speed="2000">3568</p>
-                        <p class="beta-counter-title">Hình ảnh đặc sắc</p>
+                        <p class="beta-counter-value timer numbers" data-to="3568" data-speed="2000">{{$countProduct}}</p>
+                        <p class="beta-counter-title">Sản phẩm đặc sắc</p>
                     </div>
                 </div>
 
                 <div class="col-sm-2 col-sm-push-2">
                     <div class="beta-counter">
-                        <p class="beta-counter-icon"><i class="fa fa-clock-o"></i></p>
-                        <p class="beta-counter-value timer numbers" data-to="258934" data-speed="2000">258934</p>
-                        <p class="beta-counter-title">Tư vấn hỗ trợ tận tâm</p>
+                        <p class="beta-counter-icon"><i class="fa fa-shopping-cart"></i></p>
+                        <p class="beta-counter-value timer numbers" data-to="258934" data-speed="2000">{{$countOrder}}</p>
+                        <p class="beta-counter-title">Những đơn hàng đã giao</p>
                     </div>
                 </div>
 
                 <div class="col-sm-2 col-sm-push-2">
                     <div class="beta-counter">
                         <p class="beta-counter-icon"><i class="fa fa-pencil"></i></p>
-                        <p class="beta-counter-value timer numbers" data-to="150" data-speed="2000">150</p>
-                        <p class="beta-counter-title">Khách hàng đánh giá tốt</p>
+                        <p class="beta-counter-value timer numbers" data-to="150" data-speed="2000">{{$countComment}}</p>
+                        <p class="beta-counter-title">Bình luận về chúng tôi</p>
                     </div>
                 </div>
             </div> <!-- .beta-counter block end -->

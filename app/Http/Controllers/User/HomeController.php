@@ -9,6 +9,7 @@ use App\Model\TypeProduct;
 use App\Model\OrderDetail;
 use App\Model\Comment;
 use App\Model\User;
+use App\Model\Order;
 class HomeController extends Controller
 {
     // View trang chủ
@@ -88,5 +89,14 @@ class HomeController extends Controller
             }
             return view('user.trangchu.seach_product',compact('product','newProduct','url','count_product'));
         }
+    }
+
+    public function introduce()
+    {
+        $countComment = Comment::count();
+        $countUser = User::where('status',1)->count();
+        $countOrder = Order::where('status',2)->count();
+        $countProduct = Product::where('deleted_at',null)->count();
+        return view('user.baiviet.introduce',compact('countProduct','countOrder','countComment','countUser'));
     }
 }

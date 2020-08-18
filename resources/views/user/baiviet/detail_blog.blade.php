@@ -2,8 +2,9 @@
 
 @section('css')
 <style type="text/css">
-    .content-post p{
+    .content-post p,h3{
         font-size: 20px;
+        line-height: 2rem;
     }
 </style>
 @endsection

@@ -419,7 +419,7 @@ ul.nav-user-s {
 		.add-to-cart {
 			width: 45px;
 			position: relative;
-			height: 42px;
+			height: 43px;
 			background-color: #0277b8;
 			border: none;
 			font-size: 28px;
@@ -432,7 +432,6 @@ ul.nav-user-s {
 			text-shadow: 0px 1px 0px #686b8d;
 			border-radius: 2px;
 		}
-
 		.add-to-cart:after {
 			content: "";
 			background: #f90;
@@ -663,15 +662,18 @@ ul.nav-user-s {
 	<div id="footer" class="color-div">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					<div class="widget">
-						<h4 class="widget-title">Instagram Feed</h4>
-						<div id="beta-instagram-feed">
+						<h4 class="widget-title">Instagram Shop</h4>
+						<div id="beta-instagram-feed" style="display: none;">
 							<div></div>
 						</div>
+						<ul>
+							<li><a href="https://www.instagram.com/"><i class="fa fa-chevron-right"></i>Link Instagram</a></li>
+						</ul>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-4">
 					<div class="widget">
 						<h4 class="widget-title">Những chính sách</h4>
 						<div>
@@ -694,15 +696,6 @@ ul.nav-user-s {
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="widget">
-						<h4 class="widget-title">Góp ý cho chúng tôi</h4>
-						<form action="#" method="post">
-							<input type="email" name="your_email" placeholder="Email của mail">
-							<button class="pull-right" type="submit">Gửi <i class="fa fa-chevron-right"></i></button>
-						</form>
 					</div>
 				</div>
 			</div> <!-- .row -->

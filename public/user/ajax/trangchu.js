@@ -8,17 +8,12 @@ $(document).ready(function()
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-<<<<<<< HEAD
             type: 'post',
-=======
-            type: 'get',
->>>>>>> abc
             url: '/cart',
             data: {
               "id":id,
             },
             success: function(response) {
-<<<<<<< HEAD
                 if(response=="fail")
                 {
                     alert('Sản phẩm hết hàng');
@@ -30,12 +25,6 @@ $(document).ready(function()
                     $('#count_span').text("("+count+")");
                     alertify.success('Thêm sản phẩm thành công');
                 }
-=======
-                $('.cart-body').empty().html(response);
-                var count = $('#count').val();
-                $('#count_span').text("("+count+")");
-                alertify.success('Thêm sản phẩm thành công');
->>>>>>> abc
             },
             error: function (jqXHR, textStatus, errorThrown) {
               //xử lý lỗi tại đây
@@ -54,19 +43,22 @@ $(document).ready(function()
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-<<<<<<< HEAD
             type: 'delete',
-=======
-            type: 'post',
->>>>>>> abc
             url: '/cart',
             data: {
               "rowId":rowId,
             },
             success: function(response) {
-                $('.cart-body').empty().html(response);
-                var count = $('#count').val();
-                $('#count_span').text("("+count+")");
+                if(response=="fail")
+                {
+                    alert('Sản phẩm hết hàng');
+                }
+                else
+                {
+                    $('.cart-body').empty().html(response);
+                    var count = $('#count').val();
+                    $('#count_span').text("("+count+")");
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
               //xử lý lỗi tại đây

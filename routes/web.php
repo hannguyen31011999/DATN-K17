@@ -71,9 +71,7 @@ Route::get('/tin-tuc','User\NewsController@index');
 // Trang chi tiết bài viết
 Route::get('/tin-tuc/{url}/{id}','User\NewsController@detailPost');
 
-Route::get('/gioi-thieu',function(){
-	return view('user.baiviet.introduce');
-});
+Route::get('/gioi-thieu','User\HomeController@introduce');
 
 Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 	// Đăng kí

@@ -3,6 +3,14 @@
 @section('css')
 <link rel="stylesheet" title="style" href="{{asset('user/assets/dest/css/thongtin.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.css" />
+<style type="text/css">
+  .border-profile{
+      border-bottom:1px solid #ccc!important;
+      width: 70%;
+      margin-top: 15px;
+      margin-bottom: 15px;
+  }
+</style>
 @endsection
 
 @section('title')
@@ -37,8 +45,9 @@
                           <input type="input" class="form__field" value="{{$user->name}}" name="name" id='name' required />
                         </div>
                     </div>
+
                 </div>
-                <hr class="table-us" width="65%">
+                <div class="border-profile"></div>
                 <div class="row">
                     <div class="col-md-4">
                         <label>Email tài khoản</label>
@@ -47,7 +56,7 @@
                         <p>{{$user->email}}</p>
                     </div>
                 </div>
-                <hr class="table-us" width="65%">
+                <div class="border-profile"></div>
                 <div class="row">
                     <div class="col-md-4">
                         <label>Mật khẩu</label>
@@ -56,7 +65,7 @@
                         <a href="{{url('account/password/change')}}" style="font-size: 15px;color: red;font-style: italic; text-decoration: none;">******** (Thay đổi)</a>
                     </div>
                 </div>
-                <hr class="table-us" width="65%">
+                <div class="border-profile"></div>
                 <div class="row">
                     <div class="col-md-4">
                         <label>Số điện thoại</label>
@@ -65,7 +74,7 @@
                         <p>{{$user->phone}}<a href="" style="font-size: 15px;color: red;font-style: italic; text-decoration: none;" >(Thay đổi)</a></p>
                     </div>
                 </div>
-                <hr class="table-us" width="65%">
+                <div class="border-profile"></div>
                 <div class="row">
                     <div class="col-md-4">
                         <label>Giới tính</label>
@@ -86,7 +95,7 @@
                       @endif
                     </div>
                 </div>
-                <hr class="table-us" width="65%">
+                <div class="border-profile"></div>
                 <div class="row">
                     <div class="col-md-4">
                         <label>Ngày sinh</label>
@@ -99,7 +108,7 @@
                       @endif
                     </div>
                 </div>
-                <hr class="table-us" width="65%">
+                <div class="border-profile"></div>
                 <div class="row">
                     <div class="col-md-4">
                         <label>Địa chỉ</label>
@@ -110,6 +119,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="border-profile"></div>
                 <br>
                 <div class="row">
                     <div class="col-md-4">

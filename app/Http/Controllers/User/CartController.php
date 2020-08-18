@@ -22,8 +22,8 @@ class CartController extends Controller
     // Thêm sản phẩm giỏ hàng
     public function addCart(Request $request)
     {
-    	if($request->ajax())
-    	{
+        if($request->ajax())
+        {
             $product = Product::find($request->id);
             if(!empty($product))
             {
@@ -56,21 +56,21 @@ class CartController extends Controller
                     }
                 }
             }
-    	}
+        }
     }
 
     // Xóa 1 sản phẩm ở giỏ hàng
     public function delete(Request $request)
     {
-    	if($request->ajax())
-    	{
+        if($request->ajax())
+        {
             if(Session::has('cart'))
             {
                 $deleteCart = new ShoppingCart(Session('cart'));
                 $deleteCart->deleteCart($request->rowId);
                 Session(['cart'=>$deleteCart]);
             }
-    		return view('user.template.cart');
-    	}
+            return view('user.template.cart');
+        }
     }
 }

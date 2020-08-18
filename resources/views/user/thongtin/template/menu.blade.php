@@ -1,4 +1,4 @@
-<div class="col-md-3">
+<div class="col-md-3" style="margin-top: 15px;">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">

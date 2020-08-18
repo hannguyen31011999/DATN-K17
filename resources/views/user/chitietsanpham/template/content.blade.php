@@ -104,8 +104,8 @@
                 @endif
                 <div class="space40">&nbsp;</div>
                 <div class="woocommerce-tabs">
-                    <ul class="tabs">
-                        <li id="tab-description"><a href="#tab-description" >Mô tả</a></li>
+                    <ul class="tabs" style="border-radius: 2px;">
+                        <li id="tab-description"><a href="#tab-description">Mô tả</a></li>
                         <li id="tab-comment"><a href="#tab-comment">Bình luận ({{$count}})</a></li>
                     </ul>
                     <div class="panel" id="tab-description">
@@ -142,7 +142,7 @@
                                     @endif
                                 @endif
                             </div>
-                            <hr width="100%">
+                            <hr width="100%" style="color: black;">
                         @endif
                         @endforeach
                         </div>       
