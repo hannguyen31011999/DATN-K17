@@ -40,6 +40,7 @@ class HomeController extends Controller
     // View loại sản phẩm
     public function typeProduct($name = null,$id = null,Request $request)
     {
+        $url = $request->url();
         $newProduct = TypeProduct::find($id)
                     ->Products()
                     ->orderBy('created_at','desc')
@@ -54,9 +55,31 @@ class HomeController extends Controller
                 ->take(10)
                 ->get();
         if($request->ajax()){
-            return view('user.loaisanpham.content',compact('product','newProduct','count_type','data','seller'));
+            return view('user.loaisanpham.content',compact('product','newProduct','count_type','data','seller','url'));
         }
-        return view('user.loaisanpham.type_product',compact('product','newProduct','count_type','data','seller'));
+        return view('user.loaisanpham.type_product',compact('product','newProduct','count_type','data','seller','url'));
+    }
+
+    public function pageLoadTypeProduct($name = null,$id = null,Request $request)
+    {
+        if($request->ajax())
+        {
+            $url = $request->url();
+            $newProduct = TypeProduct::find($id)
+                        ->Products()
+                        ->orderBy('created_at','desc')
+                        ->take(3)
+                        ->get();
+            $product = TypeProduct::find($id)->Products()->paginate(6);
+            $count_type = TypeProduct::find($id)->Products()->count();
+            $data = Product::all();
+            $seller = OrderDetail::groupBy(['product_id','product_price'])
+                    ->selectRaw('sum(qty) as total,product_id,product_price')
+                    ->orderBy('total','desc')
+                    ->take(10)
+                    ->get();
+            return view('user.loaisanpham.content',compact('product','newProduct','count_type','data','seller','url'));
+        }
     }
 
     public function seach(Request $request)

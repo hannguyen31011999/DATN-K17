@@ -98,15 +98,16 @@ class ordercontroller extends Controller
                 {
                     $id = User::find($order->customer_id)->Members->id;
                     $point = $order->OrderDetails()->count() + User::find($order->customer_id)->Members->point;
-                    Member::find($id)->update(['point'=>$point]);
+                    Member::find($id)->update(['point'=>$point]);                    
+                    foreach ($order->OrderDetails()->get() as $value) {
+                        $qty = 0;
+                        $product = Product::find($value->product_id);
+                        $qty = ($product->qty - $value->qty);
+                        $product->update(['qty'=>$qty]);
+                    }
                 }
                 $order->update(['status'=>$request->selected]);
-                $qty = 0;
-                foreach ($order->OrderDetails()->get() as $value) {
-                    $product = Product::find($value->product_id);
-                    $qty = ($product->qty - $value->qty);
-                    $product->update(['qty'=>$qty]);
-                }
+                
                 return "Cập nhật trạng thái thành công";
 			}catch(Exception $e){
 				return response()->json(['data'=>'Cập nhật thông tin thất bại'],500);

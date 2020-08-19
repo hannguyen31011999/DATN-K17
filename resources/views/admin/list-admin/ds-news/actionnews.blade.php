@@ -28,7 +28,7 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <label class="control-label">Tiêu đề</label>
-                                    <input id="title" type="text" class="input-large form-control"  placeholder="Nhập tiêu đề . . ." name="title" @if(isset($news)) value="{{$news->title}}" @endif>
+                                    <input id="title" type="text" class="input-large form-control"  placeholder="Nhập tiêu đề . . ." name="title" @if(isset($news)) value="{{$news->title}}" @endif value="{{old('title')}}">
                                     @if($errors->has('title'))
                                     <div class="alert alert-danger" role="alert">
                                         <strong>{{$errors->first('title')}}</strong>
@@ -36,7 +36,7 @@
                                     @endif
                                     <br>
                                     <label class="control-label mt-1">Nội dung</label>
-                                    <textarea name="content" id="ckeditor" cols="30" rows="10">@if(isset($news)) {{$news->content}} @endif</textarea>
+                                    <textarea name="content" id="ckeditor" cols="30" rows="10">@if(isset($news)) {{$news->content}} @endif{{old('content')}}</textarea>
                                     @if($errors->has('content'))
                                     <div class="alert alert-danger" role="alert">
                                         <strong>{{$errors->first('content')}}</strong>
@@ -55,9 +55,9 @@
                                                 @else <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('admin/image/background/pngtree.jpg')}}" /> @endif
                                             </div>
                                         </div>
-                                        @if(isset($errorss))
+                                        @if($errors->has('image'))
                                         <div class="alert alert-danger" role="alert">
-                                            <strong>{{$errorss}}</strong>
+                                            <strong>{{$errors->first('image')}}</strong>
                                         </div>
                                         @endif
                                     </div>

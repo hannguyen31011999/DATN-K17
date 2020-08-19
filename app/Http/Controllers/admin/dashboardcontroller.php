@@ -26,7 +26,7 @@ class dashboardcontroller extends Controller
         $a = Carbon::now();
         $format = date('Y-m-d 0:0:0');
         //Số lương đơn hàng mới
-        $odernew = DB::table('order')->where('created_at', '>', $format)->count();
+        $odernew = DB::table('order')->where('created_at', '>', $format)->get();
         //Đơn hang chưa xác nhận
         //$oder_cxd = Order::orderBy('created_at', 'desc')->where('status', 0)->get();
         //Tổng đơn hàng

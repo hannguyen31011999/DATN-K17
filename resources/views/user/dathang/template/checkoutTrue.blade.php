@@ -44,9 +44,9 @@
 						<div class="media-body">
 							<p class="font-large">{{$carts['name']}}</p>
 							@if(empty($carts['promotion_price']))
-								<p class="font-large">Đơn giá: {{$carts['unit_price']}}đ</p>
+								<p class="font-large">Đơn giá: {{thousandSeperator($carts['unit_price'])}}đ</p>
 							@else
-								<p class="font-large">Đơn giá: {{$carts['promotion_price']}}đ</p>
+								<p class="font-large">Đơn giá: {{thousandSeperator($carts['promotion_price'])}}đ</p>
 							@endif
 							<p class="font-large">Số lượng: {{$carts['qty']}}</p>
 						</div>

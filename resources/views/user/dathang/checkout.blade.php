@@ -49,7 +49,6 @@
 	                  "selectedProvince":selectedProvince
 	                },
 	                success: function(response) {
-	                    console.log(response);
 	                    $('#list-address').empty().html(response);
 	                    $('#select-province').val(selectedProvince).attr('selected','selected');
 	                },
@@ -101,13 +100,12 @@
 	                 	"selectedVillage":selectedVillage
 	                },
 	                success: function(response) {
-	                    console.log(response);
 	                    $('#list-address').empty().html(response);
 	                    $('#select-province').val(selectedProvince).attr('selected','selected');
 	                    $('#select-district').val(selectedDistrict).attr('selected','selected');
 	                    $('#select-village').val(selectedVillage).attr('selected','selected');
 	                    var tax = Number($('#shipping').val()) + Number($('#total').val());
-	                    $('#total_price').text(tax+"đ");
+	                    $('#total_price').text(thousands_separators(tax)+"đ");
 	                },
 	                error: function (jqXHR, textStatus, errorThrown) {
                 	}
@@ -115,5 +113,11 @@
 				e.preventDefault();
 			});
 		});
+	function thousands_separators(num)
+	{
+	    var num_parts = num.toString().split(".");
+	    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+	    return num_parts.join(".");
+	}
 	</script>
 @endsection

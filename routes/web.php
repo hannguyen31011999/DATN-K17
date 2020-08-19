@@ -23,6 +23,9 @@ Route::post('/checkout/list-address','User\CheckoutController@listAddress');
 // Trang chủ
 Route::get('/','User\HomeController@index')->name('home');
 
+// Call ajax load trang
+Route::post('/','User\HomeController@index');
+
 // Thêm sản phẩm vào giỏ hàng home
 Route::post('/cart','User\CartController@addCart');
 
@@ -47,8 +50,14 @@ Route::post('/checkout','User\CheckoutController@createCheckout')->middleware(ch
 // Trang loại sản phẩm 
 Route::get('/chi-tiet-{name}.{id}','User\HomeController@typeProduct');
 
+// Call ajax load trang loai spham
+Route::post('/chi-tiet-{name}.{id}','User\HomeController@pageLoadTypeProduct');
+
 // Trang chi tiết sản phẩm
 Route::get('/{name}.{id}','User\DetailProductController@index');
+
+// Call ajax load trang chi tiết
+Route::post('/{name}.{id}/load','User\DetailProductController@pageLoadDetailProduct');
 
 // Xử lí comment ở chi tiết sản phẩm
 Route::post('/{name}.{id}','User\DetailProductController@index');

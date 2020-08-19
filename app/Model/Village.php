@@ -18,6 +18,7 @@ class Village extends Model
         'id',
         'district_id',
         'name',
+        'price_shipping',
     	'created_at',
         'updated_at',
         'deleted_at'

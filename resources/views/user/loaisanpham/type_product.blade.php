@@ -32,6 +32,7 @@
 </div>
 @endsection
 @section('content')
+    <input type="hidden" name="" value="{{$url}}" id="urlTypeProduct">
     @include('user.loaisanpham.content')
 @endsection
 
@@ -40,15 +41,22 @@
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('user/ajax/trangchu.js')}}"></script>
 <script type="text/javascript">
-	var count = $('#count').val();
+    var count = $('#count').val();
     if(count>0)
     {
         $('#count_span').text("("+count+")");
     }
-	$('#count_span').text("(0)");
+    else
+    {
+        $('#count_span').text("(0)");
+    }
 	$(document).ready(function()
     {
-    	// Phân trang 
+        if (window.history && window.history.pushState) {
+            var url = $('#urlTypeProduct').val().split('http://localhost:8000/')[1];
+            loadPage(url);
+        }
+    	// Phân trang
         $(document).on('click', '.pagination a',function(event)
         {
             event.preventDefault();
@@ -63,6 +71,23 @@
         });
 	});
 
+    function loadPage(url){
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $.ajax(
+        {
+            url: '/' + url,
+            type: "post",
+            datatype: "html"
+        }).done(function(response){
+            $("#tag_container").empty().html(response);
+        }).fail(function(jqXHR, ajaxOptions, thrownError){
+        });
+    }
+
 	function getData(url){
         $.ajax(
         {
@@ -70,7 +95,6 @@
             type: "get",
             datatype: "html"
         }).done(function(response){
-            console.log(response);
             $("#tag_container").empty().html(response);
         }).fail(function(jqXHR, ajaxOptions, thrownError){
               alert('No response from server');

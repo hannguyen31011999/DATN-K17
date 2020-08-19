@@ -53,9 +53,9 @@
 						<div class="media-body">
 							<p class="font-large">{{$carts['name']}}</p>
 							@if(empty($carts['promotion_price']))
-								<p class="font-large">Đơn giá: {{$carts['unit_price']}}đ</p>
+								<p class="font-large">Đơn giá: {{thousandSeperator($carts['unit_price'])}}đ</p>
 							@else
-								<p class="font-large">Đơn giá: {{$carts['promotion_price']}}đ</p>
+								<p class="font-large">Đơn giá: {{thousandSeperator($carts['promotion_price'])}}đ</p>
 							@endif
 							<p class="font-large">Số lượng: {{$carts['qty']}}</p>
 						</div>
@@ -72,7 +72,7 @@
 					<div class="clearfix"></div>
 				@else
 					<input type="hidden" id="total" name="" value="{{Session::get('cart')->totalPrice}}">
-					<div class="pull-right"><p id="total_price" style="font-size: 20px;">{{Session::get('cart')->totalPrice}}đ</p></div>
+					<div class="pull-right"><p id="total_price" style="font-size: 20px;">{{thousandSeperator(Session::get('cart')->totalPrice)}}đ</p></div>
 					<div class="clearfix"></div>
 				@endif
 			</div>

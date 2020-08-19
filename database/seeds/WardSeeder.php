@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class VillageSeeder extends Seeder
+class WardSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,5 @@ class VillageSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('village')->insert([
-        ]);
     }
 }

@@ -54,6 +54,9 @@
     // Ajax
     $(document).ready(function()
     {
+        if (window.history && window.history.pushState) {
+            loadPage();
+        }
         // Phân trang 
         $(document).on('click', '.pagination a',function(event)
         {
@@ -69,6 +72,24 @@
         });
     });
         
+    function loadPage(){
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $.ajax(
+        {
+            url: '/',
+            type: "post",
+            datatype: "html"
+        }).done(function(response){
+            $("#tag_container").empty().html(response);
+        }).fail(function(jqXHR, ajaxOptions, thrownError){
+              alert('No response from server');
+        });
+    }
+
     // function xử lí ajax
     function getData(page){
         $.ajax(
@@ -77,7 +98,6 @@
             type: "get",
             datatype: "html"
         }).done(function(response){
-            console.log(response);
             $("#tag_container").empty().html(response);
         }).fail(function(jqXHR, ajaxOptions, thrownError){
               alert('No response from server');

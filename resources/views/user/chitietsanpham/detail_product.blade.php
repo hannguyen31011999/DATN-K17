@@ -30,23 +30,34 @@
 </div>
 @endsection
 @section('content')
+    <input type="hidden" name="" value="{{$url}}" id="urlProductDetail">
     @include('user.chitietsanpham.template.content')
 @endsection
 @section('js')
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script type="text/javascript">
-    var count = $('#count').val();
-    if(count>0)
-    {
-        $('#count_span').text("("+count+")");
-    }
-    else
-    {
-        $('#count_span').text("(0)");
-    }
     $(document).ready(function(){
+
+        if (window.history && window.history.pushState) {
+            var url = $('#urlProductDetail').val().split('http://localhost:8000/')[1];
+            loadPage(url);
+        }
+
+        else
+        {
+            var count = $('#count').val();
+            if(count>0)
+            {
+                $('#count_span').text("("+count+")");
+            }
+            else
+            {
+                $('#count_span').text("(0)");
+            }
+        }
         var product_qty = $('#hidden-qty').val();
+
         $(document).on('submit', '#form-comment',function(event){
             var comment = $('#comment').val();
             var url = $(this).attr('data-url');
@@ -79,6 +90,8 @@
             });
             event.preventDefault();
         });
+
+        
 
         $(document).on('click', '.deleteComment',function(event){
             var commentId = $(this).attr('id');
@@ -190,31 +203,50 @@
         });
 
         $(document).on('click', '.deleteCart',function(event){
-        event.preventDefault();
-        var bool = confirm('Bạn có muốn xóa sản phẩm này không?');
-        var rowId = $(this).attr('id');
-        if(bool)
-        {
-            $.ajax({
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'delete',
-            url: '/cart',
-            data: {
-              "rowId":rowId,
-            },
-            success: function(response) {
-                $('.cart-body').empty().html(response);
-                var count = $('#count').val();
-                $('#count_span').text("("+count+")");
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              //xử lý lỗi tại đây
+            event.preventDefault();
+            var bool = confirm('Bạn có muốn xóa sản phẩm này không?');
+            var rowId = $(this).attr('id');
+            if(bool)
+            {
+                $.ajax({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'delete',
+                url: '/cart',
+                data: {
+                  "rowId":rowId,
+                },
+                success: function(response) {
+                    $('.cart-body').empty().html(response);
+                    var count = $('#count').val();
+                    $('#count_span').text("("+count+")");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                  //xử lý lỗi tại đây
+                }
+              });
             }
-          });
-        }
+        });
     });
-    });
+    function loadPage(url){
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $.ajax(
+        {
+            url: '/'+url+'/load',
+            type: "post",
+            datatype: "html"
+        }).done(function(response){
+            $('.cart-body').empty().html(response);
+            var count = $('#count').val();
+            $('#count_span').text("("+count+")");
+        }).fail(function(jqXHR, ajaxOptions, thrownError){
+            alert("not response");
+        });
+    }
 </script>
 @endsection

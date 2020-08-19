@@ -42,39 +42,43 @@ class newscontroller extends Controller
      */
     public function store(Request $request)
     {
-        
-        $request->validate([
-            'title' => 'required|unique:news|max:254',
-            'content' => 'required',
-            'image'=>'image'
-        ],[
-            'title.required' => 'Chưa nhập tiêu đề',
-            'title.max'=>'Tiêu đề quá dài',
-            'content.required' => 'Chưa nhập nội dung',
-            'title.unique'=>'Tiêu đề này đã tồn tại',
-            'image.image'=>'không đúng định dạng'
-        ]);
-
-        if($request->image){     
-            $file = $request->file('image');
-            if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
-               $fileName = $file->getClientOriginalName('image');
-               $file->move('admin/image/posts',$fileName);
-               $News = new News();
-               $News->title = $request->title;
-               $News->content = $request->content;
-               $News->image = $fileName;
-               $News->user_id_create = Auth::User()->id;
-               $News->save();
-               return redirect()->route('list-admin.ds-news.list');
-            }else{
-                echo"eo phai jpg";
+        $validate = Validator::make($request->all(),
+            [
+                'title' => 'required|unique:news|max:254',
+                'content' => 'required',
+                'image'=>'image|required|mimes:jpeg,png,jpg,gif|max:2048'
+            ],
+            [
+                'title.required' => 'Chưa nhập tiêu đề',
+                'title.max'=>'Tiêu đề quá dài',
+                'content.required' => 'Chưa nhập nội dung',
+                'title.unique'=>'Tiêu đề này đã tồn tại',
+                'image.required'=>'Ảnh sản phẩm không được để trống',
+                'image.image'=>'Không đúng định dạng',
+                'image.mimes'=>'Không đúng loại ảnh jpeg,png,jpg,gif,svg',
+                'image.max'=>'Kích thước ảnh quá lớn',
+            ]
+        );
+        if($validate->passes())
+        {
+            if(request()->hasFile('image'))
+            {
+                $file = $request->file('image');
+                $fileName = $file->getClientOriginalName('image');
+                $file->move('admin/image/posts',$fileName);
+                $News = new News();
+                $News->title = $request->title;
+                $News->content = $request->content;
+                $News->image = $fileName;
+                $News->user_id_create = Auth::User()->id;
+                $News->save();
+                return redirect()->route('list-admin.ds-news.list');
             }
-         }else{
-            $errorss = "Chưa chọn hinh ảnh !";
-            $listNews = News::all();
-            return view('admin.list-admin.ds-news.actionnews', compact('listNews', 'errorss'));
-         }
+        }
+        else
+        {
+            return back()->withErrors($validate)->withInput();
+        }
     }
 
     /**

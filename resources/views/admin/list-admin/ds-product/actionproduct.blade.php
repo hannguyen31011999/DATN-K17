@@ -41,21 +41,17 @@
 @section('main-conten')
 <div class="row">
     <div class="col-md-12">
-        @if(isset($product))
-        <form action="{{ route('list-admin.ds-product.edit-update', ['id'=> $product->id]) }}" method="POST" enctype="multipart/form-data">
-            @else
-            <form action="{{  route('list-admin.ds-product.edit-add') }}" method="POST" enctype="multipart/form-data">
-                @endif
-                @csrf
-                <div class="card-box">
+        <form action="{{ route('list-admin.ds-product.edit-add') }}" method="POST" role="form" enctype="multipart/form-data">
+            @csrf
+            <div class="card-box">
                     <div class="row">
                         <div class="conten-add-post">
                             <div class="col-xl-10 col-lg-12">
-                                <h1 class="heard-product"><b> @if(isset($product)) Cập nhật @else Thêm @endif sản phẩm</b></h1>
+                                <h1 class="heard-product"><b>Cập nhật sản phẩm</b></h1>
                                 <div class="control-group">
                                     <div class="controls">
                                         <label class="control-label">Tên Sản phẩm</label>
-                                        <input id="title" type="text" class="input-large form-control"  placeholder="Nhập tên sản phẩm ..." name="product_name" @if(isset($product)) value="{{$product->product_name}}" @endif>
+                                        <input id="title" type="text" class="input-large form-control"  placeholder="Nhập tên sản phẩm ..." name="product_name" value="{{old('product_name')}}" >
                                         @if($errors->has('product_name'))
                                         <div class="alert alert-danger" role="alert">
                                             <strong>{{$errors->first('product_name')}}</strong>
@@ -65,18 +61,24 @@
                                         <div class="form-group mb-3">
                                             <label class="control-label">Loại</label>
                                             <select class="custom-select " id="loai" name="type_product_id">
-                                                @foreach( $listtypeproduct as $tpr )
-                                                <option value="{{$tpr->id}}" @if(isset($product)) @if($product->type_product_id == $tpr->id ) selected="selected" disabled="disabled" @endif
-                                                    {{ $tpr->type_name}}
-                                                    @endif>
-                                                    {{ $tpr->type_name}}
-                                                </option>
+                                                @foreach( $listtypeproduct as $tpr)
+                                                    @if($tpr->id == old('type_product_id'))
+                                                        <option value="{{$tpr->id}}" selected="selected">
+                                                            {{$tpr->type_name}}
+                                                        </option>
+                                                    @else
+                                                        <option value="{{$tpr->id}}">
+                                                            {{$tpr->type_name}}
+                                                        </option>
+                                                    @endif
                                                 @endforeach
                                             </select>
                                         </div>
                                         <br>
                                         <label class="control-label mt-1">Mô tả</label>
-                                        <textarea name="description" id="ckeditor" cols="30" rows="10">@if(isset($product)) {{$product->description}} @endif</textarea>
+                                        <textarea name="description" id="ckeditor" cols="30" rows="10">
+                                            {{old('description')}}
+                                        </textarea>
                                         @if($errors->has('description'))
                                         <div class="alert alert-danger" role="alert">
                                             <strong>{{$errors->first('description')}}</strong>
@@ -84,7 +86,7 @@
                                         @endif
                                         <br>
                                         <label class="control-label">Giá</label>
-                                        <input id="unit_price" type="number" class="input-large form-control"  placeholder="Nhập giá sản phẩm ..." name="unit_price" @if(isset($product)) value="{{$product->unit_price}}" @endif>
+                                        <input id="unit_price" type="number" class="input-large form-control"  placeholder="Nhập giá sản phẩm ..." name="unit_price" value="{{old('unit_price')}}">
                                         @if($errors->has('unit_price'))
                                         <div class="alert alert-danger" role="alert">
                                             <strong>{{$errors->first('unit_price')}}</strong>
@@ -92,15 +94,20 @@
                                         @endif
                                         <br>
                                         <label class="control-label">Giá khuyến mãi</label>
-                                        <input id="promotion_price" type="number" class="input-large form-control" placeholder="Nhập giá khuyến mãi ..." name="promotion_price" @if(isset($product)) value="{{$product->promotion_price}}" @endif>
+                                        <input id="promotion_price" type="number" class="input-large form-control" placeholder="Nhập giá khuyến mãi ..." name="promotion_price" value="{{old('promotion_price')}}">
                                         @if($errors->has('promotion_price'))
                                         <div class="alert alert-danger" role="alert">
                                             <strong>{{$errors->first('promotion_price')}}</strong>
                                         </div>
                                         @endif
+                                        @if(Session::has('errorss'))
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>{{Session::get('errorss')}}</strong>
+                                        </div>
+                                        @endif
                                         <br>
                                         <label class="control-label">Số lượng</label>
-                                        <input id="promotion_price" type="number" class="input-large form-control" placeholder="Nhập số lượng sản phẩm ..." name="qty" @if(isset($product)) value="{{$product->qty}}" @endif>
+                                        <input id="promotion_price" type="number" class="input-large form-control" placeholder="Nhập số lượng sản phẩm ..." name="qty" >
                                         @if($errors->has('qty'))
                                         <div class="alert alert-danger" role="alert">
                                             <strong>{{$errors->first('qty')}}</strong>
@@ -113,7 +120,7 @@
                                         @endif
                                         <br>
                                         <label class="control-label">Đơn vị</label>
-                                        <input id="unit" type="text" class="input-large form-control"  placeholder="Nhập đơn vị ..." name="unit" @if(isset($product)) value="{{$product->unit}}" @endif>
+                                        <input id="unit" type="text" class="input-large form-control"  placeholder="Nhập đơn vị ..." name="unit" value="{{old('unit')}}">
                                         @if($errors->has('unit'))
                                         <div class="alert alert-danger" role="alert">
                                             <strong>{{$errors->first('unit')}}</strong>
@@ -121,7 +128,7 @@
                                         @endif
                                         <br>
                                         <label class="control-label">Nguồn</label>
-                                        <input id="origin" type="text" class="input-large form-control"  placeholder="Nhập nguồn sản phẩm ..."  name="origin" @if(isset($product)) value="{{$product->origin}}" @endif>
+                                        <input id="origin" type="text" class="input-large form-control"  placeholder="Nhập nguồn sản phẩm ..."  name="origin" value="{{old('origin')}}">
                                         @if($errors->has('origin'))
                                         <div class="alert alert-danger" role="alert">
                                             <strong>{{$errors->first('origin')}}</strong>
@@ -129,7 +136,7 @@
                                         @endif
                                         <br>
                                         <label class="control-label">Nguyên liệu thô</label>
-                                        <input id="raw_material" type="text" class="input-large form-control" placeholder="Nhập nguyên liệu ..." name="raw_material" @if(isset($product)) value="{{$product->raw_material}}" @endif>
+                                        <input id="raw_material" type="text" class="input-large form-control" placeholder="Nhập nguyên liệu ..." name="raw_material" value="{{old('raw_material')}}">
                                         @if($errors->has('raw_material'))
                                         <div class="alert alert-danger" role="alert">
                                             <strong>{{$errors->first('raw_material')}}</strong>
@@ -142,20 +149,24 @@
                                             <label for="showMethod">Hình</label>
                                             <div class="form-group row">
                                                 <div class="col-lg-12">
-                                                    <input type="file" name="image" id="myFile" onchange="showImage.call(this)">
-                                                    @if(isset($product)) <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('admin/image/product/'.$product->image)}}" />
-                                                    @else <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('admin/image/background/pngtree.jpg')}}" /> @endif
+                                                    <input type="file" name="myFile" id="myFile" onchange="showImage.call(this)">
+                                                    <img id="image" class="imgpage" height="300px" width="300px" src="{{asset('admin/image/background/pngtree.jpg')}}" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @if($errors->has('myFile'))
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>{{$errors->first('myFile')}}</strong>
+                                        </div>
+                                    @endif
                                 </div>
                                 <!-- end row -->
                                 <hr>
                                 <div class="row mt-2">
                                     <div class="col-12">
                                         <div>
-                                            <button type="submit" class="btn btn-primary waves-effect width-md waves-light">@if(isset($product))Cập nhật @else Thêm @endif</button>
+                                            <button type="submit" class="btn btn-primary waves-effect width-md waves-light">Thêm sản phẩm</button>
                                             <a href="{{route('list-admin.ds-product.list') }}" class="btn btn-danger waves-effect width-md waves-light">Hủy</a>
                                         </div>
                                     </div>
@@ -163,11 +174,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-          </div>
-    </form>
-</div>
-<!-- end col -->
+            </div>
+        </form>
+    </div>
+    <!-- end col -->
 </div>
 @endsection
 @section('script')
