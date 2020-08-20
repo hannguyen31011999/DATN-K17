@@ -143,6 +143,19 @@ Route::group(['prefix'=>'account','namespace'=>'User'],function(){
 
 	Route::get('/purchase/detail/{id}','ProfileController@detailPurchase');
 });
+
+Route::get('/chinh-sach-quy-dinh',function(){
+	return view('user.chinhsach.quydinh');
+});
+
+Route::get('/chinh-sach-thanh-toan',function(){
+	return view('user.chinhsach.thanhtoan');
+});
+
+Route::get('/chinh-sach-bao-mat',function(){
+	return view('user.chinhsach.baomat');
+});
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Admin

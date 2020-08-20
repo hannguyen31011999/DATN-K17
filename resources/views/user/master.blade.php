@@ -578,11 +578,10 @@ ul.nav-user-s {
 					<a href="{{route('home')}}" id="logo"><img src="{{asset('user/logo.png')}}" width="200px" alt=""></a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li class="font-li"><button type="button" class="btn btn-default btn-circle btn-xl">
-							<i class="fa fa-phone  font-20"></i></button></a></li>
-					<li class="font-li"><button type="button" class="btn btn-default btn-circle btn-xl"><i class="fa fa-map-marker font-20"></i></button></a></li>
-					<li class="font-li"><button type="button" class="btn btn-default btn-circle btn-xl"><i class="fa fa-facebook-square"></i></button></a></li>
-					<li class="font-li"><button type="button" class="btn btn-default btn-circle btn-xl"><i class="fa fa-envelope"></i></button></a></li>
+					<li class="font-li"><button type="button" onclick="window.location.href='https://instagram.com'" class="btn btn-default btn-circle btn-xl"><i class="fa fa-instagram  font-20"></i></button></li>
+					<li class="font-li"><button type="button" onclick="window.location.href='https://www.google.com/search?sxsrf=ALeKk009ZwYn99W-n0R2C-_fALo2h-9bog:1597931659348&source=hp&ei=hoA-X9b2DJONoASztrPgBQ&q=ti%E1%BB%87m%20b%C3%A1nh%20ng%E1%BB%8Dc%20trinh&oq=ti%E1%BB%87m+b%C3%A1nh+ng%E1%BB%8Dc+trinh&gs_lcp=CgZwc3ktYWIQAzICCAAyBggAEBYQHjICCCYyAggmMgIIJjoHCCMQ6gIQJzoJCCMQ6gIQJxATOgQIIxAnOgQIABBDOgUIABCxAzoECC4QQzoICAAQsQMQgwE6CggAELEDEIMBEAo6AgguOgcIIxCxAhAnOgQIABAKOgcIABAKEMsBUMIPWIAiYNAjaAlwAHgHgAFuiAGfFZIBBDIyLjeYAQCgAQGqAQdnd3Mtd2l6sAEK&sclient=psy-ab&ved=2ahUKEwjJ3rin96nrAhUcy4sBHRwQAo8QvS4wAXoECAwQDg&uact=5&npsic=0&rflfq=1&rlha=0&rllag=10813287,106716762,12894&tbm=lcl&rldimm=8296757139943377445&lqi=Chl0aeG7h20gYsOhbmggbmfhu41jIHRyaW5oWjYKGXRp4buHbSBiw6FuaCBuZ-G7jWMgdHJpbmgiGXRp4buHbSBiw6FuaCBuZ-G7jWMgdHJpbmg&phdesc=FPa_Ea8rHRQ&rldoc=1&tbs=lrf:!3sIAE,lf:1,lf_ui:9&rlst=f#rldoc=1'" class="btn btn-default btn-circle btn-xl"><i class="fa fa-map-marker font-20"></i></button></a></li>
+					<li class="font-li"><button type="button" onclick="window.location.href='https://www.facebook.com'" class="btn btn-default btn-circle btn-xl"><i class="fa fa-facebook-square"></i></button></a></li>
+					<li class="font-li"><button type="button" onclick="window.location.href='https://twitter.com'" class="btn btn-default btn-circle btn-xl"><i class="fa fa-twitter"></i></button></a></li>
 
 				</ul>
 				@if(Auth::check()&&Session::has('email')&&Session::has('id')&&Session::get('role')==1)
@@ -678,9 +677,9 @@ ul.nav-user-s {
 						<h4 class="widget-title">Những chính sách</h4>
 						<div>
 							<ul>
-								<li><a href=""><i class="fa fa-chevron-right"></i>Chính sách và quy định chung</a></li>
-								<li><a href=""><i class="fa fa-chevron-right"></i>Chính sách giao dịch, thanh toán</a></li>
-								<li><a href=""><i class="fa fa-chevron-right"></i>Chính sách đổi trả</a></li>
+								<li><a href="{{url('chinh-sach-quy-dinh')}}"><i class="fa fa-chevron-right"></i>Chính sách và quy định chung</a></li>
+								<li><a href="{{url('chinh-sach-thanh-toan')}}"><i class="fa fa-chevron-right"></i>Chính sách giao dịch, thanh toán</a></li>
+								<li><a href="{{url('chinh-sach-bao-mat')}}"><i class="fa fa-chevron-right"></i>Chính sách bảo mật</a></li>
 							</ul>
 						</div>
 					</div>

@@ -181,6 +181,7 @@
 </div>
 @endsection
 @section('script')
+@include('ckfinder::setup')
 <script src="{{asset('ckeditor\ckeditor.js') }}"></script>
 <script src="{{asset('ckfinder\ckfinder.js') }}"></script>
 <!-- <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script> -->
@@ -192,11 +193,11 @@
         //filebrowserBrowseUrl: '../../..laravel-filemanager?type=Files',
         filebrowserFlashUploadUrl: '../../public/ckfinder/core/connector/connector.php?command=QuickUpload&type=Images',
     };
-</script>
-<script type="text/javascript">
     CKEDITOR.replace( 'ckeditor', options);
+    CKFider.start();
 </script>
-@include('ckfinder::setup')
+
+
 <script>
     function showImage() {
         if (this.files && this.files[0]) {
