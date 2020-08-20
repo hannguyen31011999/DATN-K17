@@ -49,9 +49,9 @@ class DetailProductController extends Controller
                     'status'=>0
                 ]);
                 $user = User::all();
-                $comment = Product::find($id)->Comments()->orderBy('id','asc')->get();
+                $comment = Product::find($id)->Comments()->orderBy('id','desc')->get();
                 $count = Product::find($id)->Comments()->count();
-                return view('user.chitietsanpham.template.content',compact('seller','newProduct','productRelated','data','product','comment','count','user','url'));
+                return view('user.chitietsanpham.template.content_comment',compact('seller','newProduct','productRelated','data','product','comment','count','user','url'));
             }
             else
             {
@@ -116,7 +116,7 @@ class DetailProductController extends Controller
                 $newCart = new ShoppingCart($oldCart);
                 if(empty($newCart->products[$request->id]))
                 {
-                    if($product->qty>$request->qty)
+                    if($product->qty>=$request->qty)
                     {
                         $newCart->AddCart($product,$request->id);
                         $newCart->updateAddCart($request->id,$request->qty);
@@ -130,7 +130,7 @@ class DetailProductController extends Controller
                 }
                 else
                 {
-                    if($product->qty>($newCart->products[$request->id]['qty']+$request->qty))
+                    if($product->qty>=($newCart->products[$request->id]['qty']+$request->qty))
                     {
                         $newCart->AddCart($product,$request->id);
                         $newCart->updateAddCart($request->id,$request->qty);

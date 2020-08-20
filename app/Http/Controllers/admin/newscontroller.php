@@ -116,41 +116,43 @@ class newscontroller extends Controller
         $request->validate([
             'title' => 'required|max:254',
             'content' => 'required',
-            'image'=>'image'
+            'image'=>'image|required|mimes:jpeg,png,jpg,gif|max:2048'
         ],[
             'title.required' => 'Chưa nhập tiêu đề',
             'title.max'=>'Tiêu đề quá dài',
             'content.required' => 'Chưa nhập nội dung',
-            'image.image'=>'không đúng định dạng'
+            'image.required'=>'Ảnh sản phẩm không được để trống',
+            'image.image'=>'Không đúng định dạng',
+            'image.mimes'=>'Không đúng loại ảnh jpeg,png,jpg,gif,svg',
+            'image.max'=>'Kích thước ảnh quá lớn'
+
         ]);
 
         $updataNews = News::find($id);
         if($request->hasFile('image')){    
-            $destinationPath = 'admin/image/posts'.$updataNews->image;
+            $destinationPath = 'admin/image/posts/'.$updataNews->image;
             if(file_exists($destinationPath)){
                 unlink($destinationPath);
             } 
-            $file = $request->file('image');
-            if($file->getClientOriginalExtension('image') == "png"||"jpg"||"PNG"||"JPG"){
-               $fileName = $file->getClientOriginalName('image');
-               $file->move('admin/image/posts',$fileName);
+                $file = $request->file('image');
+                
+                $fileName = $file->getClientOriginalName('image');
+                $file->move('admin/image/posts',$fileName);
+                $updataNews->title = $request->title;
+                $updataNews->content = $request->content;
+                $updataNews->image = $fileName;
+                $updataNews->user_id_create = Auth::User()->id;
+                $updataNews->save();
+                return redirect()->route('list-admin.ds-news.list');
+        }
+        else
+        {
                $updataNews->title = $request->title;
                $updataNews->content = $request->content;
-               $updataNews->image = $fileName;
                $updataNews->user_id_create = Auth::User()->id;
                $updataNews->save();
                return redirect()->route('list-admin.ds-news.list');
-            }else{
-                echo"eo phai jpg";
-            }
-         }else{
-               $updataNews->title = $request->title;
-               $updataNews->content = $request->content;
-               $updataNews->user_id_create = Auth::User()->id;
-               $updataNews->save();
-             
-               return redirect()->route('list-admin.ds-news.list');
-         }
+        }
     }
 
     /**
@@ -163,7 +165,7 @@ class newscontroller extends Controller
     {
         $deleteNews = News::find($id);
        
-        $destinationPath = 'admin/image/posts'.$deleteNews->image;
+        $destinationPath = 'admin/image/posts/'.$deleteNews->image;
          if(file_exists($destinationPath)){
              unlink($destinationPath);
          }

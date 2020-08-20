@@ -40,6 +40,12 @@
 			-o-background-size: cover; 
 			background-size: cover;
 		}
+		#formFooter {
+	  text-align: center;
+	  -webkit-border-radius: 0 0 10px 10px;
+	  border-radius: 0 0 10px 10px;
+	  font-size: 15px;
+	}
 	</style>
 </head>
 <body class="authentication-page">
@@ -94,7 +100,9 @@
 							<div class="space10">&nbsp;</div>
 							<button type="submit" class="btn btn-danger" style="width:100%;">Đăng nhập</button>
 							<hr width="100%">
-							<a class="loginqmk" href="{{url('recovery')}}" >Quên mật khẩu?</a>
+							<div id="formFooter">
+								<a class="loginqmk" href="{{url('recovery')}}" >Quên mật khẩu?</a>
+							</div>
 						</div>
 				</div>
 			</div>

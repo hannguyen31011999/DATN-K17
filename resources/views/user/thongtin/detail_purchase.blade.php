@@ -26,7 +26,7 @@ th, td {
   <div class="row profile">
     @include('user.thongtin.template.menu')
     <div class="col-md-9">
-          <div class="table-responsive">   
+          <div class="table-responsive" style="margin-top: 16px;">   
           <table class="table" style="width: 100%;">
             <thead>
               <tr>

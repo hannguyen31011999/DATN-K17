@@ -94,16 +94,23 @@ class ordercontroller extends Controller
 		if($request->ajax()){
 			try{
                 $order = Order::find($request->id);
-                if($request->selected==2&&$order->customer_id!=null)
+                if($request->selected==2)
                 {
-                    $id = User::find($order->customer_id)->Members->id;
-                    $point = $order->OrderDetails()->count() + User::find($order->customer_id)->Members->point;
-                    Member::find($id)->update(['point'=>$point]);                    
                     foreach ($order->OrderDetails()->get() as $value) {
                         $qty = 0;
                         $product = Product::find($value->product_id);
                         $qty = ($product->qty - $value->qty);
                         $product->update(['qty'=>$qty]);
+                    }
+                    if($order->customer_id!=null)
+                    {
+                        $id = User::find($order->customer_id)->Members->id;
+                        $point = 0;
+                        foreach ($order->OrderDetails()->get() as $value) {
+                            $point += $value->qty;
+                        }
+                        $point +=  User::find($order->customer_id)->Members->point;
+                        Member::find($id)->update(['point'=>$point]);
                     }
                 }
                 $order->update(['status'=>$request->selected]);

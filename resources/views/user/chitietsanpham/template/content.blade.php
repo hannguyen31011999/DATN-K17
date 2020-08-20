@@ -112,44 +112,11 @@
                         <li id="tab-description"><a href="#tab-description">Mô tả</a></li>
                         <li id="tab-comment"><a href="#tab-comment">Bình luận ({{$count}})</a></li>
                     </ul>
-                    <div class="panel" id="tab-description">
+                    <div class="panel description" id="tab-description" style="border: 1px solid #dcd3d3;">
                         <p style="font-size: 15px;">{!!$product->description!!}</p>
                     </div>
-                    <div class="panel" id="tab-comment" style="max-height: 250px;overflow: auto;">
-                        <form method="post" id="form-comment" data-url="{{url('/'.utf8tourl($product->product_name).'.'.$product->id)}}">
-                            @csrf
-                            <div class="form-block">
-                                <label for="notes">Ghi bình luận</label>
-                                <textarea name="comment" id="comment" class="form-control"></textarea>
-                            </div>
-
-                            <div class="form-block">
-                                <input type="submit" name="" class="beta-btn primary" style="width:150px;" value="Gửi bình luận">
-                            </div>
-                        </form>
-                        <div class="comment">
-                        @foreach($comment as $comments)
-                        @if($comments->status==0)
-                            @foreach($user as $users)
-                                @if($comments->user_id==$users->id)
-                                    <span style="font-size: 20px; font-weight: bold;">{{$users->name}}</span>
-                                @endif
-                            @endforeach
-                            <p style="font-size: 15px;">Bình luận: {{$comments->content}}</p>
-                            <span>{{$comments->created_at->format('d-m-Y')}}</span>
-                            <div id="reply">
-                                    <a href="">Trả lời</a>
-                                @if(Auth::check())
-                                    @if(Session::has('id')&&Session::get('id')==$comments->user_id)
-                                    &nbsp;
-                                    <a href="" class="deleteComment" id="{{$comments->id}}" data-url="{{url('/'.utf8tourl($product->product_name).'.'.$product->id.'/delete')}}">Xóa</a>
-                                    @endif
-                                @endif
-                            </div>
-                            <hr width="100%" style="color: black;">
-                        @endif
-                        @endforeach
-                        </div>       
+                    <div class="panel tab-comment" id="tab-comment" style="max-height: 250px;overflow: auto;border: 1px solid #dcd3d3;">
+                        @include('user.chitietsanpham.template.content_comment')
                     </div>
                 </div>
                 <div class="space50">&nbsp;</div>
@@ -207,7 +174,7 @@
             </div> <!-- .beta-products-list -->
         </div>
         <div class="col-sm-3 aside">
-            <div class="widget">
+            <div class="widget" style="background-color: #f6f6f6;">
                 <h3 class="widget-title">Sản phẩm bán chạy</h3>
                 <div class="widget-body">
                 @foreach($data as $value)
@@ -215,7 +182,7 @@
                         @if($value->id==$sellers["product_id"])
                             <div class="beta-sales beta-lists">
                                 <div class="media beta-sales-item">
-                                    <a class="pull-left" href="{{url('/'.utf8tourl($value->product_name).'.'.$value->id)}}"><img src="{{asset('admin/image/product/'.$value['image'])}}" alt=""></a>
+                                    <a class="pull-left" href="{{url('/'.utf8tourl($value->product_name).'.'.$value->id)}}"><img src="{{asset('admin/image/product/'.$value['image'])}}" style="height: 60px; width: 80px;" alt=""></a>
                                     <div class="media-body">
                                         {{$value['product_name']}}
                                         <br>
@@ -228,7 +195,7 @@
                 @endforeach
                 </div>
             </div> <!-- best sellers widget -->
-            <div class="widget">
+            <div class="widget" style="background-color: #f6f6f6;">
                 <h3 class="widget-title">Sản phẩm mới</h3>
                 <div class="widget-body">
                     <div class="beta-sales beta-lists">

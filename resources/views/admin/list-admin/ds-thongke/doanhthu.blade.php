@@ -12,7 +12,7 @@
     <br>
     <select class="custom-select" id="doanh-thu" name="list-order" style="width:100px;"></select>
     <br>
-    <label>Chọn doanh thu theo tháng</label>
+    <label style="margin-top: 5px;">Chọn doanh thu theo tháng</label>
     <br>
     <select class="custom-select" id="doanh-thu-month" name="list-order" style="width:100px;">
         <option>
@@ -184,44 +184,65 @@ $(document).ready(function(){
         $('#submit-doanhthu').submit(function(e) {
             var nam = $('#doanh-thu').val();
             var thang = $('#doanh-thu-month').val();
-            $.ajax({
-                headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: '/admin/thong-ke/doanh-thu',
-                data: {
-                  "nam":nam,
-                  "thang":thang
-                },
-                success: function(response) {
-                    getDatabyMonth(response,nam,thang);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                }
-            });
+            if(thang=="Tháng")
+            {
+                $.ajax({
+                    headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'get',
+                    url: '/admin/thong-ke/doanh-thu',
+                    data: {
+                      "nam":nam
+                    },
+                    success: function(response) {
+                        getData(response,nam);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    }
+                });
+            }
+            else
+            {
+                $.ajax({
+                    headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: '/admin/thong-ke/doanh-thu',
+                    data: {
+                      "nam":nam,
+                      "thang":thang
+                    },
+                    success: function(response) {
+                        getDatabyMonth(response,nam,thang);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    }
+                });
+            }
             e.preventDefault();
         });
 
-        $(document).on('change', '#doanh-thu',function(e){
-            var nam = $(this).find(":selected").val();
-            $.ajax({
-                headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'get',
-                url: '/admin/thong-ke/doanh-thu',
-                data: {
-                  "nam":nam
-                },
-                success: function(response) {
-                    getData(response,nam);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                }
-            });
-            e.preventDefault();
-        });   
+        // $(document).on('change', '#doanh-thu',function(e){
+        //     var nam = $(this).find(":selected").val();
+        //     $.ajax({
+        //         headers: {
+        //           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         type: 'get',
+        //         url: '/admin/thong-ke/doanh-thu',
+        //         data: {
+        //           "nam":nam
+        //         },
+        //         success: function(response) {
+        //             getData(response,nam);
+        //         },
+        //         error: function (jqXHR, textStatus, errorThrown) {
+        //         }
+        //     });
+        //     e.preventDefault();
+        // });   
     });
     
 

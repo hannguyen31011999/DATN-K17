@@ -35,7 +35,7 @@
         }
 
         .navbar-custom {
-            background-image: url(image/background/backgrounduser.png);
+            
         }
 
         .scrollbar1 {

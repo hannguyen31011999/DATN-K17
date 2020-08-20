@@ -34,7 +34,8 @@ class ProfileController extends Controller
 		$user->phone = convert_phone($user->phone);
 		if(Auth::User()->role==1)
 		{
-			return view('user.thongtin.profile',compact('user'));
+			$point = $user->Members()->pluck('point')[0];
+			return view('user.thongtin.profile',compact('user','point'));
 		}
 		return view('admin.thongtin.profile',compact('user'));
 	}

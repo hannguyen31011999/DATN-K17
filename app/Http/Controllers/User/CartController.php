@@ -44,7 +44,7 @@ class CartController extends Controller
                 }
                 else
                 {
-                    if($product->qty > ($newCart->products[$request->id]['qty']+1))
+                    if($product->qty >= ($newCart->products[$request->id]['qty']+1))
                     {
                         $newCart->AddCart($product,$request->id);
                         Session(['cart'=>$newCart]);

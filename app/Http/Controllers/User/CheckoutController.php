@@ -191,18 +191,19 @@ class CheckoutController extends Controller
                 $province = Province::find($request->province);
                 $district = District::find($request->district);
                 $village = Village::find($request->village);
+                $address = $request->address.",".$village->name.",".$district->name.",".$province->name;
                 $array = Order::create([
                     'customer_id'=>null,
                     'payment'=>$request->payment,
                     'note'=>$request->notes,
                     'status'=>0,
                     'phone'=>$request->phone,
-                    'address'=> $request->address.",".$village->name.",".$district->name.",".$province->name,
+                    'address'=> $address,
                     'name'=>$request->name,
                     'email'=>$request->email,
                 ]);
                 $order = Order::find($array->id);
-                $data = array('email'=>$request->email,'cart'=>Session('cart')->products,'date'=>Carbon::now('Asia/Ho_Chi_Minh'),'total'=>Session('cart')->totalPrice+$request->shipping,'address'=>$request->address,'phone'=>$request->phone,'name'=>$request->name,'mahoadon'=>$array->id,'tax'=>$request->shipping);
+                $data = array('email'=>$request->email,'cart'=>Session('cart')->products,'date'=>Carbon::now('Asia/Ho_Chi_Minh'),'total'=>Session('cart')->totalPrice+$request->shipping,'address'=>$address,'phone'=>$request->phone,'name'=>$request->name,'mahoadon'=>$array->id,'tax'=>$request->shipping);
                 Mail::send('user.dathang.template.mail_purchase',$data,
                     function($messenger) use ($data){
                         $messenger->to($data["email"],'Hệ thống')->subject('[Alley Baker] Đơn hàng của bạn?');

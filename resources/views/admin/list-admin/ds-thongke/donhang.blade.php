@@ -84,45 +84,66 @@ $(document).ready(function(){
             });
         });
 
-        $(document).on('change', '#don-hang',function(e){
-            var nam = $(this).find(":selected").val();
-            $.ajax({
-                headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'get',
-                url: '/admin/thong-ke/don-hang',
-                data: {
-                  "nam":nam
-                },
-                success: function(response) {
-                    getData(response,nam);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                }
-            });
-            e.preventDefault();
-        });
+        // $(document).on('change', '#don-hang',function(e){
+        //     var nam = $(this).find(":selected").val();
+        //     $.ajax({
+        //         headers: {
+        //           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         type: 'get',
+        //         url: '/admin/thong-ke/don-hang',
+        //         data: {
+        //           "nam":nam
+        //         },
+        //         success: function(response) {
+        //             getData(response,nam);
+        //         },
+        //         error: function (jqXHR, textStatus, errorThrown) {
+        //         }
+        //     });
+        //     e.preventDefault();
+        // });
 
         $('#submit-donhang').submit(function(e) {
             var nam = $('#don-hang').val();
             var thang = $('#donhang-month').val();
-            $.ajax({
-                headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: '/admin/thong-ke/don-hang',
-                data: {
-                  "nam":nam,
-                  "thang":thang
-                },
-                success: function(response) {
-                    getDatabyMonth(response,nam,thang);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                }
-            });
+            if(thang=="Tháng")
+            {
+                $.ajax({
+                    headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'get',
+                    url: '/admin/thong-ke/don-hang',
+                    data: {
+                      "nam":nam
+                    },
+                    success: function(response) {
+                        getData(response,nam);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    }
+                });
+            }
+            else
+            {
+                $.ajax({
+                    headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: '/admin/thong-ke/don-hang',
+                    data: {
+                      "nam":nam,
+                      "thang":thang
+                    },
+                    success: function(response) {
+                        getDatabyMonth(response,nam,thang);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    }
+                });
+            }
             e.preventDefault();
         });
     });
@@ -140,7 +161,7 @@ function getDatabyMonth(order,nam,thang)
                 type: 'column'
               },
             title: {
-                text: 'Tổng doanh thu của tháng '+ thang + " năm "+nam,
+                text: 'Tổng đơn hàng của tháng '+ thang + " năm "+nam,
               },
             accessibility: {
                 announceNewData: {

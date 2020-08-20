@@ -27,10 +27,10 @@
                     <option value="3">
                         Tất cả
                     </option>
-                    <option value="0">
+                    <option value="1">
                         Mở
                     </option>
-                    <option value="1">
+                    <option value="0">
                         Khóa
                     </option>
                 </select>
@@ -81,7 +81,6 @@
                   "selectedlist":selectedlist
                 },
                 success: function(response) {
-                    console.log(response);
                     $('#table_user').empty().html(response);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -90,28 +89,6 @@
             e.preventDefault();
         });
     });
-
-    $(document).on('change', '.custom-select',function(e){
-            var id = $(this).attr('id');
-            var selected = $(this).find(":selected").val();
-            $.ajax({
-                headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: '/admin/list-user',
-                data: {
-                  "id":id,
-                  "selected":selected
-                },
-                success: function(response) {
-                    alert(response);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                }
-            });
-            e.preventDefault();
-        });
 
 
     $(document).on('keyup', '#seach',function(event){
@@ -128,7 +105,6 @@
                   "keyword":keyword
                 },
                 success:function(response) {
-                    console.log(response);
                     $("#table_user").empty().html(response);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -149,7 +125,6 @@
                   "keyword":keyword
                 },
                 success:function(response) {
-                    console.log(response);
                     $("#table_user").empty().html(response);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -169,7 +144,6 @@
             type: "get",
             datatype: "html"
         }).done(function(response){
-            console.log(response);
             $("#table_user").empty().html(response);
         }).fail(function(jqXHR, ajaxOptions, thrownError){
               alert('No response from server');

@@ -13,7 +13,6 @@ class productcontroller extends Controller
 {
     public function index(Request $request)
     {
-        $request->session()->forget('request');
         $listproduct = Product::all();
         $listtypeproduct = TypeProduct::all();
         return view('admin.list-admin.ds-product.product', compact('listproduct', 'listtypeproduct'));
@@ -65,7 +64,7 @@ class productcontroller extends Controller
                 {
                     $file = $request->file('myFile');
                     $fileName = $file->getClientOriginalName('myFile');
-                    $file->move('admin/myFile/product', $fileName);
+                    $file->move('admin/image/product', $fileName);
                     $product = new Product();
                     $product->type_product_id  = $request->type_product_id;
                     $product->product_name = $request->product_name;
@@ -73,14 +72,10 @@ class productcontroller extends Controller
                     $product->unit_price = $request->unit_price;
                     $product->promotion_price = $request->promotion_price;
                     $product->unit = $request->unit;
-                    $product->myFile = $fileName;
+                    $product->image = $fileName;
                     $product->origin = $request->origin;
                     $product->raw_material = $request->raw_material;
                     $product->save();
-                    if ($product->save()) {
-                        toast('Thêm thành công!', 'success', 'top-right');
-                    }
-                    $request->session()->forget('request');
                     return redirect()->route('list-admin.ds-product.list');
                 }
             }
@@ -154,15 +149,15 @@ class productcontroller extends Controller
                 $updataproduct->origin = $request->origin;
                 $updataproduct->raw_material = $request->raw_material;
                 if ($request->hasFile('myFile')) {
-                    $destinationPath = 'admin/myFile/product/'. $updataproduct->myFile;
+                    $destinationPath = 'admin/image/product/'. $updataproduct->myFile;
                     if (file_exists($destinationPath)) {
                         unlink($destinationPath);
                     }
                     $file = $request->file('myFile');
                     $fileName = $file->getClientOriginalName('myFile');
-                    $file->move('admin/myFile/product', $fileName);
+                    $file->move('admin/image/product', $fileName);
                    
-                    $updataproduct->myFile = $fileName;   
+                    $updataproduct->image = $fileName;   
                 }
                 $updataproduct->save();
                 return redirect()->route('list-admin.ds-product.list');
@@ -192,7 +187,7 @@ class productcontroller extends Controller
     {
         $deleteproduct = Product::find($id);
         $deleteproduct->delete();
-        $destinationPath = 'admin/myFile/product/'. $deleteproduct->myFile;
+        $destinationPath = 'admin/image/product/'. $deleteproduct->myFile;
         if (file_exists($destinationPath)) {
             unlink($destinationPath);
         }

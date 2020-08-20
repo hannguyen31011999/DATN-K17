@@ -18,7 +18,7 @@ Version: 1.0
         4.1 SUBMENU
     5. CONTENT SECTION
 		5.1 SIDEBAR SECTION
-	6. SHOP SECTION
+	6. SHOP 
 		6.1 WOOCOMMERCE PRODUCT RATTING
 		6.2 WOOCOMMERCE SINGEL ITEM
 		6.3 BETA CART
@@ -1274,6 +1274,7 @@ padding-bottom:0
 
 .aside .widget {
 margin-bottom:50px
+
 }
 
 .aside .widget-title {

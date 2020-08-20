@@ -65,9 +65,13 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="your-order-item">
+					<div class="pull-left"><p class="your-order-f18" style="margin-bottom: 0;">Phí ship:</p></div>
+					<div class="pull-right"><p id="price_ship" style="font-size: 20px;">0đ</p></div>
+					<div class="clearfix"></div>
+			</div>
+			<div class="your-order-item">
 				<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
 				@if(isset($shipping))
-					
 					<div class="pull-right"><p style="font-size: 20px;">{{thousandSeperator(Session::get('cart')->totalPrice+$shipping->price_shipping)}}đ</p></div>
 					<div class="clearfix"></div>
 				@else

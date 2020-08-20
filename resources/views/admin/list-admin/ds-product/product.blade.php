@@ -12,6 +12,10 @@
         white-space: nowrap;
         margin-right: 12%;
     }
+    .description{
+        height: 150px;overflow: auto;
+        width: 100px;
+    }
 </style>
 
 @endsection
@@ -51,7 +55,7 @@
                             <td>{{ $tpr->type_name}}</td>
                             @endif
                             @endforeach
-                            <td>{!! $pr->description !!}</td>
+                            <td><div class="description" style="">{!! $pr->description !!}</div></td>
                             <td><span class="badge badge-purple">{{thousandSeperator($pr->unit_price) }} VNĐ</span></td>
                             <td><span class="badge badge-primary">{{thousandSeperator($pr->promotion_price) }} VNĐ</span></td>
                             <td><span class="badge badge-primary">{{$pr->qty}} Sản phẩm</span></td>
@@ -67,7 +71,7 @@
                             <td>
                                 <a href="{{route('list-admin.ds-product.update', ['id'=>$pr->id])}}" class="text-primary font-20"><i class="fa fa-wrench"></i> </a>
                                 <hr>
-                                <a href="{{route('list-admin.ds-product.delete', ['id'=>$pr->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chất chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{route('list-admin.ds-product.delete', ['id'=>$pr->id])}}" class="text-danger font-20" onclick="return confirm('Bạn chắc chắn xóa ?');"><i class="far fa-trash-alt"></i></a>
                             </td>
 
                         </tr>

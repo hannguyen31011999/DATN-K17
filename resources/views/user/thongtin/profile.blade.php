@@ -27,7 +27,7 @@
 					<div class="row">
 						<div class="col-md-8">
 							<div class="panel-heading"><p style="font-size: 20px;">Thông tin tài khoản</p></div>
-							<div class="panel-heading"><p>Quản lí thông tin hồ sơ bảo mật tài khoản</p></div>
+              <div class="panel-heading"><p>Điểm tích lũy: {{$point}} điểm</p></div>
 							<div class="panel-heading">
 								<div class="c-line-left"></div>
 							</div>

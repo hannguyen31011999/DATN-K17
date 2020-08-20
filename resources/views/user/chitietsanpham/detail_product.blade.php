@@ -37,27 +37,22 @@
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script type="text/javascript">
+    var count = $('#count').val();
+    if(count>0)
+    {
+        $('#count_span').text("("+count+")");
+    }
+    else
+    {
+        $('#count_span').text("(0)");
+    }
     $(document).ready(function(){
-
         if (window.history && window.history.pushState) {
             var url = $('#urlProductDetail').val().split('http://localhost:8000/')[1];
             loadPage(url);
         }
-
-        else
-        {
-            var count = $('#count').val();
-            if(count>0)
-            {
-                $('#count_span').text("("+count+")");
-            }
-            else
-            {
-                $('#count_span').text("(0)");
-            }
-        }
         var product_qty = $('#hidden-qty').val();
-
+        
         $(document).on('submit', '#form-comment',function(event){
             var comment = $('#comment').val();
             var url = $(this).attr('data-url');
@@ -78,9 +73,7 @@
                     }
                     else{
                         console.log(response);
-                        $('#tag_container').empty().html(response);
-                        $('#tab-description').removeClass('active');
-                        $('#tab-comment').addClass('active');
+                        $('.tab-comment').empty().html(response);
                         alertify.success('Thêm bình luận thành công');
                     }
                 },
@@ -243,7 +236,14 @@
         }).done(function(response){
             $('.cart-body').empty().html(response);
             var count = $('#count').val();
-            $('#count_span').text("("+count+")");
+            if(count>0)
+            {
+                $('#count_span').text("("+count+")");
+            }
+            else
+            {
+                $('#count_span').text("(0)");
+            }
         }).fail(function(jqXHR, ajaxOptions, thrownError){
             alert("not response");
         });

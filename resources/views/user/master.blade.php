@@ -502,12 +502,7 @@ ul.nav-user-s {
 		}
 
 		.single-item-title {
-			font-size: 15px;
-			margin-bottom: 5px;
-		}
-
-		.single-item-title {
-			font-size: 17px;
+			font-size: 16px;
 			margin-bottom: 7px;
 			text-shadow: #0277b8 3px 2px 5px;
 		}
@@ -534,6 +529,7 @@ ul.nav-user-s {
 			font-variant: normal;
 			text-transform: none;
 		}
+
 		.flash-sale {
     color: #ff2127;
 }
@@ -571,6 +567,7 @@ ul.nav-user-s {
     margin: 5px;
 }
 	</style>
+
 </head>
 
 <body>

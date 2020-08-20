@@ -20,58 +20,47 @@ class usercontroller extends Controller
         $listUser = User::where('role',1)->paginate(10);
         if($request->ajax())
         {
-        if($request->selectedlist!=null||$request->selectoption!=null)
-        {
-        $status = $request->selectedlist==null ? $request->selectoption : $request->selectedlist;
-        if($status==0)
-        {
-            $listUser = User::where([
-                    ['status',$status],
-                    ['role',1],
-                    ['deleted_at',null]
-                ])->orderBy('created_at','desc')->paginate(10);
-            return view('admin.list-admin.ds-user.template.content_user',compact('listUser'));
-        }
-        else if($status==1)
-        {
-            $listUser = User::where([
-                 ['role',1],
-                ])->paginate(10);
-            return view('admin.list-admin.ds-user.template.content_user',compact('listUser'));
-        }
-        else
-        {
-            return view('admin.list-admin.ds-user.template.content_user',compact('listUser'));
-        }
-        }
-        else
-        {
-        if(!empty($request->keyword))
-        {
-            if($request->keyword!="")
+            if($request->keyword!=null)
             {
-                //    $listUser= DB::table('user' ) //Lấy bảng user
-                   
-                //      
-                //      ->orWhere('product_name','LIKE',$request->keyword.'%')
-                //      ->orWhere('content','LIKE', $request->keyword.'%')
-                //      ->orWhere('name','LIKE', $request->keyword.'%')
-                //      ->paginate(10);
-                  
-                $listUser = User::where('id','=',(int)$request->keyword )
-                        ->orWhere('email','LIKE', $request->keyword.'%')
-                        ->orWhere('name','LIKE', $request->keyword.'%')
-                        ->orWhere('phone','LIKE', $request->keyword.'%')
-                        ->orWhere('birthdate','LIKE', $request->keyword.'%')
-                        ->orWhere('address','LIKE', $request->keyword.'%')
-                        ->paginate(10);
-                        
+                $listUser = User::where('id','=',(int)$request->keyword)
+                            ->orWhere('email','LIKE', $request->keyword.'%')
+                            ->orWhere('name','LIKE', '%'.$request->keyword.'%')
+                            ->orWhere('phone','LIKE', $request->keyword.'%')
+                            ->paginate(10);  
                 return view('admin.list-admin.ds-user.template.content_user',compact('listUser'));
             }
-            return view('admin.list-admin.ds-user.template.content_user',compact('listUser'));
-        }
-        return view('admin.list-admin.ds-user.template.content_user',compact('listUser'));
-        }
+            else
+            {
+                if($request->selectedlist!=null)
+                {
+                    $status = $request->selectedlist;
+                    if($status==1)
+                    {
+                        $listUser = User::where([
+                                ['status',$status],
+                                ['role',1],
+                                ['deleted_at',null]
+                            ])->orderBy('created_at','desc')->paginate(10);
+                        return view('admin.list-admin.ds-user.template.content_user',compact('listUser'));
+                    }
+                    else if($status==0)
+                    {
+                        $listUser = User::where([
+                            ['status',(int)$status],
+                            ['role',1],
+                            ])->paginate(10);
+                        return view('admin.list-admin.ds-user.template.content_user',compact('listUser'));
+                    }
+                    else
+                    {
+                        return view('admin.list-admin.ds-user.template.content_user',compact('listUser'));
+                    }
+                }
+                else
+                {
+                    return view('admin.list-admin.ds-user.template.content_user',compact('listUser'));
+                }
+            }
         }
         return view('admin.list-admin.ds-user.user',compact('listUser'));       
     }

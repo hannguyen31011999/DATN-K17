@@ -11,12 +11,12 @@
 <div class="inner-header">
 	@if(Session::has('errorbank'))
 		<div class="alert alert-danger">
-			{{Session::get('errorbank')}}
+			<span style="font-size: 17px;">{{Session::get('errorbank')}}</span>
 		</div>
 	@endif
 	@if(isset($error_bank))
 		<div class="alert alert-danger">
-			{{$error_bank}}
+			<span style="font-size: 17px;">{{$error_bank}}</span>
 		</div>
 	@endif
 	<div class="container">
@@ -106,6 +106,7 @@
 	                    $('#select-village').val(selectedVillage).attr('selected','selected');
 	                    var tax = Number($('#shipping').val()) + Number($('#total').val());
 	                    $('#total_price').text(thousands_separators(tax)+"đ");
+	                    $('#price_ship').text(thousands_separators(Number($('#shipping').val())+"đ"));
 	                },
 	                error: function (jqXHR, textStatus, errorThrown) {
                 	}

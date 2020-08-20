@@ -103,7 +103,7 @@
                             {{thousandSeperator($dxs->total)}}<i>VNĐ</i>
                             @endforeach</h5>
                         <br>
-                        <p class="mb-0 mt-1 text-truncate" style="margin-top: 5px;">Danh thu tháng hiện tại</p>
+                        <p class="mb-0 mt-1 text-truncate" style="margin-top: 5px;">Danh thu tháng</p>
                     </div>
                 </div>
             </div>
